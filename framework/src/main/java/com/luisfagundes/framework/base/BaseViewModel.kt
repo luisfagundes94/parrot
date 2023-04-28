@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-abstract class BaseViewModel : ViewModel() {
+abstract class BaseViewModel: ViewModel() {
 
     private val handler = CoroutineExceptionHandler { _, exception ->
         Timber.tag(SAFE_LAUNCH_EXCEPTION).e(exception)
@@ -21,6 +21,8 @@ abstract class BaseViewModel : ViewModel() {
     open fun handleError(exception: Throwable) {}
 
     open fun handleEmpty() {}
+
+    open fun handleSuccess(result: Any?) {}
 
     open fun startLoading() {}
 
@@ -39,7 +41,17 @@ abstract class BaseViewModel : ViewModel() {
             }
     }
 
-    protected suspend fun <T> execute(
+    protected suspend fun <T> handleResult(
+        data: DataState<T>
+    ) {
+        when (data) {
+            is DataState.Error -> handleError(data.error)
+            is DataState.Success -> handleSuccess(data.result)
+            is DataState.Empty -> handleEmpty()
+        }
+    }
+
+    protected suspend fun <T> executeFlow(
         callFlow: Flow<DataState<T>>,
         completionHandler: (collect: T) -> Unit = {}
     ) {

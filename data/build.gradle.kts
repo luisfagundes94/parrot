@@ -36,8 +36,11 @@ android {
 }
 
 dependencies {
+    // Modules
     implementation(projects.framework)
     implementation(projects.domain)
+
+
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
     implementation(libs.okhttp.interceptor)
