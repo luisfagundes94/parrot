@@ -2,6 +2,7 @@ package com.luisfagundes.theme
 
 import android.app.Activity
 import android.os.Build
+import android.view.View
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
@@ -46,7 +47,6 @@ private val LightColors = lightColorScheme(
     outlineVariant = md_theme_light_outlineVariant,
     scrim = md_theme_light_scrim,
 )
-
 
 private val DarkColors = darkColorScheme(
     primary = md_theme_dark_primary,
@@ -95,12 +95,11 @@ fun ParrotLingoTheme(
         darkTheme -> DarkColors
         else -> LightColors
     }
+
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
-            val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+            setUpStatusBar(view, darkTheme)
         }
     }
 
@@ -109,4 +108,12 @@ fun ParrotLingoTheme(
         typography = Typography,
         content = content
     )
+}
+
+private fun setUpStatusBar(view: View, darkTheme: Boolean) {
+    val window = (view.context as Activity).window
+    window.statusBarColor = if (darkTheme) md_theme_dark_background.toArgb()
+    else md_theme_light_background.toArgb()
+
+    WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
 }
