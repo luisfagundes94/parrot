@@ -21,6 +21,9 @@ rootProject.name = ("ParrotLingo")
 
 include(
     ":app",
-    ":framework"
+    ":framework",
+    ":theme",
+    ":features:translation",
+    ":features:saved",
+    ":features:settings",
 )
-include(":theme")

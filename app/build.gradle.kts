@@ -70,8 +70,13 @@ android {
 dependencies {
     // Modules
     implementation(project(":theme"))
+    implementation(project(":framework"))
+    implementation(project(":features:translation"))
+    implementation(project(":features:saved"))
+    implementation(project(":features:settings"))
 
     // UI
     implementation(libs.navigation.compose)
     implementation(libs.compose.material3)
+    implementation(libs.compose.material.iconsext)
 }

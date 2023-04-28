@@ -22,6 +22,10 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/saved" />
+            <option value="$PROJECT_DIR$/features/settings" />
+            <option value="$PROJECT_DIR$/features/translation" />
             <option value="$PROJECT_DIR$/framework" />
             <option value="$PROJECT_DIR$/plugins" />
             <option value="$PROJECT_DIR$/theme" />

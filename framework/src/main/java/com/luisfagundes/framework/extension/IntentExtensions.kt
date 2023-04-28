@@ -1,4 +1,4 @@
-package com.luisfagundes.extensions
+package com.luisfagundes.framework.extension
 
 import android.app.Activity
 import android.content.Context

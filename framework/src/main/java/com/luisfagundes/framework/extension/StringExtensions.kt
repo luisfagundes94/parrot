@@ -1,4 +1,4 @@
-package com.luisfagundes.extensions
+package com.luisfagundes.framework.extension
 
 private const val EMPTY_STRING = ""
 
