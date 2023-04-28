@@ -1,4 +1,4 @@
-package com.luisfagundes.parrotlingo
+package com.luisfagundes.parrotlingo.navigation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.luisfagundes.framework.extension.toast
 import com.luisfagundes.theme.ParrotLingoTheme
 
 class NavigationActivity : ComponentActivity() {

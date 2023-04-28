@@ -1,4 +1,4 @@
-package com.luisfagundes.parrotlingo
+package com.luisfagundes.parrotlingo.navigation
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -75,22 +75,20 @@ fun MainNavigationRoot() {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(Screen.Translation.route) {
-                TranslationScreen(navController)
+                TranslationScreen()
             }
             composable(Screen.Saved.route) {
-                SavedScreen(navController)
+                SavedScreen()
             }
             composable(Screen.Settings.route) {
-                SettingsScreen(navController)
+                SettingsScreen()
             }
         }
     }
 }
 
 private fun NavOptionsBuilder.setUpNavigationOptions(navController: NavHostController) {
-    popUpTo(navController.graph.findStartDestination().id) {
-        saveState = true
-    }
+    popUpTo(navController.graph.findStartDestination().id) { saveState = true }
     launchSingleTop = true
     restoreState = true
 }
