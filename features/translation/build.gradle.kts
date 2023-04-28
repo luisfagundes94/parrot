@@ -46,10 +46,12 @@ dependencies {
     // Modules
     implementation(projects.domain)
     implementation(projects.framework)
+    implementation(projects.theme)
 
     implementation(libs.compose.ui.ui)
     implementation(libs.compose.material3)
     implementation(libs.navigation.compose)
+    implementation(libs.compose.material.iconsext)
     debugImplementation(libs.compose.ui.tooling)
 
     // DI

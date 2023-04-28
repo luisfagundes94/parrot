@@ -1,6 +1,8 @@
 package com.luisfagundes.data.di
 
+import com.luisfagundes.data.repositories.WordRepositoryImpl
 import com.luisfagundes.data.services.LingueeApiService
+import com.luisfagundes.domain.repositories.WordRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,10 +23,7 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideHttpRequestInterceptor() = HttpLoggingInterceptor().apply {
-        when {
-            BuildConfig.DEBUG -> HttpLoggingInterceptor.Level.BODY
-            else -> HttpLoggingInterceptor.Level.NONE
-        }
+        HttpLoggingInterceptor.Level.BODY
     }
 
     @Provides
@@ -47,4 +46,5 @@ object NetworkModule {
     @Singleton
     fun provideApiService(retrofit: Retrofit): LingueeApiService =
         retrofit.create(LingueeApiService::class.java)
+
 }

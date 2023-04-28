@@ -76,6 +76,8 @@ dependencies {
     implementation(project(":features:translation"))
     implementation(project(":features:saved"))
     implementation(project(":features:settings"))
+    implementation(project(":data"))
+    implementation(project(":domain"))
 
     // UI
     implementation(libs.navigation.compose)
