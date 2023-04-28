@@ -20,6 +20,8 @@ abstract class BaseViewModel : ViewModel() {
 
     open fun handleError(exception: Throwable) {}
 
+    open fun handleEmpty() {}
+
     open fun startLoading() {}
 
     protected fun safeLaunch(block: suspend CoroutineScope.() -> Unit) {
@@ -48,6 +50,7 @@ abstract class BaseViewModel : ViewModel() {
                 when (state) {
                     is DataState.Error -> handleError(state.error)
                     is DataState.Success -> completionHandler.invoke(state.result)
+                    is DataState.Empty -> handleEmpty()
                 }
             }
     }

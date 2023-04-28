@@ -1,6 +1,8 @@
 plugins {
+    alias(libs.plugins.hilt)
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
 }
 
 android {
@@ -79,4 +81,9 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.compose.material3)
     implementation(libs.compose.material.iconsext)
+
+    // DI
+    implementation(libs.hilt.compose)
+    implementation(libs.hilt.library)
+    kapt(libs.hilt.compiler)
 }

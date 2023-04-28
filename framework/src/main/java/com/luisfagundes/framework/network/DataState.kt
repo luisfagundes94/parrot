@@ -9,10 +9,13 @@ sealed class DataState<out T> {
     data class Success<out T>(val result: T) : DataState<T>()
     data class Error(val error: Throwable) : DataState<Nothing>()
 
+    object Empty : DataState<Nothing>()
+
     override fun toString(): String {
         return when (this) {
             is Success<*> -> "Success[data=$result]"
             is Error -> "Error[exception=$error]"
+            is Empty -> "Empty"
         }
     }
 
@@ -20,6 +23,7 @@ sealed class DataState<out T> {
         return when (this) {
             is Error -> Error(this.error)
             is Success -> Success(transform(this.result))
+            is Empty -> Empty
         }
     }
 
@@ -27,6 +31,7 @@ sealed class DataState<out T> {
         return when (this) {
             is Error -> Error(this.error)
             is Success -> Success(transform(this.result))
+            is Empty -> Empty
         }
     }
 }

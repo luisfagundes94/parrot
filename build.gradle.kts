@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.ben.manes.versions)
     alias(libs.plugins.version.catalog.update)
     alias(libs.plugins.hilt) apply false
+    alias(libs.plugins.kotlin.kapt) apply false
 }
 
 versionCatalogUpdate {

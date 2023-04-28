@@ -27,3 +27,5 @@ include(
     ":features:saved",
     ":features:settings",
 )
+include(":data")
+include(":domain")
