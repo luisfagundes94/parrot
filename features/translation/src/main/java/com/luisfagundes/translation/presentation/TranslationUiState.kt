@@ -5,6 +5,6 @@ import com.luisfagundes.domain.models.Word
 data class TranslationUiState(
     val isLoading: Boolean = false,
     val isEmpty: Boolean = false,
-    val word: Word? = null,
+    val wordList: List<Word> = emptyList(),
     val hasError: Boolean = false,
 )

@@ -1,94 +1,103 @@
 package com.luisfagundes.translation
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ImportExport
-import androidx.compose.material3.Icon
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import com.luisfagundes.domain.models.Language
 import com.luisfagundes.theme.spacing
+import com.luisfagundes.translation.components.InputTextArea
+import com.luisfagundes.translation.components.SourceAndDestinationLanguage
+import com.luisfagundes.translation.components.TranslationResult
+import com.luisfagundes.translation.presentation.TranslationUiState
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun TranslationScreen() {
+fun TranslationScreen(
+    uiState: TranslationUiState,
+    onTranslateText: (String) -> Unit = {},
+    onGetFullLanguageName: (String) -> String = {""}
+) {
+    var inputText by remember { mutableStateOf("") }
+    var sourceLanguage by remember {
+        mutableStateOf(
+            Language(
+                flagId = R.drawable.us,
+                displayName = onGetFullLanguageName("us")
+            )
+        )
+    }
+    var destinationLanguage by remember {
+        mutableStateOf(
+            Language(
+                flagId = R.drawable.br,
+                displayName = onGetFullLanguageName("br")
+            )
+        )
+    }
+
+    val keyboardController = LocalSoftwareKeyboardController.current
+
     Column(
         modifier = Modifier
-            .padding(MaterialTheme.spacing.default)
-            .fillMaxSize()
-    ){
-        SourceAndDestinationLanguage(
-            sourceFlagId = R.drawable.us,
-            destinationFlagId = R.drawable.br
-        )
-    }
-}
-
-@Composable
-private fun SourceAndDestinationLanguage(
-    sourceFlagId: Int,
-    destinationFlagId: Int
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(
-                color = MaterialTheme.colorScheme.primaryContainer,
-                shape = MaterialTheme.shapes.medium
-            )
-            .padding(MaterialTheme.spacing.default)
-
+            .padding(horizontal = MaterialTheme.spacing.default)
+            .padding(top = MaterialTheme.spacing.default)
+            .verticalScroll(rememberScrollState())
+            .clipToBounds()
     ) {
-        Image(
-            painter = painterResource(id = sourceFlagId),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            alignment = Alignment.Center,
-            modifier = Modifier
-                .size(MaterialTheme.spacing.default)
-                .clip(CircleShape)
+        SourceAndDestinationLanguage(
+            sourceLanguage = sourceLanguage,
+            destinationLanguage = destinationLanguage
         )
-        Spacer(modifier = Modifier.padding(MaterialTheme.spacing.extraSmall))
-        Text(
-            text = "English",
-            color = MaterialTheme.colorScheme.onPrimaryContainer
+        Spacer(modifier = Modifier.padding(MaterialTheme.spacing.verySmall))
+        InputTextArea(
+            onValueChange = { newText ->
+                inputText = newText
+            },
+            placeholder = stringResource(R.string.enter_text_to_translate)
         )
-        Icon(
-            imageVector = Icons.Filled.ImportExport,
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.onPrimaryContainer,
-            modifier = Modifier
-                .size(MaterialTheme.spacing.default)
-                .rotate(90f)
-                .weight(1f)
+        Spacer(
+            modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall)
         )
-        Image(
-            painter = painterResource(id = destinationFlagId),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            alignment = Alignment.Center,
-            modifier = Modifier
-                .size(MaterialTheme.spacing.default)
-                .clip(CircleShape)
+        Button(
+            onClick = {
+                keyboardController?.hide()
+                onTranslateText(inputText)
+            },
+            modifier = Modifier.height(MaterialTheme.spacing.buttonSize)
+        ) {
+            Text(
+                text = stringResource(R.string.translate),
+                style = MaterialTheme.typography.titleMedium,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+        Spacer(
+            modifier = Modifier.padding(vertical = MaterialTheme.spacing.small)
         )
-        Spacer(modifier = Modifier.padding(MaterialTheme.spacing.extraSmall))
-        Text(
-            text = "Portuguese",
-            color = MaterialTheme.colorScheme.onPrimaryContainer
+        TranslationResult(
+            uiState = uiState
         )
+        Spacer(modifier = Modifier.padding(MaterialTheme.spacing.small))
     }
 }
+
+

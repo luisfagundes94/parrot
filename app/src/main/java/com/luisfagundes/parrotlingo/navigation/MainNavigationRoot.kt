@@ -10,11 +10,14 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -26,6 +29,7 @@ import androidx.navigation.compose.rememberNavController
 import com.luisfagundes.saved.SavedScreen
 import com.luisfagundes.settings.SettingsScreen
 import com.luisfagundes.translation.TranslationScreen
+import com.luisfagundes.translation.presentation.TranslationViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -75,7 +79,13 @@ fun MainNavigationRoot() {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(Screen.Translation.route) {
-                TranslationScreen()
+                val viewModel = hiltViewModel<TranslationViewModel>()
+                val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+                TranslationScreen(
+                    uiState = uiState,
+                    onTranslateText = viewModel::translateWord,
+                    onGetFullLanguageName = viewModel::getLanguageDisplayName,
+                )
             }
             composable(Screen.Saved.route) {
                 SavedScreen()

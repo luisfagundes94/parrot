@@ -1,5 +1,6 @@
 package com.luisfagundes.data.di
 
+import android.util.Log
 import com.luisfagundes.data.repositories.WordRepositoryImpl
 import com.luisfagundes.data.services.LingueeApiService
 import com.luisfagundes.domain.repositories.WordRepository
@@ -22,8 +23,10 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideHttpRequestInterceptor() = HttpLoggingInterceptor().apply {
-        HttpLoggingInterceptor.Level.BODY
+    fun provideHttpRequestInterceptor() = HttpLoggingInterceptor { message ->
+        Log.d("OkHttp", message)
+    }.apply {
+        level = HttpLoggingInterceptor.Level.BODY
     }
 
     @Provides

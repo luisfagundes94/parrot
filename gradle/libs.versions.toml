@@ -24,7 +24,7 @@ junit = "4.13.2"
 kotlin = "1.8.20"
 ktlint = "0.45.2"
 ktlint_gradle = "10.2.1"
-min_sdk = "23"
+min_sdk = "24"
 target_sdk = "33"
 compile_sdk = "33"
 benmanesversion = "0.46.0"
@@ -48,7 +48,7 @@ mockito_kotlin = "4.0.0"
 turbine = "1.0.2"
 faker = "1.0.2"
 paging = "3.1.1"
-lottie = "5.2.0"
+lottie = "6.0.0"
 splash = "1.0.0"
 navigation = "2.5.3"
 destination = "1.9.42-beta"
@@ -56,6 +56,7 @@ version_catalog = "0.8.0"
 core_ktx = "1.10.0"
 androidx-hilt = "1.0.0"
 byte-buddy = "1.12.18"
+icu4j = "73.1"
 
 [libraries]
 junit = { module = "junit:junit", version.ref = "junit" }
@@ -143,6 +144,7 @@ androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "
 androidx-paging-common = { module = "androidx.paging:paging-common-ktx", version.ref = "paging" }
 androidx-paging-runtime = { module = "androidx.paging:paging-runtime-ktx", version.ref = "paging" }
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "compose_paging" }
+icu4j = { module = "com.ibm.icu:icu4j", version.ref = "icu4j" }
 lottie = { module = "com.airbnb.android:lottie-compose", version.ref = "lottie" }
 android_gradle_plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlin_gradle_plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }

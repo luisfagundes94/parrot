@@ -1,6 +1,7 @@
 package com.luisfagundes.translation.presentation
 
 import com.luisfagundes.domain.models.Word
+import com.luisfagundes.domain.usecases.GetLanguageName
 import com.luisfagundes.domain.usecases.GetWordTranslations
 import com.luisfagundes.framework.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,17 +12,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TranslationViewModel @Inject constructor(
-    private val getWordTranslations: GetWordTranslations
-): BaseViewModel() {
+    private val getWordTranslations: GetWordTranslations,
+    private val getLanguageName: GetLanguageName
+) : BaseViewModel() {
 
-    private val _uiState = MutableStateFlow(
-        TranslationUiState(
-            isLoading = true,
-            isEmpty = false,
-            hasError = false,
-            word = null
-        )
-    )
+    private val _uiState = MutableStateFlow(TranslationUiState())
     val uiState = _uiState.asStateFlow()
 
     fun translateWord(text: String) {
@@ -33,8 +28,24 @@ class TranslationViewModel @Inject constructor(
             "dst" to "pt"
         )
         safeLaunch {
+            startLoading()
             val result = getWordTranslations(params)
             handleResult(result)
+        }
+    }
+
+    fun getLanguageDisplayName(countryCode: String): String {
+        return getLanguageName(countryCode)
+    }
+
+    override fun startLoading() {
+        _uiState.update {
+            it.copy(
+                isLoading = true,
+                isEmpty = false,
+                hasError = false,
+                wordList = emptyList()
+            )
         }
     }
 
@@ -44,18 +55,19 @@ class TranslationViewModel @Inject constructor(
                 isLoading = false,
                 isEmpty = true,
                 hasError = false,
-                word = null
+                wordList = emptyList()
             )
         }
     }
 
     override fun handleError(exception: Throwable) {
+        println(exception.stackTraceToString())
         _uiState.update {
             it.copy(
                 isLoading = false,
                 isEmpty = false,
                 hasError = true,
-                word = null
+                wordList = emptyList()
             )
         }
     }
@@ -66,7 +78,7 @@ class TranslationViewModel @Inject constructor(
                 isLoading = false,
                 isEmpty = false,
                 hasError = false,
-                word = result as? Word
+                wordList = result as? List<Word> ?: emptyList()
             )
         }
     }

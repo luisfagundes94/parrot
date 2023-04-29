@@ -6,5 +6,5 @@ data class Translation(
     val featured: Boolean,
     val wordType: String,
     val text: String,
-    val usageFrequency: Any
+    val usageFrequency: Any?
 )

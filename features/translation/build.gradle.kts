@@ -49,6 +49,7 @@ dependencies {
     implementation(projects.theme)
 
     implementation(libs.compose.ui.ui)
+    implementation(libs.compose.foundation.foundation)
     implementation(libs.compose.material3)
     implementation(libs.navigation.compose)
     implementation(libs.compose.material.iconsext)
@@ -58,4 +59,7 @@ dependencies {
     implementation(libs.hilt.compose)
     implementation(libs.hilt.library)
     kapt(libs.hilt.compiler)
+
+    // Other
+    implementation(libs.icu4j)
 }
