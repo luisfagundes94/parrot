@@ -32,19 +32,26 @@ import com.luisfagundes.translation.R
 import com.luisfagundes.translation.presentation.TranslationUiState
 
 @Composable
-fun TranslationResult(
+fun TranslationResults(
     uiState: TranslationUiState
 ) {
+    val modifier = Modifier.padding(vertical = MaterialTheme.spacing.default)
+
     when {
         uiState.hasError -> ErrorView(
-            modifier = Modifier.padding(vertical = MaterialTheme.spacing.default),
-            message = stringResource(R.string.error_message),
+            modifier = modifier,
+            message = stringResource(R.string.warning_error),
             animationId = R.raw.warning
         )
 
-        uiState.isEmpty -> Text(text = "empty")
+        uiState.isEmpty -> ErrorView(
+            modifier = modifier,
+            message = stringResource(R.string.warning_empty),
+            animationId = R.raw.warning
+        )
+
         uiState.isLoading -> LoadingView(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxSize()
                 .padding(MaterialTheme.spacing.default)
         )
