@@ -64,10 +64,11 @@ fun TranslationResults(
 private fun SuccessView(
     words: List<Word>
 ) {
+    val modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall)
     var isContainerEmpty by remember { mutableStateOf(false) }
 
     Spacer(
-        modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall)
+        modifier = modifier
     )
     ContainerBox(isEmpty = isContainerEmpty) {
         OtherTranslations(
@@ -76,7 +77,7 @@ private fun SuccessView(
         )
     }
     Spacer(
-        modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall)
+        modifier = modifier
     )
     ContainerBox(isEmpty = isContainerEmpty) {
         Definitions(
