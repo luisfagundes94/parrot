@@ -1,6 +1,8 @@
 package com.luisfagundes.translation.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,11 +26,16 @@ import com.luisfagundes.domain.models.Language
 import com.luisfagundes.theme.spacing
 
 @Composable
-fun SourceAndDestinationLanguage(
-    sourceLanguage: Language,
-    destinationLanguage: Language
+fun SourceAndTargetLanguage(
+    sourceLanguage: Language?,
+    targetLanguage: Language?,
+    onInvertLanguage: () -> Unit
 ) {
+    if (sourceLanguage == null || targetLanguage == null) return
+
     Row(
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = MaterialTheme.spacing.default)
@@ -58,9 +65,10 @@ fun SourceAndDestinationLanguage(
                 .size(MaterialTheme.spacing.default)
                 .rotate(90f)
                 .weight(1f)
+                .clickable { onInvertLanguage() }
         )
         Image(
-            painter = painterResource(id = destinationLanguage.flagId),
+            painter = painterResource(id = targetLanguage.flagId),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             alignment = Alignment.Center,
@@ -70,7 +78,7 @@ fun SourceAndDestinationLanguage(
         )
         Spacer(modifier = Modifier.padding(MaterialTheme.spacing.extraSmall))
         Text(
-            text = destinationLanguage.displayName,
+            text = targetLanguage.displayName,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onSurface
         )

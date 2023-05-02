@@ -82,8 +82,7 @@ fun MainNavigationRoot() {
                 val uiState by viewModel.uiState.collectAsStateWithLifecycle()
                 TranslationScreen(
                     uiState = uiState,
-                    onTranslateText = viewModel::translateWord,
-                    getLanguageName = viewModel::getLanguageDisplayName,
+                    onEvent = viewModel::onEvent,
                 )
             }
             composable(Screen.Saved.route) {

@@ -2,5 +2,7 @@
 <resources>
     <string name="translate">Translate</string>
     <string name="enter_text_to_translate">Enter a word</string>
-    <string name="error_message">Ops! Something went wrong. Have you misspelled the word?</string>
+    <string name="warning_error">Ops! Something went wrong. Have you misspelled the word?</string>
+    <string name="warning_empty">We counldn\'t find any translation for this word. :(</string>
+    <string name="desc_bookmark_word">Bookmark word</string>
 </resources>

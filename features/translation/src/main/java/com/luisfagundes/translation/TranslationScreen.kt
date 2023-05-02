@@ -24,34 +24,20 @@ import androidx.compose.ui.text.style.TextAlign
 import com.luisfagundes.domain.models.Language
 import com.luisfagundes.theme.spacing
 import com.luisfagundes.translation.components.InputTextArea
-import com.luisfagundes.translation.components.SourceAndDestinationLanguage
-import com.luisfagundes.translation.components.TranslationResult
+import com.luisfagundes.translation.components.SourceAndTargetLanguage
+import com.luisfagundes.translation.components.TranslationResults
+import com.luisfagundes.translation.presentation.TranslationEvent
 import com.luisfagundes.translation.presentation.TranslationUiState
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun TranslationScreen(
     uiState: TranslationUiState,
-    onTranslateText: (String) -> Unit = {},
-    onGetFullLanguageName: (String) -> String = {""}
+    onEvent: (TranslationEvent) -> Unit = {}
 ) {
+    var sourceLanguage by remember { mutableStateOf(uiState.sourceLang) }
+    var targetLanguage by remember { mutableStateOf(uiState.targetLang) }
     var inputText by remember { mutableStateOf("") }
-    var sourceLanguage by remember {
-        mutableStateOf(
-            Language(
-                flagId = R.drawable.us,
-                displayName = onGetFullLanguageName("us")
-            )
-        )
-    }
-    var destinationLanguage by remember {
-        mutableStateOf(
-            Language(
-                flagId = R.drawable.br,
-                displayName = onGetFullLanguageName("br")
-            )
-        )
-    }
 
     val keyboardController = LocalSoftwareKeyboardController.current
 
@@ -62,11 +48,19 @@ fun TranslationScreen(
             .verticalScroll(rememberScrollState())
             .clipToBounds()
     ) {
-        SourceAndDestinationLanguage(
+        SourceAndTargetLanguage(
             sourceLanguage = sourceLanguage,
-            destinationLanguage = destinationLanguage
+            targetLanguage = targetLanguage,
+            onInvertLanguage = {
+                invertLanguages(
+                    sourceLanguage,
+                    targetLanguage
+                )
+            }
         )
-        Spacer(modifier = Modifier.padding(MaterialTheme.spacing.verySmall))
+        Spacer(
+            modifier = Modifier.padding(MaterialTheme.spacing.verySmall)
+        )
         InputTextArea(
             onValueChange = { newText ->
                 inputText = newText
@@ -79,7 +73,7 @@ fun TranslationScreen(
         Button(
             onClick = {
                 keyboardController?.hide()
-                onTranslateText(inputText)
+                onEvent(TranslationEvent.Translate(inputText))
             },
             modifier = Modifier.height(MaterialTheme.spacing.buttonSize)
         ) {
@@ -93,10 +87,23 @@ fun TranslationScreen(
         Spacer(
             modifier = Modifier.padding(vertical = MaterialTheme.spacing.small)
         )
-        TranslationResult(
+        TranslationResults(
             uiState = uiState
         )
-        Spacer(modifier = Modifier.padding(MaterialTheme.spacing.small))
+        Spacer(
+            modifier = Modifier.padding(vertical = MaterialTheme.spacing.small)
+        )
+    }
+}
+
+private fun invertLanguages(
+    sourceLanguage: Language,
+    targetLanguage: Language
+) {
+    var sourceLanguageTemp = sourceLanguage
+    var targetLanguageTemp = targetLanguage
+    sourceLanguageTemp = targetLanguageTemp.also {
+        targetLanguageTemp = sourceLanguageTemp
     }
 }
 

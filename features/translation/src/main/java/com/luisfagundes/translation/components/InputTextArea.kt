@@ -23,6 +23,7 @@ fun InputTextArea(
     placeholder: String
 ) {
     var inputText by remember { mutableStateOf("") }
+    onValueChange(inputText)
 
     Column(
         modifier = Modifier
@@ -40,7 +41,6 @@ fun InputTextArea(
             value = inputText,
             onValueChange = { newText ->
                 inputText = newText
-                onValueChange(newText)
             },
             shape = MaterialTheme.shapes.medium,
             colors = TextFieldDefaults.textFieldColors(

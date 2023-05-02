@@ -2,11 +2,16 @@ package com.luisfagundes.translation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.BookmarkAdd
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,7 +19,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -65,35 +72,17 @@ private fun SuccessView(
     words: List<Word>
 ) {
     val modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall)
-    var isContainerEmpty by remember { mutableStateOf(false) }
 
-    Spacer(
-        modifier = modifier
-    )
-    ContainerBox(isEmpty = isContainerEmpty) {
-        OtherTranslations(
-            words = words,
-            isEmpty = { isContainerEmpty = it }
-        )
-    }
-    Spacer(
-        modifier = modifier
-    )
-    ContainerBox(isEmpty = isContainerEmpty) {
-        Definitions(
-            words = words,
-            isEmpty = { isContainerEmpty = it }
-        )
-    }
+    Spacer(modifier = modifier)
+    OtherTranslations(words = words)
+    Spacer(modifier = modifier)
+    Definitions(words = words)
 }
 
 @Composable
 private fun ContainerBox(
-    isEmpty: Boolean,
     container: @Composable () -> Unit
 ) {
-    if (isEmpty) return
-
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -114,48 +103,63 @@ private fun ContainerBox(
 
 @Composable
 private fun OtherTranslations(
-    words: List<Word>,
-    isEmpty: (Boolean) -> Unit
+    words: List<Word>
 ) {
-    Text(
-        text = words.first().translations.first().text,
-        style = MaterialTheme.typography.headlineMedium,
-        fontWeight = FontWeight.Bold,
-    )
-    Spacer(
-        modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall)
-    )
-    Text(
-        text = "Other translations",
-        style = MaterialTheme.typography.titleMedium,
-    )
-    words.forEach { word ->
-        word.translations.forEach { translation ->
-            TranslationItem(
-                translation = translation,
-                isEmpty = isEmpty,
-                isFeatured = true
+    if (words.all { it.translations.isEmpty() }) return
+
+    ContainerBox {
+        Row(
+            horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = words.first().translations.first().text,
+                style = MaterialTheme.typography.headlineMedium,
+                fontWeight = FontWeight.Bold,
             )
+            Spacer(modifier = Modifier.weight(1f))
+            Icon(
+                modifier = Modifier.scale(1.1f),
+                imageVector = Icons.Filled.BookmarkAdd,
+                contentDescription = stringResource(R.string.desc_bookmark_word)
+            )
+        }
+        Spacer(
+            modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall)
+        )
+        Text(
+            text = "Other translations",
+            style = MaterialTheme.typography.titleMedium,
+        )
+        words.forEach { word ->
+            word.translations.forEach { translation ->
+                TranslationItem(
+                    translation = translation,
+                    isFeatured = true
+                )
+            }
         }
     }
 }
 
 @Composable
 private fun Definitions(
-    words: List<Word>,
-    isEmpty: (Boolean) -> Unit
+    words: List<Word>
 ) {
-    Text(
-        text = getDefinitionOfWordText(words.first()),
-        style = MaterialTheme.typography.titleMedium,
-    )
-    words.forEach { word ->
-        word.translations.forEach { translation ->
-            TranslationItem(
-                translation = translation,
-                isEmpty = isEmpty,
-                isFeatured = false
-            )
+    if (words.all { it.translations.isEmpty() }) return
+
+    ContainerBox {
+        Text(
+            text = getDefinitionOfWordText(words.first()),
+            style = MaterialTheme.typography.titleMedium,
+        )
+        words.forEach { word ->
+            word.translations.forEach { translation ->
+                TranslationItem(
+                    translation = translation,
+                    isFeatured = false
+                )
+            }
         }
     }
 }
@@ -174,14 +178,12 @@ private fun getDefinitionOfWordText(word: Word): AnnotatedString {
 @Composable
 private fun TranslationItem(
     translation: Translation,
-    isEmpty: (Boolean) -> Unit,
     isFeatured: Boolean
 ) {
-    isEmpty(translation.examples.isEmpty())
-
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
+        if (isFeatured.not() and translation.examples.isEmpty()) return@Column
         Spacer(
             modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall)
         )
@@ -192,6 +194,6 @@ private fun TranslationItem(
             fontWeight = FontWeight.Bold
         )
         if (isFeatured.not()) Examples(translation.examples)
+        else Text(translation.text)
     }
-    if (isFeatured) Text(translation.text)
 }
