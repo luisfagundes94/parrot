@@ -19,8 +19,8 @@ class GetWordTranslations @Inject constructor(
         repository.translateWord(
             mapOf(
                 QUERY to params.text,
-                SOURCE_LANGUAGE to params.sourceLanguage,
-                DEST_LANGUAGE to params.destLanguage
+                SOURCE_LANGUAGE to params.sourceLanguage.lowercase(),
+                DEST_LANGUAGE to params.destLanguage.lowercase()
             )
         )
 

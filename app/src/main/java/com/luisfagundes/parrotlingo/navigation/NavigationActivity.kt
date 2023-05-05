@@ -20,7 +20,7 @@ class NavigationActivity : ComponentActivity() {
             ParrotLingoTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.surface
                 ) {
                     RootNavGraph(
                         navHostController = rememberNavController()

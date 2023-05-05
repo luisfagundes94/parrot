@@ -5,6 +5,7 @@ import com.luisfagundes.domain.repositories.WordRepository
 import com.luisfagundes.domain.usecases.GetLanguageName
 import com.luisfagundes.domain.usecases.GetCountryPair
 import com.luisfagundes.domain.usecases.GetWordTranslations
+import com.luisfagundes.domain.usecases.ListCountries
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,4 +26,8 @@ class UseCaseModule {
     @Provides
     fun provideGetCountryCodeFromFiles() =
         GetLanguageName()
+
+    @Provides
+    fun provideCountryList(repository: CountryRepository) =
+        ListCountries(repository)
 }

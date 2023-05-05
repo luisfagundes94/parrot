@@ -78,6 +78,7 @@ dependencies {
     implementation(project(":features:settings"))
     implementation(project(":data"))
     implementation(project(":domain"))
+    implementation(project(":commons-ui"))
 
     // UI
     implementation(libs.navigation.compose)

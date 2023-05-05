@@ -9,7 +9,7 @@ class GetLanguageName {
     operator fun invoke(countryCode: String): String {
         val languageCode = getLanguageFromCountryCode(countryCode)
         val locale = Locale(languageCode)
-        return locale.displayLanguage
+        return locale.language
     }
 
     private fun getLanguageFromCountryCode(countryCode: String): String {

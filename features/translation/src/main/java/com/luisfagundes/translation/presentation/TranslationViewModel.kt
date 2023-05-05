@@ -31,7 +31,7 @@ class TranslationViewModel @Inject constructor(
             is TranslationEvent.Translate -> translateWord(event.text)
             is TranslationEvent.GetLanguageName -> getLangName(event.countryCode)
             is TranslationEvent.InvertCountries -> invertCountries(event.countries)
-            is TranslationEvent.UpdateCountryPair -> updateSourceAndDestCountries()
+            is TranslationEvent.UpdateCountryPair -> updateCountryPair()
         }
     }
 
@@ -50,20 +50,21 @@ class TranslationViewModel @Inject constructor(
         ),
     )
 
-    private fun translateWord(text: String) {
-        if (text.length < 2) return
+    private fun translateWord(text: String) = safeLaunch {
+        if (text.length < 2) return@safeLaunch
+
+        val firstCode = _uiState.value.countryPair.first.code
+        val secondCode = _uiState.value.countryPair.second.code
 
         val params = GetWordTranslations.Params(
             text = text,
-            sourceLanguage = _uiState.value.countryPair.first.code,
-            destLanguage = _uiState.value.countryPair.second.code
+            sourceLanguage = getLangName(firstCode),
+            destLanguage = getLangName(secondCode)
         )
 
-        safeLaunch {
-            startLoading()
-            val result = getWordTranslations(params)
-            handleResult(result)
-        }
+        startLoading()
+        val result = getWordTranslations(params)
+        handleResult(result)
     }
 
     private fun getLangName(countryCode: String): String {
@@ -80,7 +81,7 @@ class TranslationViewModel @Inject constructor(
         }
     }
 
-    private suspend fun updateSourceAndDestCountries() {
+    private suspend fun updateCountryPair() {
         val sourceAndDestCountries = getCountryPair()
         _uiState.update {
             it.copy(

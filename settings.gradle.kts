@@ -29,3 +29,4 @@ include(
 )
 include(":data")
 include(":domain")
+include(":commons-ui")

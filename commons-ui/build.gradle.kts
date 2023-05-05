@@ -1,12 +1,10 @@
 plugins {
-    alias(libs.plugins.hilt)
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
 }
 
 android {
-    namespace = "com.luisfagundes.translation"
+    namespace = "com.luisfagundes.commons_ui"
     compileSdk = libs.versions.compile.sdk.get().toInt()
 
     defaultConfig {
@@ -15,7 +13,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
-
     buildFeatures {
         compose = true
     }
@@ -43,25 +40,7 @@ android {
 }
 
 dependencies {
-    // Modules
-    implementation(projects.domain)
-    implementation(projects.framework)
-    implementation(projects.theme)
-    implementation(projects.commonsUi)
 
     implementation(libs.compose.ui.ui)
-    implementation(libs.compose.foundation.foundation)
     implementation(libs.compose.material3)
-    implementation(libs.coil.compose)
-    implementation(libs.navigation.compose)
-    implementation(libs.compose.material.iconsext)
-    debugImplementation(libs.compose.ui.tooling)
-
-    // DI
-    implementation(libs.hilt.compose)
-    implementation(libs.hilt.library)
-    kapt(libs.hilt.compiler)
-
-    // Other
-    implementation(libs.icu4j)
 }

@@ -3,6 +3,7 @@ package com.luisfagundes.parrotlingo.navigation.graphs
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
@@ -12,6 +13,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import com.luisfagundes.domain.models.Country
 import com.luisfagundes.languages.LanguageListScreen
+import com.luisfagundes.languages.LanguageListViewModel
+import com.luisfagundes.parrotlingo.R
 import com.luisfagundes.parrotlingo.navigation.BottomBarScreen
 import com.luisfagundes.saved.SavedScreen
 import com.luisfagundes.settings.SettingsScreen
@@ -49,35 +52,25 @@ fun MainNavGraph(
         composable(route = BottomBarScreen.Settings.route) {
             SettingsScreen()
         }
-        languageListNavGraph(navController = navController)
+        languagesNavGraph(navController = navController)
     }
 }
 
-fun NavGraphBuilder.languageListNavGraph(navController: NavHostController) {
+fun NavGraphBuilder.languagesNavGraph(navController: NavHostController) {
     navigation(
         route = Graph.LANGUAGE_LIST,
         startDestination = "languageListScreen"
     ) {
         composable(route = "languageListScreen") {
-            val countries = listOf(
-                Country(
-                    name = "United States",
-                    code = "US",
-                    flagUrl = "https://flagsapi.com/US/flat/64.png",
-                    languages = listOf("English")
-                ),
-                Country(
-                    name = "Brazil",
-                    code = "BR",
-                    flagUrl = "https://flagsapi.com/BR/flat/64.png",
-                    languages = listOf("Portuguese")
-                ),
-            )
+            val viewModel = hiltViewModel<LanguageListViewModel>()
+            val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
             LanguageListScreen(
-                countries = countries,
-                onBack = {
+                uiState = uiState,
+                onBackPressed = {
                     navController.popBackStack()
-                }
+                },
+                onEvent = viewModel::onEvent
             )
         }
     }
