@@ -9,28 +9,28 @@ import androidx.compose.material.icons.filled.Translate
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.luisfagundes.parrotlingo.R
 
-sealed class Screen(
+sealed class BottomBarScreen(
     val route: String,
     val icon: ImageVector,
     @StringRes val screenNameId: Int
 ) {
-    object Translation : Screen(
+    object Translation : BottomBarScreen(
         route ="translation",
         icon = Icons.Filled.Translate,
         screenNameId = R.string.translation
     )
-    object Saved : Screen(
+    object Saved : BottomBarScreen(
         route = "saved",
         icon = Icons.Filled.Bookmark,
         screenNameId = R.string.saved
     )
-    object Settings : Screen(
+    object Settings : BottomBarScreen(
         route ="settings",
         icon = Icons.Filled.Settings,
         screenNameId = R.string.settings
     )
 
-    object LanguageList : Screen(
+    object LanguageList : BottomBarScreen(
         route = "languageList",
         icon = Icons.Filled.Language,
         screenNameId = R.string.language_list
