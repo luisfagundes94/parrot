@@ -11,6 +11,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,61 +22,58 @@ import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import com.luisfagundes.domain.models.Language
-import com.luisfagundes.theme.spacing
 import com.luisfagundes.translation.components.InputTextArea
-import com.luisfagundes.translation.components.SourceAndTargetLanguage
+import com.luisfagundes.translation.components.LanguagePair
 import com.luisfagundes.translation.components.TranslationResults
 import com.luisfagundes.translation.presentation.TranslationEvent
 import com.luisfagundes.translation.presentation.TranslationUiState
+import com.luisfagundes.theme.spacing
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun TranslationScreen(
     uiState: TranslationUiState,
-    onEvent: (TranslationEvent) -> Unit = {}
+    onEvent: (TranslationEvent) -> Unit = {},
+    onLanguageClicked: () -> Unit = {}
 ) {
-    var sourceLanguage by remember { mutableStateOf(uiState.sourceLang) }
-    var targetLanguage by remember { mutableStateOf(uiState.targetLang) }
+    var countryPair by remember { mutableStateOf(uiState.countryPair) }
     var inputText by remember { mutableStateOf("") }
 
     val keyboardController = LocalSoftwareKeyboardController.current
+    val spacing = MaterialTheme.spacing
 
     Column(
         modifier = Modifier
-            .padding(horizontal = MaterialTheme.spacing.default)
-            .padding(top = MaterialTheme.spacing.default)
+            .padding(horizontal = spacing.default)
+            .padding(top = spacing.default)
             .verticalScroll(rememberScrollState())
             .clipToBounds()
     ) {
-        SourceAndTargetLanguage(
-            sourceLanguage = sourceLanguage,
-            targetLanguage = targetLanguage,
+        LanguagePair(
+            countryPair = countryPair,
             onInvertLanguage = {
-                invertLanguages(
-                    sourceLanguage,
-                    targetLanguage
+                onEvent(
+                    TranslationEvent.InvertCountries(countryPair)
                 )
-            }
+            },
+            onLanguageClicked = onLanguageClicked
         )
         Spacer(
-            modifier = Modifier.padding(MaterialTheme.spacing.verySmall)
+            modifier = Modifier.padding(spacing.verySmall)
         )
         InputTextArea(
-            onValueChange = { newText ->
-                inputText = newText
-            },
+            onValueChange = { inputText = it },
             placeholder = stringResource(R.string.enter_text_to_translate)
         )
         Spacer(
-            modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall)
+            modifier = Modifier.padding(spacing.verySmall)
         )
         Button(
             onClick = {
                 keyboardController?.hide()
                 onEvent(TranslationEvent.Translate(inputText))
             },
-            modifier = Modifier.height(MaterialTheme.spacing.buttonSize)
+            modifier = Modifier.height(spacing.buttonSize)
         ) {
             Text(
                 text = stringResource(R.string.translate),
@@ -85,25 +83,14 @@ fun TranslationScreen(
             )
         }
         Spacer(
-            modifier = Modifier.padding(vertical = MaterialTheme.spacing.small)
+            modifier = Modifier.padding(vertical = spacing.small)
         )
         TranslationResults(
             uiState = uiState
         )
         Spacer(
-            modifier = Modifier.padding(vertical = MaterialTheme.spacing.small)
+            modifier = Modifier.padding(vertical = spacing.small)
         )
-    }
-}
-
-private fun invertLanguages(
-    sourceLanguage: Language,
-    targetLanguage: Language
-) {
-    var sourceLanguageTemp = sourceLanguage
-    var targetLanguageTemp = targetLanguage
-    sourceLanguageTemp = targetLanguageTemp.also {
-        targetLanguageTemp = sourceLanguageTemp
     }
 }
 

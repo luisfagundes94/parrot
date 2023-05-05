@@ -5,4 +5,5 @@
     <string name="warning_error">Ops! Something went wrong. Have you misspelled the word?</string>
     <string name="warning_empty">We counldn\'t find any translation for this word. :(</string>
     <string name="desc_bookmark_word">Bookmark word</string>
+    <string name="language">language</string>
 </resources>

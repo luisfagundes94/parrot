@@ -1,0 +1,20 @@
+[
+  {
+    "id": "a4405813-3cbe-46a4-850c-ed0ab6655bb8",
+    "flagUrl": "https://flagsapi.com/BR/flat/64.png",
+    "name": "Brazil",
+    "languages": [
+      "Portuguese"
+    ],
+    "code": "BR"
+  },
+  {
+    "id": "9f1efd5e-792c-4e05-a355-1562c5fe5daf",
+    "flagUrl": "https://flagsapi.com/US/flat/64.png",
+    "name": "United States",
+    "languages": [
+      "English"
+    ],
+    "code": "US"
+  }
+]

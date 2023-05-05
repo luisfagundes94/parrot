@@ -1,12 +1,13 @@
 package com.luisfagundes.data.di
 
+import android.content.Context
 import android.util.Log
-import com.luisfagundes.data.repositories.WordRepositoryImpl
 import com.luisfagundes.data.services.LingueeApiService
-import com.luisfagundes.domain.repositories.WordRepository
+import com.luisfagundes.data.store.CountryDataStore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -20,6 +21,11 @@ private const val TIME_OUT = 15L
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+    @Provides
+    @Singleton
+    fun provideCountryDataStore(
+        @ApplicationContext context: Context
+    ) = CountryDataStore(context)
 
     @Provides
     @Singleton

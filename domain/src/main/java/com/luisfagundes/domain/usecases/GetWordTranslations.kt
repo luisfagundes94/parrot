@@ -8,6 +8,25 @@ import javax.inject.Inject
 class GetWordTranslations @Inject constructor(
     private val repository: WordRepository
 ) {
-    suspend operator fun invoke(params: Map<String, String>) =
-        repository.translateWord(params)
+
+    data class Params(
+        val text: String,
+        val sourceLanguage: String,
+        val destLanguage: String
+    )
+
+    suspend operator fun invoke(params: Params) =
+        repository.translateWord(
+            mapOf(
+                QUERY to params.text,
+                SOURCE_LANGUAGE to params.sourceLanguage,
+                DEST_LANGUAGE to params.destLanguage
+            )
+        )
+
+    private companion object {
+        const val QUERY = "query"
+        const val SOURCE_LANGUAGE = "src"
+        const val DEST_LANGUAGE = "dst"
+    }
 }

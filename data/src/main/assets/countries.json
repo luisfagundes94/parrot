@@ -1,0 +1,2296 @@
+[
+  {
+    "id": "0f3aae05-9e85-43ae-b1bd-65919bc2a8e1",
+    "flagUrl": "https://flagsapi.com/AW/flat/64.png",
+    "name": "Aruba",
+    "languages": [
+      "Dutch"
+    ],
+    "code": "AW"
+  },
+  {
+    "id": "7e9720cf-970b-44be-ad6a-98758474f526",
+    "flagUrl": "https://flagsapi.com/AF/flat/64.png",
+    "name": "Afghanistan",
+    "languages": [
+      "Persian",
+      "Pushto"
+    ],
+    "code": "AF"
+  },
+  {
+    "id": "134c53fa-3725-4cbf-918b-754073f0b788",
+    "flagUrl": "https://flagsapi.com/AO/flat/64.png",
+    "name": "Angola",
+    "languages": [
+      "Portuguese"
+    ],
+    "code": "AO"
+  },
+  {
+    "id": "4ab34eef-5a3d-47ee-b60f-93b4b1dc606a",
+    "flagUrl": "https://flagsapi.com/AI/flat/64.png",
+    "name": "Anguilla",
+    "languages": [
+      "English"
+    ],
+    "code": "AI"
+  },
+  {
+    "id": "30323c2f-b963-4c5f-8112-f1c5fb673c30",
+    "flagUrl": "https://flagsapi.com/AX/flat/64.png",
+    "name": "\u00c5land Islands",
+    "languages": [
+      "Swedish"
+    ],
+    "code": "AX"
+  },
+  {
+    "id": "65842a00-e645-49a2-80cc-6c785cd842fe",
+    "flagUrl": "https://flagsapi.com/AL/flat/64.png",
+    "name": "Albania",
+    "languages": [
+      "Albanian"
+    ],
+    "code": "AL"
+  },
+  {
+    "id": "a82973a9-52b2-4dd3-85d8-53edfb7a39d9",
+    "flagUrl": "https://flagsapi.com/AD/flat/64.png",
+    "name": "Andorra",
+    "languages": [
+      "Catalan"
+    ],
+    "code": "AD"
+  },
+  {
+    "id": "444ddc07-5c09-4aef-aff4-5499cf96ddc5",
+    "flagUrl": "https://flagsapi.com/AE/flat/64.png",
+    "name": "United Arab Emirates",
+    "languages": [
+      "Arabic"
+    ],
+    "code": "AE"
+  },
+  {
+    "id": "1636f550-e50d-44ce-9205-b07a23d3e0b3",
+    "flagUrl": "https://flagsapi.com/AR/flat/64.png",
+    "name": "Argentina",
+    "languages": [
+      "Spanish"
+    ],
+    "code": "AR"
+  },
+  {
+    "id": "a2814082-e771-42b2-a554-60922eff8e2a",
+    "flagUrl": "https://flagsapi.com/AM/flat/64.png",
+    "name": "Armenia",
+    "languages": [
+      "Armenian"
+    ],
+    "code": "AM"
+  },
+  {
+    "id": "cd0fff1a-4486-4b69-9d5a-7e39f0f8b129",
+    "flagUrl": "https://flagsapi.com/AS/flat/64.png",
+    "name": "American Samoa",
+    "languages": [
+      "English",
+      "Samoan"
+    ],
+    "code": "AS"
+  },
+  {
+    "id": "48b7daaf-0037-4dc8-ae99-cacb417cc33b",
+    "flagUrl": "https://flagsapi.com/AQ/flat/64.png",
+    "name": "Antarctica",
+    "languages": [],
+    "code": "AQ"
+  },
+  {
+    "id": "c5fc357e-1b86-4dab-acc2-5b185d3edc00",
+    "flagUrl": "https://flagsapi.com/TF/flat/64.png",
+    "name": "French Southern Territories",
+    "languages": [
+      "French"
+    ],
+    "code": "TF"
+  },
+  {
+    "id": "a0f29403-1124-462b-869e-be2f10bb91c8",
+    "flagUrl": "https://flagsapi.com/AG/flat/64.png",
+    "name": "Antigua and Barbuda",
+    "languages": [
+      "English"
+    ],
+    "code": "AG"
+  },
+  {
+    "id": "176b9499-87b2-45ef-a8e7-040d894b4fa6",
+    "flagUrl": "https://flagsapi.com/AU/flat/64.png",
+    "name": "Australia",
+    "languages": [
+      "English"
+    ],
+    "code": "AU"
+  },
+  {
+    "id": "7045ba2a-6a96-44c7-b495-f0236128ffe7",
+    "flagUrl": "https://flagsapi.com/AT/flat/64.png",
+    "name": "Austria",
+    "languages": [
+      "German"
+    ],
+    "code": "AT"
+  },
+  {
+    "id": "56baa3b1-d6f1-4498-b42e-8f7cca207201",
+    "flagUrl": "https://flagsapi.com/AZ/flat/64.png",
+    "name": "Azerbaijan",
+    "languages": [],
+    "code": "AZ"
+  },
+  {
+    "id": "34c94d07-09df-45f1-ab4f-6e7a58a2f5b3",
+    "flagUrl": "https://flagsapi.com/BI/flat/64.png",
+    "name": "Burundi",
+    "languages": [
+      "French"
+    ],
+    "code": "BI"
+  },
+  {
+    "id": "45700af4-d5c6-4c94-958e-4a443beef0c0",
+    "flagUrl": "https://flagsapi.com/BE/flat/64.png",
+    "name": "Belgium",
+    "languages": [
+      "Dutch",
+      "French",
+      "German"
+    ],
+    "code": "BE"
+  },
+  {
+    "id": "978c68ee-532e-40bc-977e-6407b9b13838",
+    "flagUrl": "https://flagsapi.com/BJ/flat/64.png",
+    "name": "Benin",
+    "languages": [
+      "French"
+    ],
+    "code": "BJ"
+  },
+  {
+    "id": "835ea772-6b42-4085-883e-27c81fa19659",
+    "flagUrl": "https://flagsapi.com/BQ/flat/64.png",
+    "name": "Bonaire, Sint Eustatius and Saba",
+    "languages": [],
+    "code": "BQ"
+  },
+  {
+    "id": "1322825d-694a-43c8-a562-22da651d74cb",
+    "flagUrl": "https://flagsapi.com/BF/flat/64.png",
+    "name": "Burkina Faso",
+    "languages": [
+      "French"
+    ],
+    "code": "BF"
+  },
+  {
+    "id": "26ad5a09-7d3b-44eb-a739-a1358d29deff",
+    "flagUrl": "https://flagsapi.com/BD/flat/64.png",
+    "name": "Bangladesh",
+    "languages": [
+      "Bengali"
+    ],
+    "code": "BD"
+  },
+  {
+    "id": "963a2248-9b0c-4335-a946-bfe86233212a",
+    "flagUrl": "https://flagsapi.com/BG/flat/64.png",
+    "name": "Bulgaria",
+    "languages": [],
+    "code": "BG"
+  },
+  {
+    "id": "6d213f0a-e224-45e2-940f-f41daf92dea1",
+    "flagUrl": "https://flagsapi.com/BH/flat/64.png",
+    "name": "Bahrain",
+    "languages": [
+      "Arabic"
+    ],
+    "code": "BH"
+  },
+  {
+    "id": "8f64f064-89a8-4458-a3ad-75702557ed7b",
+    "flagUrl": "https://flagsapi.com/BS/flat/64.png",
+    "name": "Bahamas",
+    "languages": [
+      "English"
+    ],
+    "code": "BS"
+  },
+  {
+    "id": "7e35534e-5f9a-4702-a7b5-0b0e2b61313f",
+    "flagUrl": "https://flagsapi.com/BA/flat/64.png",
+    "name": "Bosnia and Herzegovina",
+    "languages": [
+      "Bosnian",
+      "Croatian",
+      "Serbian"
+    ],
+    "code": "BA"
+  },
+  {
+    "id": "8c6878f2-191f-43e0-aebc-828eaa747ef4",
+    "flagUrl": "https://flagsapi.com/BL/flat/64.png",
+    "name": "Saint Barth\u00e9lemy",
+    "languages": [
+      "French"
+    ],
+    "code": "BL"
+  },
+  {
+    "id": "2a2d81e6-9047-4b5a-9b37-f43faeeeff71",
+    "flagUrl": "https://flagsapi.com/BY/flat/64.png",
+    "name": "Belarus",
+    "languages": [
+      "Belarusian",
+      "Russian"
+    ],
+    "code": "BY"
+  },
+  {
+    "id": "ea0fd1ac-1a19-4e89-90a3-8b9ed3cda35c",
+    "flagUrl": "https://flagsapi.com/BZ/flat/64.png",
+    "name": "Belize",
+    "languages": [
+      "English"
+    ],
+    "code": "BZ"
+  },
+  {
+    "id": "78a7a66b-e31c-41b3-8e8b-8ce7a51a89a3",
+    "flagUrl": "https://flagsapi.com/BM/flat/64.png",
+    "name": "Bermuda",
+    "languages": [
+      "English"
+    ],
+    "code": "BM"
+  },
+  {
+    "id": "87dd43ca-d7ef-4348-89d5-d857ea6b5ce0",
+    "flagUrl": "https://flagsapi.com/BO/flat/64.png",
+    "name": "Bolivia, Plurinational State of",
+    "languages": [
+      "Spanish",
+      "Quechua",
+      "Aymara"
+    ],
+    "code": "BO"
+  },
+  {
+    "id": "a4405813-3cbe-46a4-850c-ed0ab6655bb8",
+    "flagUrl": "https://flagsapi.com/BR/flat/64.png",
+    "name": "Brazil",
+    "languages": [
+      "Portuguese"
+    ],
+    "code": "BR"
+  },
+  {
+    "id": "a675fae1-54ee-464f-bd84-41055b8143ad",
+    "flagUrl": "https://flagsapi.com/BB/flat/64.png",
+    "name": "Barbados",
+    "languages": [
+      "English"
+    ],
+    "code": "BB"
+  },
+  {
+    "id": "2144cbc8-f3a5-41cb-87e1-ff0f56bb6173",
+    "flagUrl": "https://flagsapi.com/BN/flat/64.png",
+    "name": "Brunei Darussalam",
+    "languages": [
+      "Malay (macrolanguage)"
+    ],
+    "code": "BN"
+  },
+  {
+    "id": "428d8cc4-5211-4793-9a83-dd4d613338d5",
+    "flagUrl": "https://flagsapi.com/BT/flat/64.png",
+    "name": "Bhutan",
+    "languages": [
+      "Dzongkha"
+    ],
+    "code": "BT"
+  },
+  {
+    "id": "e5978b35-9325-4317-b0fe-632404ad9b32",
+    "flagUrl": "https://flagsapi.com/BV/flat/64.png",
+    "name": "Bouvet Island",
+    "languages": [
+      "Norwegian"
+    ],
+    "code": "BV"
+  },
+  {
+    "id": "b4952ec9-568b-4b91-911a-4747fb218d54",
+    "flagUrl": "https://flagsapi.com/BW/flat/64.png",
+    "name": "Botswana",
+    "languages": [
+      "English",
+      "Tswana"
+    ],
+    "code": "BW"
+  },
+  {
+    "id": "1e105229-e20a-4e4c-807e-3adc82337054",
+    "flagUrl": "https://flagsapi.com/CF/flat/64.png",
+    "name": "Central African Republic",
+    "languages": [
+      "French"
+    ],
+    "code": "CF"
+  },
+  {
+    "id": "30e0f103-3b37-4f74-b155-8439fe4d6948",
+    "flagUrl": "https://flagsapi.com/CA/flat/64.png",
+    "name": "Canada",
+    "languages": [
+      "English",
+      "French"
+    ],
+    "code": "CA"
+  },
+  {
+    "id": "f01c5070-fd5c-4262-b699-412136303254",
+    "flagUrl": "https://flagsapi.com/CC/flat/64.png",
+    "name": "Cocos (Keeling) Islands",
+    "languages": [
+      "English"
+    ],
+    "code": "CC"
+  },
+  {
+    "id": "0ce1807d-ddb9-4f07-bde2-f0931a77d6fb",
+    "flagUrl": "https://flagsapi.com/CH/flat/64.png",
+    "name": "Switzerland",
+    "languages": [
+      "German",
+      "French",
+      "Italian",
+      "Romansh"
+    ],
+    "code": "CH"
+  },
+  {
+    "id": "38a6100e-ffb2-486f-ac79-6ce938c2f241",
+    "flagUrl": "https://flagsapi.com/CL/flat/64.png",
+    "name": "Chile",
+    "languages": [
+      "Spanish"
+    ],
+    "code": "CL"
+  },
+  {
+    "id": "6b6e98fb-e149-4a30-b1c1-1adb89696c87",
+    "flagUrl": "https://flagsapi.com/CN/flat/64.png",
+    "name": "China",
+    "languages": [
+      "Chinese"
+    ],
+    "code": "CN"
+  },
+  {
+    "id": "cad5cf21-d596-4512-9a75-a63053f42215",
+    "flagUrl": "https://flagsapi.com/CI/flat/64.png",
+    "name": "C\u00f4te d'Ivoire",
+    "languages": [
+      "French"
+    ],
+    "code": "CI"
+  },
+  {
+    "id": "3ee621f9-b14d-4f0e-842e-027d935c1201",
+    "flagUrl": "https://flagsapi.com/CM/flat/64.png",
+    "name": "Cameroon",
+    "languages": [
+      "French",
+      "English"
+    ],
+    "code": "CM"
+  },
+  {
+    "id": "5c679894-4cd3-4022-ae53-977060a64501",
+    "flagUrl": "https://flagsapi.com/CD/flat/64.png",
+    "name": "Congo, The Democratic Republic of the",
+    "languages": [
+      "French"
+    ],
+    "code": "CD"
+  },
+  {
+    "id": "f4829420-6f2b-4880-a277-ec3cfe48b98f",
+    "flagUrl": "https://flagsapi.com/CG/flat/64.png",
+    "name": "Congo",
+    "languages": [
+      "French"
+    ],
+    "code": "CG"
+  },
+  {
+    "id": "2dfada5e-3626-4737-b9c5-a7c39bb2d116",
+    "flagUrl": "https://flagsapi.com/CK/flat/64.png",
+    "name": "Cook Islands",
+    "languages": [
+      "English"
+    ],
+    "code": "CK"
+  },
+  {
+    "id": "661877ce-cdef-4117-8598-b2517840c5e5",
+    "flagUrl": "https://flagsapi.com/CO/flat/64.png",
+    "name": "Colombia",
+    "languages": [
+      "Spanish"
+    ],
+    "code": "CO"
+  },
+  {
+    "id": "dea03db4-3d0b-4c4d-bf43-c5ba4f72b852",
+    "flagUrl": "https://flagsapi.com/KM/flat/64.png",
+    "name": "Comoros",
+    "languages": [
+      "Arabic",
+      "French"
+    ],
+    "code": "KM"
+  },
+  {
+    "id": "38bae10b-227b-44bc-892e-cac7ea4a1370",
+    "flagUrl": "https://flagsapi.com/CV/flat/64.png",
+    "name": "Cabo Verde",
+    "languages": [
+      "Portuguese"
+    ],
+    "code": "CV"
+  },
+  {
+    "id": "0a460c8a-20cb-4c29-92d5-79d49237a4a9",
+    "flagUrl": "https://flagsapi.com/CR/flat/64.png",
+    "name": "Costa Rica",
+    "languages": [
+      "Spanish"
+    ],
+    "code": "CR"
+  },
+  {
+    "id": "5c2798d7-892e-45d1-95c6-308f159606c3",
+    "flagUrl": "https://flagsapi.com/CU/flat/64.png",
+    "name": "Cuba",
+    "languages": [
+      "Spanish"
+    ],
+    "code": "CU"
+  },
+  {
+    "id": "e9b01c2d-f9cf-4b78-ab5f-4a3661063356",
+    "flagUrl": "https://flagsapi.com/CW/flat/64.png",
+    "name": "Cura\u00e7ao",
+    "languages": [],
+    "code": "CW"
+  },
+  {
+    "id": "0bb346bb-dd71-4c6b-bef1-528f22bff2e6",
+    "flagUrl": "https://flagsapi.com/CX/flat/64.png",
+    "name": "Christmas Island",
+    "languages": [
+      "English"
+    ],
+    "code": "CX"
+  },
+  {
+    "id": "8a4071da-8b79-4bc9-943a-8996f2e6c0ae",
+    "flagUrl": "https://flagsapi.com/KY/flat/64.png",
+    "name": "Cayman Islands",
+    "languages": [
+      "English"
+    ],
+    "code": "KY"
+  },
+  {
+    "id": "6f901329-1343-405d-8bfc-18713c41425d",
+    "flagUrl": "https://flagsapi.com/CY/flat/64.png",
+    "name": "Cyprus",
+    "languages": [
+      "Modern Greek (1453-)",
+      "Turkish"
+    ],
+    "code": "CY"
+  },
+  {
+    "id": "0dca4bea-83e3-4d74-ad45-2ac78bc37659",
+    "flagUrl": "https://flagsapi.com/CZ/flat/64.png",
+    "name": "Czechia",
+    "languages": [
+      "Czech"
+    ],
+    "code": "CZ"
+  },
+  {
+    "id": "f425c4d6-ea41-4de2-92ba-4829db1bbe42",
+    "flagUrl": "https://flagsapi.com/DE/flat/64.png",
+    "name": "Germany",
+    "languages": [],
+    "code": "DE"
+  },
+  {
+    "id": "65457d24-94a8-4033-abcb-362b6ac9cbd4",
+    "flagUrl": "https://flagsapi.com/DJ/flat/64.png",
+    "name": "Djibouti",
+    "languages": [
+      "French",
+      "Arabic",
+      "Somali"
+    ],
+    "code": "DJ"
+  },
+  {
+    "id": "ae8adb23-70ac-4a4b-b913-721e9a0c60c9",
+    "flagUrl": "https://flagsapi.com/DM/flat/64.png",
+    "name": "Dominica",
+    "languages": [
+      "English"
+    ],
+    "code": "DM"
+  },
+  {
+    "id": "827b039a-0493-4229-85ed-6ec0e5fa7924",
+    "flagUrl": "https://flagsapi.com/DK/flat/64.png",
+    "name": "Denmark",
+    "languages": [
+      "Danish"
+    ],
+    "code": "DK"
+  },
+  {
+    "id": "c4f267bb-855e-4f34-b298-bb3cfb2ebe93",
+    "flagUrl": "https://flagsapi.com/DO/flat/64.png",
+    "name": "Dominican Republic",
+    "languages": [
+      "Spanish"
+    ],
+    "code": "DO"
+  },
+  {
+    "id": "cec6566f-08cd-44d9-b715-8185cb26f829",
+    "flagUrl": "https://flagsapi.com/DZ/flat/64.png",
+    "name": "Algeria",
+    "languages": [
+      "Arabic"
+    ],
+    "code": "DZ"
+  },
+  {
+    "id": "acc2ba35-8d19-4668-88c6-aa9212055f7d",
+    "flagUrl": "https://flagsapi.com/EC/flat/64.png",
+    "name": "Ecuador",
+    "languages": [
+      "Spanish"
+    ],
+    "code": "EC"
+  },
+  {
+    "id": "c9fb1497-b8cf-4dfb-871e-5d109e17d4b7",
+    "flagUrl": "https://flagsapi.com/EG/flat/64.png",
+    "name": "Egypt",
+    "languages": [
+      "Arabic"
+    ],
+    "code": "EG"
+  },
+  {
+    "id": "d9591e3c-5bbe-4c91-92de-d8671fd73556",
+    "flagUrl": "https://flagsapi.com/ER/flat/64.png",
+    "name": "Eritrea",
+    "languages": [
+      "Tigrinya",
+      "Arabic",
+      "English"
+    ],
+    "code": "ER"
+  },
+  {
+    "id": "186838b9-23c3-42c3-8600-e2a284da07b6",
+    "flagUrl": "https://flagsapi.com/EH/flat/64.png",
+    "name": "Western Sahara",
+    "languages": [
+      "Arabic",
+      "Spanish",
+      "French"
+    ],
+    "code": "EH"
+  },
+  {
+    "id": "f1b5430c-d7c8-46d5-81ff-1e86fb2009bb",
+    "flagUrl": "https://flagsapi.com/ES/flat/64.png",
+    "name": "Spain",
+    "languages": [
+      "Spanish",
+      "Catalan",
+      "Basque",
+      "Galician",
+      "Aragonese",
+      "Occitan (post 1500)"
+    ],
+    "code": "ES"
+  },
+  {
+    "id": "3d0a8ade-6084-4a37-b8bc-2a67e5de91aa",
+    "flagUrl": "https://flagsapi.com/EE/flat/64.png",
+    "name": "Estonia",
+    "languages": [
+      "Estonian"
+    ],
+    "code": "EE"
+  },
+  {
+    "id": "ad907ec6-aa70-4db0-9a40-eb25a50b2a89",
+    "flagUrl": "https://flagsapi.com/ET/flat/64.png",
+    "name": "Ethiopia",
+    "languages": [
+      "Amharic",
+      "Oromo"
+    ],
+    "code": "ET"
+  },
+  {
+    "id": "cd740174-d78b-40f8-98ba-919e9fb104dd",
+    "flagUrl": "https://flagsapi.com/FI/flat/64.png",
+    "name": "Finland",
+    "languages": [
+      "Finnish",
+      "Swedish",
+      "Northern Sami"
+    ],
+    "code": "FI"
+  },
+  {
+    "id": "4e70eb45-6086-4cc1-9b1d-737a16eee1ee",
+    "flagUrl": "https://flagsapi.com/FJ/flat/64.png",
+    "name": "Fiji",
+    "languages": [
+      "English"
+    ],
+    "code": "FJ"
+  },
+  {
+    "id": "cf53ea32-8caa-4ede-81af-60d0c4bdfe1d",
+    "flagUrl": "https://flagsapi.com/FK/flat/64.png",
+    "name": "Falkland Islands (Malvinas)",
+    "languages": [
+      "English"
+    ],
+    "code": "FK"
+  },
+  {
+    "id": "2538b20b-a41f-408e-a576-4a11287f11c0",
+    "flagUrl": "https://flagsapi.com/FR/flat/64.png",
+    "name": "France",
+    "languages": [],
+    "code": "FR"
+  },
+  {
+    "id": "37e02472-90c4-4ce9-a4e2-69b892b68127",
+    "flagUrl": "https://flagsapi.com/FO/flat/64.png",
+    "name": "Faroe Islands",
+    "languages": [],
+    "code": "FO"
+  },
+  {
+    "id": "61b2e19e-9727-4314-a1b0-a2d41615c372",
+    "flagUrl": "https://flagsapi.com/FM/flat/64.png",
+    "name": "Micronesia, Federated States of",
+    "languages": [
+      "English"
+    ],
+    "code": "FM"
+  },
+  {
+    "id": "2725ca82-a46f-4557-aa6f-93596d9715ae",
+    "flagUrl": "https://flagsapi.com/GA/flat/64.png",
+    "name": "Gabon",
+    "languages": [
+      "French"
+    ],
+    "code": "GA"
+  },
+  {
+    "id": "04bffdaf-eab7-4938-96c8-6ed2ccd999c8",
+    "flagUrl": "https://flagsapi.com/GB/flat/64.png",
+    "name": "United Kingdom",
+    "languages": [
+      "English",
+      "Irish",
+      "Welsh",
+      "Scottish Gaelic",
+      "Cornish"
+    ],
+    "code": "GB"
+  },
+  {
+    "id": "da4fb0b4-7bd3-45d1-9f5d-de973a4bb77c",
+    "flagUrl": "https://flagsapi.com/GE/flat/64.png",
+    "name": "Georgia",
+    "languages": [
+      "Georgian"
+    ],
+    "code": "GE"
+  },
+  {
+    "id": "6471ba31-a868-46bf-b642-15f0515978d5",
+    "flagUrl": "https://flagsapi.com/GG/flat/64.png",
+    "name": "Guernsey",
+    "languages": [
+      "English"
+    ],
+    "code": "GG"
+  },
+  {
+    "id": "5215cbfe-077f-4186-96e5-fdfbafbedefc",
+    "flagUrl": "https://flagsapi.com/GH/flat/64.png",
+    "name": "Ghana",
+    "languages": [
+      "English"
+    ],
+    "code": "GH"
+  },
+  {
+    "id": "f043f847-0f81-40de-979b-13b4bf1f1167",
+    "flagUrl": "https://flagsapi.com/GI/flat/64.png",
+    "name": "Gibraltar",
+    "languages": [
+      "English"
+    ],
+    "code": "GI"
+  },
+  {
+    "id": "90bf1066-33de-4175-bd2b-9549f7224411",
+    "flagUrl": "https://flagsapi.com/GN/flat/64.png",
+    "name": "Guinea",
+    "languages": [
+      "French"
+    ],
+    "code": "GN"
+  },
+  {
+    "id": "2ffe9850-52ea-48dd-8d60-5db62f18159d",
+    "flagUrl": "https://flagsapi.com/GP/flat/64.png",
+    "name": "Guadeloupe",
+    "languages": [
+      "French"
+    ],
+    "code": "GP"
+  },
+  {
+    "id": "6ac71680-038c-4e29-8228-fbc0ad8c994e",
+    "flagUrl": "https://flagsapi.com/GM/flat/64.png",
+    "name": "Gambia",
+    "languages": [
+      "English"
+    ],
+    "code": "GM"
+  },
+  {
+    "id": "205894f5-786d-4024-9329-dc792e443fca",
+    "flagUrl": "https://flagsapi.com/GW/flat/64.png",
+    "name": "Guinea-Bissau",
+    "languages": [
+      "Portuguese"
+    ],
+    "code": "GW"
+  },
+  {
+    "id": "b7db1755-d01c-4b62-8086-ab7a0310e4bb",
+    "flagUrl": "https://flagsapi.com/GQ/flat/64.png",
+    "name": "Equatorial Guinea",
+    "languages": [
+      "Spanish",
+      "French",
+      "Portuguese"
+    ],
+    "code": "GQ"
+  },
+  {
+    "id": "b5a0eb55-2cbc-4c82-b011-ebb442324722",
+    "flagUrl": "https://flagsapi.com/GR/flat/64.png",
+    "name": "Greece",
+    "languages": [
+      "Modern Greek (1453-)"
+    ],
+    "code": "GR"
+  },
+  {
+    "id": "0baf266a-16c4-432a-9507-e2095ab7f156",
+    "flagUrl": "https://flagsapi.com/GD/flat/64.png",
+    "name": "Grenada",
+    "languages": [
+      "English"
+    ],
+    "code": "GD"
+  },
+  {
+    "id": "7fb138c7-86cd-4f8a-92ce-69333344c0f7",
+    "flagUrl": "https://flagsapi.com/GL/flat/64.png",
+    "name": "Greenland",
+    "languages": [
+      "Kalaallisut",
+      "Danish"
+    ],
+    "code": "GL"
+  },
+  {
+    "id": "de0689b1-fb34-4811-9494-f055b9a31bb0",
+    "flagUrl": "https://flagsapi.com/GT/flat/64.png",
+    "name": "Guatemala",
+    "languages": [
+      "Spanish"
+    ],
+    "code": "GT"
+  },
+  {
+    "id": "93fb51b5-0026-47bb-9554-06795f336cb7",
+    "flagUrl": "https://flagsapi.com/GF/flat/64.png",
+    "name": "French Guiana",
+    "languages": [
+      "French"
+    ],
+    "code": "GF"
+  },
+  {
+    "id": "56aa5c04-6c28-487f-9652-fe13e93dc4a7",
+    "flagUrl": "https://flagsapi.com/GU/flat/64.png",
+    "name": "Guam",
+    "languages": [
+      "English",
+      "Chamorro"
+    ],
+    "code": "GU"
+  },
+  {
+    "id": "a712c629-d678-44a4-aa00-6c6784e81302",
+    "flagUrl": "https://flagsapi.com/GY/flat/64.png",
+    "name": "Guyana",
+    "languages": [
+      "English"
+    ],
+    "code": "GY"
+  },
+  {
+    "id": "8bdef35e-95f3-481a-9926-821e7fff8d6b",
+    "flagUrl": "https://flagsapi.com/HK/flat/64.png",
+    "name": "Hong Kong",
+    "languages": [
+      "Chinese",
+      "English"
+    ],
+    "code": "HK"
+  },
+  {
+    "id": "26b6692e-716a-47f3-974f-b0f8e81a7853",
+    "flagUrl": "https://flagsapi.com/HM/flat/64.png",
+    "name": "Heard Island and McDonald Islands",
+    "languages": [
+      "English"
+    ],
+    "code": "HM"
+  },
+  {
+    "id": "31792946-2a02-480a-85be-54a63e1caa25",
+    "flagUrl": "https://flagsapi.com/HN/flat/64.png",
+    "name": "Honduras",
+    "languages": [
+      "Spanish"
+    ],
+    "code": "HN"
+  },
+  {
+    "id": "56c24640-d24e-4e15-bb3b-c392a4ec5598",
+    "flagUrl": "https://flagsapi.com/HR/flat/64.png",
+    "name": "Croatia",
+    "languages": [],
+    "code": "HR"
+  },
+  {
+    "id": "3f51b840-35fc-41dd-b14a-6edf207b68ff",
+    "flagUrl": "https://flagsapi.com/HT/flat/64.png",
+    "name": "Haiti",
+    "languages": [
+      "French",
+      "Haitian"
+    ],
+    "code": "HT"
+  },
+  {
+    "id": "c0d2b0a5-1147-4823-b69b-ff6d90655093",
+    "flagUrl": "https://flagsapi.com/HU/flat/64.png",
+    "name": "Hungary",
+    "languages": [],
+    "code": "HU"
+  },
+  {
+    "id": "06d93338-2640-4bbc-aa9e-643e472e8476",
+    "flagUrl": "https://flagsapi.com/ID/flat/64.png",
+    "name": "Indonesia",
+    "languages": [],
+    "code": "ID"
+  },
+  {
+    "id": "591ca62f-2ef5-4776-8751-954e6813db71",
+    "flagUrl": "https://flagsapi.com/IM/flat/64.png",
+    "name": "Isle of Man",
+    "languages": [
+      "English"
+    ],
+    "code": "IM"
+  },
+  {
+    "id": "78a87f08-ba97-4ab4-b159-7448a6527d47",
+    "flagUrl": "https://flagsapi.com/IN/flat/64.png",
+    "name": "India",
+    "languages": [
+      "Hindi",
+      "English"
+    ],
+    "code": "IN"
+  },
+  {
+    "id": "6f44bc4d-31ee-42ff-a396-7253be8a8d3b",
+    "flagUrl": "https://flagsapi.com/IO/flat/64.png",
+    "name": "British Indian Ocean Territory",
+    "languages": [
+      "English"
+    ],
+    "code": "IO"
+  },
+  {
+    "id": "100b235a-99c3-4652-9ce3-06e966bad4ff",
+    "flagUrl": "https://flagsapi.com/IE/flat/64.png",
+    "name": "Ireland",
+    "languages": [
+      "English",
+      "Irish"
+    ],
+    "code": "IE"
+  },
+  {
+    "id": "734de01c-9421-4951-bb15-e2e15381481c",
+    "flagUrl": "https://flagsapi.com/IR/flat/64.png",
+    "name": "Iran, Islamic Republic of",
+    "languages": [
+      "Persian"
+    ],
+    "code": "IR"
+  },
+  {
+    "id": "1f901fde-9e78-4f66-9c3f-21ea13f0d183",
+    "flagUrl": "https://flagsapi.com/IQ/flat/64.png",
+    "name": "Iraq",
+    "languages": [
+      "Arabic",
+      "Kurdish"
+    ],
+    "code": "IQ"
+  },
+  {
+    "id": "a3a4b03f-aec1-42a1-a9ea-f03885282bec",
+    "flagUrl": "https://flagsapi.com/IS/flat/64.png",
+    "name": "Iceland",
+    "languages": [],
+    "code": "IS"
+  },
+  {
+    "id": "ac6c02d3-f17e-4b8b-97d3-19f6d7d0de86",
+    "flagUrl": "https://flagsapi.com/IL/flat/64.png",
+    "name": "Israel",
+    "languages": [
+      "Hebrew"
+    ],
+    "code": "IL"
+  },
+  {
+    "id": "8f6681a8-4900-45da-b47c-044f356b4935",
+    "flagUrl": "https://flagsapi.com/IT/flat/64.png",
+    "name": "Italy",
+    "languages": [
+      "Italian",
+      "German",
+      "French"
+    ],
+    "code": "IT"
+  },
+  {
+    "id": "1a0234a2-39a1-4048-95bd-c8b529f99a0c",
+    "flagUrl": "https://flagsapi.com/JM/flat/64.png",
+    "name": "Jamaica",
+    "languages": [
+      "English"
+    ],
+    "code": "JM"
+  },
+  {
+    "id": "2b899458-4c5e-40b0-95b8-e481e69fb3ed",
+    "flagUrl": "https://flagsapi.com/JE/flat/64.png",
+    "name": "Jersey",
+    "languages": [
+      "English"
+    ],
+    "code": "JE"
+  },
+  {
+    "id": "3ffb1d64-8fd0-4727-b81b-8b7df16e9af6",
+    "flagUrl": "https://flagsapi.com/JO/flat/64.png",
+    "name": "Jordan",
+    "languages": [
+      "Arabic"
+    ],
+    "code": "JO"
+  },
+  {
+    "id": "11026cdf-11ed-40fb-8e64-2475a8d1e0a6",
+    "flagUrl": "https://flagsapi.com/JP/flat/64.png",
+    "name": "Japan",
+    "languages": [
+      "Japanese"
+    ],
+    "code": "JP"
+  },
+  {
+    "id": "42509a95-5135-44fa-ad1c-8cc288f5ff99",
+    "flagUrl": "https://flagsapi.com/KZ/flat/64.png",
+    "name": "Kazakhstan",
+    "languages": [
+      "Kazakh",
+      "Russian"
+    ],
+    "code": "KZ"
+  },
+  {
+    "id": "9706a557-4210-4585-83a9-a6022e23d1ff",
+    "flagUrl": "https://flagsapi.com/KE/flat/64.png",
+    "name": "Kenya",
+    "languages": [
+      "Swahili (macrolanguage)",
+      "English"
+    ],
+    "code": "KE"
+  },
+  {
+    "id": "c0b574bd-1c9e-4428-a987-30159d39c0a6",
+    "flagUrl": "https://flagsapi.com/KG/flat/64.png",
+    "name": "Kyrgyzstan",
+    "languages": [
+      "Kirghiz",
+      "Russian"
+    ],
+    "code": "KG"
+  },
+  {
+    "id": "56f3e7f5-a8ca-495c-8881-23913d44742a",
+    "flagUrl": "https://flagsapi.com/KH/flat/64.png",
+    "name": "Cambodia",
+    "languages": [
+      "Central Khmer"
+    ],
+    "code": "KH"
+  },
+  {
+    "id": "2b25265a-7d00-4d3e-a519-32947bf0f85a",
+    "flagUrl": "https://flagsapi.com/KI/flat/64.png",
+    "name": "Kiribati",
+    "languages": [
+      "English"
+    ],
+    "code": "KI"
+  },
+  {
+    "id": "24692e48-1b0f-4784-a42f-0bd5cf14452a",
+    "flagUrl": "https://flagsapi.com/KN/flat/64.png",
+    "name": "Saint Kitts and Nevis",
+    "languages": [
+      "English"
+    ],
+    "code": "KN"
+  },
+  {
+    "id": "30fcadf1-a961-488a-a9c8-7b3309ba2054",
+    "flagUrl": "https://flagsapi.com/KR/flat/64.png",
+    "name": "Korea, Republic of",
+    "languages": [
+      "Korean",
+      "English"
+    ],
+    "code": "KR"
+  },
+  {
+    "id": "0e6fa2f5-aee5-4810-832d-821bf72386e3",
+    "flagUrl": "https://flagsapi.com/KW/flat/64.png",
+    "name": "Kuwait",
+    "languages": [
+      "Arabic"
+    ],
+    "code": "KW"
+  },
+  {
+    "id": "546707f0-9d5b-4cb8-a010-e7a106475ba8",
+    "flagUrl": "https://flagsapi.com/LA/flat/64.png",
+    "name": "Lao People's Democratic Republic",
+    "languages": [
+      "Lao"
+    ],
+    "code": "LA"
+  },
+  {
+    "id": "53575d85-d9f3-43f6-81d3-95abe769bc85",
+    "flagUrl": "https://flagsapi.com/LB/flat/64.png",
+    "name": "Lebanon",
+    "languages": [
+      "Arabic",
+      "French"
+    ],
+    "code": "LB"
+  },
+  {
+    "id": "a4a60046-a411-4e3b-ac30-59c7753528ae",
+    "flagUrl": "https://flagsapi.com/LR/flat/64.png",
+    "name": "Liberia",
+    "languages": [
+      "English"
+    ],
+    "code": "LR"
+  },
+  {
+    "id": "f14ca6eb-ec84-44fe-b2b5-3132964b4019",
+    "flagUrl": "https://flagsapi.com/LY/flat/64.png",
+    "name": "Libya",
+    "languages": [
+      "Arabic"
+    ],
+    "code": "LY"
+  },
+  {
+    "id": "673eb417-a768-4c58-9e41-d9ac71b0fb69",
+    "flagUrl": "https://flagsapi.com/LC/flat/64.png",
+    "name": "Saint Lucia",
+    "languages": [
+      "English"
+    ],
+    "code": "LC"
+  },
+  {
+    "id": "b877afc8-fd5b-483a-ad24-ab18bf7f8908",
+    "flagUrl": "https://flagsapi.com/LI/flat/64.png",
+    "name": "Liechtenstein",
+    "languages": [
+      "German"
+    ],
+    "code": "LI"
+  },
+  {
+    "id": "ffc5fa9a-b0aa-495a-a3e6-a23b125365f4",
+    "flagUrl": "https://flagsapi.com/LK/flat/64.png",
+    "name": "Sri Lanka",
+    "languages": [
+      "Sinhala",
+      "Tamil"
+    ],
+    "code": "LK"
+  },
+  {
+    "id": "38a036a8-adf7-4b1b-b5e4-e7bc80e069eb",
+    "flagUrl": "https://flagsapi.com/LS/flat/64.png",
+    "name": "Lesotho",
+    "languages": [
+      "English",
+      "Southern Sotho"
+    ],
+    "code": "LS"
+  },
+  {
+    "id": "bb96d947-8dd6-431d-a2e0-3a46604db962",
+    "flagUrl": "https://flagsapi.com/LT/flat/64.png",
+    "name": "Lithuania",
+    "languages": [],
+    "code": "LT"
+  },
+  {
+    "id": "f76d6bbc-5d6e-447c-a0a2-13fd4bee485a",
+    "flagUrl": "https://flagsapi.com/LU/flat/64.png",
+    "name": "Luxembourg",
+    "languages": [
+      "Luxembourgish",
+      "French",
+      "German"
+    ],
+    "code": "LU"
+  },
+  {
+    "id": "cdd6e941-66bd-49b0-b16a-5493b043a2cd",
+    "flagUrl": "https://flagsapi.com/LV/flat/64.png",
+    "name": "Latvia",
+    "languages": [],
+    "code": "LV"
+  },
+  {
+    "id": "8a5e0ea3-05f2-4e3d-803b-e909b7ea935c",
+    "flagUrl": "https://flagsapi.com/MO/flat/64.png",
+    "name": "Macao",
+    "languages": [
+      "Chinese",
+      "Portuguese"
+    ],
+    "code": "MO"
+  },
+  {
+    "id": "27f23b32-ec69-4888-919a-3626be0bbb93",
+    "flagUrl": "https://flagsapi.com/MF/flat/64.png",
+    "name": "Saint Martin (French part)",
+    "languages": [
+      "French"
+    ],
+    "code": "MF"
+  },
+  {
+    "id": "7835de29-9d3b-4f7a-8046-f20940eded06",
+    "flagUrl": "https://flagsapi.com/MA/flat/64.png",
+    "name": "Morocco",
+    "languages": [
+      "Arabic"
+    ],
+    "code": "MA"
+  },
+  {
+    "id": "670d671a-0d74-4618-9fc3-5ef9ccb22951",
+    "flagUrl": "https://flagsapi.com/MC/flat/64.png",
+    "name": "Monaco",
+    "languages": [
+      "French"
+    ],
+    "code": "MC"
+  },
+  {
+    "id": "ed44a5af-a708-42db-9d9a-05dc69ab1a74",
+    "flagUrl": "https://flagsapi.com/MD/flat/64.png",
+    "name": "Moldova, Republic of",
+    "languages": [
+      "Russian",
+      "Ukrainian",
+      "Romanian"
+    ],
+    "code": "MD"
+  },
+  {
+    "id": "b892767b-7dab-472b-8b57-89d40b256027",
+    "flagUrl": "https://flagsapi.com/MG/flat/64.png",
+    "name": "Madagascar",
+    "languages": [
+      "Malagasy",
+      "French"
+    ],
+    "code": "MG"
+  },
+  {
+    "id": "247bb081-75dd-4aae-8093-992f6e3da4ed",
+    "flagUrl": "https://flagsapi.com/MV/flat/64.png",
+    "name": "Maldives",
+    "languages": [
+      "Dhivehi"
+    ],
+    "code": "MV"
+  },
+  {
+    "id": "a1113ae3-c1ad-409f-a236-adbc38aa599a",
+    "flagUrl": "https://flagsapi.com/MX/flat/64.png",
+    "name": "Mexico",
+    "languages": [
+      "Spanish"
+    ],
+    "code": "MX"
+  },
+  {
+    "id": "fdc5bae0-6001-47d2-9372-4c251b67201d",
+    "flagUrl": "https://flagsapi.com/MH/flat/64.png",
+    "name": "Marshall Islands",
+    "languages": [
+      "English",
+      "Marshallese"
+    ],
+    "code": "MH"
+  },
+  {
+    "id": "510998af-1b1b-4415-a465-32bc0fb0907b",
+    "flagUrl": "https://flagsapi.com/MK/flat/64.png",
+    "name": "North Macedonia",
+    "languages": [],
+    "code": "MK"
+  },
+  {
+    "id": "cc7415e1-4670-4487-bb50-b1be89534a0c",
+    "flagUrl": "https://flagsapi.com/ML/flat/64.png",
+    "name": "Mali",
+    "languages": [
+      "French"
+    ],
+    "code": "ML"
+  },
+  {
+    "id": "104ecfd7-2b93-4dcb-9905-07e04233e175",
+    "flagUrl": "https://flagsapi.com/MT/flat/64.png",
+    "name": "Malta",
+    "languages": [
+      "Maltese",
+      "English"
+    ],
+    "code": "MT"
+  },
+  {
+    "id": "64df8ca8-c5ef-44ed-b49e-dd97da296dbb",
+    "flagUrl": "https://flagsapi.com/MM/flat/64.png",
+    "name": "Myanmar",
+    "languages": [
+      "Burmese"
+    ],
+    "code": "MM"
+  },
+  {
+    "id": "4a8b7302-1de5-4db0-9212-d88f927a3b8d",
+    "flagUrl": "https://flagsapi.com/ME/flat/64.png",
+    "name": "Montenegro",
+    "languages": [
+      "Albanian",
+      "Bosnian",
+      "Croatian",
+      "Serbian"
+    ],
+    "code": "ME"
+  },
+  {
+    "id": "5d95f425-dd3f-4887-ad86-fce9156faa8c",
+    "flagUrl": "https://flagsapi.com/MN/flat/64.png",
+    "name": "Mongolia",
+    "languages": [],
+    "code": "MN"
+  },
+  {
+    "id": "9e6f816c-d24e-40a4-9410-1a12f1303873",
+    "flagUrl": "https://flagsapi.com/MP/flat/64.png",
+    "name": "Northern Mariana Islands",
+    "languages": [
+      "Chamorro"
+    ],
+    "code": "MP"
+  },
+  {
+    "id": "96163e65-d2db-42aa-a118-6a43863a01eb",
+    "flagUrl": "https://flagsapi.com/MZ/flat/64.png",
+    "name": "Mozambique",
+    "languages": [
+      "Portuguese"
+    ],
+    "code": "MZ"
+  },
+  {
+    "id": "68888b1a-7df4-4ba0-8474-17c49d40b888",
+    "flagUrl": "https://flagsapi.com/MR/flat/64.png",
+    "name": "Mauritania",
+    "languages": [
+      "Arabic",
+      "French"
+    ],
+    "code": "MR"
+  },
+  {
+    "id": "dd8c0e71-7fd2-4b3b-ba03-0bf7a6fb58aa",
+    "flagUrl": "https://flagsapi.com/MS/flat/64.png",
+    "name": "Montserrat",
+    "languages": [
+      "English"
+    ],
+    "code": "MS"
+  },
+  {
+    "id": "db3d034a-64f8-49ab-84d9-86808463064b",
+    "flagUrl": "https://flagsapi.com/MQ/flat/64.png",
+    "name": "Martinique",
+    "languages": [
+      "French"
+    ],
+    "code": "MQ"
+  },
+  {
+    "id": "3d2bd9ab-02bc-472f-8a1f-e83caacfe065",
+    "flagUrl": "https://flagsapi.com/MU/flat/64.png",
+    "name": "Mauritius",
+    "languages": [
+      "French",
+      "English"
+    ],
+    "code": "MU"
+  },
+  {
+    "id": "93dd58e2-5256-4f12-b870-9fbd9b043567",
+    "flagUrl": "https://flagsapi.com/MW/flat/64.png",
+    "name": "Malawi",
+    "languages": [
+      "English",
+      "Nyanja"
+    ],
+    "code": "MW"
+  },
+  {
+    "id": "582fb491-45dd-4dc8-baf7-677ecbc0ed36",
+    "flagUrl": "https://flagsapi.com/MY/flat/64.png",
+    "name": "Malaysia",
+    "languages": [
+      "Malay (macrolanguage)"
+    ],
+    "code": "MY"
+  },
+  {
+    "id": "f0e54d5e-e40c-4ad9-92eb-42e98ea3a11f",
+    "flagUrl": "https://flagsapi.com/YT/flat/64.png",
+    "name": "Mayotte",
+    "languages": [
+      "French"
+    ],
+    "code": "YT"
+  },
+  {
+    "id": "98ba7548-702a-4f6e-afed-72323546637a",
+    "flagUrl": "https://flagsapi.com/NA/flat/64.png",
+    "name": "Namibia",
+    "languages": [
+      "English",
+      "German"
+    ],
+    "code": "NA"
+  },
+  {
+    "id": "3fce18e8-5f45-4f99-98b2-23272eaff15c",
+    "flagUrl": "https://flagsapi.com/NC/flat/64.png",
+    "name": "New Caledonia",
+    "languages": [
+      "French"
+    ],
+    "code": "NC"
+  },
+  {
+    "id": "a1e4d2b2-7b0f-4ac3-849d-6751874acfeb",
+    "flagUrl": "https://flagsapi.com/NE/flat/64.png",
+    "name": "Niger",
+    "languages": [
+      "French"
+    ],
+    "code": "NE"
+  },
+  {
+    "id": "c492ff4e-6ac3-4b37-86e7-c529ae30f9bd",
+    "flagUrl": "https://flagsapi.com/NF/flat/64.png",
+    "name": "Norfolk Island",
+    "languages": [
+      "English"
+    ],
+    "code": "NF"
+  },
+  {
+    "id": "50e9bf95-1428-4054-a1b1-01e00b1a4071",
+    "flagUrl": "https://flagsapi.com/NG/flat/64.png",
+    "name": "Nigeria",
+    "languages": [
+      "English"
+    ],
+    "code": "NG"
+  },
+  {
+    "id": "053a94a3-abae-4e51-872a-3bc3c08b7095",
+    "flagUrl": "https://flagsapi.com/NI/flat/64.png",
+    "name": "Nicaragua",
+    "languages": [
+      "Spanish"
+    ],
+    "code": "NI"
+  },
+  {
+    "id": "bcff08cc-d6f5-43ee-b8d9-b1f87ff62b55",
+    "flagUrl": "https://flagsapi.com/NU/flat/64.png",
+    "name": "Niue",
+    "languages": [
+      "English"
+    ],
+    "code": "NU"
+  },
+  {
+    "id": "ce2f1a10-4022-45a5-a258-a5de7d5b81bf",
+    "flagUrl": "https://flagsapi.com/NL/flat/64.png",
+    "name": "Netherlands",
+    "languages": [],
+    "code": "NL"
+  },
+  {
+    "id": "66c9b1d5-3a3e-4df6-a734-e45e4e762de0",
+    "flagUrl": "https://flagsapi.com/NO/flat/64.png",
+    "name": "Norway",
+    "languages": [
+      "Norwegian Bokm\u00e5l",
+      "Norwegian Nynorsk",
+      "Norwegian",
+      "Northern Sami"
+    ],
+    "code": "NO"
+  },
+  {
+    "id": "1295fb27-e56b-477f-b2a6-cc8b93cc1228",
+    "flagUrl": "https://flagsapi.com/NP/flat/64.png",
+    "name": "Nepal",
+    "languages": [
+      "Nepali (macrolanguage)"
+    ],
+    "code": "NP"
+  },
+  {
+    "id": "fc764661-4c26-4500-8975-b9b0d3ebe955",
+    "flagUrl": "https://flagsapi.com/NR/flat/64.png",
+    "name": "Nauru",
+    "languages": [
+      "Nauru",
+      "English"
+    ],
+    "code": "NR"
+  },
+  {
+    "id": "19fc554e-d1a3-40d8-9466-5104161ffcba",
+    "flagUrl": "https://flagsapi.com/NZ/flat/64.png",
+    "name": "New Zealand",
+    "languages": [
+      "Maori",
+      "English"
+    ],
+    "code": "NZ"
+  },
+  {
+    "id": "0ccd6268-48cf-4618-8133-2caaa6622282",
+    "flagUrl": "https://flagsapi.com/OM/flat/64.png",
+    "name": "Oman",
+    "languages": [
+      "Arabic"
+    ],
+    "code": "OM"
+  },
+  {
+    "id": "f60d720d-9142-4993-8eeb-e10b057c372f",
+    "flagUrl": "https://flagsapi.com/PK/flat/64.png",
+    "name": "Pakistan",
+    "languages": [
+      "English",
+      "Urdu"
+    ],
+    "code": "PK"
+  },
+  {
+    "id": "f17a725d-f723-4016-b814-78db80d7d11c",
+    "flagUrl": "https://flagsapi.com/PA/flat/64.png",
+    "name": "Panama",
+    "languages": [
+      "Spanish"
+    ],
+    "code": "PA"
+  },
+  {
+    "id": "d30d6e50-2f09-43dc-b36f-3bb1012b8445",
+    "flagUrl": "https://flagsapi.com/PN/flat/64.png",
+    "name": "Pitcairn",
+    "languages": [
+      "English"
+    ],
+    "code": "PN"
+  },
+  {
+    "id": "37c2c545-8b2d-41d6-a576-1f7112e93c45",
+    "flagUrl": "https://flagsapi.com/PE/flat/64.png",
+    "name": "Peru",
+    "languages": [
+      "Spanish"
+    ],
+    "code": "PE"
+  },
+  {
+    "id": "1bd092c8-0740-4ff6-98be-0efecca17639",
+    "flagUrl": "https://flagsapi.com/PH/flat/64.png",
+    "name": "Philippines",
+    "languages": [
+      "English",
+      "Tagalog"
+    ],
+    "code": "PH"
+  },
+  {
+    "id": "26c0bfc0-855a-424c-902c-1b5b70f1c2d9",
+    "flagUrl": "https://flagsapi.com/PW/flat/64.png",
+    "name": "Palau",
+    "languages": [
+      "English",
+      "Japanese"
+    ],
+    "code": "PW"
+  },
+  {
+    "id": "9fa92bac-33f4-4b8f-b1f2-f4d2d2e8c033",
+    "flagUrl": "https://flagsapi.com/PG/flat/64.png",
+    "name": "Papua New Guinea",
+    "languages": [
+      "English",
+      "Hiri Motu"
+    ],
+    "code": "PG"
+  },
+  {
+    "id": "b5f17278-2ad0-4a02-b1de-d54a7b5d2fd0",
+    "flagUrl": "https://flagsapi.com/PL/flat/64.png",
+    "name": "Poland",
+    "languages": [],
+    "code": "PL"
+  },
+  {
+    "id": "fdb1fb8b-d303-4267-8075-5785ee400de7",
+    "flagUrl": "https://flagsapi.com/PR/flat/64.png",
+    "name": "Puerto Rico",
+    "languages": [
+      "Spanish",
+      "English"
+    ],
+    "code": "PR"
+  },
+  {
+    "id": "353abaf4-a6e2-42d0-80f1-eb2d25727006",
+    "flagUrl": "https://flagsapi.com/KP/flat/64.png",
+    "name": "Korea, Democratic People's Republic of",
+    "languages": [
+      "Korean"
+    ],
+    "code": "KP"
+  },
+  {
+    "id": "9361866c-3186-4d5a-a9f5-1b90b360daba",
+    "flagUrl": "https://flagsapi.com/PT/flat/64.png",
+    "name": "Portugal",
+    "languages": [],
+    "code": "PT"
+  },
+  {
+    "id": "fb2598c5-f2e7-4828-ae13-a5d5e88bf7c7",
+    "flagUrl": "https://flagsapi.com/PY/flat/64.png",
+    "name": "Paraguay",
+    "languages": [
+      "Spanish",
+      "Guarani"
+    ],
+    "code": "PY"
+  },
+  {
+    "id": "c741c721-e934-413c-8b5a-56c825a78754",
+    "flagUrl": "https://flagsapi.com/PS/flat/64.png",
+    "name": "Palestine, State of",
+    "languages": [
+      "Arabic",
+      "Hebrew"
+    ],
+    "code": "PS"
+  },
+  {
+    "id": "1c74782b-d853-4d26-be9c-71c4171e79e3",
+    "flagUrl": "https://flagsapi.com/PF/flat/64.png",
+    "name": "French Polynesia",
+    "languages": [
+      "French"
+    ],
+    "code": "PF"
+  },
+  {
+    "id": "c98f670e-d172-4e64-8fd6-aa51b3a7833c",
+    "flagUrl": "https://flagsapi.com/QA/flat/64.png",
+    "name": "Qatar",
+    "languages": [
+      "Arabic"
+    ],
+    "code": "QA"
+  },
+  {
+    "id": "cab94e50-281c-4ac2-9310-da4625515cf5",
+    "flagUrl": "https://flagsapi.com/RE/flat/64.png",
+    "name": "R\u00e9union",
+    "languages": [
+      "French"
+    ],
+    "code": "RE"
+  },
+  {
+    "id": "e08d323e-1f82-4ac6-86a7-dff91c785f55",
+    "flagUrl": "https://flagsapi.com/RO/flat/64.png",
+    "name": "Romania",
+    "languages": [],
+    "code": "RO"
+  },
+  {
+    "id": "f657ceda-97e0-4b06-addc-863b6697d1ea",
+    "flagUrl": "https://flagsapi.com/RU/flat/64.png",
+    "name": "Russian Federation",
+    "languages": [],
+    "code": "RU"
+  },
+  {
+    "id": "626890fe-30c2-4455-9f7f-126939fa337e",
+    "flagUrl": "https://flagsapi.com/RW/flat/64.png",
+    "name": "Rwanda",
+    "languages": [
+      "Kinyarwanda",
+      "French",
+      "English"
+    ],
+    "code": "RW"
+  },
+  {
+    "id": "4aaa67a5-eb15-4889-b6ed-3bba780fa831",
+    "flagUrl": "https://flagsapi.com/SA/flat/64.png",
+    "name": "Saudi Arabia",
+    "languages": [
+      "Arabic"
+    ],
+    "code": "SA"
+  },
+  {
+    "id": "3ee7b108-82af-4698-b23d-358fe78123dd",
+    "flagUrl": "https://flagsapi.com/SD/flat/64.png",
+    "name": "Sudan",
+    "languages": [
+      "Arabic",
+      "English"
+    ],
+    "code": "SD"
+  },
+  {
+    "id": "ade5cd74-b0ba-4dc8-a163-b095b45dba67",
+    "flagUrl": "https://flagsapi.com/SN/flat/64.png",
+    "name": "Senegal",
+    "languages": [
+      "French"
+    ],
+    "code": "SN"
+  },
+  {
+    "id": "8c100ec1-2990-42a2-847b-c6883d40d02a",
+    "flagUrl": "https://flagsapi.com/SG/flat/64.png",
+    "name": "Singapore",
+    "languages": [
+      "English",
+      "Malay (macrolanguage)",
+      "Chinese",
+      "Tamil"
+    ],
+    "code": "SG"
+  },
+  {
+    "id": "664ecdf2-47bc-4f1a-853b-79c3b2e7756d",
+    "flagUrl": "https://flagsapi.com/GS/flat/64.png",
+    "name": "South Georgia and the South Sandwich Islands",
+    "languages": [
+      "English"
+    ],
+    "code": "GS"
+  },
+  {
+    "id": "a673ab63-37c4-42bd-9c10-0524d5f5197c",
+    "flagUrl": "https://flagsapi.com/SH/flat/64.png",
+    "name": "Saint Helena, Ascension and Tristan da Cunha",
+    "languages": [
+      "English"
+    ],
+    "code": "SH"
+  },
+  {
+    "id": "4487b929-f4fc-49e3-9d93-ba2e44fdebcd",
+    "flagUrl": "https://flagsapi.com/SJ/flat/64.png",
+    "name": "Svalbard and Jan Mayen",
+    "languages": [
+      "Norwegian"
+    ],
+    "code": "SJ"
+  },
+  {
+    "id": "1a77be8a-84d4-4e32-9f66-0cd39e5424b9",
+    "flagUrl": "https://flagsapi.com/SB/flat/64.png",
+    "name": "Solomon Islands",
+    "languages": [
+      "English"
+    ],
+    "code": "SB"
+  },
+  {
+    "id": "7ad4fbfa-589c-46ea-95b8-c205257123df",
+    "flagUrl": "https://flagsapi.com/SL/flat/64.png",
+    "name": "Sierra Leone",
+    "languages": [
+      "English"
+    ],
+    "code": "SL"
+  },
+  {
+    "id": "62220912-dd3d-4804-90de-c03929b1f097",
+    "flagUrl": "https://flagsapi.com/SV/flat/64.png",
+    "name": "El Salvador",
+    "languages": [
+      "Spanish"
+    ],
+    "code": "SV"
+  },
+  {
+    "id": "a9f6a813-5c99-48a2-bf54-1a3711f1126d",
+    "flagUrl": "https://flagsapi.com/SM/flat/64.png",
+    "name": "San Marino",
+    "languages": [
+      "Italian"
+    ],
+    "code": "SM"
+  },
+  {
+    "id": "8ebbe8de-f043-4989-9463-18af2618a6ed",
+    "flagUrl": "https://flagsapi.com/SO/flat/64.png",
+    "name": "Somalia",
+    "languages": [
+      "Somali",
+      "Arabic"
+    ],
+    "code": "SO"
+  },
+  {
+    "id": "09a09df1-132b-46c9-90ac-7d94e5f0fcdd",
+    "flagUrl": "https://flagsapi.com/PM/flat/64.png",
+    "name": "Saint Pierre and Miquelon",
+    "languages": [
+      "French"
+    ],
+    "code": "PM"
+  },
+  {
+    "id": "acb0152f-9154-48b1-a976-b890e7fb67a4",
+    "flagUrl": "https://flagsapi.com/RS/flat/64.png",
+    "name": "Serbia",
+    "languages": [
+      "Serbian"
+    ],
+    "code": "RS"
+  },
+  {
+    "id": "4bfff5b1-c021-4de8-bdfb-8d52a8410fd2",
+    "flagUrl": "https://flagsapi.com/SS/flat/64.png",
+    "name": "South Sudan",
+    "languages": [
+      "English"
+    ],
+    "code": "SS"
+  },
+  {
+    "id": "120f302d-c89c-4245-b980-1eb8fc795199",
+    "flagUrl": "https://flagsapi.com/ST/flat/64.png",
+    "name": "Sao Tome and Principe",
+    "languages": [
+      "Portuguese"
+    ],
+    "code": "ST"
+  },
+  {
+    "id": "d3016b18-cfb0-4b18-97a0-3774fd10aa82",
+    "flagUrl": "https://flagsapi.com/SR/flat/64.png",
+    "name": "Suriname",
+    "languages": [
+      "Dutch"
+    ],
+    "code": "SR"
+  },
+  {
+    "id": "486deffe-f10a-4d2c-80d0-719ed7b83ef6",
+    "flagUrl": "https://flagsapi.com/SK/flat/64.png",
+    "name": "Slovakia",
+    "languages": [],
+    "code": "SK"
+  },
+  {
+    "id": "6d139426-bddd-4608-b493-d694b80961f7",
+    "flagUrl": "https://flagsapi.com/SI/flat/64.png",
+    "name": "Slovenia",
+    "languages": [
+      "Slovenian"
+    ],
+    "code": "SI"
+  },
+  {
+    "id": "ac6f1631-1ca4-49ca-a0fc-a08b5008b7d6",
+    "flagUrl": "https://flagsapi.com/SE/flat/64.png",
+    "name": "Sweden",
+    "languages": [
+      "Swedish"
+    ],
+    "code": "SE"
+  },
+  {
+    "id": "895647f0-9f55-434c-bf31-7f974512a5b6",
+    "flagUrl": "https://flagsapi.com/SZ/flat/64.png",
+    "name": "Eswatini",
+    "languages": [
+      "English",
+      "Swati"
+    ],
+    "code": "SZ"
+  },
+  {
+    "id": "c8b12188-9058-48cf-b0eb-54fdffa1afc2",
+    "flagUrl": "https://flagsapi.com/SX/flat/64.png",
+    "name": "Sint Maarten (Dutch part)",
+    "languages": [],
+    "code": "SX"
+  },
+  {
+    "id": "81c7bcb4-67bc-4e6b-8162-8ee15a44a4b1",
+    "flagUrl": "https://flagsapi.com/SC/flat/64.png",
+    "name": "Seychelles",
+    "languages": [
+      "French",
+      "English"
+    ],
+    "code": "SC"
+  },
+  {
+    "id": "124d58ae-22ed-4522-ac68-c2eef9e99381",
+    "flagUrl": "https://flagsapi.com/SY/flat/64.png",
+    "name": "Syrian Arab Republic",
+    "languages": [
+      "Arabic"
+    ],
+    "code": "SY"
+  },
+  {
+    "id": "37ee6641-e412-4816-ab12-61937c0babce",
+    "flagUrl": "https://flagsapi.com/TC/flat/64.png",
+    "name": "Turks and Caicos Islands",
+    "languages": [
+      "English"
+    ],
+    "code": "TC"
+  },
+  {
+    "id": "e6d71cd7-3a6f-4d1f-abad-2ed8ff94c058",
+    "flagUrl": "https://flagsapi.com/TD/flat/64.png",
+    "name": "Chad",
+    "languages": [
+      "French",
+      "Arabic"
+    ],
+    "code": "TD"
+  },
+  {
+    "id": "7473a929-7004-4e2e-b4c3-c109c2d043ad",
+    "flagUrl": "https://flagsapi.com/TG/flat/64.png",
+    "name": "Togo",
+    "languages": [
+      "French"
+    ],
+    "code": "TG"
+  },
+  {
+    "id": "d3b633bc-b61c-4a08-9349-bbf25051c277",
+    "flagUrl": "https://flagsapi.com/TH/flat/64.png",
+    "name": "Thailand",
+    "languages": [],
+    "code": "TH"
+  },
+  {
+    "id": "600f987c-71ad-46cf-8464-22c1c20b1634",
+    "flagUrl": "https://flagsapi.com/TJ/flat/64.png",
+    "name": "Tajikistan",
+    "languages": [
+      "Tajik",
+      "Russian"
+    ],
+    "code": "TJ"
+  },
+  {
+    "id": "9027c80d-525a-49bc-b550-d60cfdf8d060",
+    "flagUrl": "https://flagsapi.com/TK/flat/64.png",
+    "name": "Tokelau",
+    "languages": [
+      "English",
+      "Samoan"
+    ],
+    "code": "TK"
+  },
+  {
+    "id": "9e6ae009-de12-4b2b-a71f-caef4150f68f",
+    "flagUrl": "https://flagsapi.com/TM/flat/64.png",
+    "name": "Turkmenistan",
+    "languages": [
+      "Turkmen"
+    ],
+    "code": "TM"
+  },
+  {
+    "id": "66b97dbf-68a5-4a2b-b8e8-048180b15351",
+    "flagUrl": "https://flagsapi.com/TL/flat/64.png",
+    "name": "Timor-Leste",
+    "languages": [
+      "Portuguese"
+    ],
+    "code": "TL"
+  },
+  {
+    "id": "e0e45a94-c443-4aed-aa06-f5c4d0a16e8b",
+    "flagUrl": "https://flagsapi.com/TO/flat/64.png",
+    "name": "Tonga",
+    "languages": [
+      "English"
+    ],
+    "code": "TO"
+  },
+  {
+    "id": "61fcb617-3d69-48f7-aeaf-56ba7b0290ef",
+    "flagUrl": "https://flagsapi.com/TT/flat/64.png",
+    "name": "Trinidad and Tobago",
+    "languages": [
+      "English"
+    ],
+    "code": "TT"
+  },
+  {
+    "id": "38f09845-4b2a-49da-b0a1-bad27f526f68",
+    "flagUrl": "https://flagsapi.com/TN/flat/64.png",
+    "name": "Tunisia",
+    "languages": [
+      "Arabic"
+    ],
+    "code": "TN"
+  },
+  {
+    "id": "6d20956f-a4f9-45d6-a557-0570ccd215f2",
+    "flagUrl": "https://flagsapi.com/TR/flat/64.png",
+    "name": "Turkey",
+    "languages": [],
+    "code": "TR"
+  },
+  {
+    "id": "f98c11b3-7401-4780-81c2-c58623310928",
+    "flagUrl": "https://flagsapi.com/TV/flat/64.png",
+    "name": "Tuvalu",
+    "languages": [
+      "English"
+    ],
+    "code": "TV"
+  },
+  {
+    "id": "3f67781b-a6f1-4f57-b2c2-27cd51ee2287",
+    "flagUrl": "https://flagsapi.com/TW/flat/64.png",
+    "name": "Taiwan, Province of China",
+    "languages": [
+      "Chinese"
+    ],
+    "code": "TW"
+  },
+  {
+    "id": "fa6ff7bb-687c-4798-96a3-a1736467ae6b",
+    "flagUrl": "https://flagsapi.com/TZ/flat/64.png",
+    "name": "Tanzania, United Republic of",
+    "languages": [
+      "Swahili (macrolanguage)",
+      "English"
+    ],
+    "code": "TZ"
+  },
+  {
+    "id": "bced5d35-26ef-4be2-af02-31430a99dae6",
+    "flagUrl": "https://flagsapi.com/UG/flat/64.png",
+    "name": "Uganda",
+    "languages": [
+      "English",
+      "Swahili (macrolanguage)"
+    ],
+    "code": "UG"
+  },
+  {
+    "id": "21f9ded1-0a58-48c4-9aac-9b2c5076bfbd",
+    "flagUrl": "https://flagsapi.com/UA/flat/64.png",
+    "name": "Ukraine",
+    "languages": [
+      "Ukrainian"
+    ],
+    "code": "UA"
+  },
+  {
+    "id": "32e92528-a5af-49e2-9e62-f2bc6da6bf44",
+    "flagUrl": "https://flagsapi.com/UM/flat/64.png",
+    "name": "United States Minor Outlying Islands",
+    "languages": [
+      "English"
+    ],
+    "code": "UM"
+  },
+  {
+    "id": "e3f11982-6b5d-42fc-9597-7fbeda5371ce",
+    "flagUrl": "https://flagsapi.com/UY/flat/64.png",
+    "name": "Uruguay",
+    "languages": [
+      "Spanish"
+    ],
+    "code": "UY"
+  },
+  {
+    "id": "9f1efd5e-792c-4e05-a355-1562c5fe5daf",
+    "flagUrl": "https://flagsapi.com/US/flat/64.png",
+    "name": "United States",
+    "languages": [
+      "English"
+    ],
+    "code": "US"
+  },
+  {
+    "id": "0fc66247-4a12-460c-814d-fe2379895007",
+    "flagUrl": "https://flagsapi.com/UZ/flat/64.png",
+    "name": "Uzbekistan",
+    "languages": [
+      "Uzbek"
+    ],
+    "code": "UZ"
+  },
+  {
+    "id": "84dd81af-ea8a-451c-a0f6-52c8c570805d",
+    "flagUrl": "https://flagsapi.com/VA/flat/64.png",
+    "name": "Holy See (Vatican City State)",
+    "languages": [
+      "Italian"
+    ],
+    "code": "VA"
+  },
+  {
+    "id": "a41f5ade-d859-4454-8cae-c21813246c17",
+    "flagUrl": "https://flagsapi.com/VC/flat/64.png",
+    "name": "Saint Vincent and the Grenadines",
+    "languages": [
+      "English"
+    ],
+    "code": "VC"
+  },
+  {
+    "id": "c08fed41-7db3-4532-b575-eec17f596b9b",
+    "flagUrl": "https://flagsapi.com/VE/flat/64.png",
+    "name": "Venezuela, Bolivarian Republic of",
+    "languages": [
+      "Spanish"
+    ],
+    "code": "VE"
+  },
+  {
+    "id": "5b13b714-7c95-420f-b71d-f0941553537b",
+    "flagUrl": "https://flagsapi.com/VG/flat/64.png",
+    "name": "Virgin Islands, British",
+    "languages": [
+      "English"
+    ],
+    "code": "VG"
+  },
+  {
+    "id": "b218fb18-ebfe-4d7f-9624-ea96b5f52077",
+    "flagUrl": "https://flagsapi.com/VI/flat/64.png",
+    "name": "Virgin Islands, U.S.",
+    "languages": [
+      "English"
+    ],
+    "code": "VI"
+  },
+  {
+    "id": "b79e37f5-d0d1-4533-afbc-972fbd17d113",
+    "flagUrl": "https://flagsapi.com/VN/flat/64.png",
+    "name": "Viet Nam",
+    "languages": [
+      "Vietnamese"
+    ],
+    "code": "VN"
+  },
+  {
+    "id": "611abec4-3512-4025-9e44-fb18a7ac7dcf",
+    "flagUrl": "https://flagsapi.com/VU/flat/64.png",
+    "name": "Vanuatu",
+    "languages": [
+      "Bislama",
+      "English",
+      "French"
+    ],
+    "code": "VU"
+  },
+  {
+    "id": "85e32ed6-9741-42c3-8862-05c7f3a44da2",
+    "flagUrl": "https://flagsapi.com/WF/flat/64.png",
+    "name": "Wallis and Futuna",
+    "languages": [
+      "French"
+    ],
+    "code": "WF"
+  },
+  {
+    "id": "9b381342-68a5-4f52-ad0e-137b8fa731ef",
+    "flagUrl": "https://flagsapi.com/WS/flat/64.png",
+    "name": "Samoa",
+    "languages": [
+      "Samoan",
+      "English"
+    ],
+    "code": "WS"
+  },
+  {
+    "id": "32a147b6-d11b-4297-ba06-3033a5670c06",
+    "flagUrl": "https://flagsapi.com/YE/flat/64.png",
+    "name": "Yemen",
+    "languages": [
+      "Arabic"
+    ],
+    "code": "YE"
+  },
+  {
+    "id": "28f08d0b-8249-44a0-97c9-5f8cffbe68ef",
+    "flagUrl": "https://flagsapi.com/ZA/flat/64.png",
+    "name": "South Africa",
+    "languages": [
+      "Zulu",
+      "Xhosa",
+      "Afrikaans",
+      "Southern Sotho",
+      "Tswana",
+      "English"
+    ],
+    "code": "ZA"
+  },
+  {
+    "id": "f99cc8c6-c4e0-4148-be15-d4a4fc98ee13",
+    "flagUrl": "https://flagsapi.com/ZM/flat/64.png",
+    "name": "Zambia",
+    "languages": [
+      "English"
+    ],
+    "code": "ZM"
+  },
+  {
+    "id": "2c9225ee-75e7-4396-b001-459d7fce6f54",
+    "flagUrl": "https://flagsapi.com/ZW/flat/64.png",
+    "name": "Zimbabwe",
+    "languages": [
+      "English",
+      "Shona"
+    ],
+    "code": "ZW"
+  }
+]

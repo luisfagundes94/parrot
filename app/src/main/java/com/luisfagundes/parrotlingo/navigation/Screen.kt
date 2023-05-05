@@ -3,6 +3,7 @@ package com.luisfagundes.parrotlingo.navigation
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
+import androidx.compose.material.icons.filled.Language
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Translate
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -27,6 +28,12 @@ sealed class Screen(
         route ="settings",
         icon = Icons.Filled.Settings,
         screenNameId = R.string.settings
+    )
+
+    object LanguageList : Screen(
+        route = "languageList",
+        icon = Icons.Filled.Language,
+        screenNameId = R.string.language_list
     )
 }
 

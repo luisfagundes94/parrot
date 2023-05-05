@@ -49,4 +49,7 @@ dependencies {
     implementation(libs.hilt.compose)
     implementation(libs.hilt.library)
     kapt(libs.hilt.compiler)
+
+    // Data
+    implementation(libs.datastore)
 }

@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.compose.ui.ui)
     implementation(libs.compose.foundation.foundation)
     implementation(libs.compose.material3)
+    implementation(libs.coil.compose)
     implementation(libs.navigation.compose)
     implementation(libs.compose.material.iconsext)
     debugImplementation(libs.compose.ui.tooling)

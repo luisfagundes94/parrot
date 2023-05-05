@@ -1,11 +1,11 @@
 package com.luisfagundes.translation.presentation
 
-import com.luisfagundes.domain.models.Language
+import com.luisfagundes.domain.models.Country
 import com.luisfagundes.domain.models.Word
 import com.luisfagundes.domain.usecases.GetLanguageName
+import com.luisfagundes.domain.usecases.GetCountryPair
 import com.luisfagundes.domain.usecases.GetWordTranslations
 import com.luisfagundes.framework.base.BaseViewModel
-import com.luisfagundes.translation.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,32 +15,50 @@ import javax.inject.Inject
 @HiltViewModel
 class TranslationViewModel @Inject constructor(
     private val getWordTranslations: GetWordTranslations,
-    private val getLanguageName: GetLanguageName
+    private val getLanguageName: GetLanguageName,
+    private val getCountryPair: GetCountryPair
 ) : BaseViewModel() {
 
     private val _uiState = MutableStateFlow(
         TranslationUiState(
-            sourceLang = Language(R.drawable.us, getLangName("en")),
-            targetLang = Language(R.drawable.br, getLangName("br"))
+            countryPair = getDefaultCountryPair()
         )
     )
     val uiState = _uiState.asStateFlow()
 
-    fun onEvent(event: TranslationEvent) {
+    fun onEvent(event: TranslationEvent) = safeLaunch {
         when (event) {
             is TranslationEvent.Translate -> translateWord(event.text)
             is TranslationEvent.GetLanguageName -> getLangName(event.countryCode)
+            is TranslationEvent.InvertCountries -> invertCountries(event.countries)
+            is TranslationEvent.UpdateCountryPair -> updateSourceAndDestCountries()
         }
     }
+
+    private fun getDefaultCountryPair() = Pair(
+        Country(
+            name = "United States",
+            code = "US",
+            flagUrl = "https://flagsapi.com/US/flat/64.png",
+            languages = listOf("English")
+        ),
+        Country(
+            name = "Brazil",
+            code = "BR",
+            flagUrl = "https://flagsapi.com/BR/flat/64.png",
+            languages = listOf("Portuguese")
+        ),
+    )
 
     private fun translateWord(text: String) {
         if (text.length < 2) return
 
-        val params = hashMapOf(
-            "query" to text,
-            "src" to "en",
-            "dst" to "pt"
+        val params = GetWordTranslations.Params(
+            text = text,
+            sourceLanguage = _uiState.value.countryPair.first.code,
+            destLanguage = _uiState.value.countryPair.second.code
         )
+
         safeLaunch {
             startLoading()
             val result = getWordTranslations(params)
@@ -50,6 +68,25 @@ class TranslationViewModel @Inject constructor(
 
     private fun getLangName(countryCode: String): String {
         return getLanguageName(countryCode)
+    }
+
+    private fun invertCountries(countries: Pair<Country, Country>?) {
+        if (countries == null) return
+
+        _uiState.update {
+            it.copy(
+                countryPair = Pair(countries.second, countries.first)
+            )
+        }
+    }
+
+    private suspend fun updateSourceAndDestCountries() {
+        val sourceAndDestCountries = getCountryPair()
+        _uiState.update {
+            it.copy(
+                countryPair = sourceAndDestCountries
+            )
+        }
     }
 
     override fun startLoading() {
