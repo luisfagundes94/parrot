@@ -11,7 +11,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,7 +35,7 @@ fun TranslationScreen(
     onEvent: (TranslationEvent) -> Unit = {},
     onLanguageClicked: () -> Unit = {}
 ) {
-    var countryPair by remember { mutableStateOf(uiState.countryPair) }
+    var countryPair by remember { mutableStateOf(uiState.languagePair) }
     var inputText by remember { mutableStateOf("") }
 
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -50,7 +49,7 @@ fun TranslationScreen(
             .clipToBounds()
     ) {
         LanguagePair(
-            countryPair = countryPair,
+            languagePair = countryPair,
             onInvertLanguage = {
                 onEvent(
                     TranslationEvent.InvertCountries(countryPair)

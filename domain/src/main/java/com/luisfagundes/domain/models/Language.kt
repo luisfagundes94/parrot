@@ -1,9 +1,8 @@
 package com.luisfagundes.domain.models
 
-data class Country(
+data class Language(
     val id: String = "",
     val name: String,
-    val flagUrl: String,
-    val languages: List<String>,
+    val nativeName: String,
     val code: String
 )

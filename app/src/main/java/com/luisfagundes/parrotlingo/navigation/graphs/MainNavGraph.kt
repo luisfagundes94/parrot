@@ -3,7 +3,6 @@ package com.luisfagundes.parrotlingo.navigation.graphs
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
@@ -11,10 +10,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
-import com.luisfagundes.domain.models.Country
 import com.luisfagundes.languages.LanguageListScreen
 import com.luisfagundes.languages.LanguageListViewModel
-import com.luisfagundes.parrotlingo.R
 import com.luisfagundes.parrotlingo.navigation.BottomBarScreen
 import com.luisfagundes.saved.SavedScreen
 import com.luisfagundes.settings.SettingsScreen

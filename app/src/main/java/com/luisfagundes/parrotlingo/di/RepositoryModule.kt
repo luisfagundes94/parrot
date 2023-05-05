@@ -1,11 +1,11 @@
 package com.luisfagundes.parrotlingo.di
 
 import android.content.Context
-import com.luisfagundes.data.repositories.CountryRepositoryImpl
+import com.luisfagundes.data.repositories.LanguageRepositoryImpl
 import com.luisfagundes.data.repositories.WordRepositoryImpl
 import com.luisfagundes.data.services.LingueeApiService
-import com.luisfagundes.data.store.CountryDataStore
-import com.luisfagundes.domain.repositories.CountryRepository
+import com.luisfagundes.data.store.LanguageDataStore
+import com.luisfagundes.domain.repositories.LanguageRepository
 import com.luisfagundes.domain.repositories.WordRepository
 import dagger.Module
 import dagger.Provides
@@ -20,10 +20,10 @@ object RepositoryModule {
     @Provides
     fun provideCountryRepository(
         @ApplicationContext appContext: Context,
-        dataStore: CountryDataStore
-    ): CountryRepository = CountryRepositoryImpl(
+        dataStore: LanguageDataStore
+    ): LanguageRepository = LanguageRepositoryImpl(
         appContext = appContext,
-        countryDataStore = dataStore
+        languageDataStore = dataStore
     )
 
     @Provides

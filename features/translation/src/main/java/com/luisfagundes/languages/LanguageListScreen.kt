@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -21,18 +23,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.luisfagundes.commons_ui.ParrotTopBar
-import com.luisfagundes.domain.models.Country
+import com.luisfagundes.domain.models.Language
 import com.luisfagundes.framework.components.LoadingView
 import com.luisfagundes.theme.ParrotLingoTheme
+import com.luisfagundes.theme.md_theme_dark_card
+import com.luisfagundes.theme.md_theme_light_card
 import com.luisfagundes.theme.spacing
 import com.luisfagundes.translation.R
-import getSurfaceContainerLowColor
-import getSurfaceHighEmphasis
 
 @Composable
 fun LanguageListScreen(
@@ -55,7 +59,7 @@ fun LanguageListScreen(
 
 @Composable
 private fun LanguageList(
-    countries: List<Country>,
+    countries: List<Language>,
     onBackPressed: () -> Unit
 ) {
     Column {
@@ -69,7 +73,7 @@ private fun LanguageList(
                 .padding(MaterialTheme.spacing.default)
         ) {
             items(countries) { country ->
-                Language(country = country)
+                Language(language = country)
             }
         }
     }
@@ -77,43 +81,34 @@ private fun LanguageList(
 
 @Composable
 private fun Language(
-    country: Country
+    language: Language
 ) {
-    val tonalElevation = if (isSystemInDarkTheme()) 1.dp else 0.dp
-    val shadowElevation = 10.dp
-
-    country.languages.forEach { language ->
-        Surface(
-            tonalElevation = tonalElevation,
-            shadowElevation = shadowElevation,
-            shape = MaterialTheme.shapes.small,
+    Card(
+        shape = MaterialTheme.shapes.small,
+        elevation = CardDefaults.elevatedCardElevation(),
+        colors = CardDefaults.elevatedCardColors(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = MaterialTheme.spacing.verySmall)
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = MaterialTheme.spacing.verySmall)
+                .padding(MaterialTheme.spacing.small)
         ) {
-            Row(
-                horizontalArrangement = Arrangement.Start,
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .padding(MaterialTheme.spacing.small)
-            ) {
-                AsyncImage(
-                    modifier = Modifier.size(50.dp),
-                    model = ImageRequest.Builder(LocalContext.current)
-                        .data(country.flagUrl)
-                        .crossfade(true)
-                        .build(),
-                    contentDescription = stringResource(R.string.language),
-                    contentScale = ContentScale.Crop
-                )
-                Spacer(
-                    modifier = Modifier.padding(horizontal = MaterialTheme.spacing.verySmall)
-                )
-                Text(
-                    text = language,
-                    style = MaterialTheme.typography.titleLarge,
-                )
-            }
+            Text(
+                text = language.name,
+                style = MaterialTheme.typography.titleLarge,
+            )
+            Text(
+                modifier = Modifier.padding(start = MaterialTheme.spacing.verySmall),
+                text = "(${language.nativeName})",
+                style = MaterialTheme.typography.titleMedium,
+                fontStyle = FontStyle.Italic,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
         }
     }
 }
@@ -128,13 +123,12 @@ fun LanguagePreview() {
         Surface(
             color = MaterialTheme.colorScheme.surface
         ) {
-            val country = Country(
+            val language = Language(
                 name = "Brazil",
+                nativeName = "Portugues",
                 code = "BR",
-                flagUrl = "https://flagsapi.com/BR/flat/64.png",
-                languages = listOf("Portuguese")
             )
-            Language(country = country)
+            Language(language = language)
         }
     }
 }

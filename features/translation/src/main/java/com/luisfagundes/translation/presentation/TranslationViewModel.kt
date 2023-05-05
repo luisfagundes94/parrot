@@ -1,9 +1,8 @@
 package com.luisfagundes.translation.presentation
 
-import com.luisfagundes.domain.models.Country
+import com.luisfagundes.domain.models.Language
 import com.luisfagundes.domain.models.Word
-import com.luisfagundes.domain.usecases.GetLanguageName
-import com.luisfagundes.domain.usecases.GetCountryPair
+import com.luisfagundes.domain.usecases.GetLanguagePair
 import com.luisfagundes.domain.usecases.GetWordTranslations
 import com.luisfagundes.framework.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,13 +14,12 @@ import javax.inject.Inject
 @HiltViewModel
 class TranslationViewModel @Inject constructor(
     private val getWordTranslations: GetWordTranslations,
-    private val getLanguageName: GetLanguageName,
-    private val getCountryPair: GetCountryPair
+    private val getLanguagePair: GetLanguagePair
 ) : BaseViewModel() {
 
     private val _uiState = MutableStateFlow(
         TranslationUiState(
-            countryPair = getDefaultCountryPair()
+            languagePair = getDefaultLanguagePair()
         )
     )
     val uiState = _uiState.asStateFlow()
@@ -29,37 +27,34 @@ class TranslationViewModel @Inject constructor(
     fun onEvent(event: TranslationEvent) = safeLaunch {
         when (event) {
             is TranslationEvent.Translate -> translateWord(event.text)
-            is TranslationEvent.GetLanguageName -> getLangName(event.countryCode)
-            is TranslationEvent.InvertCountries -> invertCountries(event.countries)
-            is TranslationEvent.UpdateCountryPair -> updateCountryPair()
+            is TranslationEvent.InvertCountries -> invertLanguages(event.countries)
+            is TranslationEvent.UpdateCountryPair -> updateLanguagePair()
         }
     }
 
-    private fun getDefaultCountryPair() = Pair(
-        Country(
-            name = "United States",
-            code = "US",
-            flagUrl = "https://flagsapi.com/US/flat/64.png",
-            languages = listOf("English")
+    private fun getDefaultLanguagePair() = Pair(
+        Language(
+            name = "English",
+            nativeName = "English",
+            code = "en"
         ),
-        Country(
-            name = "Brazil",
-            code = "BR",
-            flagUrl = "https://flagsapi.com/BR/flat/64.png",
-            languages = listOf("Portuguese")
+        Language(
+            name = "Portuguese",
+            nativeName = "Português",
+            code = "pt"
         ),
     )
 
     private fun translateWord(text: String) = safeLaunch {
         if (text.length < 2) return@safeLaunch
 
-        val firstCode = _uiState.value.countryPair.first.code
-        val secondCode = _uiState.value.countryPair.second.code
+        val firstCode = _uiState.value.languagePair.first.code
+        val secondCode = _uiState.value.languagePair.second.code
 
         val params = GetWordTranslations.Params(
             text = text,
-            sourceLanguage = getLangName(firstCode),
-            destLanguage = getLangName(secondCode)
+            sourceLanguage = firstCode,
+            destLanguage = secondCode
         )
 
         startLoading()
@@ -67,25 +62,21 @@ class TranslationViewModel @Inject constructor(
         handleResult(result)
     }
 
-    private fun getLangName(countryCode: String): String {
-        return getLanguageName(countryCode)
-    }
-
-    private fun invertCountries(countries: Pair<Country, Country>?) {
-        if (countries == null) return
+    private fun invertLanguages(languagePair: Pair<Language, Language>?) {
+        if (languagePair == null) return
 
         _uiState.update {
             it.copy(
-                countryPair = Pair(countries.second, countries.first)
+                languagePair = Pair(languagePair.second, languagePair.first)
             )
         }
     }
 
-    private suspend fun updateCountryPair() {
-        val sourceAndDestCountries = getCountryPair()
+    private suspend fun updateLanguagePair() {
+        val languagePair = getLanguagePair()
         _uiState.update {
             it.copy(
-                countryPair = sourceAndDestCountries
+                languagePair = languagePair
             )
         }
     }

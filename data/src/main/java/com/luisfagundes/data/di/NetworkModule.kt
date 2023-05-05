@@ -3,7 +3,7 @@ package com.luisfagundes.data.di
 import android.content.Context
 import android.util.Log
 import com.luisfagundes.data.services.LingueeApiService
-import com.luisfagundes.data.store.CountryDataStore
+import com.luisfagundes.data.store.LanguageDataStore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,7 +25,7 @@ object NetworkModule {
     @Singleton
     fun provideCountryDataStore(
         @ApplicationContext context: Context
-    ) = CountryDataStore(context)
+    ) = LanguageDataStore(context)
 
     @Provides
     @Singleton
