@@ -15,10 +15,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
@@ -150,7 +146,7 @@ private fun Definitions(
 
     ContainerBox {
         Text(
-            text = getDefinitionOfWordText(words.first()),
+            text = getExamplesOf(words.first()),
             style = MaterialTheme.typography.titleMedium,
         )
         words.forEach { word ->
@@ -165,9 +161,9 @@ private fun Definitions(
 }
 
 @Composable
-private fun getDefinitionOfWordText(word: Word): AnnotatedString {
+private fun getExamplesOf(word: Word): AnnotatedString {
     val annotatedString = buildAnnotatedString {
-        append("Definitions of ")
+        append(stringResource(R.string.title_examples_of))
         withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
             append(word.text)
         }
