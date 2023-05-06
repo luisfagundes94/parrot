@@ -4,6 +4,7 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -42,6 +43,7 @@ fun LanguageListScreen(
     when {
         uiState.isLoading -> LoadingView()
         uiState.countries.isEmpty() -> WarningView(
+            modifier = Modifier.fillMaxSize(),
             message = "No results were found!",
             animationId = R.raw.warning
         )
