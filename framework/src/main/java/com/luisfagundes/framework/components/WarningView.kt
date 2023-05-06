@@ -20,7 +20,7 @@ import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 
 @Composable
-fun ErrorView(
+fun WarningView(
     modifier: Modifier = Modifier,
     message: String,
     animationId: Int

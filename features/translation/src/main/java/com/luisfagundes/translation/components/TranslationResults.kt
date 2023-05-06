@@ -27,7 +27,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.luisfagundes.domain.models.Translation
 import com.luisfagundes.domain.models.Word
-import com.luisfagundes.framework.components.ErrorView
+import com.luisfagundes.framework.components.WarningView
 import com.luisfagundes.framework.components.LoadingView
 import com.luisfagundes.framework.extension.capitalize
 import com.luisfagundes.theme.spacing
@@ -41,13 +41,13 @@ fun TranslationResults(
     val modifier = Modifier.padding(vertical = MaterialTheme.spacing.default)
 
     when {
-        uiState.hasError -> ErrorView(
+        uiState.hasError -> WarningView(
             modifier = modifier,
             message = stringResource(R.string.warning_error),
             animationId = R.raw.warning
         )
 
-        uiState.isEmpty -> ErrorView(
+        uiState.isEmpty -> WarningView(
             modifier = modifier,
             message = stringResource(R.string.warning_empty),
             animationId = R.raw.warning

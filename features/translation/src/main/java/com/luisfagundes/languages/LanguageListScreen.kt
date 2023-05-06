@@ -23,7 +23,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.luisfagundes.commons_ui.ParrotTopBar
 import com.luisfagundes.domain.models.Language
-import com.luisfagundes.framework.components.ErrorView
+import com.luisfagundes.framework.components.WarningView
 import com.luisfagundes.framework.components.LoadingView
 import com.luisfagundes.theme.ParrotLingoTheme
 import com.luisfagundes.theme.spacing
@@ -41,7 +41,7 @@ fun LanguageListScreen(
 
     when {
         uiState.isLoading -> LoadingView()
-        uiState.countries.isEmpty() -> ErrorView(
+        uiState.countries.isEmpty() -> WarningView(
             message = "No results were found!",
             animationId = R.raw.warning
         )
