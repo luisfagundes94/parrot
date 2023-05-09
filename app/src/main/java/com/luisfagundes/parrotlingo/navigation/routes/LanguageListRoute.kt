@@ -15,7 +15,7 @@ import com.luisfagundes.languages.LanguageListScreen
 import com.luisfagundes.languages.LanguageListViewModel
 import com.luisfagundes.parrotlingo.navigation.BottomBarScreen
 
-fun NavGraphBuilder.registerLanguageListRoute(navController: NavHostController) {
+fun NavGraphBuilder.languageListRoute(navController: NavHostController) {
     composable(
         route = "languageListScreen/$IS_SOURCE_LANGUAGE",
         arguments = listOf(

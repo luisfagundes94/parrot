@@ -5,10 +5,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.luisfagundes.parrotlingo.navigation.BottomBarScreen
-import com.luisfagundes.parrotlingo.navigation.routes.registerLanguageListRoute
-import com.luisfagundes.parrotlingo.navigation.routes.registerSavedRoute
-import com.luisfagundes.parrotlingo.navigation.routes.registerSettingsRoute
-import com.luisfagundes.parrotlingo.navigation.routes.registerTranslationRoute
+import com.luisfagundes.parrotlingo.navigation.routes.languageListRoute
+import com.luisfagundes.parrotlingo.navigation.routes.savedRoute
+import com.luisfagundes.parrotlingo.navigation.routes.settingsRoute
+import com.luisfagundes.parrotlingo.navigation.routes.translationRoute
 
 @Composable
 fun MainNavGraph(
@@ -21,10 +21,10 @@ fun MainNavGraph(
         route = Graph.MAIN,
         startDestination = BottomBarScreen.Translation.route
     ) {
-        registerTranslationRoute(navController)
-        registerSavedRoute()
-        registerSettingsRoute()
-        registerLanguageListRoute(navController)
+        translationRoute(navController)
+        savedRoute()
+        settingsRoute()
+        languageListRoute(navController)
     }
 }
 

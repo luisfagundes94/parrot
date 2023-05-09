@@ -5,7 +5,7 @@ import androidx.navigation.compose.composable
 import com.luisfagundes.parrotlingo.navigation.BottomBarScreen
 import com.luisfagundes.saved.SavedScreen
 
-fun NavGraphBuilder.registerSavedRoute() {
+fun NavGraphBuilder.savedRoute() {
     composable(route = BottomBarScreen.Saved.route) {
         SavedScreen()
     }

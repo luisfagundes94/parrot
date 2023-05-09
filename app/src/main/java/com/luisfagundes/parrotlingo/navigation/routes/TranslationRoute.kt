@@ -14,7 +14,7 @@ import com.luisfagundes.translation.presentation.TranslationViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.consumeAsFlow
 
-fun NavGraphBuilder.registerTranslationRoute(navController: NavHostController) {
+fun NavGraphBuilder.translationRoute(navController: NavHostController) {
     composable(route = BottomBarScreen.Translation.route) {
         val viewModel = hiltViewModel<TranslationViewModel>()
         val uiState by viewModel.uiState.collectAsStateWithLifecycle()
