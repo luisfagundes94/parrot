@@ -5,6 +5,7 @@ import com.luisfagundes.domain.repositories.WordRepository
 import com.luisfagundes.domain.usecases.GetLanguagePair
 import com.luisfagundes.domain.usecases.GetWordTranslations
 import com.luisfagundes.domain.usecases.ListLanguages
+import com.luisfagundes.domain.usecases.UpdateLanguage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +16,11 @@ import dagger.hilt.android.components.ViewModelComponent
 class UseCaseModule {
 
     @Provides
-    fun provideCountryPair(repository: LanguageRepository) =
+    fun provideUpdateLanguage(repository: LanguageRepository) =
+        UpdateLanguage(repository)
+
+    @Provides
+    fun provideLanguagePair(repository: LanguageRepository) =
         GetLanguagePair(repository)
 
     @Provides
@@ -24,6 +29,6 @@ class UseCaseModule {
 
 
     @Provides
-    fun provideCountryList(repository: LanguageRepository) =
+    fun provideLanguageList(repository: LanguageRepository) =
         ListLanguages(repository)
 }

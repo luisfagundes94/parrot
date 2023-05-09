@@ -1,13 +1,17 @@
 package com.luisfagundes.translation.presentation
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
+import com.luisfagundes.commons_util.RouteParams.IS_SOURCE_LANGUAGE
+import com.luisfagundes.commons_util.RouteParams.LANGUAGE_ID
 import com.luisfagundes.domain.models.Language
 import com.luisfagundes.domain.models.Word
 import com.luisfagundes.domain.usecases.GetLanguagePair
 import com.luisfagundes.domain.usecases.GetWordTranslations
 import com.luisfagundes.framework.base.BaseViewModel
+import com.luisfagundes.framework.extension.empty
+import com.luisfagundes.framework.utils.doNothing
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -15,39 +19,26 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TranslationViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
     private val getWordTranslations: GetWordTranslations,
     private val getLanguagePair: GetLanguagePair
 ) : BaseViewModel() {
 
-    private val sourceLangId = savedStateHandle.get<String>("sourceLangId") ?: ""
-    private val targetLangId = savedStateHandle.get<String>("targetLangId") ?: ""
-
     private val _uiState = MutableStateFlow(TranslationUiState())
     val uiState = _uiState.asStateFlow()
-
-    val navigationEventChannel = Channel<TranslationUIEvent.LanguageSelectionRequested>(
-        Channel.CONFLATED
-    )
-
-    init {
-        getCurrentLanguagePair()
-    }
 
     fun onEvent(event: TranslationUIEvent) = safeLaunch {
         when (event) {
             is TranslationUIEvent.Translate -> translateWord(event.text)
             is TranslationUIEvent.InvertLanguagePair -> invertLanguages(event.languagePair)
             is TranslationUIEvent.UpdateLanguagePair -> updateLanguagePair()
-            is TranslationUIEvent.LanguageSelectionRequested -> {
-                navigationEventChannel.send(event)
-            }
+            is TranslationUIEvent.OnLanguageClicked -> doNothing()
         }
     }
 
-    private fun getCurrentLanguagePair() = safeLaunch {
+    private fun updateLanguagePair() = safeLaunch {
         startLoading()
-        val languagePair = getLanguagePair(sourceLangId, targetLangId)
+
+        val languagePair = getLanguagePair()
         _uiState.update {
             it.copy(
                 languagePair = languagePair,
@@ -86,10 +77,6 @@ class TranslationViewModel @Inject constructor(
                 languagePair = Pair(languagePair.second, languagePair.first)
             )
         }
-    }
-
-    private suspend fun updateLanguagePair() {
-        // TODO
     }
 
     override fun startLoading() {

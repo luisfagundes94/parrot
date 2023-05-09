@@ -1,7 +1,6 @@
 package com.luisfagundes.data.repositories
 
 import android.content.Context
-import android.util.Log
 import com.google.gson.Gson
 import com.luisfagundes.data.store.LanguageDataStore
 import com.luisfagundes.data.utils.getJsonDataFromAsset
@@ -10,7 +9,6 @@ import com.luisfagundes.domain.repositories.LanguageRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
-import java.lang.IllegalStateException
 
 class LanguageRepositoryImpl(
     private val appContext: Context,
@@ -36,22 +34,27 @@ class LanguageRepositoryImpl(
 
     override suspend fun listLanguages(): List<Language> = languagesMap.values.toList()
 
-    override suspend fun getLanguagePair(
-        sourceId: String,
-        targetId: String
+    override suspend fun fetchLanguagePair(
     ): Pair<Language, Language> {
-        val sourceLanguageId = sourceId.ifEmpty {
-            languageDataStore.sourceLanguageId.first()
-        }
-        val destLanguageId = targetId.ifEmpty {
-            languageDataStore.destLanguageId.first()
-        }
+        val sourceLanguageId = languageDataStore.sourceLanguageId.first()
+        val destLanguageId = languageDataStore.destLanguageId.first()
 
         return Pair(
             fetchLanguage(sourceLanguageId),
             fetchLanguage(destLanguageId)
         )
     }
+
+    override suspend fun updateLanguage(
+        id: String,
+        isSourceLanguage: Boolean
+    ) {
+        languageDataStore.run {
+            if (isSourceLanguage) updateSourceLanguageId(id)
+            else updateTargetLanguageId(id)
+        }
+    }
+
 
     private fun fetchLanguage(id: String): Language {
         return languagesMap[id] ?: Language(

@@ -3,10 +3,10 @@ package com.luisfagundes.languages
 import androidx.lifecycle.SavedStateHandle
 import com.luisfagundes.commons_util.RouteParams.IS_SOURCE_LANGUAGE
 import com.luisfagundes.domain.usecases.ListLanguages
+import com.luisfagundes.domain.usecases.UpdateLanguage
 import com.luisfagundes.framework.base.BaseViewModel
 import com.luisfagundes.framework.utils.doNothing
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -14,18 +14,18 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LanguageListViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
-    private val getLanguageList: ListLanguages
+    savedStateHandle: SavedStateHandle,
+    private val getLanguageList: ListLanguages,
+    private val updateLanguage: UpdateLanguage
 ): BaseViewModel() {
 
-    private val isSourceLanguage = savedStateHandle.getStateFlow(
-        IS_SOURCE_LANGUAGE,
-        true
+    private val isSourceLanguage = checkNotNull<Boolean>(
+        savedStateHandle[IS_SOURCE_LANGUAGE]
     )
 
     private val _uiState = MutableStateFlow(
         LanguageListUiState(
-            isSourceLanguage = isSourceLanguage.value,
+            isSourceLanguage = isSourceLanguage,
         )
     )
     val uiState = _uiState.asStateFlow()
@@ -38,7 +38,7 @@ class LanguageListViewModel @Inject constructor(
         when (event) {
             is LanguageListEvent.GetLanguageList -> listLanguages()
             is LanguageListEvent.OnBackPressed -> doNothing()
-            is LanguageListEvent.OnLanguageClicked -> doNothing()
+            is LanguageListEvent.OnLanguageClicked -> updateLanguage(event.id)
         }
     }
 
@@ -52,5 +52,12 @@ class LanguageListViewModel @Inject constructor(
                 languages = languageList
             )
         }
+    }
+
+    private fun updateLanguage(id: String) = safeLaunch {
+        updateLanguage(
+            id = id,
+            isSourceLanguage = isSourceLanguage
+        )
     }
 }

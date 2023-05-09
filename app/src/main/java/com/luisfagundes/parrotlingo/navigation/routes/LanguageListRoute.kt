@@ -1,5 +1,6 @@
 package com.luisfagundes.parrotlingo.navigation.routes
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -17,10 +18,10 @@ import com.luisfagundes.parrotlingo.navigation.BottomBarScreen
 
 fun NavGraphBuilder.languageListRoute(navController: NavHostController) {
     composable(
-        route = "languageListScreen/$IS_SOURCE_LANGUAGE",
+        route = "languageListScreen/{$IS_SOURCE_LANGUAGE}",
         arguments = listOf(
             navArgument(IS_SOURCE_LANGUAGE) {
-                defaultValue = false
+                defaultValue = true
             }
         )
     ) {
@@ -44,16 +45,11 @@ fun handleNavigation(
     event: LanguageListEvent,
     navController: NavHostController,
 ) {
-    when (event) {
-        is LanguageListEvent.OnBackPressed -> navController.popBackStack()
-        is LanguageListEvent.OnLanguageClicked -> navController.navigate(
-            BottomBarScreen.Translation.addLanguage(
-                id = event.id,
-                isSourceLanguage = event.isSourceLanguage
-            )
-        ) {
-            commonNavigationOptions(navController)
+    navController.run {
+        when (event) {
+            is LanguageListEvent.OnBackPressed -> popBackStack()
+            is LanguageListEvent.OnLanguageClicked -> popBackStack()
+            else -> doNothing()
         }
-        else -> doNothing()
     }
 }

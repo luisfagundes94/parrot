@@ -2,7 +2,6 @@ package com.luisfagundes.translation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -12,6 +11,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -22,8 +22,6 @@ import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import com.luisfagundes.framework.components.LoadingView
-import com.luisfagundes.framework.components.WarningView
 import com.luisfagundes.translation.components.InputTextArea
 import com.luisfagundes.translation.components.LanguagePair
 import com.luisfagundes.translation.components.TranslationResults
@@ -36,6 +34,10 @@ fun TranslationScreen(
     uiState: TranslationUiState,
     onEvent: (TranslationUIEvent) -> Unit = {}
 ) {
+    LaunchedEffect(key1 = uiState.languagePair, block = {
+        onEvent(TranslationUIEvent.UpdateLanguagePair)
+    })
+
     TranslationContent(
         uiState = uiState,
         onEvent = onEvent
@@ -68,7 +70,7 @@ private fun TranslationContent(
                 )
             },
             onLanguageClicked = {
-                onEvent(TranslationUIEvent.LanguageSelectionRequested(it))
+                onEvent(TranslationUIEvent.OnLanguageClicked(it))
             }
         )
         Spacer(
