@@ -27,7 +27,7 @@ class LanguageDataStore(
         }
 
     private companion object {
-        const val ENGLISH = "65b16faf-028d-424b-beb0-15264505ab4e"
-        const val PORTUGUESE = "d7b2a4e1-bcce-477b-9332-48951d30f624"
+        const val ENGLISH = "d4d5d87e-c0a1-4f35-bb81-5f2709e628aa"
+        const val PORTUGUESE = "06305ea0-5ab9-4b2d-bebc-c99e93bc5d59"
     }
 }

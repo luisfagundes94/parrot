@@ -8,4 +8,6 @@
     <string name="language">language</string>
     <string name="languages">Languages</string>
     <string name="title_examples_of">"Examples of "</string>
+    <string name="languages_error">No languages found</string>
+    <string name="empty_languages">No results were found!</string>
 </resources>

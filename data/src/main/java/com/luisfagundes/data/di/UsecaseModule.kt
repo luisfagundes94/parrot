@@ -4,7 +4,7 @@ import com.luisfagundes.domain.repositories.LanguageRepository
 import com.luisfagundes.domain.repositories.WordRepository
 import com.luisfagundes.domain.usecases.GetLanguagePair
 import com.luisfagundes.domain.usecases.GetWordTranslations
-import com.luisfagundes.domain.usecases.ListCountries
+import com.luisfagundes.domain.usecases.ListLanguages
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,5 +25,5 @@ class UseCaseModule {
 
     @Provides
     fun provideCountryList(repository: LanguageRepository) =
-        ListCountries(repository)
+        ListLanguages(repository)
 }

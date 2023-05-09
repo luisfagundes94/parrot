@@ -29,10 +29,12 @@ import com.luisfagundes.translation.R
 
 @Composable
 fun LanguagePair(
-    languagePair: Pair<Language, Language>,
+    languagePair: Pair<Language, Language>?,
     onInvertLanguage: () -> Unit,
-    onLanguageClicked: () -> Unit
+    onLanguageClicked: (isSource: Boolean) -> Unit = {}
 ) {
+    if (languagePair == null) return
+
     val sourceLanguage = languagePair.first
     val targetLanguage = languagePair.second
 
@@ -48,8 +50,7 @@ fun LanguagePair(
         Text(
             text = sourceLanguage.name,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onSurface,
-            modifier = Modifier.clickable { onLanguageClicked() }
+            modifier = Modifier.clickable { onLanguageClicked(true) }
         )
         Icon(
             imageVector = Icons.Filled.ImportExport,
@@ -65,8 +66,7 @@ fun LanguagePair(
         Text(
             text = targetLanguage.name,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onSurface,
-            modifier = Modifier.clickable { onLanguageClicked() }
+            modifier = Modifier.clickable { onLanguageClicked(false) }
         )
     }
 }

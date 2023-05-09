@@ -16,11 +16,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
-import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.luisfagundes.framework.utils.commonNavigationOptions
 import com.luisfagundes.parrotlingo.navigation.graphs.MainNavGraph
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -90,14 +89,8 @@ private fun RowScope.NavBarItem(
         } == true,
         onClick = {
             navHostController.navigate(screen.route) {
-                setUpNavigationOptions(navHostController)
+                commonNavigationOptions(navHostController)
             }
         }
     )
-}
-
-private fun NavOptionsBuilder.setUpNavigationOptions(navController: NavHostController) {
-    popUpTo(navController.graph.findStartDestination().id) { saveState = true }
-    launchSingleTop = true
-    restoreState = true
 }

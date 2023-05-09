@@ -5,7 +5,7 @@ import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
 @ViewModelScoped
-class ListCountries @Inject constructor(
+class ListLanguages @Inject constructor(
    private val repository: LanguageRepository
 ) {
     suspend operator fun invoke() = repository.listLanguages()

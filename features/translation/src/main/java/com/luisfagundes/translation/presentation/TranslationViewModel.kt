@@ -1,11 +1,13 @@
 package com.luisfagundes.translation.presentation
 
+import androidx.lifecycle.SavedStateHandle
 import com.luisfagundes.domain.models.Language
 import com.luisfagundes.domain.models.Word
 import com.luisfagundes.domain.usecases.GetLanguagePair
 import com.luisfagundes.domain.usecases.GetWordTranslations
 import com.luisfagundes.framework.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -13,43 +15,57 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TranslationViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle,
     private val getWordTranslations: GetWordTranslations,
     private val getLanguagePair: GetLanguagePair
 ) : BaseViewModel() {
 
-    private val _uiState = MutableStateFlow(
-        TranslationUiState(
-            languagePair = getDefaultLanguagePair()
-        )
-    )
+    private val sourceLangId = savedStateHandle.get<String>("sourceLangId") ?: ""
+    private val targetLangId = savedStateHandle.get<String>("targetLangId") ?: ""
+
+    private val _uiState = MutableStateFlow(TranslationUiState())
     val uiState = _uiState.asStateFlow()
 
-    fun onEvent(event: TranslationEvent) = safeLaunch {
+    val navigationEventChannel = Channel<TranslationUIEvent.LanguageSelectionRequested>(
+        Channel.CONFLATED
+    )
+
+    init {
+        getCurrentLanguagePair()
+    }
+
+    fun onEvent(event: TranslationUIEvent) = safeLaunch {
         when (event) {
-            is TranslationEvent.Translate -> translateWord(event.text)
-            is TranslationEvent.InvertCountries -> invertLanguages(event.countries)
-            is TranslationEvent.UpdateCountryPair -> updateLanguagePair()
+            is TranslationUIEvent.Translate -> translateWord(event.text)
+            is TranslationUIEvent.InvertLanguagePair -> invertLanguages(event.languagePair)
+            is TranslationUIEvent.UpdateLanguagePair -> updateLanguagePair()
+            is TranslationUIEvent.LanguageSelectionRequested -> {
+                navigationEventChannel.send(event)
+            }
         }
     }
 
-    private fun getDefaultLanguagePair() = Pair(
-        Language(
-            name = "English",
-            nativeName = "English",
-            code = "en"
-        ),
-        Language(
-            name = "Portuguese",
-            nativeName = "Português",
-            code = "pt"
-        ),
-    )
+    private fun getCurrentLanguagePair() = safeLaunch {
+        startLoading()
+        val languagePair = getLanguagePair(sourceLangId, targetLangId)
+        _uiState.update {
+            it.copy(
+                languagePair = languagePair,
+                isLoading = false,
+                isEmpty = false,
+                hasError = false
+            )
+        }
+    }
+
 
     private fun translateWord(text: String) = safeLaunch {
         if (text.length < 2) return@safeLaunch
 
-        val firstCode = _uiState.value.languagePair.first.code
-        val secondCode = _uiState.value.languagePair.second.code
+        val languagePair = _uiState.value.languagePair ?: return@safeLaunch
+
+        val firstCode = languagePair.first.code
+        val secondCode = languagePair.second.code
 
         val params = GetWordTranslations.Params(
             text = text,
@@ -73,12 +89,7 @@ class TranslationViewModel @Inject constructor(
     }
 
     private suspend fun updateLanguagePair() {
-        val languagePair = getLanguagePair()
-        _uiState.update {
-            it.copy(
-                languagePair = languagePair
-            )
-        }
+        // TODO
     }
 
     override fun startLoading() {
@@ -115,7 +126,7 @@ class TranslationViewModel @Inject constructor(
         }
     }
 
-    override fun handleSuccess(result: Any?) {
+    override fun handleSuccess(result: List<Any>?) {
         _uiState.update {
             it.copy(
                 wordList = result as? List<Word> ?: emptyList(),

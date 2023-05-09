@@ -24,5 +24,4 @@ fun RootNavGraph(
 object Graph {
     const val ROOT = "root"
     const val MAIN = "main"
-    const val LANGUAGE_LIST = "languageList"
 }

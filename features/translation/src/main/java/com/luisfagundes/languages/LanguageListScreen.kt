@@ -1,6 +1,6 @@
 package com.luisfagundes.languages
 
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,44 +12,44 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import com.luisfagundes.commons_ui.ParrotTopBar
 import com.luisfagundes.domain.models.Language
-import com.luisfagundes.framework.components.WarningView
 import com.luisfagundes.framework.components.LoadingView
-import com.luisfagundes.theme.ParrotLingoTheme
+import com.luisfagundes.framework.components.WarningView
 import com.luisfagundes.theme.spacing
 import com.luisfagundes.translation.R
 
 @Composable
 fun LanguageListScreen(
     uiState: LanguageListUiState,
-    onEvent: (LanguageListEvent) -> Unit,
-    onBackPressed: () -> Unit
+    onEvent: (LanguageListEvent) -> Unit
 ) {
-    LaunchedEffect(key1 = Unit, block = {
-        onEvent(LanguageListEvent.GetCountryList)
-    })
-
     when {
         uiState.isLoading -> LoadingView()
-        uiState.countries.isEmpty() -> WarningView(
+        uiState.languages.isEmpty() -> WarningView(
             modifier = Modifier.fillMaxSize(),
-            message = "No results were found!",
+            message = stringResource(R.string.empty_languages),
             animationId = R.raw.warning
         )
-        uiState.countries.isNotEmpty() -> LanguageList(
-            countries = uiState.countries,
-            onBackPressed = onBackPressed
+
+        uiState.languages.isNotEmpty() -> LanguageList(
+            countries = uiState.languages,
+            onBackPressed = { onEvent(LanguageListEvent.OnBackPressed) },
+            onLanguageClicked = { languageId ->
+                onEvent(
+                    LanguageListEvent.OnLanguageClicked(
+                        id = languageId,
+                        isSourceLanguage = uiState.isSourceLanguage
+                    )
+                )
+            }
         )
     }
 }
@@ -57,7 +57,8 @@ fun LanguageListScreen(
 @Composable
 private fun LanguageList(
     countries: List<Language>,
-    onBackPressed: () -> Unit
+    onBackPressed: () -> Unit,
+    onLanguageClicked: (String) -> Unit = {}
 ) {
     Column {
         ParrotTopBar(
@@ -70,7 +71,10 @@ private fun LanguageList(
                 .padding(MaterialTheme.spacing.default)
         ) {
             items(countries) { country ->
-                Language(language = country)
+                Language(
+                    language = country,
+                    onLanguageClicked = onLanguageClicked
+                )
             }
         }
     }
@@ -78,7 +82,8 @@ private fun LanguageList(
 
 @Composable
 private fun Language(
-    language: Language
+    language: Language,
+    onLanguageClicked: (String) -> Unit
 ) {
     Card(
         shape = MaterialTheme.shapes.small,
@@ -87,6 +92,7 @@ private fun Language(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = MaterialTheme.spacing.verySmall)
+            .clickable { onLanguageClicked(language.id) }
     ) {
         Row(
             horizontalArrangement = Arrangement.Start,
@@ -106,26 +112,6 @@ private fun Language(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
-        }
-    }
-}
-
-@Preview(
-    showBackground = true,
-    uiMode = UI_MODE_NIGHT_YES
-)
-@Composable
-fun LanguagePreview() {
-    ParrotLingoTheme {
-        Surface(
-            color = MaterialTheme.colorScheme.surface
-        ) {
-            val language = Language(
-                name = "Brazil",
-                nativeName = "Portugues",
-                code = "BR",
-            )
-            Language(language = language)
         }
     }
 }

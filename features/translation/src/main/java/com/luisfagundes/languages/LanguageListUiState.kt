@@ -5,5 +5,6 @@ import com.luisfagundes.domain.models.Language
 data class LanguageListUiState(
     val isLoading: Boolean = false,
     val hasError: Boolean = false,
-    val countries: List<Language> = emptyList(),
+    val isSourceLanguage: Boolean = true,
+    val languages: List<Language> = emptyList(),
 )

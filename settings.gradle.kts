@@ -30,3 +30,4 @@ include(
 include(":data")
 include(":domain")
 include(":commons-ui")
+include(":commons-util")

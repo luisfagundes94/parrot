@@ -2,6 +2,7 @@ package com.luisfagundes.translation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -21,21 +22,32 @@ import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import com.luisfagundes.framework.components.LoadingView
+import com.luisfagundes.framework.components.WarningView
 import com.luisfagundes.translation.components.InputTextArea
 import com.luisfagundes.translation.components.LanguagePair
 import com.luisfagundes.translation.components.TranslationResults
-import com.luisfagundes.translation.presentation.TranslationEvent
+import com.luisfagundes.translation.presentation.TranslationUIEvent
 import com.luisfagundes.translation.presentation.TranslationUiState
 import com.luisfagundes.theme.spacing
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun TranslationScreen(
     uiState: TranslationUiState,
-    onEvent: (TranslationEvent) -> Unit = {},
-    onLanguageClicked: () -> Unit = {}
+    onEvent: (TranslationUIEvent) -> Unit = {}
 ) {
-    var countryPair by remember { mutableStateOf(uiState.languagePair) }
+    TranslationContent(
+        uiState = uiState,
+        onEvent = onEvent
+    )
+}
+
+@Composable
+@OptIn(ExperimentalComposeUiApi::class)
+private fun TranslationContent(
+    uiState: TranslationUiState,
+    onEvent: (TranslationUIEvent) -> Unit
+) {
     var inputText by remember { mutableStateOf("") }
 
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -49,13 +61,15 @@ fun TranslationScreen(
             .clipToBounds()
     ) {
         LanguagePair(
-            languagePair = countryPair,
+            languagePair = uiState.languagePair,
             onInvertLanguage = {
                 onEvent(
-                    TranslationEvent.InvertCountries(countryPair)
+                    TranslationUIEvent.InvertLanguagePair(uiState.languagePair)
                 )
             },
-            onLanguageClicked = onLanguageClicked
+            onLanguageClicked = {
+                onEvent(TranslationUIEvent.LanguageSelectionRequested(it))
+            }
         )
         Spacer(
             modifier = Modifier.padding(spacing.verySmall)
@@ -70,7 +84,7 @@ fun TranslationScreen(
         Button(
             onClick = {
                 keyboardController?.hide()
-                onEvent(TranslationEvent.Translate(inputText))
+                onEvent(TranslationUIEvent.Translate(inputText))
             },
             modifier = Modifier.height(spacing.buttonSize)
         ) {

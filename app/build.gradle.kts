@@ -79,6 +79,7 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":domain"))
     implementation(project(":commons-ui"))
+    implementation(project(":commons-util"))
 
     // UI
     implementation(libs.navigation.compose)
