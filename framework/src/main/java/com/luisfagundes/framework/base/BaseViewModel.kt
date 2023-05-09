@@ -24,8 +24,6 @@ abstract class BaseViewModel: ViewModel() {
 
     open fun handleSuccess(result: Any?) {}
 
-    open fun handleSuccess(result: List<Any>?) {}
-
     open fun startLoading() {}
 
     protected fun safeLaunch(block: suspend CoroutineScope.() -> Unit) {

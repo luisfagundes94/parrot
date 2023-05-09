@@ -113,7 +113,7 @@ class TranslationViewModel @Inject constructor(
         }
     }
 
-    override fun handleSuccess(result: List<Any>?) {
+    override fun handleSuccess(result: Any?) {
         _uiState.update {
             it.copy(
                 wordList = result as? List<Word> ?: emptyList(),
