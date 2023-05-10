@@ -49,6 +49,7 @@ dependencies {
     implementation(projects.theme)
     implementation(projects.commonsUi)
     implementation(projects.commonsUtil)
+    implementation(projects.commonsTesting)
 
     implementation(libs.compose.ui.ui)
     implementation(libs.compose.foundation.foundation)
@@ -65,4 +66,10 @@ dependencies {
 
     // Other
     implementation(libs.icu4j)
+
+    // Testing
+    testImplementation(libs.junit)
+    testImplementation(libs.junit.ext)
+    testImplementation(libs.mockk)
+    testImplementation(libs.coroutines.test)
 }

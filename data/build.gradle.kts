@@ -39,6 +39,7 @@ dependencies {
     // Modules
     implementation(projects.framework)
     implementation(projects.domain)
+    implementation(projects.commonsTesting)
 
 
     implementation(libs.retrofit)
@@ -52,4 +53,10 @@ dependencies {
 
     // Data
     implementation(libs.datastore)
+
+    // Testing
+    testImplementation(libs.junit)
+    testImplementation(libs.junit.ext)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.mockk)
 }
