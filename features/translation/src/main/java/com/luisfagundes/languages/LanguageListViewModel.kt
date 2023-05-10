@@ -30,10 +30,6 @@ class LanguageListViewModel @Inject constructor(
     )
     val uiState = _uiState.asStateFlow()
 
-    init {
-        listLanguages()
-    }
-
     fun onEvent(event: LanguageListEvent) = safeLaunch {
         when (event) {
             is LanguageListEvent.GetLanguageList -> listLanguages()

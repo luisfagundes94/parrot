@@ -15,6 +15,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -32,6 +33,10 @@ fun LanguageListScreen(
     uiState: LanguageListUiState,
     onEvent: (LanguageListEvent) -> Unit
 ) {
+    LaunchedEffect(key1 = Unit, block = {
+        onEvent(LanguageListEvent.GetLanguageList)
+    })
+
     when {
         uiState.isLoading -> LoadingView()
         uiState.languages.isEmpty() -> WarningView(
