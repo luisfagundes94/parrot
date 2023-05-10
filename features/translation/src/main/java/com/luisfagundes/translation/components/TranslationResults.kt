@@ -12,9 +12,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BookmarkAdd
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
@@ -99,9 +104,16 @@ private fun ContainerBox(
 
 @Composable
 private fun OtherTranslations(
-    words: List<Word>
+    words: List<Word>,
 ) {
     if (words.all { it.translations.isEmpty() }) return
+
+    var openConfirmationBottomSheet by remember { mutableStateOf(false) }
+
+    ConfirmationBottomSheet(
+        shouldOpenBottomSheet = openConfirmationBottomSheet,
+        onDismiss = { openConfirmationBottomSheet = false },
+    )
 
     ContainerBox {
         Row(
@@ -114,11 +126,17 @@ private fun OtherTranslations(
                 fontWeight = FontWeight.Bold,
             )
             Spacer(modifier = Modifier.weight(1f))
-            Icon(
-                modifier = Modifier.scale(1.1f),
-                imageVector = Icons.Filled.BookmarkAdd,
-                contentDescription = stringResource(R.string.desc_bookmark_word)
-            )
+            IconButton(
+                onClick = {
+                    openConfirmationBottomSheet = !openConfirmationBottomSheet
+                }
+            ) {
+                Icon(
+                    modifier = Modifier.scale(1.1f),
+                    imageVector = Icons.Default.BookmarkAdd,
+                    contentDescription = stringResource(R.string.desc_bookmark_word),
+                )
+            }
         }
         Spacer(
             modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall)
