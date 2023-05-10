@@ -13,9 +13,6 @@ A word reminder android app!
 ### Project Structure
 <p align="start"><img src="https://github.com/luisfagundes94/parrot/blob/master/screenshots/projectStructure.png?raw=true" alt="Project Structure" width="500"></p>
 
-### Plugins
-The ```plugins``` layer is responsible for dependency management. It control and manage all dependencies in one place with Kotlin using the Gradle Version Catalog.
-
 ### Commons
 The ```commons``` layer is responsible for common properties. It contains the implementations of the resources files, themes and components declared in the common layer.
 
@@ -23,9 +20,6 @@ The ```commons``` layer is responsible for common properties. It contains the im
 - __ui__: Has common UI components across the app.
 - __theme__: Defines themes, colors, fonts and resource files.
 - __util__: Mainly for storing global constants.
-
-### Framework
-The ```framework``` layer is responsible for core functionalities, such as model for network responses, extensions, and base classes.
 
 ### Data
 The ```data``` layer is responsible for selecting the proper data source for the domain layer. It contains the implementations of the repositories declared in the domain layer.
@@ -35,6 +29,12 @@ This is the core layer of the application. The ```domain``` layer is independent
 
 ### Presentation
 The ```features``` layer contains components involved in showing information to the user. The main part of this layer are the views(activity, compose) and ViewModels.
+
+### Framework
+The ```framework``` layer is responsible for core functionalities, such as model for network responses, extensions, and base classes.
+
+### Plugins
+The ```plugins``` layer is responsible for dependency management. It control and manage all dependencies in one place with Kotlin using the Gradle Version Catalog.
 
 # Tech Stacks
 This project uses many of the popular libraries, plugins and tools of the android ecosystem.
