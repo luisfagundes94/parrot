@@ -2,11 +2,12 @@
 A word reminder android app!
 
 ## Screenshots (Dark Theme)
-
-<img src="https://github.com/luisfagundes94/parrot/blob/master/screenshots/screenshot1.jpg?raw=true" width="200" /> 
-<img src="https://github.com/luisfagundes94/parrot/blob/master/screenshots/screenshot2.jpg?raw=true" width="200" /> 
-<img src="https://github.com/luisfagundes94/parrot/blob/master/screenshots/screenshot3.jpg?raw=true" width="200" />
-<img src="https://github.com/luisfagundes94/parrot/blob/master/screenshots/screenshot4.jpg?raw=true" width="200" />
+<p float="left">
+  <img src="https://github.com/luisfagundes94/parrot/blob/master/screenshots/screenshot1.jpg?raw=true" width="200" /> 
+  <img src="https://github.com/luisfagundes94/parrot/blob/master/screenshots/screenshot2.jpg?raw=true" width="200" /> 
+  <img src="https://github.com/luisfagundes94/parrot/blob/master/screenshots/screenshot3.jpg?raw=true" width="200" />
+  <img src="https://github.com/luisfagundes94/parrot/blob/master/screenshots/screenshot4.jpg?raw=true" width="200" />
+</p>
 
 ## Layers
 
