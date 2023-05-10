@@ -39,7 +39,7 @@ dependencies {
     // Modules
     implementation(projects.framework)
     implementation(projects.domain)
-    implementation(projects.commonsTesting)
+    implementation(projects.commons.testing)
 
 
     implementation(libs.retrofit)

@@ -1,12 +1,10 @@
 package com.luisfagundes.translation.presentation
 
-import com.luisfagundes.commons_util.RouteParams.LANGUAGE_ID
 import com.luisfagundes.domain.models.Language
 import com.luisfagundes.domain.models.Word
 import com.luisfagundes.domain.usecases.GetLanguagePair
 import com.luisfagundes.domain.usecases.GetWordTranslations
 import com.luisfagundes.framework.base.BaseViewModel
-import com.luisfagundes.framework.extension.empty
 import com.luisfagundes.framework.utils.doNothing
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -22,13 +22,13 @@ rootProject.name = ("ParrotLingo")
 include(
     ":app",
     ":framework",
-    ":theme",
     ":features:translation",
     ":features:saved",
     ":features:settings",
+    ":data",
+    ":domain",
+    ":commons:ui",
+    ":commons:util",
+    ":commons:testing",
+    ":commons:theme",
 )
-include(":data")
-include(":domain")
-include(":commons-ui")
-include(":commons-util")
-include(":commons-testing")

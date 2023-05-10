@@ -46,10 +46,10 @@ dependencies {
     // Modules
     implementation(projects.domain)
     implementation(projects.framework)
-    implementation(projects.theme)
-    implementation(projects.commonsUi)
-    implementation(projects.commonsUtil)
-    implementation(projects.commonsTesting)
+    implementation(projects.commons.theme)
+    implementation(projects.commons.ui)
+    implementation(projects.commons.util)
+    implementation(projects.commons.testing)
 
     implementation(libs.compose.ui.ui)
     implementation(libs.compose.foundation.foundation)

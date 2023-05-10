@@ -71,15 +71,15 @@ android {
 
 dependencies {
     // Modules
-    implementation(project(":theme"))
+    implementation(project(":commons:theme"))
     implementation(project(":framework"))
     implementation(project(":features:translation"))
     implementation(project(":features:saved"))
     implementation(project(":features:settings"))
     implementation(project(":data"))
     implementation(project(":domain"))
-    implementation(project(":commons-ui"))
-    implementation(project(":commons-util"))
+    implementation(project(":commons:ui"))
+    implementation(project(":commons:util"))
 
     // UI
     implementation(libs.navigation.compose)

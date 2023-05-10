@@ -22,9 +22,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/commons-testing" />
-            <option value="$PROJECT_DIR$/commons-ui" />
-            <option value="$PROJECT_DIR$/commons-util" />
+            <option value="$PROJECT_DIR$/commons" />
+            <option value="$PROJECT_DIR$/commons/testing" />
+            <option value="$PROJECT_DIR$/commons/theme" />
+            <option value="$PROJECT_DIR$/commons/ui" />
+            <option value="$PROJECT_DIR$/commons/util" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/features" />
@@ -33,7 +35,6 @@
             <option value="$PROJECT_DIR$/features/translation" />
             <option value="$PROJECT_DIR$/framework" />
             <option value="$PROJECT_DIR$/plugins" />
-            <option value="$PROJECT_DIR$/theme" />
           </set>
         </option>
       </GradleProjectSettings>

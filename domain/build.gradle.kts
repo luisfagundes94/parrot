@@ -38,7 +38,7 @@ android {
 dependencies {
     // Modules
     implementation(projects.framework)
-    implementation(projects.commonsTesting)
+    implementation(projects.commons.testing)
 
     // DI
     implementation(libs.hilt.compose)
