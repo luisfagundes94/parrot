@@ -9,6 +9,14 @@ A word reminder android app!
   <img src="https://github.com/luisfagundes94/parrot/blob/master/screenshots/screenshot4.jpg?raw=true" width="200" />
 </p>
 
+## Screenshots (Light Theme)
+<p float="left">
+  <img src="https://github.com/luisfagundes94/parrot/blob/master/screenshots/screenshotLight1.jpg?raw=true" width="200" />
+  <img src="https://github.com/luisfagundes94/parrot/blob/master/screenshots/screenshotLight2.jpg?raw=true" width="200" />
+  <img src="https://github.com/luisfagundes94/parrot/blob/master/screenshots/screenshotLight3.jpg?raw=true" width="200" />
+  <img src="https://github.com/luisfagundes94/parrot/blob/master/screenshots/screenshotLight4.jpg?raw=true" width="200" />
+</p> 
+
 ## Layers
 
 ### Project Structure
