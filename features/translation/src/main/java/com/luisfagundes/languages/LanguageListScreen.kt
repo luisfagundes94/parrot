@@ -1,9 +1,9 @@
 package com.luisfagundes.languages
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,10 +12,16 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -25,6 +31,7 @@ import com.luisfagundes.commons_ui.ParrotTopBar
 import com.luisfagundes.domain.models.Language
 import com.luisfagundes.framework.components.LoadingView
 import com.luisfagundes.framework.components.WarningView
+import com.luisfagundes.languages.components.LanguageSearch
 import com.luisfagundes.theme.spacing
 import com.luisfagundes.translation.R
 
@@ -37,52 +44,67 @@ fun LanguageListScreen(
         onEvent(LanguageListEvent.GetLanguageList)
     })
 
-    when {
-        uiState.isLoading -> LoadingView()
-        uiState.languages.isEmpty() -> WarningView(
-            modifier = Modifier.fillMaxSize(),
-            message = stringResource(R.string.empty_languages),
-            animationId = R.raw.warning
-        )
+    LanguageListContent(onEvent, uiState)
+}
 
-        uiState.languages.isNotEmpty() -> LanguageList(
-            countries = uiState.languages,
-            onBackPressed = { onEvent(LanguageListEvent.OnBackPressed) },
-            onLanguageClicked = { languageId ->
-                Log.d("LanguageListScreen", "languageId: $languageId")
-                onEvent(
-                    LanguageListEvent.OnLanguageClicked(
-                        id = languageId,
-                        isSourceLanguage = uiState.isSourceLanguage
-                    )
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+private fun LanguageListContent(
+    onEvent: (LanguageListEvent) -> Unit,
+    uiState: LanguageListUiState
+) {
+    Scaffold(
+        topBar = {
+            ParrotTopBar(
+                name = stringResource(R.string.languages),
+                onBackPressed = { onEvent(LanguageListEvent.OnBackPressed) }
+            )
+        }
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .padding(horizontal = MaterialTheme.spacing.default)
+        ) {
+            LanguageSearch(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                searchText = uiState.searchText,
+                onEvent = onEvent
+            )
+            when {
+                uiState.isLoading -> LoadingView()
+                uiState.languages.isEmpty() -> WarningView(
+                    modifier = Modifier.fillMaxSize(),
+                    message = stringResource(R.string.empty_languages),
+                    animationId = R.raw.warning
+                )
+
+                uiState.languages.isNotEmpty() -> LanguageList(
+                    languages = uiState.languages,
+                    onEvent = onEvent,
                 )
             }
-        )
+        }
     }
 }
 
 @Composable
 private fun LanguageList(
-    countries: List<Language>,
-    onBackPressed: () -> Unit,
-    onLanguageClicked: (String) -> Unit = {}
+    languages: List<Language>,
+    onEvent: (LanguageListEvent) -> Unit
 ) {
-    Column {
-        ParrotTopBar(
-            name = stringResource(id = R.string.languages),
-            onBack = onBackPressed
-        )
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(MaterialTheme.spacing.default)
-        ) {
-            items(countries) { country ->
-                Language(
-                    language = country,
-                    onLanguageClicked = onLanguageClicked
-                )
-            }
+    LazyColumn(
+        modifier = Modifier.fillMaxWidth(),
+        contentPadding = PaddingValues(vertical = MaterialTheme.spacing.default),
+    ) {
+        items(languages) { language ->
+            Language(
+                language = language,
+                onLanguageClicked = {
+                    onEvent(LanguageListEvent.OnLanguageClicked(language.id, true))
+                }
+            )
         }
     }
 }

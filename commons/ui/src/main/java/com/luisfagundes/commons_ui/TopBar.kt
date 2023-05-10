@@ -13,12 +13,12 @@ import androidx.compose.runtime.Composable
 @Composable
 fun ParrotTopBar(
     name: String,
-    onBack: () -> Unit
+    onBackPressed: () -> Unit
 ) {
     TopAppBar(
         title = { Text(name) },
         navigationIcon = {
-            IconButton(onClick = onBack) {
+            IconButton(onClick = onBackPressed) {
                 Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
             }
         }

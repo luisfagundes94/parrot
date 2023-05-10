@@ -10,6 +10,8 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.take
+import kotlinx.coroutines.flow.toList
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -82,4 +84,22 @@ class LanguageListViewModelTest {
 
         coVerify(exactly = 1) { updateLanguage(languageId, isSourceLanguage) }
     }
+
+    @Test
+    fun `uiState should filter languages when searchText is not blank`() =
+        coroutineRule.runTest {
+            val searchText = "en"
+            val languages = LanguageFactory.languages
+
+            coEvery { getLanguageList() } returns languages
+
+            // When
+            viewModel.onEvent(LanguageListEvent.OnSearchTextChanged(searchText))
+
+            // Then
+            val filteredLanguages = languages.filter { it.doesMatchSearch(searchText) }
+            val result = listOf(LanguageFactory.languages.first())
+
+            assertEquals(filteredLanguages, result)
+        }
 }

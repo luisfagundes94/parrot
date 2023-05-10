@@ -15,7 +15,7 @@ object LanguageFactory {
             name = "Portuguese",
             nativeName = "Português",
             code = "pt"
-        )
+        ),
     )
 
     val languagesInJsonString =  """
