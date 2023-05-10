@@ -2,6 +2,7 @@
 A word reminder android app!
 
 ## Screenshots (Dark Theme)
+
 <img src="https://github.com/luisfagundes94/parrot/blob/master/screenshots/screenshot1.jpg?raw=true" width="200" /> 
 <img src="https://github.com/luisfagundes94/parrot/blob/master/screenshots/screenshot2.jpg?raw=true" width="200" /> 
 <img src="https://github.com/luisfagundes94/parrot/blob/master/screenshots/screenshot3.jpg?raw=true" width="200" />
@@ -10,7 +11,7 @@ A word reminder android app!
 ## Layers
 
 ### Project Structure
-<p align="center"><img src="art/project.png" alt="Project Structure" width="500"></p>
+<p align="start"><img src="https://github.com/luisfagundes94/parrot/blob/master/screenshots/projectStructure.png?raw=true" alt="Project Structure" width="500"></p>
 
 ### Plugins
 The ```plugins``` layer is responsible for dependency management. It control and manage all dependencies in one place with Kotlin using the Gradle Version Catalog.
@@ -65,6 +66,7 @@ This project uses many of the popular libraries, plugins and tools of the androi
     - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Designed to store and manage UI-related data in a lifecycle conscious way. The ViewModel class allows data to survive configuration changes such as screen rotations.
     - [Room](https://developer.android.com/training/data-storage/room) - Provides an abstraction layer over SQLite used for offline data caching.
 
+
 - [Dagger Hilt](https://dagger.dev/hilt/) - Dependency Injection library.
 - [Google-KSP](https://github.com/google/ksp/) - Kotlin Symbol Processing API
 - [Retrofit](https://square.github.io/retrofit/) - Type-safe http client and supports coroutines out of the box.
@@ -76,7 +78,6 @@ This project uses many of the popular libraries, plugins and tools of the androi
 - [Timber](https://github.com/JakeWharton/timber) - A logger with a small, extensible API which provides utility on top of Android's normal Log class.
 - [Gradle Kotlin DSL](https://gradle.org/kotlin/) - makes it easy to manage dependency all module that we have
 
-- [Navigation](https://github.com/raamcosta/compose-destinations) - Annotation processing library for type-safe Jetpack Compose navigation with no boilerplate.
 - [SplashScreen](https://developer.android.com/guide/topics/ui/splash-screen) - Android 12 adds the SplashScreen API, which enables a new app launch animation for all apps when running on a device with Android 12 or higher.
 
 - [Test](https://en.wikipedia.org/wiki/Unit_testing)
