@@ -1,8 +1,5 @@
 package com.luisfagundes.translation.presentation
 
-import android.util.Log
-import androidx.lifecycle.SavedStateHandle
-import com.luisfagundes.commons_util.RouteParams.IS_SOURCE_LANGUAGE
 import com.luisfagundes.commons_util.RouteParams.LANGUAGE_ID
 import com.luisfagundes.domain.models.Language
 import com.luisfagundes.domain.models.Word
