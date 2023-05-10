@@ -15,7 +15,7 @@ class LanguageRepositoryImpl(
     private val languageDataStore: LanguageDataStore
 ) : LanguageRepository {
 
-    private val languagesMap: MutableMap<String, Language> = mutableMapOf()
+    val languagesMap: MutableMap<String, Language> = mutableMapOf()
 
     init {
         runBlocking {
