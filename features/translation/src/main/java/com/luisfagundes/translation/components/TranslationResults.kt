@@ -35,27 +35,35 @@ import com.luisfagundes.domain.models.Word
 import com.luisfagundes.framework.components.WarningView
 import com.luisfagundes.framework.components.LoadingView
 import com.luisfagundes.framework.extension.capitalize
+import com.luisfagundes.framework.extension.showToast
 import com.luisfagundes.theme.spacing
 import com.luisfagundes.translation.R
 import com.luisfagundes.translation.presentation.TranslationUiState
 
 @Composable
 fun TranslationResults(
-    uiState: TranslationUiState
+    uiState: TranslationUiState,
+    onSaveWord: (Word) -> Unit
 ) {
     val modifier = Modifier.padding(vertical = MaterialTheme.spacing.default)
+
+    if (uiState.wordSavedWithSuccess) {
+        showToast(
+            message = stringResource(R.string.word_saved)
+        )
+    }
 
     when {
         uiState.hasError -> WarningView(
             modifier = modifier,
-            message = stringResource(R.string.warning_error),
-            animationId = R.raw.warning
+            title = stringResource(R.string.warning_error),
+            animationId = com.luisfagundes.theme.R.raw.warning
         )
 
         uiState.isEmpty -> WarningView(
             modifier = modifier,
-            message = stringResource(R.string.warning_empty),
-            animationId = R.raw.warning
+            title = stringResource(R.string.warning_empty),
+            animationId = com.luisfagundes.theme.R.raw.warning
         )
 
         uiState.isLoading -> LoadingView(
@@ -64,18 +72,27 @@ fun TranslationResults(
                 .padding(MaterialTheme.spacing.default)
         )
 
-        uiState.wordList.isNotEmpty() -> SuccessView(uiState.wordList)
+        uiState.wordList.isNotEmpty() -> SuccessView(
+            words = uiState.wordList,
+            onSaveWord = { word ->
+                onSaveWord(word)
+            }
+        )
     }
 }
 
 @Composable
 private fun SuccessView(
-    words: List<Word>
+    words: List<Word>,
+    onSaveWord: (Word) -> Unit
 ) {
     val modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall)
 
     Spacer(modifier = modifier)
-    OtherTranslations(words = words)
+    OtherTranslations(
+        words = words,
+        onSaveWord = onSaveWord
+    )
     Spacer(modifier = modifier)
     Definitions(words = words)
 }
@@ -105,6 +122,7 @@ private fun ContainerBox(
 @Composable
 private fun OtherTranslations(
     words: List<Word>,
+    onSaveWord: (Word) -> Unit
 ) {
     if (words.all { it.translations.isEmpty() }) return
 
@@ -113,6 +131,10 @@ private fun OtherTranslations(
     ConfirmationBottomSheet(
         shouldOpenBottomSheet = openConfirmationBottomSheet,
         onDismiss = { openConfirmationBottomSheet = false },
+        onConfirmClick = {
+            onSaveWord(words.first())
+            openConfirmationBottomSheet = false
+        }
     )
 
     ContainerBox {

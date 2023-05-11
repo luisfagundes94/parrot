@@ -16,16 +16,10 @@ sealed class BottomBarScreen(
     @StringRes val screenNameId: Int
 ) {
     object Translation : BottomBarScreen(
-        route = "translation/{$LANGUAGE_ID}/{$IS_SOURCE_LANGUAGE}",
+        route = "translation",
         icon = Icons.Filled.Translate,
         screenNameId = R.string.translation
-    ) {
-        fun addLanguage(
-            id: String,
-            isSourceLanguage: Boolean,
-        ) = "translation/$id/$isSourceLanguage"
-    }
-
+    )
     object Saved : BottomBarScreen(
         route = "saved",
         icon = Icons.Filled.Bookmark,

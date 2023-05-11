@@ -3,7 +3,9 @@ package com.luisfagundes.languages
 import androidx.lifecycle.SavedStateHandle
 import com.luisfagundes.commons_testing.TestCoroutineRule
 import com.luisfagundes.domain.modelFactory.LanguageFactory
+import com.luisfagundes.domain.usecases.GetAllSavedWords
 import com.luisfagundes.domain.usecases.ListLanguages
+import com.luisfagundes.domain.usecases.SaveWord
 import com.luisfagundes.domain.usecases.UpdateLanguage
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -25,6 +27,7 @@ class LanguageListViewModelTest {
 
     private val getLanguageList: ListLanguages = mockk()
     private val updateLanguage: UpdateLanguage = mockk()
+    private val savedWord: SaveWord = mockk()
     private val savedStateHandle: SavedStateHandle = mockk()
     private lateinit var viewModel: LanguageListViewModel
 

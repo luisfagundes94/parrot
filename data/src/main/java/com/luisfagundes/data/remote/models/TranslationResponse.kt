@@ -1,4 +1,4 @@
-package com.luisfagundes.data.models
+package com.luisfagundes.data.remote.models
 
 data class TranslationResponse(
     val audio_links: List<AudioLinkResponse>,

@@ -53,6 +53,8 @@ dependencies {
 
     // Data
     implementation(libs.datastore)
+    implementation(libs.room.runtime)
+    kapt(libs.room.compiler)
 
     // Testing
     testImplementation(libs.junit)

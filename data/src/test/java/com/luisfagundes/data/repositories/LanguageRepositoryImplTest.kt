@@ -4,7 +4,7 @@ package com.luisfagundes.data.repositories
 import android.content.Context
 import android.content.res.AssetManager
 import com.luisfagundes.commons_testing.TestCoroutineRule
-import com.luisfagundes.data.store.LanguageDataStore
+import com.luisfagundes.data.local.datastore.LanguageDataStore
 import com.luisfagundes.domain.modelFactory.LanguageFactory
 import io.mockk.coEvery
 import io.mockk.coVerify

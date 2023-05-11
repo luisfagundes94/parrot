@@ -1,4 +1,4 @@
-package com.luisfagundes.data.models
+package com.luisfagundes.data.remote.models
 
 data class ExampleResponse(
     val dst: String,

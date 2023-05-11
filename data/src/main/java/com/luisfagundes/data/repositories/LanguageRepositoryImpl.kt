@@ -2,7 +2,7 @@ package com.luisfagundes.data.repositories
 
 import android.content.Context
 import com.google.gson.Gson
-import com.luisfagundes.data.store.LanguageDataStore
+import com.luisfagundes.data.local.datastore.LanguageDataStore
 import com.luisfagundes.data.utils.getJsonDataFromAsset
 import com.luisfagundes.domain.models.Language
 import com.luisfagundes.domain.repositories.LanguageRepository

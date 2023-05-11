@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="delete_word">delete word</string>
+    <string name="word_deleted_with_success">Word deleted with success!</string>
+</resources>

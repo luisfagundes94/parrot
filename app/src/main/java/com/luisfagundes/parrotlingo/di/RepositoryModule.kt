@@ -1,10 +1,11 @@
 package com.luisfagundes.parrotlingo.di
 
 import android.content.Context
+import com.luisfagundes.data.local.database.ParrotDatabase
 import com.luisfagundes.data.repositories.LanguageRepositoryImpl
 import com.luisfagundes.data.repositories.WordRepositoryImpl
-import com.luisfagundes.data.services.LingueeApiService
-import com.luisfagundes.data.store.LanguageDataStore
+import com.luisfagundes.data.remote.services.LingueeApiService
+import com.luisfagundes.data.local.datastore.LanguageDataStore
 import com.luisfagundes.domain.repositories.LanguageRepository
 import com.luisfagundes.domain.repositories.WordRepository
 import dagger.Module
@@ -28,9 +29,11 @@ object RepositoryModule {
 
     @Provides
     fun provideWordRepository(
-        apiService: LingueeApiService
+        apiService: LingueeApiService,
+        parrotDatabase: ParrotDatabase
     ): WordRepository = WordRepositoryImpl(
-        lingueeApiService = apiService
+        lingueeApiService = apiService,
+        database = parrotDatabase
     )
 
 }

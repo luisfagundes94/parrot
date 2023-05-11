@@ -4,18 +4,27 @@ import com.luisfagundes.domain.models.Language
 import com.luisfagundes.domain.models.Word
 import com.luisfagundes.domain.usecases.GetLanguagePair
 import com.luisfagundes.domain.usecases.GetWordTranslations
+import com.luisfagundes.domain.usecases.SaveWord
 import com.luisfagundes.framework.base.BaseViewModel
+import com.luisfagundes.framework.base.DefaultDispatcher
+import com.luisfagundes.framework.network.DataState
 import com.luisfagundes.framework.utils.doNothing
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class TranslationViewModel @Inject constructor(
     private val getWordTranslations: GetWordTranslations,
-    private val getLanguagePair: GetLanguagePair
+    private val getLanguagePair: GetLanguagePair,
+    private val saveWord: SaveWord,
+    @DefaultDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : BaseViewModel() {
 
     private val _uiState = MutableStateFlow(TranslationUiState())
@@ -27,23 +36,9 @@ class TranslationViewModel @Inject constructor(
             is TranslationUIEvent.InvertLanguagePair -> invertLanguages(event.languagePair)
             is TranslationUIEvent.UpdateLanguagePair -> updateLanguagePair()
             is TranslationUIEvent.OnLanguageClicked -> doNothing()
+            is TranslationUIEvent.SaveWord -> saveWordToLocalDb(event.word)
         }
     }
-
-    private fun updateLanguagePair() = safeLaunch {
-        startLoading()
-
-        val languagePair = getLanguagePair()
-        _uiState.update {
-            it.copy(
-                languagePair = languagePair,
-                isLoading = false,
-                isEmpty = false,
-                hasError = false
-            )
-        }
-    }
-
 
     private fun translateWord(text: String) = safeLaunch {
         if (text.length < 2) return@safeLaunch
@@ -70,6 +65,38 @@ class TranslationViewModel @Inject constructor(
         _uiState.update {
             it.copy(
                 languagePair = Pair(languagePair.second, languagePair.first)
+            )
+        }
+    }
+
+    private fun saveWordToLocalDb(word: Word) = safeLaunch {
+        withContext(dispatcher) {
+            when (saveWord(word)) {
+                is DataState.Success -> _uiState.update {
+                    it.copy(wordSavedWithSuccess = true)
+                }
+
+                is DataState.Error -> _uiState.update {
+                    it.copy(wordSavedWithSuccess = false)
+                }
+
+                else -> doNothing()
+            }
+            delay(500L)
+            _uiState.update { it.copy(wordSavedWithSuccess = false) }
+        }
+    }
+
+    private fun updateLanguagePair() = safeLaunch {
+        startLoading()
+
+        val languagePair = getLanguagePair()
+        _uiState.update {
+            it.copy(
+                languagePair = languagePair,
+                isLoading = false,
+                isEmpty = false,
+                hasError = false
             )
         }
     }

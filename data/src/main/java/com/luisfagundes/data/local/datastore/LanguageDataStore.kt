@@ -1,4 +1,4 @@
-package com.luisfagundes.data.store
+package com.luisfagundes.data.local.datastore
 
 import android.content.Context
 import androidx.datastore.preferences.core.edit

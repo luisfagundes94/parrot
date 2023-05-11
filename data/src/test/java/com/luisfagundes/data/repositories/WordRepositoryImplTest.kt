@@ -1,7 +1,8 @@
 package com.luisfagundes.data.repositories
 
 import com.luisfagundes.commons_testing.TestCoroutineRule
-import com.luisfagundes.data.services.LingueeApiService
+import com.luisfagundes.data.local.database.ParrotDatabase
+import com.luisfagundes.data.remote.services.LingueeApiService
 import com.luisfagundes.domain.usecases.GetWordTranslations
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -18,11 +19,15 @@ class WordRepositoryImplTest {
     val coroutineRule = TestCoroutineRule()
 
     private val lingueeApiService: LingueeApiService = mockk()
+    private val database: ParrotDatabase = mockk()
     private lateinit var repository: WordRepositoryImpl
 
     @Before
     fun setup() {
-        repository = WordRepositoryImpl(lingueeApiService)
+        repository = WordRepositoryImpl(
+            lingueeApiService,
+            database
+        )
     }
 
     @Test

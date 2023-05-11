@@ -12,16 +12,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -48,18 +42,13 @@ fun LanguageListScreen(
 }
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class)
 private fun LanguageListContent(
     onEvent: (LanguageListEvent) -> Unit,
     uiState: LanguageListUiState
 ) {
-    Scaffold(
-        topBar = {
-            ParrotTopBar(
-                name = stringResource(R.string.languages),
-                onBackPressed = { onEvent(LanguageListEvent.OnBackPressed) }
-            )
-        }
+    ParrotTopBar(
+        name = stringResource(R.string.languages),
+        onBackPressed = { onEvent(LanguageListEvent.OnBackPressed) },
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -76,8 +65,8 @@ private fun LanguageListContent(
                 uiState.isLoading -> LoadingView()
                 uiState.languages.isEmpty() -> WarningView(
                     modifier = Modifier.fillMaxSize(),
-                    message = stringResource(R.string.empty_languages),
-                    animationId = R.raw.warning
+                    title = stringResource(R.string.empty_languages),
+                    animationId = com.luisfagundes.theme.R.raw.warning
                 )
 
                 uiState.languages.isNotEmpty() -> LanguageList(

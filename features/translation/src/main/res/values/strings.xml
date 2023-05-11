@@ -10,4 +10,6 @@
     <string name="title_examples_of">"Examples of "</string>
     <string name="languages_error">No languages found</string>
     <string name="empty_languages">No results were found!</string>
+    <string name="btn_confirm">Confirm</string>
+    <string name="word_saved">word saved with success</string>
 </resources>

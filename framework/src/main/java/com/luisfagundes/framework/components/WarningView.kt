@@ -2,6 +2,8 @@ package com.luisfagundes.framework.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,7 +24,8 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 @Composable
 fun WarningView(
     modifier: Modifier = Modifier,
-    message: String,
+    title: String,
+    bodyMessage: String = "",
     animationId: Int
 ) {
     Column(
@@ -32,11 +35,17 @@ fun WarningView(
     ) {
         LottieErrorAnimation(animationId)
         Text(
-            text = message,
+            text = title,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onSurface,
         )
+        if (bodyMessage.isNotEmpty()) {
+            Spacer(Modifier.height(16.dp))
+            Text(
+                text = bodyMessage,
+                textAlign = TextAlign.Center,
+            )
+        }
     }
 }
 

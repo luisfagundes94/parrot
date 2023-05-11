@@ -8,5 +8,6 @@ data class TranslationUiState(
     val isEmpty: Boolean = false,
     val wordList: List<Word> = emptyList(),
     val hasError: Boolean = false,
+    val wordSavedWithSuccess: Boolean = false,
     val languagePair: Pair<Language, Language>? = null
 )

@@ -1,9 +1,9 @@
-package com.luisfagundes.data.di
+package com.luisfagundes.data.remote.di
 
 import android.content.Context
 import android.util.Log
-import com.luisfagundes.data.services.LingueeApiService
-import com.luisfagundes.data.store.LanguageDataStore
+import com.luisfagundes.data.remote.services.LingueeApiService
+import com.luisfagundes.data.local.datastore.LanguageDataStore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

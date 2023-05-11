@@ -1,6 +1,6 @@
-package com.luisfagundes.data.services
+package com.luisfagundes.data.remote.services
 
-import com.luisfagundes.data.models.WordResponse
+import com.luisfagundes.data.remote.models.WordResponse
 import com.luisfagundes.domain.models.Word
 import retrofit2.http.GET
 import retrofit2.http.QueryMap

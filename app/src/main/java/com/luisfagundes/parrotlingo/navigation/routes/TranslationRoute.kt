@@ -3,6 +3,7 @@ package com.luisfagundes.parrotlingo.navigation.routes
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.HiltViewModelFactory
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
@@ -23,19 +24,8 @@ import com.luisfagundes.translation.presentation.TranslationViewModel
 fun NavGraphBuilder.translationRoute(navController: NavHostController) {
     composable(
         route = BottomBarScreen.Translation.route,
-        arguments = listOf(
-            navArgument(LANGUAGE_ID) {
-                type = NavType.StringType
-                defaultValue = String.empty()
-            },
-            navArgument(IS_SOURCE_LANGUAGE) {
-                type = NavType.BoolType
-                defaultValue = true
-            }
-        )
-    ) { backStackEntry ->
-        val factory = HiltViewModelFactory(LocalContext.current, backStackEntry)
-        val viewModel: TranslationViewModel = viewModel(factory = factory)
+    ) {
+        val viewModel = hiltViewModel<TranslationViewModel>()
         val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
         TranslationScreen(

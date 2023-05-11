@@ -1,4 +1,4 @@
-package com.luisfagundes.data.models
+package com.luisfagundes.data.remote.models
 
 import com.luisfagundes.domain.models.AudioLink
 import com.luisfagundes.domain.models.Translation

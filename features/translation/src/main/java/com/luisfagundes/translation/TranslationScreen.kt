@@ -2,6 +2,7 @@ package com.luisfagundes.translation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -60,7 +61,6 @@ private fun TranslationContent(
             .padding(horizontal = spacing.default)
             .padding(top = spacing.default)
             .verticalScroll(rememberScrollState())
-            .clipToBounds()
     ) {
         LanguagePair(
             languagePair = uiState.languagePair,
@@ -101,7 +101,10 @@ private fun TranslationContent(
             modifier = Modifier.padding(vertical = spacing.small)
         )
         TranslationResults(
-            uiState = uiState
+            uiState = uiState,
+            onSaveWord = {
+                onEvent(TranslationUIEvent.SaveWord(it))
+            }
         )
         Spacer(
             modifier = Modifier.padding(vertical = spacing.small)

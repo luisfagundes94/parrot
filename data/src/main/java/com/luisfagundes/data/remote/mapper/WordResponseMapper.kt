@@ -1,23 +1,24 @@
-package com.luisfagundes.data.mapper
+package com.luisfagundes.data.remote.mapper
 
-import com.luisfagundes.data.models.AudioLinkResponse
-import com.luisfagundes.data.models.ExampleResponse
-import com.luisfagundes.data.models.TranslationResponse
-import com.luisfagundes.data.models.WordResponse
+import com.luisfagundes.data.remote.models.AudioLinkResponse
+import com.luisfagundes.data.remote.models.ExampleResponse
+import com.luisfagundes.data.remote.models.TranslationResponse
+import com.luisfagundes.data.remote.models.WordResponse
 import com.luisfagundes.domain.models.AudioLink
 import com.luisfagundes.domain.models.Example
 import com.luisfagundes.domain.models.Translation
 import com.luisfagundes.domain.models.Word
+import java.util.UUID
 
-object WordMapper {
+object WordResponseMapper {
     @JvmName("toDomainWordResponse")
     fun List<WordResponse>?.toDomain() =
         this?.map { it.toDomain() } ?: emptyList()
 
     fun WordResponse.toDomain() = Word(
+        id = UUID.randomUUID().toString(),
         audioLinks = this.audio_links.toDomain(),
         featured = this.featured,
-        grammarInfo = this.grammar_info,
         type = this.pos,
         text = this.text,
         translations = this.translations.toDomain()
@@ -28,6 +29,7 @@ object WordMapper {
         this?.map { it.toDomain() } ?: emptyList()
 
     fun AudioLinkResponse.toDomain() = AudioLink(
+        id = UUID.randomUUID().toString(),
         language = this.lang,
         url = this.url
     )
@@ -37,6 +39,7 @@ object WordMapper {
         this?.map { it.toDomain() } ?: emptyList()
 
     fun TranslationResponse.toDomain() = Translation(
+        id = UUID.randomUUID().toString(),
         audioLinks = this.audio_links.toDomain(),
         examples = this.examples.toDomain(),
         featured = this.featured,
@@ -50,8 +53,8 @@ object WordMapper {
         this?.map { it.toDomain() } ?: emptyList()
 
     fun ExampleResponse.toDomain() = Example(
+        id = UUID.randomUUID().toString(),
         destinationLanguage = this.dst,
         sourceLanguage = this.src,
     )
-
 }

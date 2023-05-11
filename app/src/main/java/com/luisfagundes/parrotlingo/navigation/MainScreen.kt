@@ -22,7 +22,6 @@ import androidx.navigation.compose.rememberNavController
 import com.luisfagundes.framework.utils.commonNavigationOptions
 import com.luisfagundes.parrotlingo.navigation.graphs.MainNavGraph
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
     navHostController: NavHostController = rememberNavController()
