@@ -33,9 +33,9 @@ fun SavedScreen(
     uiState: SavedUiState,
     onEvent: (SavedUIEvent) -> Unit
 ) {
-    LaunchedEffect(key1 = uiState.deletedWithSuccess, block = {
+    LaunchedEffect(key1 = uiState.deletedWithSuccess) {
         onEvent(SavedUIEvent.LoadSavedWords)
-    })
+    }
 
     if (uiState.deletedWithSuccess) showToast(
         message = stringResource(R.string.word_deleted_with_success)
