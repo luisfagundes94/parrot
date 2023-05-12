@@ -22,11 +22,11 @@ abstract class BaseViewModel: ViewModel() {
 
     open fun handleEmpty() {}
 
-    open fun handleSuccess(result: Any?) {}
-
     open fun startLoading() {}
 
-    protected fun safeLaunch(block: suspend CoroutineScope.() -> Unit) {
+    protected fun safeLaunch(
+        block: suspend CoroutineScope.() -> Unit
+    ) {
         viewModelScope.launch(handler, block = block)
     }
 
@@ -42,11 +42,12 @@ abstract class BaseViewModel: ViewModel() {
     }
 
     protected fun <T> handleResult(
-        data: DataState<T>
+        data: DataState<T>,
+        completionHandler: (T) -> Unit = {}
     ) {
         when (data) {
             is DataState.Error -> handleError(data.error)
-            is DataState.Success -> handleSuccess(data.result)
+            is DataState.Success -> completionHandler(data.result)
             is DataState.Empty -> handleEmpty()
         }
     }
