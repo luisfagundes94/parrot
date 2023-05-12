@@ -49,8 +49,8 @@ fun SavedScreen(
 
         uiState.savedWords.isEmpty() -> WarningView(
             modifier = Modifier.fillMaxSize(),
-            title = "No saved words yet",
-            bodyMessage = "Go to the translation page and bookmark a word!",
+            title = stringResource(R.string.empty_words_title),
+            bodyMessage = stringResource(R.string.empty_words_body_message),
             animationId = com.luisfagundes.theme.R.raw.warning
         )
 

@@ -2,4 +2,6 @@
 <resources>
     <string name="delete_word">delete word</string>
     <string name="word_deleted_with_success">Word deleted with success!</string>
+    <string name="empty_words_title">No saved words yet</string>
+    <string name="empty_words_body_message">Go to the translation page and bookmark a word!</string>
 </resources>
