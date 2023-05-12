@@ -16,6 +16,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -51,7 +52,7 @@ private fun TranslationContent(
     uiState: TranslationUiState,
     onEvent: (TranslationUIEvent) -> Unit
 ) {
-    var inputText by remember { mutableStateOf("") }
+    var inputText by rememberSaveable { mutableStateOf("") }
 
     val keyboardController = LocalSoftwareKeyboardController.current
     val spacing = MaterialTheme.spacing
