@@ -11,7 +11,6 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -60,7 +59,7 @@ class SavedViewModel @Inject constructor(
 
     private fun updateWordDeletedWithSuccess(isSuccess: Boolean) {
         _uiState.update {
-            it.copy(deletedWithSuccess = isSuccess)
+            it.copy(isDeletionSuccessful = isSuccess)
         }
     }
 }

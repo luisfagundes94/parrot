@@ -26,9 +26,12 @@ fun Context.toastLong(message: String) {
 
 @Composable
 fun showToast(
+    shouldShow: Boolean = true,
     message: String,
     duration: Int = Toast.LENGTH_SHORT
 ) {
+    if (!shouldShow) return
+
     val context = LocalContext.current
     LaunchedEffect(key1 = message, key2 = duration) {
         Toast.makeText(context, message, duration).show()
