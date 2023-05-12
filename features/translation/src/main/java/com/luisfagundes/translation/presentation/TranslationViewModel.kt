@@ -56,7 +56,9 @@ class TranslationViewModel @Inject constructor(
 
         startLoading()
         val result = getWordTranslations(params)
-        handleResult(result)
+        handleResult(result) { words ->
+            _uiState.update { it.toSuccessState(words) }
+        }
     }
 
     private fun invertLanguages(languagePair: Pair<Language, Language>?) {
@@ -70,79 +72,34 @@ class TranslationViewModel @Inject constructor(
     }
 
     private fun saveWordToLocalDb(word: Word) = safeLaunch {
-        withContext(dispatcher) {
-            when (saveWord(word)) {
-                is DataState.Success -> _uiState.update {
-                    it.copy(wordSavedWithSuccess = true)
-                }
-
-                is DataState.Error -> _uiState.update {
-                    it.copy(wordSavedWithSuccess = false)
-                }
-
-                else -> doNothing()
+        val result = withContext(dispatcher) { saveWord(word) }
+        _uiState.update {
+            when (result) {
+                is DataState.Success -> it.copy(wordSavedWithSuccess = true)
+                is DataState.Error -> it.copy(wordSavedWithSuccess = false)
+                else -> it
             }
-            delay(500L)
-            _uiState.update { it.copy(wordSavedWithSuccess = false) }
         }
+        delay(500L)
+        _uiState.update { it.copy(wordSavedWithSuccess = false) }
     }
 
     private fun updateLanguagePair() = safeLaunch {
-        startLoading()
-
-        val languagePair = getLanguagePair()
         _uiState.update {
-            it.copy(
-                languagePair = languagePair,
-                isLoading = false,
-                isEmpty = false,
-                hasError = false
-            )
+            it.copy(languagePair = getLanguagePair())
         }
     }
 
     override fun startLoading() {
-        _uiState.update {
-            it.copy(
-                isLoading = true,
-                isEmpty = false,
-                hasError = false,
-                wordList = emptyList()
-            )
-        }
+        _uiState.update { it.toLoadingState() }
     }
 
     override fun handleEmpty() {
-        _uiState.update {
-            it.copy(
-                isEmpty = true,
-                isLoading = false,
-                hasError = false,
-                wordList = emptyList()
-            )
-        }
+        _uiState.update { it.toEmptyState() }
     }
 
     override fun handleError(exception: Throwable) {
         println(exception.stackTraceToString())
-        _uiState.update {
-            it.copy(
-                hasError = true,
-                isLoading = false,
-                isEmpty = false,
-                wordList = emptyList()
-            )
-        }
-    }
-
-    override fun handleSuccess(result: Any?) {
-        _uiState.update {
-            it.copy(
-                wordList = result as? List<Word> ?: emptyList(),
-                isLoading = false,
-                hasError = false,
-                isEmpty = false
-            )
-        }
+        _uiState.update { it.toErrorState() }
     }
 }
