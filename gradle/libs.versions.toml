@@ -10,18 +10,18 @@ material = "1.1.0"
 fragment_ktx = "1.4.5"
 fragment_navigation_ktx = "2.5.3"
 compose = "1.4.2"
-compose_compiler = "1.4.6"
+compose_compiler = "1.4.7"
 compose-bom = "2022.12.00"
 compose_constraintlayout = "1.0.1"
 compose_paging = "1.0.0-alpha17"
-accompanist = "0.28.0"
+accompanist = "0.31.2-alpha"
 coil = "2.2.2"
 constraint_layout = "2.1.4"
 detekt = "1.22.0"
 dokka = "1.7.20"
 espresso_core = "3.5.1"
 junit = "4.13.2"
-kotlin = "1.8.20"
+kotlin = "1.8.21"
 ktlint = "0.45.2"
 ktlint_gradle = "10.2.1"
 min_sdk = "24"
@@ -53,12 +53,14 @@ splash = "1.0.0"
 navigation = "2.5.3"
 destination = "1.9.42-beta"
 version_catalog = "0.8.0"
+core = "1.6.0"
 core_ktx = "1.10.0"
 androidx-hilt = "1.0.0"
 byte-buddy = "1.12.18"
 icu4j = "73.1"
 
 [libraries]
+core = { module = "androidx.core:core", version.ref = "core" }
 junit = { module = "junit:junit", version.ref = "junit" }
 androidx_activity_compose = { module = "androidx.activity:activity-compose", version.ref = "androidx_activity_compose" }
 androidx_appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
@@ -164,3 +166,4 @@ android-test = { id = "com.android.test", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 ksp = "com.google.devtools.ksp:1.8.0-1.0.9"
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
