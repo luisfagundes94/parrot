@@ -2,7 +2,6 @@ package com.luisfagundes.translation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -15,29 +14,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import com.luisfagundes.theme.spacing
 import com.luisfagundes.translation.components.InputTextArea
 import com.luisfagundes.translation.components.LanguagePair
+import com.luisfagundes.translation.components.NotificationPermission
 import com.luisfagundes.translation.components.TranslationResults
-import com.luisfagundes.translation.presentation.TranslationUIEvent
+import com.luisfagundes.translation.presentation.TranslationEvent
 import com.luisfagundes.translation.presentation.TranslationUiState
-import com.luisfagundes.theme.spacing
 
 @Composable
 fun TranslationScreen(
     uiState: TranslationUiState,
-    onEvent: (TranslationUIEvent) -> Unit = {}
+    onEvent: (TranslationEvent) -> Unit = {}
 ) {
+    NotificationPermission()
+
     LaunchedEffect(key1 = uiState.languagePair, block = {
-        onEvent(TranslationUIEvent.UpdateLanguagePair)
+        onEvent(TranslationEvent.UpdateLanguagePair)
     })
 
     TranslationContent(
@@ -50,7 +50,7 @@ fun TranslationScreen(
 @OptIn(ExperimentalComposeUiApi::class)
 private fun TranslationContent(
     uiState: TranslationUiState,
-    onEvent: (TranslationUIEvent) -> Unit
+    onEvent: (TranslationEvent) -> Unit
 ) {
     var inputText by rememberSaveable { mutableStateOf("") }
 
@@ -67,11 +67,11 @@ private fun TranslationContent(
             languagePair = uiState.languagePair,
             onInvertLanguage = {
                 onEvent(
-                    TranslationUIEvent.InvertLanguagePair(uiState.languagePair)
+                    TranslationEvent.InvertLanguagePair(uiState.languagePair)
                 )
             },
             onLanguageClicked = {
-                onEvent(TranslationUIEvent.OnLanguageClicked(it))
+                onEvent(TranslationEvent.OnLanguageClicked(it))
             }
         )
         Spacer(
@@ -87,7 +87,7 @@ private fun TranslationContent(
         Button(
             onClick = {
                 keyboardController?.hide()
-                onEvent(TranslationUIEvent.Translate(inputText))
+                onEvent(TranslationEvent.Translate(inputText))
             },
             modifier = Modifier.height(spacing.buttonSize)
         ) {
@@ -103,8 +103,8 @@ private fun TranslationContent(
         )
         TranslationResults(
             uiState = uiState,
-            onSaveWord = {
-                onEvent(TranslationUIEvent.SaveWord(it))
+            onSaveWord = { everyHour, word ->
+                onEvent(TranslationEvent.SaveWord(everyHour, word))
             }
         )
         Spacer(
