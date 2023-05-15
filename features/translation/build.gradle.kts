@@ -50,6 +50,7 @@ dependencies {
     implementation(projects.commons.ui)
     implementation(projects.commons.util)
     implementation(projects.commons.testing)
+    implementation(projects.commons.provider)
 
     implementation(libs.compose.ui.ui)
     implementation(libs.compose.foundation.foundation)
@@ -66,6 +67,9 @@ dependencies {
 
     // Other
     implementation(libs.icu4j)
+
+    // Accompanist
+    implementation(libs.accompanist.permissions)
 
     // Testing
     testImplementation(libs.junit)

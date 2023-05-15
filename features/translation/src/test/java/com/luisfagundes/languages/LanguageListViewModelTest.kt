@@ -3,7 +3,6 @@ package com.luisfagundes.languages
 import androidx.lifecycle.SavedStateHandle
 import com.luisfagundes.commons_testing.TestCoroutineRule
 import com.luisfagundes.domain.modelFactory.LanguageFactory
-import com.luisfagundes.domain.usecases.GetAllSavedWords
 import com.luisfagundes.domain.usecases.ListLanguages
 import com.luisfagundes.domain.usecases.SaveWord
 import com.luisfagundes.domain.usecases.UpdateLanguage
@@ -12,8 +11,6 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.take
-import kotlinx.coroutines.flow.toList
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -96,10 +93,8 @@ class LanguageListViewModelTest {
 
             coEvery { getLanguageList() } returns languages
 
-            // When
             viewModel.onEvent(LanguageListEvent.OnSearchTextChanged(searchText))
 
-            // Then
             val filteredLanguages = languages.filter { it.doesMatchSearch(searchText) }
             val result = listOf(LanguageFactory.languages.first())
 

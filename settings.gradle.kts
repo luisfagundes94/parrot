@@ -32,3 +32,4 @@ include(
     ":commons:testing",
     ":commons:theme",
 )
+include(":commons:provider")

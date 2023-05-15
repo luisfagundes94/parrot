@@ -82,7 +82,7 @@ private val DarkColors = darkColorScheme(
 )
 
 @Composable
-fun ParrotLingoTheme(
+fun ParrotTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit

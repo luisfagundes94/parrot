@@ -103,8 +103,8 @@ private fun TranslationContent(
         )
         TranslationResults(
             uiState = uiState,
-            onSaveWord = { everyHour, word ->
-                onEvent(TranslationEvent.SaveWord(everyHour, word))
+            onSaveWord = { scheduleData, word ->
+                onEvent(TranslationEvent.SaveWord(scheduleData, word))
             }
         )
         Spacer(

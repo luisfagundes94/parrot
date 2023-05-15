@@ -30,10 +30,11 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import com.luisfagundes.domain.models.ScheduleData
 import com.luisfagundes.domain.models.Translation
 import com.luisfagundes.domain.models.Word
-import com.luisfagundes.framework.components.WarningView
-import com.luisfagundes.framework.components.LoadingView
+import com.luisfagundes.framework.compose_components.WarningView
+import com.luisfagundes.framework.compose_components.LoadingView
 import com.luisfagundes.framework.extension.capitalize
 import com.luisfagundes.framework.extension.showToast
 import com.luisfagundes.theme.spacing
@@ -43,15 +44,14 @@ import com.luisfagundes.translation.presentation.TranslationUiState
 @Composable
 fun TranslationResults(
     uiState: TranslationUiState,
-    onSaveWord: (Word) -> Unit
+    onSaveWord: (ScheduleData, Word) -> Unit
 ) {
     val modifier = Modifier.padding(vertical = MaterialTheme.spacing.default)
 
-    if (uiState.wordSavedWithSuccess) {
-        showToast(
-            message = stringResource(R.string.word_saved)
-        )
-    }
+    showToast(
+        shouldShow = uiState.wordSavedWithSuccess,
+        message = stringResource(R.string.word_saved)
+    )
 
     when {
         uiState.hasError -> WarningView(
@@ -74,8 +74,8 @@ fun TranslationResults(
 
         uiState.wordList.isNotEmpty() -> SuccessView(
             words = uiState.wordList,
-            onSaveWord = { word ->
-                onSaveWord(word)
+            onSaveWord = { scheduleData, word ->
+                onSaveWord(scheduleData, word)
             }
         )
     }
@@ -84,7 +84,7 @@ fun TranslationResults(
 @Composable
 private fun SuccessView(
     words: List<Word>,
-    onSaveWord: (Word) -> Unit
+    onSaveWord: (ScheduleData, Word) -> Unit
 ) {
     val modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall)
 
@@ -94,7 +94,7 @@ private fun SuccessView(
         onSaveWord = onSaveWord
     )
     Spacer(modifier = modifier)
-    Definitions(words = words)
+    Examples(words = words)
 }
 
 @Composable
@@ -122,7 +122,7 @@ private fun ContainerBox(
 @Composable
 private fun OtherTranslations(
     words: List<Word>,
-    onSaveWord: (Word) -> Unit
+    onSaveWord: (ScheduleData, Word) -> Unit
 ) {
     if (words.all { it.translations.isEmpty() }) return
 
@@ -131,8 +131,11 @@ private fun OtherTranslations(
     ConfirmationBottomSheet(
         shouldOpenBottomSheet = openConfirmationBottomSheet,
         onDismiss = { openConfirmationBottomSheet = false },
-        onConfirmClick = {
-            onSaveWord(words.first())
+        onConfirmClick = { scheduleData ->
+            onSaveWord(
+                scheduleData,
+                words.first()
+            )
             openConfirmationBottomSheet = false
         }
     )
@@ -179,10 +182,16 @@ private fun OtherTranslations(
 }
 
 @Composable
-private fun Definitions(
+private fun Examples(
     words: List<Word>
 ) {
-    if (words.all { it.translations.isEmpty() }) return
+    if (
+        words.all { word ->
+            word.translations.all { translation ->
+                translation.examples.isEmpty()
+            }
+        }
+    ) return
 
     ContainerBox {
         Text(

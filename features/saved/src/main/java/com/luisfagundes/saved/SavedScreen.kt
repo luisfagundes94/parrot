@@ -3,12 +3,12 @@
 package com.luisfagundes.saved
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -23,8 +23,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import com.luisfagundes.domain.models.Word
-import com.luisfagundes.framework.components.LoadingView
-import com.luisfagundes.framework.components.WarningView
+import com.luisfagundes.framework.compose_components.LoadingView
+import com.luisfagundes.framework.compose_components.WarningView
 import com.luisfagundes.framework.extension.showToast
 import com.luisfagundes.theme.spacing
 
@@ -69,9 +69,8 @@ fun SavedWords(
     onDeleteSavedWord: (Word) -> Unit
 ) {
     LazyColumn(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(MaterialTheme.spacing.default)
+        modifier = Modifier.fillMaxWidth(),
+        contentPadding = PaddingValues(MaterialTheme.spacing.default),
     ) {
         items(words) { word ->
             SavedWord(

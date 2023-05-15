@@ -80,6 +80,7 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":commons:ui"))
     implementation(project(":commons:util"))
+    implementation(project(":commons:provider"))
 
     // UI
     implementation(libs.navigation.compose)

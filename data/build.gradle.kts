@@ -41,7 +41,10 @@ dependencies {
     implementation(projects.domain)
     implementation(projects.commons.testing)
 
+    // Core
+    implementation(libs.core)
 
+    // Network
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
     implementation(libs.okhttp.interceptor)
@@ -61,4 +64,5 @@ dependencies {
     testImplementation(libs.junit.ext)
     testImplementation(libs.coroutines.test)
     testImplementation(libs.mockk)
+    testImplementation(libs.roboletric)
 }
