@@ -41,7 +41,7 @@ class NotificationSchedulerImpl(
         val currentTime = SystemClock.elapsedRealtime()
         val intervalHourUnit = AlarmManager.INTERVAL_HOUR
         val intervalHour = scheduleData.intervalHours
-        return currentTime + intervalHourUnit * intervalHour
+        return currentTime + (intervalHourUnit * intervalHour)
     }
 
     private fun createPendingIntent(intent: Intent) =
