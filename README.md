@@ -57,13 +57,12 @@ This project uses many of the popular libraries, plugins and tools of the androi
 
 - [Compose](https://developer.android.com/jetpack/compose)
 
-    - [Material](https://developer.android.com/jetpack/androidx/releases/compose-material) - Build Jetpack Compose UIs with ready to use Material Design Components.
+    - [Material3](https://developer.android.com/jetpack/androidx/releases/compose-material3) - Build Jetpack Compose UIs with ready to use Material Design Components.
     - [Foundation](https://developer.android.com/jetpack/androidx/releases/compose-foundation) - Write Jetpack Compose applications with ready to use building blocks and extend foundation to build your own design system pieces.
     - [UI](https://developer.android.com/jetpack/androidx/releases/compose-ui) - Fundamental components of compose UI needed to interact with the device, including layout, drawing, and input.
     - [Lifecycle-ViewModel](https://developer.android.com/jetpack/androidx/releases/lifecycle) - Perform actions in response to a change in the lifecycle status of another component, such as activities and fragments.
     - [HiltViewModel](https://dagger.dev/hilt/view-model.html) - Hilt provides a standard way to incorporate Dagger dependency injection into an Android application.
     - [Lottie](https://github.com/airbnb/lottie/blob/master/android-compose.md) - Lottie is a mobile library for Android and iOS that parses Adobe After Effects animations exported as json with Bodymovin and renders them natively on mobile!
-    - [Coil](https://coil-kt.github.io/coil/compose/) - An image loading library for Android backed by Kotlin Coroutines.
 
 - [Accompanist](https://google.github.io/accompanist)
 
@@ -84,12 +83,12 @@ This project uses many of the popular libraries, plugins and tools of the androi
 
 
 - [Dagger Hilt](https://dagger.dev/hilt/) - Dependency Injection library.
-- [Google-KSP](https://github.com/google/ksp/) - Kotlin Symbol Processing API
+- [Kapt](https://kotlinlang.org/docs/kapt.html) - Kapt compiler plugin
 - [Retrofit](https://square.github.io/retrofit/) - Type-safe http client and supports coroutines out of the box.
 - [OkHttp-Logging-Interceptor](https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor/README.md) - Logs HTTP request and response data.
 - [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) - Library Support for coroutines.
 - [Flow](https://developer.android.com/kotlin/flow) - Flows are built on top of coroutines and can provide multiple values. A flow is conceptually a stream of data that can be computed asynchronously.
-- [Material Design](https://material.io/develop/android/docs/getting-started/) - Build awesome beautiful UIs.
+- [Material Design 3](https://m3.material.io/develop/android/mdc-android) - Build awesome beautiful UIs.
 - [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) - Library Support for coroutines,provides runBlocking coroutine builder used in tests.
 - [Timber](https://github.com/JakeWharton/timber) - A logger with a small, extensible API which provides utility on top of Android's normal Log class.
 - [Gradle Kotlin DSL](https://gradle.org/kotlin/) - makes it easy to manage dependency all module that we have
@@ -97,6 +96,7 @@ This project uses many of the popular libraries, plugins and tools of the androi
 - [SplashScreen](https://developer.android.com/guide/topics/ui/splash-screen) - Android 12 adds the SplashScreen API, which enables a new app launch animation for all apps when running on a device with Android 12 or higher.
 
 - [Test](https://en.wikipedia.org/wiki/Unit_testing)
+    - [JUnit4](https://junit.org/junit4/) - JUnit is a simple framework to write repeatable tests.
     - [Mockk](https://mockk.io/) - A modern Mockk library for UnitTest.
     - [Coroutine-Test](https://github.com/Kotlin/kotlinx.coroutines/tree/master/kotlinx-coroutines-test) - Provides testing utilities for effectively testing coroutines.
 
