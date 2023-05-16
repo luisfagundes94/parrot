@@ -4,10 +4,12 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.SystemClock
 import com.luisfagundes.domain.models.NotificationData
 import com.luisfagundes.domain.models.ScheduleData
 import com.luisfagundes.domain.services.NotificationScheduler
+import timber.log.Timber
 
 class NotificationSchedulerImpl(
     private val context: Context,
@@ -19,14 +21,18 @@ class NotificationSchedulerImpl(
     ) {
         val intent = Intent(context, AlarmReceiver::class.java).apply {
             putExtra(NOTIFICATION_DATA_KEY, notificationData)
+            putExtra(SCHEDULE_DATA_KEY, scheduleData)
         }
         val pendingIntent = createPendingIntent(intent)
         val nextAlarmTime = calculateNextAlarmTime(scheduleData)
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            Timber.d("canScheduleAlarms", alarmManager.canScheduleExactAlarms())
+        }
+
         try {
-            alarmManager.setInexactRepeating(
+            alarmManager.setAndAllowWhileIdle(
                 AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                SystemClock.elapsedRealtime(),
                 nextAlarmTime,
                 pendingIntent
             )
@@ -54,6 +60,7 @@ class NotificationSchedulerImpl(
 
     companion object {
         const val NOTIFICATION_DATA_KEY = "notification_info"
+        const val SCHEDULE_DATA_KEY = "schedule_info"
         const val PENDING_INTENT_REQUEST_CODE = 1
     }
 }

@@ -12,13 +12,23 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat.getSystemService
 import com.luisfagundes.data.local.services.NotificationSchedulerImpl.Companion.NOTIFICATION_DATA_KEY
+import com.luisfagundes.data.local.services.NotificationSchedulerImpl.Companion.SCHEDULE_DATA_KEY
 import com.luisfagundes.domain.models.NotificationChannelInfo
 import com.luisfagundes.domain.models.NotificationData
+import com.luisfagundes.domain.models.ScheduleData
+import com.luisfagundes.domain.services.NotificationScheduler
 import com.luisfagundes.framework.extension.parcelable
+import javax.inject.Inject
 
 class AlarmReceiver: BroadcastReceiver() {
 
+    @Inject
+    lateinit var scheduler: NotificationScheduler
+
     override fun onReceive(context: Context, intent: Intent) {
+        val scheduleData = intent.parcelable<ScheduleData>(
+            SCHEDULE_DATA_KEY
+        ) ?: return
         val notificationData = intent.parcelable<NotificationData>(
             NOTIFICATION_DATA_KEY
         ) ?: return
@@ -31,6 +41,8 @@ class AlarmReceiver: BroadcastReceiver() {
 
         val notificationManager = NotificationManagerCompat.from(context)
         notificationManager.notify(notificationData.id, notification)
+
+        scheduler.scheduleNotification(scheduleData, notificationData)
     }
 
     private fun createNotification(
