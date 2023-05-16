@@ -7,9 +7,9 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat
 import com.luisfagundes.domain.models.NotificationChannelInfo
 import com.luisfagundes.domain.models.NotificationData
 
@@ -24,11 +24,16 @@ object PushNotificationManager {
         context: Context,
         notificationData: NotificationData,
     ) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (context.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) return
+        val notificationManager = NotificationManagerCompat.from(context)
+
+        if (ActivityCompat.checkSelfPermission(
+                context,
+                Manifest.permission.POST_NOTIFICATIONS,
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return
         }
 
-        val notificationManager = NotificationManagerCompat.from(context)
         notificationManager.notify(notificationData.id, notification)
     }
 
@@ -59,12 +64,8 @@ object PushNotificationManager {
             ).apply {
                 description = descriptionText
             }
-            val notificationManager = ContextCompat.getSystemService(
-                context,
-                NotificationManager::class.java,
-            ) as NotificationManager
-
-            notificationManager.createNotificationChannel(channel)
+            val notificationManager = context.getSystemService(NotificationManager::class.java)
+            notificationManager?.createNotificationChannel(channel)
         }
     }
 }

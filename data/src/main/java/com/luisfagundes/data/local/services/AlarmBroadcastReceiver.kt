@@ -10,6 +10,7 @@ import com.luisfagundes.data.local.utils.SCHEDULE_DATA_KEY
 import com.luisfagundes.domain.models.NotificationData
 import com.luisfagundes.domain.models.ScheduleData
 import com.luisfagundes.framework.extension.parcelable
+import timber.log.Timber
 
 class AlarmBroadcastReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
@@ -23,23 +24,27 @@ class AlarmBroadcastReceiver : BroadcastReceiver() {
                     SCHEDULE_DATA_KEY,
                 ) ?: return
 
-                val notification = PushNotificationManager.createNotification(
-                    safeContext,
-                    notificationData,
-                )
+                try {
+                    val notification = PushNotificationManager.createNotification(
+                        safeContext,
+                        notificationData,
+                    )
 
-                PushNotificationManager.notify(
-                    context = safeContext,
-                    notification = notification,
-                    notificationData = notificationData,
-                )
+                    PushNotificationManager.notify(
+                        context = safeContext,
+                        notification = notification,
+                        notificationData = notificationData,
+                    )
 
-                setAlarm(
-                    context = safeContext,
-                    notificationData = notificationData,
-                    scheduleData = scheduleData,
-                    triggerTime = calculateNextTriggerTime(scheduleData),
-                )
+                    setAlarm(
+                        context = safeContext,
+                        notificationData = notificationData,
+                        scheduleData = scheduleData,
+                        triggerTime = calculateNextTriggerTime(scheduleData),
+                    )
+                } catch (exception: Exception) {
+                    Timber.e("AlarmBroadcastReceiver", "Error handling notification", exception)
+                }
             }
         }
     }
