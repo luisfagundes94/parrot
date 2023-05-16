@@ -13,6 +13,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -30,7 +31,7 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideHttpRequestInterceptor() = HttpLoggingInterceptor { message ->
-        Log.d("OkHttp", message)
+        Timber.tag("OkHttp").d(message)
     }.apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
