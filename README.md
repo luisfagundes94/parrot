@@ -101,9 +101,10 @@ This project uses many of the popular libraries, plugins and tools of the androi
     - [Coroutine-Test](https://github.com/Kotlin/kotlinx.coroutines/tree/master/kotlinx-coroutines-test) - Provides testing utilities for effectively testing coroutines.
 
 ### Plugin
-- [Check-Dependency-Versions](https://github.com/ben-manes/gradle-versions-plugin) - make easy to determine which dependencies have updates.
+- [Check-Dependency-Versions](https://github.com/ben-manes/gradle-versions-plugin) - Check dependency updates.
 - [GradleVersionCatalog](https://docs.gradle.org/current/userguide/platforms.html) - Gradle's support for declaring and using dependencies.
 
 ### Code Analyze Tools
 - [Ktlint](https://github.com/jlleitschuh/ktlint-gradle) - A ktlint gradle plugin. Provides a convenient wrapper plugin over the ktlint project.
+- [Kftmt](https://github.com/facebook/ktfmt) - ktfmt is a program that pretty-prints (formats) Kotlin code, based on google-java-format.
 - [Spotless](https://github.com/diffplug/spotless) - It’s pretty useful in automating fixes for pretty simple (and common) formatting mistakes as in spaces, newlines, removing unnecessary imports, etc.
