@@ -57,6 +57,7 @@ version_catalog = "0.8.0"
 core = "1.6.0"
 core_ktx = "1.10.0"
 androidx-hilt = "1.1.0-alpha01"
+spotless = "6.18.0"
 byte-buddy = "1.12.18"
 icu4j = "73.1"
 
@@ -169,3 +170,4 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 ksp = "com.google.devtools.ksp:1.8.0-1.0.9"
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
