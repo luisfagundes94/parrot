@@ -5,7 +5,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.SystemClock
-import com.luisfagundes.data.local.services.NotificationService.Companion.NOTIFICATION_DATA_KEY
+import com.luisfagundes.data.local.services.NotificationManager.Companion.NOTIFICATION_DATA_KEY
 import com.luisfagundes.domain.models.NotificationData
 import com.luisfagundes.domain.models.ScheduleData
 import com.luisfagundes.domain.services.AlarmScheduler

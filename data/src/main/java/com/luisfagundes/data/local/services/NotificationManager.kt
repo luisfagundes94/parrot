@@ -13,7 +13,7 @@ import androidx.core.content.ContextCompat
 import com.luisfagundes.domain.models.NotificationChannelInfo
 import com.luisfagundes.domain.models.NotificationData
 
-class NotificationService {
+class NotificationManager {
 
     fun notify(
         notification: Notification,

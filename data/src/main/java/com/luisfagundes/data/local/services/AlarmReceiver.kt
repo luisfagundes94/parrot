@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import com.luisfagundes.data.local.services.AlarmSchedulerImpl.Companion.SCHEDULE_DATA_KEY
-import com.luisfagundes.data.local.services.NotificationService.Companion.NOTIFICATION_DATA_KEY
+import com.luisfagundes.data.local.services.NotificationManager.Companion.NOTIFICATION_DATA_KEY
 import com.luisfagundes.domain.models.NotificationData
 import com.luisfagundes.domain.models.ScheduleData
 import com.luisfagundes.domain.services.AlarmScheduler
@@ -17,7 +17,7 @@ class AlarmReceiver : BroadcastReceiver() {
     lateinit var scheduler: AlarmScheduler
 
     @Inject
-    lateinit var notificationService: NotificationService
+    lateinit var notificationManager: NotificationManager
 
     override fun onReceive(context: Context, intent: Intent) {
         val scheduleData = intent.parcelable<ScheduleData>(
@@ -27,8 +27,8 @@ class AlarmReceiver : BroadcastReceiver() {
             NOTIFICATION_DATA_KEY,
         ) ?: return
 
-        val notification = notificationService.createNotification(context, notificationData)
-        notificationService.notify(
+        val notification = notificationManager.createNotification(context, notificationData)
+        notificationManager.notify(
             context = context,
             notification = notification,
             notificationData = notificationData,

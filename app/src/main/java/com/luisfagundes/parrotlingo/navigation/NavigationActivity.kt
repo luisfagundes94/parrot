@@ -8,7 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.luisfagundes.data.local.services.NotificationService
+import com.luisfagundes.data.local.services.NotificationManager
 import com.luisfagundes.domain.models.NotificationChannelInfo
 import com.luisfagundes.parrotlingo.R
 import com.luisfagundes.parrotlingo.navigation.graphs.RootNavGraph
@@ -20,7 +20,7 @@ class NavigationActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        NotificationService.createNotificationChannel(
+        NotificationManager.createNotificationChannel(
             notificationChannelInfo = NotificationChannelInfo(
                 id = "1",
                 name = getString(R.string.channel_name),

@@ -3,7 +3,7 @@ package com.luisfagundes.data.local.di
 import android.app.AlarmManager
 import android.content.Context
 import com.luisfagundes.data.local.services.AlarmSchedulerImpl
-import com.luisfagundes.data.local.services.NotificationService
+import com.luisfagundes.data.local.services.NotificationManager
 import com.luisfagundes.domain.services.AlarmScheduler
 import dagger.Module
 import dagger.Provides
@@ -18,7 +18,7 @@ object ServiceModule {
 
     @Singleton
     @Provides
-    fun provideNotificationService() = NotificationService()
+    fun provideNotificationService() = NotificationManager()
 
     @Singleton
     @Provides
