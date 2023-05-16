@@ -7,16 +7,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.palette.graphics.Palette
 
 fun calculateDominantColor(
-  drawable: Drawable,
-  onFinish: (Color) -> Unit,
+    drawable: Drawable,
+    onFinish: (Color) -> Unit,
 ) {
-  val bitmap = (drawable as BitmapDrawable).bitmap.copy(
-    Bitmap.Config.ARGB_8888,
-    true,
-  )
-  Palette.from(bitmap).generate { palette ->
-    palette?.dominantSwatch?.rgb?.let { colorValue ->
-      onFinish(Color(colorValue))
+    val bitmap = (drawable as BitmapDrawable).bitmap.copy(
+        Bitmap.Config.ARGB_8888,
+        true,
+    )
+    Palette.from(bitmap).generate { palette ->
+        palette?.dominantSwatch?.rgb?.let { colorValue ->
+            onFinish(Color(colorValue))
+        }
     }
-  }
 }

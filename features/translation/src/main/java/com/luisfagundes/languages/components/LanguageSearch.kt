@@ -16,30 +16,30 @@ import com.luisfagundes.languages.LanguageListEvent
 
 @Composable
 fun LanguageSearch(
-  modifier: Modifier = Modifier,
-  searchText: String,
-  onEvent: (LanguageListEvent) -> Unit,
+    modifier: Modifier = Modifier,
+    searchText: String,
+    onEvent: (LanguageListEvent) -> Unit,
 ) {
-  OutlinedTextField(
-    modifier = modifier.fillMaxWidth(),
-    value = searchText,
-    onValueChange = { newText ->
-      onEvent(LanguageListEvent.OnSearchTextChanged(newText))
-    },
-    placeholder = {
-      Text(
-        text = "Search",
-        fontStyle = FontStyle.Italic,
-      )
-    },
-    leadingIcon = {
-      Icon(Icons.Filled.Search, contentDescription = null)
-    },
-    colors = TextFieldDefaults.colors(
-      cursorColor = MaterialTheme.colorScheme.onSurface,
-      focusedTextColor = MaterialTheme.colorScheme.onSurface,
-      focusedContainerColor = MaterialTheme.colorScheme.surface,
-      unfocusedContainerColor = Color.Transparent,
-    ),
-  )
+    OutlinedTextField(
+        modifier = modifier.fillMaxWidth(),
+        value = searchText,
+        onValueChange = { newText ->
+            onEvent(LanguageListEvent.OnSearchTextChanged(newText))
+        },
+        placeholder = {
+            Text(
+                text = "Search",
+                fontStyle = FontStyle.Italic,
+            )
+        },
+        leadingIcon = {
+            Icon(Icons.Filled.Search, contentDescription = null)
+        },
+        colors = TextFieldDefaults.colors(
+            cursorColor = MaterialTheme.colorScheme.onSurface,
+            focusedTextColor = MaterialTheme.colorScheme.onSurface,
+            focusedContainerColor = MaterialTheme.colorScheme.surface,
+            unfocusedContainerColor = Color.Transparent,
+        ),
+    )
 }

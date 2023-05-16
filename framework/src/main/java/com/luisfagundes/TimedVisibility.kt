@@ -16,16 +16,16 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun Delayed(
-  modifier: Modifier = Modifier,
-  delayMillis: Long = 200,
-  content: @Composable () -> Unit,
+    modifier: Modifier = Modifier,
+    delayMillis: Long = 200,
+    content: @Composable () -> Unit,
 ) {
-  TimedVisibility(
-    delayMillis = delayMillis,
-    visibility = false,
-    modifier = modifier,
-    content = content,
-  )
+    TimedVisibility(
+        delayMillis = delayMillis,
+        visibility = false,
+        modifier = modifier,
+        content = content,
+    )
 }
 
 /**
@@ -33,30 +33,30 @@ fun Delayed(
  */
 @Composable
 fun TimedVisibility(
-  modifier: Modifier = Modifier,
-  delayMillis: Long = 4000,
-  visibility: Boolean = true,
-  content: @Composable () -> Unit,
+    modifier: Modifier = Modifier,
+    delayMillis: Long = 4000,
+    visibility: Boolean = true,
+    content: @Composable () -> Unit,
 ) {
-  var visible by remember { mutableStateOf(visibility) }
-  val coroutine = rememberCoroutineScope()
+    var visible by remember { mutableStateOf(visibility) }
+    val coroutine = rememberCoroutineScope()
 
-  DisposableEffect(Unit) {
-    val job = coroutine.launch {
-      delay(delayMillis)
-      visible = !visible
-    }
+    DisposableEffect(Unit) {
+        val job = coroutine.launch {
+            delay(delayMillis)
+            visible = !visible
+        }
 
-    onDispose {
-      job.cancel()
+        onDispose {
+            job.cancel()
+        }
     }
-  }
-  AnimatedVisibility(
-    visible = visible,
-    modifier = modifier,
-    enter = fadeIn(),
-    exit = fadeOut(),
-  ) {
-    content()
-  }
+    AnimatedVisibility(
+        visible = visible,
+        modifier = modifier,
+        enter = fadeIn(),
+        exit = fadeOut(),
+    ) {
+        content()
+    }
 }

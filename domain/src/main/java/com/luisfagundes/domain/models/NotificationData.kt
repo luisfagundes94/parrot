@@ -6,9 +6,9 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class NotificationData(
-  val id: Int,
-  val smallIconId: Int,
-  val largeIcon: Bitmap? = null,
-  val title: String,
-  val content: String,
+    val id: Int,
+    val smallIconId: Int,
+    val largeIcon: Bitmap? = null,
+    val title: String,
+    val content: String,
 ) : Parcelable

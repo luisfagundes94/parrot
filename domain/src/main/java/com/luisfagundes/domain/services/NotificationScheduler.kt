@@ -4,8 +4,8 @@ import com.luisfagundes.domain.models.NotificationData
 import com.luisfagundes.domain.models.ScheduleData
 
 interface NotificationScheduler {
-  fun scheduleNotification(
-    scheduleData: ScheduleData,
-    notificationData: NotificationData,
-  )
+    fun scheduleNotification(
+        scheduleData: ScheduleData,
+        notificationData: NotificationData,
+    )
 }

@@ -13,25 +13,25 @@ import org.junit.Test
 
 class ListLanguagesTest {
 
-  @get:Rule
-  val coroutineRule = TestCoroutineRule()
+    @get:Rule
+    val coroutineRule = TestCoroutineRule()
 
-  private val repository: LanguageRepository = mockk()
-  private lateinit var useCase: ListLanguages
+    private val repository: LanguageRepository = mockk()
+    private lateinit var useCase: ListLanguages
 
-  @Before
-  fun setup() {
-    useCase = ListLanguages(repository)
-  }
+    @Before
+    fun setup() {
+        useCase = ListLanguages(repository)
+    }
 
-  @OptIn(ExperimentalCoroutinesApi::class)
-  @Test
-  fun `invoke calls repository listLanguages`() = coroutineRule.runTest {
-    val languages = LanguageFactory.languages
-    coEvery { repository.listLanguages() } returns languages
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun `invoke calls repository listLanguages`() = coroutineRule.runTest {
+        val languages = LanguageFactory.languages
+        coEvery { repository.listLanguages() } returns languages
 
-    useCase()
+        useCase()
 
-    coVerify(exactly = 1) { repository.listLanguages() }
-  }
+        coVerify(exactly = 1) { repository.listLanguages() }
+    }
 }

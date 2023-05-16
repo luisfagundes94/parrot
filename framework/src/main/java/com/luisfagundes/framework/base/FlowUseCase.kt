@@ -7,11 +7,11 @@ import kotlinx.coroutines.flow.flow
 
 abstract class FlowUseCase<in P, R> {
 
-  protected abstract suspend fun execute(params: P): DataState<R>
+    protected abstract suspend fun execute(params: P): DataState<R>
 
-  operator fun invoke(params: P): Flow<DataState<R>> = flow {
-    emit(execute(params))
-  }.catch { throwable ->
-    emit(DataState.Error(throwable))
-  }
+    operator fun invoke(params: P): Flow<DataState<R>> = flow {
+        emit(execute(params))
+    }.catch { throwable ->
+        emit(DataState.Error(throwable))
+    }
 }

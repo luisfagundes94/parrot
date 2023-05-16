@@ -20,59 +20,59 @@ import com.luisfagundes.translation.R
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun NotificationPermission() {
-  if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return
 
-  var shouldOpenDeniedDialog by remember { mutableStateOf(false) }
-  val permissionState = rememberPermissionState(
-    android.Manifest.permission.POST_NOTIFICATIONS,
-  )
+    var shouldOpenDeniedDialog by remember { mutableStateOf(false) }
+    val permissionState = rememberPermissionState(
+        android.Manifest.permission.POST_NOTIFICATIONS,
+    )
 
-  LaunchedEffect(key1 = permissionState.status) {
-    when (val status = permissionState.status) {
-      is PermissionStatus.Granted -> {
-        doNothing()
-      }
+    LaunchedEffect(key1 = permissionState.status) {
+        when (val status = permissionState.status) {
+            is PermissionStatus.Granted -> {
+                doNothing()
+            }
 
-      is PermissionStatus.Denied -> {
-        if (status.shouldShowRationale) {
-          shouldOpenDeniedDialog = true
-        } else {
-          permissionState.launchPermissionRequest()
+            is PermissionStatus.Denied -> {
+                if (status.shouldShowRationale) {
+                    shouldOpenDeniedDialog = true
+                } else {
+                    permissionState.launchPermissionRequest()
+                }
+            }
         }
-      }
     }
-  }
 
-  if (shouldOpenDeniedDialog) {
-    PermissionDeniedDialog {
-      shouldOpenDeniedDialog = it
+    if (shouldOpenDeniedDialog) {
+        PermissionDeniedDialog {
+            shouldOpenDeniedDialog = it
+        }
     }
-  }
 }
 
 @Composable
 private fun PermissionDeniedDialog(
-  shouldOpenDialog: (Boolean) -> Unit,
+    shouldOpenDialog: (Boolean) -> Unit,
 ) {
-  val textToShow = stringResource(R.string.notification_request_text)
+    val textToShow = stringResource(R.string.notification_request_text)
 
-  AlertDialog(
-    onDismissRequest = { shouldOpenDialog(false) },
-    confirmButton = {
-      TextButton(
-        onClick = { shouldOpenDialog(false) },
-      ) {
-        Text("Confirm")
-      }
-    },
-    dismissButton = {
-      TextButton(
-        onClick = { shouldOpenDialog(false) },
-      ) {
-        Text("Dismiss")
-      }
-    },
-    title = { Text("Notification Permission") },
-    text = { Text(textToShow) },
-  )
+    AlertDialog(
+        onDismissRequest = { shouldOpenDialog(false) },
+        confirmButton = {
+            TextButton(
+                onClick = { shouldOpenDialog(false) },
+            ) {
+                Text("Confirm")
+            }
+        },
+        dismissButton = {
+            TextButton(
+                onClick = { shouldOpenDialog(false) },
+            ) {
+                Text("Dismiss")
+            }
+        },
+        title = { Text("Notification Permission") },
+        text = { Text(textToShow) },
+    )
 }

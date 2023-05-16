@@ -11,5 +11,5 @@ fun String.Companion.empty() = EMPTY_STRING
 fun String.formatDate() = split("-").reversed().joinToString("/")
 
 fun String.capitalize() = replaceFirstChar {
-  if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+    if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
 }

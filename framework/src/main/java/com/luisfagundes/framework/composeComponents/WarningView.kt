@@ -22,50 +22,50 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 
 @Composable
 fun WarningView(
-  modifier: Modifier = Modifier,
-  title: String,
-  bodyMessage: String = "",
-  animationId: Int,
+    modifier: Modifier = Modifier,
+    title: String,
+    bodyMessage: String = "",
+    animationId: Int,
 ) {
-  Column(
-    modifier = modifier,
-    verticalArrangement = Arrangement.Center,
-    horizontalAlignment = Alignment.CenterHorizontally,
-  ) {
-    LottieErrorAnimation(animationId)
-    Text(
-      text = title,
-      textAlign = TextAlign.Center,
-      fontWeight = FontWeight.Bold,
-    )
-    if (bodyMessage.isNotEmpty()) {
-      Spacer(Modifier.height(16.dp))
-      Text(
-        text = bodyMessage,
-        textAlign = TextAlign.Center,
-      )
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        LottieErrorAnimation(animationId)
+        Text(
+            text = title,
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.Bold,
+        )
+        if (bodyMessage.isNotEmpty()) {
+            Spacer(Modifier.height(16.dp))
+            Text(
+                text = bodyMessage,
+                textAlign = TextAlign.Center,
+            )
+        }
     }
-  }
 }
 
 @Composable
 private fun LottieErrorAnimation(animationId: Int) {
-  val composition by rememberLottieComposition(
-    LottieCompositionSpec.RawRes(animationId),
-  )
-  val progress by animateLottieCompositionAsState(
-    composition = composition,
-    iterations = LottieConstants.IterateForever,
-    isPlaying = true,
-  )
+    val composition by rememberLottieComposition(
+        LottieCompositionSpec.RawRes(animationId),
+    )
+    val progress by animateLottieCompositionAsState(
+        composition = composition,
+        iterations = LottieConstants.IterateForever,
+        isPlaying = true,
+    )
 
-  LottieAnimation(
-    enableMergePaths = true,
-    outlineMasksAndMattes = true,
-    alignment = Alignment.Center,
-    contentScale = ContentScale.Crop,
-    modifier = Modifier.size(150.dp),
-    composition = composition,
-    progress = { progress },
-  )
+    LottieAnimation(
+        enableMergePaths = true,
+        outlineMasksAndMattes = true,
+        alignment = Alignment.Center,
+        contentScale = ContentScale.Crop,
+        modifier = Modifier.size(150.dp),
+        composition = composition,
+        progress = { progress },
+    )
 }

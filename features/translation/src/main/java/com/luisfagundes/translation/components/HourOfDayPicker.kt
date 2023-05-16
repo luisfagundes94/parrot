@@ -27,53 +27,53 @@ import java.util.Calendar
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HourOfDayPicker(
-  onHourSelected: (Int) -> Unit,
+    onHourSelected: (Int) -> Unit,
 ) {
-  var selectedHour by remember {
-    mutableStateOf(Calendar.getInstance().get(Calendar.HOUR_OF_DAY))
-  }
-  val state = rememberTimePickerState()
-  var showTimePicker by remember { mutableStateOf(false) }
-
-  Row(
-    verticalAlignment = Alignment.CenterVertically,
-  ) {
-    TextButton(
-      modifier = Modifier
-        .background(
-          shape = MaterialTheme.shapes.medium,
-          color = MaterialTheme.colorScheme.surface,
-        ),
-      onClick = { showTimePicker = !showTimePicker },
-    ) {
-      Text(
-        text = stringResource(R.string.select_time),
-        style = MaterialTheme.typography.titleMedium,
-        color = MaterialTheme.colorScheme.onSurface,
-      )
+    var selectedHour by remember {
+        mutableStateOf(Calendar.getInstance().get(Calendar.HOUR_OF_DAY))
     }
-    Spacer(Modifier.width(MaterialTheme.spacing.small))
-    Text(
-      text = selectedHour.toString() + "h",
-      style = MaterialTheme.typography.titleMedium,
-      color = MaterialTheme.colorScheme.onSurface,
-    )
-  }
+    val state = rememberTimePickerState()
+    var showTimePicker by remember { mutableStateOf(false) }
 
-  if (showTimePicker) {
-    TimePickerDialog(
-      title = stringResource(R.string.select_time),
-      onCancel = { showTimePicker = false },
-      onConfirm = {
-        selectedHour = state.hour
-        showTimePicker = false
-        onHourSelected(state.hour)
-      },
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
     ) {
-      TimeInput(
-        state = state,
-      )
+        TextButton(
+            modifier = Modifier
+                .background(
+                    shape = MaterialTheme.shapes.medium,
+                    color = MaterialTheme.colorScheme.surface,
+                ),
+            onClick = { showTimePicker = !showTimePicker },
+        ) {
+            Text(
+                text = stringResource(R.string.select_time),
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurface,
+            )
+        }
+        Spacer(Modifier.width(MaterialTheme.spacing.small))
+        Text(
+            text = selectedHour.toString() + "h",
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onSurface,
+        )
     }
-  }
-  Spacer(Modifier.height(MaterialTheme.spacing.small))
+
+    if (showTimePicker) {
+        TimePickerDialog(
+            title = stringResource(R.string.select_time),
+            onCancel = { showTimePicker = false },
+            onConfirm = {
+                selectedHour = state.hour
+                showTimePicker = false
+                onHourSelected(state.hour)
+            },
+        ) {
+            TimeInput(
+                state = state,
+            )
+        }
+    }
+    Spacer(Modifier.height(MaterialTheme.spacing.small))
 }

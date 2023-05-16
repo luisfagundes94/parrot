@@ -14,22 +14,22 @@ import androidx.compose.runtime.Composable
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ParrotTopBar(
-  name: String,
-  onBackPressed: () -> Unit,
-  content: @Composable (PaddingValues) -> Unit,
+    name: String,
+    onBackPressed: () -> Unit,
+    content: @Composable (PaddingValues) -> Unit,
 ) {
-  Scaffold(
-    topBar = {
-      TopAppBar(
-        title = { Text(name) },
-        navigationIcon = {
-          IconButton(onClick = onBackPressed) {
-            Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
-          }
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(name) },
+                navigationIcon = {
+                    IconButton(onClick = onBackPressed) {
+                        Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                },
+            )
         },
-      )
-    },
-  ) { innerPadding ->
-    content(innerPadding)
-  }
+    ) { innerPadding ->
+        content(innerPadding)
+    }
 }

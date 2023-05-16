@@ -8,20 +8,20 @@ import com.luisfagundes.parrotlingo.navigation.MainScreen
 
 @Composable
 fun RootNavGraph(
-  navHostController: NavHostController,
+    navHostController: NavHostController,
 ) {
-  NavHost(
-    navController = navHostController,
-    route = Graph.ROOT,
-    startDestination = Graph.MAIN,
-  ) {
-    composable(route = Graph.MAIN) {
-      MainScreen()
+    NavHost(
+        navController = navHostController,
+        route = Graph.ROOT,
+        startDestination = Graph.MAIN,
+    ) {
+        composable(route = Graph.MAIN) {
+            MainScreen()
+        }
     }
-  }
 }
 
 object Graph {
-  const val ROOT = "root"
-  const val MAIN = "main"
+    const val ROOT = "root"
+    const val MAIN = "main"
 }

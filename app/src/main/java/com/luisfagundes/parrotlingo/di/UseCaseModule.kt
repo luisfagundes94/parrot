@@ -18,31 +18,31 @@ import dagger.hilt.android.components.ViewModelComponent
 @InstallIn(ViewModelComponent::class)
 class UseCaseModule {
 
-  @Provides
-  fun provideDeleteWord(repository: WordRepository) =
-    DeleteWord(repository)
+    @Provides
+    fun provideDeleteWord(repository: WordRepository) =
+        DeleteWord(repository)
 
-  @Provides
-  fun provideGetAllSavedWords(repository: WordRepository) =
-    GetAllSavedWords(repository)
+    @Provides
+    fun provideGetAllSavedWords(repository: WordRepository) =
+        GetAllSavedWords(repository)
 
-  @Provides
-  fun provideSaveWord(repository: WordRepository) =
-    SaveWord(repository)
+    @Provides
+    fun provideSaveWord(repository: WordRepository) =
+        SaveWord(repository)
 
-  @Provides
-  fun provideUpdateLanguage(repository: LanguageRepository) =
-    UpdateLanguage(repository)
+    @Provides
+    fun provideUpdateLanguage(repository: LanguageRepository) =
+        UpdateLanguage(repository)
 
-  @Provides
-  fun provideLanguagePair(repository: LanguageRepository) =
-    GetLanguagePair(repository)
+    @Provides
+    fun provideLanguagePair(repository: LanguageRepository) =
+        GetLanguagePair(repository)
 
-  @Provides
-  fun provideGetWordTranslations(repository: WordRepository) =
-    GetWordTranslations(repository)
+    @Provides
+    fun provideGetWordTranslations(repository: WordRepository) =
+        GetWordTranslations(repository)
 
-  @Provides
-  fun provideLanguageList(repository: LanguageRepository) =
-    ListLanguages(repository)
+    @Provides
+    fun provideLanguageList(repository: LanguageRepository) =
+        ListLanguages(repository)
 }

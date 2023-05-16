@@ -14,24 +14,24 @@ import com.luisfagundes.Delayed
 
 @Composable
 fun LoadingView(modifier: Modifier = Modifier, delayMillis: Long = 100L) {
-  Delayed(delayMillis = delayMillis) {
-    Box(
-      contentAlignment = Alignment.Center,
-      modifier = when (modifier == Modifier) {
-        true -> Modifier.fillMaxSize()
-        false -> modifier
-      },
-    ) {
-      ProgressIndicator()
+    Delayed(delayMillis = delayMillis) {
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = when (modifier == Modifier) {
+                true -> Modifier.fillMaxSize()
+                false -> modifier
+            },
+        ) {
+            ProgressIndicator()
+        }
     }
-  }
 }
 
 @Composable
 fun ProgressIndicator(
-  modifier: Modifier = Modifier,
-  strokeWidth: Dp = ProgressIndicatorDefaults.CircularStrokeWidth,
-  color: Color = MaterialTheme.colorScheme.secondary,
+    modifier: Modifier = Modifier,
+    strokeWidth: Dp = ProgressIndicatorDefaults.CircularStrokeWidth,
+    color: Color = MaterialTheme.colorScheme.secondary,
 ) {
-  CircularProgressIndicator(modifier, color, strokeWidth)
+    CircularProgressIndicator(modifier, color, strokeWidth)
 }

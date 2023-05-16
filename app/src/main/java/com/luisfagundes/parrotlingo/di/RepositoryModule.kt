@@ -18,21 +18,21 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 @InstallIn(ViewModelComponent::class)
 object RepositoryModule {
 
-  @Provides
-  fun provideCountryRepository(
-    @ApplicationContext appContext: Context,
-    dataStore: LanguageDataStore,
-  ): LanguageRepository = LanguageRepositoryImpl(
-    appContext = appContext,
-    languageDataStore = dataStore,
-  )
+    @Provides
+    fun provideCountryRepository(
+        @ApplicationContext appContext: Context,
+        dataStore: LanguageDataStore,
+    ): LanguageRepository = LanguageRepositoryImpl(
+        appContext = appContext,
+        languageDataStore = dataStore,
+    )
 
-  @Provides
-  fun provideWordRepository(
-    apiService: LingueeApiService,
-    parrotDatabase: ParrotDatabase,
-  ): WordRepository = WordRepositoryImpl(
-    lingueeApiService = apiService,
-    database = parrotDatabase,
-  )
+    @Provides
+    fun provideWordRepository(
+        apiService: LingueeApiService,
+        parrotDatabase: ParrotDatabase,
+    ): WordRepository = WordRepositoryImpl(
+        lingueeApiService = apiService,
+        database = parrotDatabase,
+    )
 }

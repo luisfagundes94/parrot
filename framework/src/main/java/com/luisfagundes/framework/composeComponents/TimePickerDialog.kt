@@ -24,56 +24,56 @@ import com.luisfagundes.framework.R
 
 @Composable
 fun TimePickerDialog(
-  title: String = "Select Time",
-  onCancel: () -> Unit,
-  onConfirm: () -> Unit,
-  toggle: @Composable () -> Unit = {},
-  content: @Composable () -> Unit,
+    title: String = "Select Time",
+    onCancel: () -> Unit,
+    onConfirm: () -> Unit,
+    toggle: @Composable () -> Unit = {},
+    content: @Composable () -> Unit,
 ) {
-  Dialog(
-    onDismissRequest = onCancel,
-    properties = DialogProperties(
-      usePlatformDefaultWidth = false,
-    ),
-  ) {
-    Surface(
-      shape = MaterialTheme.shapes.extraLarge,
-      tonalElevation = 6.dp,
-      modifier = Modifier
-        .width(IntrinsicSize.Min)
-        .height(IntrinsicSize.Min)
-        .background(
-          shape = MaterialTheme.shapes.extraLarge,
-          color = MaterialTheme.colorScheme.surface,
+    Dialog(
+        onDismissRequest = onCancel,
+        properties = DialogProperties(
+            usePlatformDefaultWidth = false,
         ),
     ) {
-      toggle()
-      Column(
-        modifier = Modifier.padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-      ) {
-        Text(
-          modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 20.dp),
-          text = title,
-          style = MaterialTheme.typography.labelMedium,
-        )
-        content()
-        Row(
-          modifier = Modifier
-            .height(40.dp)
-            .fillMaxWidth(),
+        Surface(
+            shape = MaterialTheme.shapes.extraLarge,
+            tonalElevation = 6.dp,
+            modifier = Modifier
+                .width(IntrinsicSize.Min)
+                .height(IntrinsicSize.Min)
+                .background(
+                    shape = MaterialTheme.shapes.extraLarge,
+                    color = MaterialTheme.colorScheme.surface,
+                ),
         ) {
-          Spacer(modifier = Modifier.weight(1f))
-          TextButton(
-            onClick = onCancel,
-          ) { Text(stringResource(R.string.btn_dialog_cancel)) }
-          TextButton(
-            onClick = onConfirm,
-          ) { Text(stringResource(R.string.btn_dialog_confirm)) }
+            toggle()
+            Column(
+                modifier = Modifier.padding(24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 20.dp),
+                    text = title,
+                    style = MaterialTheme.typography.labelMedium,
+                )
+                content()
+                Row(
+                    modifier = Modifier
+                        .height(40.dp)
+                        .fillMaxWidth(),
+                ) {
+                    Spacer(modifier = Modifier.weight(1f))
+                    TextButton(
+                        onClick = onCancel,
+                    ) { Text(stringResource(R.string.btn_dialog_cancel)) }
+                    TextButton(
+                        onClick = onConfirm,
+                    ) { Text(stringResource(R.string.btn_dialog_confirm)) }
+                }
+            }
         }
-      }
     }
-  }
 }

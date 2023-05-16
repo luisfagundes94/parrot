@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 @ViewModelScoped
 class GetAllSavedWords @Inject constructor(
-  private val repository: WordRepository,
+    private val repository: WordRepository,
 ) {
-  suspend operator fun invoke() = repository.getAllSavedWords()
+    suspend operator fun invoke() = repository.getAllSavedWords()
 }

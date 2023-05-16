@@ -26,47 +26,47 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ConfirmationBottomSheet(
-  shouldOpenBottomSheet: Boolean,
-  onDismiss: () -> Unit,
-  onConfirmClick: (ScheduleData) -> Unit,
+    shouldOpenBottomSheet: Boolean,
+    onDismiss: () -> Unit,
+    onConfirmClick: (ScheduleData) -> Unit,
 ) {
-  val scope = rememberCoroutineScope()
-  val bottomSheetState = rememberModalBottomSheetState(
-    skipPartiallyExpanded = false,
-  )
-  var scheduleData by remember { mutableStateOf(ScheduleData()) }
+    val scope = rememberCoroutineScope()
+    val bottomSheetState = rememberModalBottomSheetState(
+        skipPartiallyExpanded = false,
+    )
+    var scheduleData by remember { mutableStateOf(ScheduleData()) }
 
-  if (shouldOpenBottomSheet) {
-    ModalBottomSheet(
-      onDismissRequest = {
-        scope.launch {
-          bottomSheetState.hide()
-          onDismiss()
-        }
-      },
-      sheetState = bottomSheetState,
-    ) {
-      Column(
-        modifier = Modifier
-          .fillMaxWidth()
-          .padding(MaterialTheme.spacing.default),
-      ) {
-        Text(
-          text = stringResource(R.string.title_reminder),
-          style = MaterialTheme.typography.titleLarge,
-        )
-        Spacer(Modifier.height(MaterialTheme.spacing.small))
-        EveryXHoursChips(
-          onSelectedOption = { everyHour ->
-            scope.launch {
-              bottomSheetState.hide()
-              onConfirmClick(
-                scheduleData.copy(intervalHours = everyHour),
-              )
+    if (shouldOpenBottomSheet) {
+        ModalBottomSheet(
+            onDismissRequest = {
+                scope.launch {
+                    bottomSheetState.hide()
+                    onDismiss()
+                }
+            },
+            sheetState = bottomSheetState,
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(MaterialTheme.spacing.default),
+            ) {
+                Text(
+                    text = stringResource(R.string.title_reminder),
+                    style = MaterialTheme.typography.titleLarge,
+                )
+                Spacer(Modifier.height(MaterialTheme.spacing.small))
+                EveryXHoursChips(
+                    onSelectedOption = { everyHour ->
+                        scope.launch {
+                            bottomSheetState.hide()
+                            onConfirmClick(
+                                scheduleData.copy(intervalHours = everyHour),
+                            )
+                        }
+                    },
+                )
             }
-          },
-        )
-      }
+        }
     }
-  }
 }

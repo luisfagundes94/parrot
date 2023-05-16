@@ -6,10 +6,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "word")
 data class WordEntity(
-  @PrimaryKey val uid: String,
-  @ColumnInfo("audio_links") val audioLinks: List<AudioLinkEntity>,
-  @ColumnInfo("featured") val featured: Boolean,
-  @ColumnInfo("type") val type: String,
-  @ColumnInfo("text") val text: String,
-  @ColumnInfo("translations") val translations: List<TranslationEntity>,
+    @PrimaryKey val uid: String,
+    @ColumnInfo("audio_links") val audioLinks: List<AudioLinkEntity>,
+    @ColumnInfo("featured") val featured: Boolean,
+    @ColumnInfo("type") val type: String,
+    @ColumnInfo("text") val text: String,
+    @ColumnInfo("translations") val translations: List<TranslationEntity>,
 )

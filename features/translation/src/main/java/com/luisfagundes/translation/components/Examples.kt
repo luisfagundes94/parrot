@@ -12,17 +12,17 @@ import com.luisfagundes.theme.spacing
 
 @Composable
 fun Examples(examples: List<Example>) {
-  Spacer(
-    modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall),
-  )
-  examples.forEach { example ->
-    Text(text = example.destinationLanguage)
     Spacer(
-      modifier = Modifier.padding(vertical = MaterialTheme.spacing.extraSmall),
+        modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall),
     )
-    Text(
-      text = "\"${example.sourceLanguage}\"",
-      fontStyle = FontStyle.Italic,
-    )
-  }
+    examples.forEach { example ->
+        Text(text = example.destinationLanguage)
+        Spacer(
+            modifier = Modifier.padding(vertical = MaterialTheme.spacing.extraSmall),
+        )
+        Text(
+            text = "\"${example.sourceLanguage}\"",
+            fontStyle = FontStyle.Italic,
+        )
+    }
 }

@@ -5,14 +5,14 @@ import androidx.compose.ui.graphics.Color
 
 @Composable
 fun getSurfaceContainerLowColor(colorScheme: ColorScheme): Color {
-  return colorScheme.onSurface.copy(
-    alpha = if (isSystemInDarkTheme()) 0.12f else 0.04f,
-  )
+    return colorScheme.onSurface.copy(
+        alpha = if (isSystemInDarkTheme()) 0.12f else 0.04f,
+    )
 }
 
 @Composable
 fun getSurfaceHighEmphasis(colorScheme: ColorScheme): Color {
-  return colorScheme.onSurface.copy(
-    alpha = if (isSystemInDarkTheme()) 1f else 0.87f,
-  )
+    return colorScheme.onSurface.copy(
+        alpha = if (isSystemInDarkTheme()) 1f else 0.87f,
+    )
 }

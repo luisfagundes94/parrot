@@ -25,150 +25,150 @@ import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class TranslationViewModelTest {
-  @get:Rule
-  val coroutineRule = TestCoroutineRule()
+    @get:Rule
+    val coroutineRule = TestCoroutineRule()
 
-  private val getWordTranslations: GetWordTranslations = mockk()
-  private val getLanguagePair: GetLanguagePair = mockk()
-  private val saveWord: SaveWord = mockk()
-  private val scheduleNotification: ScheduleNotification = mockk()
-  private val appProvider: ResourceProvider = mockk()
+    private val getWordTranslations: GetWordTranslations = mockk()
+    private val getLanguagePair: GetLanguagePair = mockk()
+    private val saveWord: SaveWord = mockk()
+    private val scheduleNotification: ScheduleNotification = mockk()
+    private val appProvider: ResourceProvider = mockk()
 
-  private val languagePair = Pair(
-    LanguageFactory.languages.first(),
-    LanguageFactory.languages.last(),
-  )
-
-  private lateinit var viewModel: TranslationViewModel
-
-  @Before
-  fun setUp() {
-    viewModel = TranslationViewModel(
-      getWordTranslations = getWordTranslations,
-      getLanguagePair = getLanguagePair,
-      saveWord = saveWord,
-      scheduleNotification = scheduleNotification,
-      appProvider = appProvider,
-    )
-  }
-
-  @Test
-  fun `onEvent Translate should call GetWordTranslations`() = coroutineRule.runTest {
-    val text = "overload"
-
-    val params = createTranslationParams(text, languagePair)
-    val translatedWords = WordFactory.words
-    val data = DataState.Success(translatedWords)
-
-    coEvery { getLanguagePair() } returns languagePair
-    coEvery { getWordTranslations(params) } returns data
-
-    viewModel.onEvent(
-      TranslationEvent.Translate(text),
+    private val languagePair = Pair(
+        LanguageFactory.languages.first(),
+        LanguageFactory.languages.last(),
     )
 
-    coVerify(exactly = 1) { getWordTranslations(params) }
-  }
+    private lateinit var viewModel: TranslationViewModel
 
-  @Test
-  fun `onEvent Translate SHOULD not call translation WHEN text length is less than 2`() = coroutineRule.runTest {
-    val text = "a"
+    @Before
+    fun setUp() {
+        viewModel = TranslationViewModel(
+            getWordTranslations = getWordTranslations,
+            getLanguagePair = getLanguagePair,
+            saveWord = saveWord,
+            scheduleNotification = scheduleNotification,
+            appProvider = appProvider,
+        )
+    }
 
-    val params = createTranslationParams(text, languagePair)
-    val data = DataState.Empty
+    @Test
+    fun `onEvent Translate should call GetWordTranslations`() = coroutineRule.runTest {
+        val text = "overload"
 
-    coEvery { getLanguagePair() } returns languagePair
-    coEvery { getWordTranslations(params) } returns data
+        val params = createTranslationParams(text, languagePair)
+        val translatedWords = WordFactory.words
+        val data = DataState.Success(translatedWords)
 
-    viewModel.onEvent(
-      TranslationEvent.Translate(text),
-    )
+        coEvery { getLanguagePair() } returns languagePair
+        coEvery { getWordTranslations(params) } returns data
 
-    coVerify { getWordTranslations(params) wasNot Called }
-  }
+        viewModel.onEvent(
+            TranslationEvent.Translate(text),
+        )
 
-  @Test
-  @Throws(Exception::class)
-  fun `onEvent Translate SHOULD update error state WHEN text doesn't exist`() = coroutineRule.runTest {
-    val text = "r2kpflajdsoi"
+        coVerify(exactly = 1) { getWordTranslations(params) }
+    }
 
-    val params = createTranslationParams(text, languagePair)
-    val data = DataState.Error(Throwable("error"))
+    @Test
+    fun `onEvent Translate SHOULD not call translation WHEN text length is less than 2`() = coroutineRule.runTest {
+        val text = "a"
 
-    coEvery { getLanguagePair() } returns languagePair
-    coEvery { getWordTranslations(params) } returns data
+        val params = createTranslationParams(text, languagePair)
+        val data = DataState.Empty
 
-    viewModel.onEvent(
-      TranslationEvent.Translate(text),
-    )
+        coEvery { getLanguagePair() } returns languagePair
+        coEvery { getWordTranslations(params) } returns data
 
-    assert(viewModel.uiState.first().hasError)
-  }
+        viewModel.onEvent(
+            TranslationEvent.Translate(text),
+        )
 
-  @Test
-  fun `onEvent Translate should update uiState with translatedText`() = coroutineRule.runTest {
-    val text = "overload"
-    val expectedText = "sobrecarga"
+        coVerify { getWordTranslations(params) wasNot Called }
+    }
 
-    val params = createTranslationParams(text, languagePair)
-    val translatedWords = WordFactory.words
-    val data = DataState.Success(translatedWords)
+    @Test
+    @Throws(Exception::class)
+    fun `onEvent Translate SHOULD update error state WHEN text doesn't exist`() = coroutineRule.runTest {
+        val text = "r2kpflajdsoi"
 
-    coEvery { getLanguagePair() } returns languagePair
-    coEvery { getWordTranslations(params) } returns data
+        val params = createTranslationParams(text, languagePair)
+        val data = DataState.Error(Throwable("error"))
 
-    viewModel.onEvent(
-      TranslationEvent.Translate(text),
-    )
+        coEvery { getLanguagePair() } returns languagePair
+        coEvery { getWordTranslations(params) } returns data
 
-    val uiState = viewModel.uiState.first()
-    val translatedText = uiState.wordList.first().translations.first().text
+        viewModel.onEvent(
+            TranslationEvent.Translate(text),
+        )
 
-    assertEquals(translatedText, expectedText)
-  }
+        assert(viewModel.uiState.first().hasError)
+    }
 
-  @Test
-  fun `onEvent InvertLanguages should correctly update languagePair state`() = coroutineRule.runTest {
-    val languagePairInput = Pair(
-      LanguageFactory.languages.first(),
-      LanguageFactory.languages.last(),
-    )
-    val expectedLanguagePair = Pair(
-      LanguageFactory.languages.last(),
-      LanguageFactory.languages.first(),
-    )
+    @Test
+    fun `onEvent Translate should update uiState with translatedText`() = coroutineRule.runTest {
+        val text = "overload"
+        val expectedText = "sobrecarga"
 
-    viewModel.onEvent(
-      TranslationEvent.InvertLanguagePair(languagePairInput),
-    )
+        val params = createTranslationParams(text, languagePair)
+        val translatedWords = WordFactory.words
+        val data = DataState.Success(translatedWords)
 
-    val languagePair = viewModel.uiState.first().languagePair
+        coEvery { getLanguagePair() } returns languagePair
+        coEvery { getWordTranslations(params) } returns data
 
-    assertEquals(languagePair, expectedLanguagePair)
-  }
+        viewModel.onEvent(
+            TranslationEvent.Translate(text),
+        )
 
-  @Test
-  fun `onEvent InvertLanguages should not change uiState if input is null`() = coroutineRule.runTest {
-    val initialUiState = viewModel.uiState.value
+        val uiState = viewModel.uiState.first()
+        val translatedText = uiState.wordList.first().translations.first().text
 
-    viewModel.onEvent(TranslationEvent.InvertLanguagePair(null))
+        assertEquals(translatedText, expectedText)
+    }
 
-    val finalUiState = viewModel.uiState.value
+    @Test
+    fun `onEvent InvertLanguages should correctly update languagePair state`() = coroutineRule.runTest {
+        val languagePairInput = Pair(
+            LanguageFactory.languages.first(),
+            LanguageFactory.languages.last(),
+        )
+        val expectedLanguagePair = Pair(
+            LanguageFactory.languages.last(),
+            LanguageFactory.languages.first(),
+        )
 
-    assertEquals(initialUiState, finalUiState)
-  }
+        viewModel.onEvent(
+            TranslationEvent.InvertLanguagePair(languagePairInput),
+        )
 
-  private fun createTranslationParams(
-    text: String,
-    languagePair: Pair<Language, Language>,
-  ): GetWordTranslations.Params {
-    val firstCode = languagePair.first.code
-    val secondCode = languagePair.second.code
+        val languagePair = viewModel.uiState.first().languagePair
 
-    return GetWordTranslations.Params(
-      text = text,
-      sourceLanguage = firstCode,
-      destLanguage = secondCode,
-    )
-  }
+        assertEquals(languagePair, expectedLanguagePair)
+    }
+
+    @Test
+    fun `onEvent InvertLanguages should not change uiState if input is null`() = coroutineRule.runTest {
+        val initialUiState = viewModel.uiState.value
+
+        viewModel.onEvent(TranslationEvent.InvertLanguagePair(null))
+
+        val finalUiState = viewModel.uiState.value
+
+        assertEquals(initialUiState, finalUiState)
+    }
+
+    private fun createTranslationParams(
+        text: String,
+        languagePair: Pair<Language, Language>,
+    ): GetWordTranslations.Params {
+        val firstCode = languagePair.first.code
+        val secondCode = languagePair.second.code
+
+        return GetWordTranslations.Params(
+            text = text,
+            sourceLanguage = firstCode,
+            destLanguage = secondCode,
+        )
+    }
 }

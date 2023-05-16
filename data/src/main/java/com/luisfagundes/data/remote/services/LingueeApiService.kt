@@ -5,8 +5,8 @@ import retrofit2.http.GET
 import retrofit2.http.QueryMap
 
 interface LingueeApiService {
-  @GET("translations")
-  suspend fun fetchWordTranslations(
-    @QueryMap params: Map<String, String>,
-  ): List<WordResponse>
+    @GET("translations")
+    suspend fun fetchWordTranslations(
+        @QueryMap params: Map<String, String>,
+    ): List<WordResponse>
 }

@@ -14,32 +14,32 @@ import com.luisfagundes.translation.presentation.TranslationEvent
 import com.luisfagundes.translation.presentation.TranslationViewModel
 
 fun NavGraphBuilder.translationRoute(navController: NavHostController) {
-  composable(
-    route = BottomBarScreen.Translation.route,
-  ) {
-    val viewModel = hiltViewModel<TranslationViewModel>()
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    composable(
+        route = BottomBarScreen.Translation.route,
+    ) {
+        val viewModel = hiltViewModel<TranslationViewModel>()
+        val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    TranslationScreen(
-      uiState = uiState,
-      onEvent = {
-        viewModel.onEvent(it)
-        handleNavigation(navController, it)
-      },
-    )
-  }
+        TranslationScreen(
+            uiState = uiState,
+            onEvent = {
+                viewModel.onEvent(it)
+                handleNavigation(navController, it)
+            },
+        )
+    }
 }
 
 private fun handleNavigation(
-  navController: NavHostController,
-  event: TranslationEvent,
+    navController: NavHostController,
+    event: TranslationEvent,
 ) {
-  when (event) {
-    is TranslationEvent.OnLanguageClicked -> navController.navigate(
-      "languageListScreen/${event.isSourceLanguage}",
-    ) {
-      commonNavigationOptions(navController)
+    when (event) {
+        is TranslationEvent.OnLanguageClicked -> navController.navigate(
+            "languageListScreen/${event.isSourceLanguage}",
+        ) {
+            commonNavigationOptions(navController)
+        }
+        else -> doNothing()
     }
-    else -> doNothing()
-  }
 }

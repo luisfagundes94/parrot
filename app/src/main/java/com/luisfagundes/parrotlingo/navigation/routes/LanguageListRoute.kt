@@ -14,39 +14,39 @@ import com.luisfagundes.languages.LanguageListScreen
 import com.luisfagundes.languages.LanguageListViewModel
 
 fun NavGraphBuilder.languageListRoute(navController: NavHostController) {
-  composable(
-    route = "languageListScreen/{$IS_SOURCE_LANGUAGE}",
-    arguments = listOf(
-      navArgument(IS_SOURCE_LANGUAGE) {
-        defaultValue = true
-      },
-    ),
-  ) {
-    val viewModel = hiltViewModel<LanguageListViewModel>()
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    composable(
+        route = "languageListScreen/{$IS_SOURCE_LANGUAGE}",
+        arguments = listOf(
+            navArgument(IS_SOURCE_LANGUAGE) {
+                defaultValue = true
+            },
+        ),
+    ) {
+        val viewModel = hiltViewModel<LanguageListViewModel>()
+        val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    LanguageListScreen(
-      uiState = uiState,
-      onEvent = { event ->
-        viewModel.onEvent(event)
-        handleNavigation(
-          event = event,
-          navController = navController,
+        LanguageListScreen(
+            uiState = uiState,
+            onEvent = { event ->
+                viewModel.onEvent(event)
+                handleNavigation(
+                    event = event,
+                    navController = navController,
+                )
+            },
         )
-      },
-    )
-  }
+    }
 }
 
 fun handleNavigation(
-  event: LanguageListEvent,
-  navController: NavHostController,
+    event: LanguageListEvent,
+    navController: NavHostController,
 ) {
-  navController.run {
-    when (event) {
-      is LanguageListEvent.OnBackPressed -> popBackStack()
-      is LanguageListEvent.OnLanguageClicked -> popBackStack()
-      else -> doNothing()
+    navController.run {
+        when (event) {
+            is LanguageListEvent.OnBackPressed -> popBackStack()
+            is LanguageListEvent.OnLanguageClicked -> popBackStack()
+            else -> doNothing()
+        }
     }
-  }
 }

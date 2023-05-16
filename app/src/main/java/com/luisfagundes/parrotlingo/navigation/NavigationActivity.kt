@@ -17,29 +17,29 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class NavigationActivity : ComponentActivity() {
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    AlarmReceiver.createNotificationChannel(
-      notificationChannelInfo = NotificationChannelInfo(
-        id = "1",
-        name = getString(R.string.channel_name),
-        description = getString(R.string.channel_description),
-      ),
-      context = this,
-    )
+        AlarmReceiver.createNotificationChannel(
+            notificationChannelInfo = NotificationChannelInfo(
+                id = "1",
+                name = getString(R.string.channel_name),
+                description = getString(R.string.channel_description),
+            ),
+            context = this,
+        )
 
-    setContent {
-      ParrotTheme {
-        Surface(
-          modifier = Modifier.fillMaxSize(),
-          color = MaterialTheme.colorScheme.surface,
-        ) {
-          RootNavGraph(
-            navHostController = rememberNavController(),
-          )
+        setContent {
+            ParrotTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.surface,
+                ) {
+                    RootNavGraph(
+                        navHostController = rememberNavController(),
+                    )
+                }
+            }
         }
-      }
     }
-  }
 }

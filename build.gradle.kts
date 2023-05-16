@@ -21,9 +21,9 @@ versionCatalogUpdate {
     }
 }
 
-subprojects {
-    apply(plugin = "com.diffplug.spotless")
 
+subprojects {
+    apply<com.diffplug.gradle.spotless.SpotlessPlugin>()
     configure<com.diffplug.gradle.spotless.SpotlessExtension> {
         kotlin {
             target("**/*.kt")
@@ -37,6 +37,8 @@ subprojects {
         }
     }
 }
+
+
 
 tasks.named<DependencyUpdatesTask>("dependencyUpdates").configure {
     rejectVersionIf {

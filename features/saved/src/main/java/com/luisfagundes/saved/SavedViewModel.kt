@@ -17,49 +17,49 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SavedViewModel @Inject constructor(
-  private val getAllSavedWords: GetAllSavedWords,
-  private val deleteWord: DeleteWord,
-  @DefaultDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
+    private val getAllSavedWords: GetAllSavedWords,
+    private val deleteWord: DeleteWord,
+    @DefaultDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : BaseViewModel() {
 
-  private val _uiState = MutableStateFlow(SavedUiState())
-  val uiState = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow(SavedUiState())
+    val uiState = _uiState.asStateFlow()
 
-  fun onEvent(event: SavedUIEvent) {
-    when (event) {
-      is SavedUIEvent.LoadSavedWords -> fetchAllSavedWords()
-      is SavedUIEvent.DeleteSavedWord -> deleteSavedWord(event.word)
+    fun onEvent(event: SavedUIEvent) {
+        when (event) {
+            is SavedUIEvent.LoadSavedWords -> fetchAllSavedWords()
+            is SavedUIEvent.DeleteSavedWord -> deleteSavedWord(event.word)
+        }
     }
-  }
 
-  private fun fetchAllSavedWords() = safeLaunch {
-    startLoading()
-    val result = withContext(dispatcher) {
-      getAllSavedWords()
+    private fun fetchAllSavedWords() = safeLaunch {
+        startLoading()
+        val result = withContext(dispatcher) {
+            getAllSavedWords()
+        }
+        _uiState.update {
+            it.copy(
+                isLoading = false,
+                hasError = false,
+                savedWords = result,
+            )
+        }
     }
-    _uiState.update {
-      it.copy(
-        isLoading = false,
-        hasError = false,
-        savedWords = result,
-      )
-    }
-  }
 
-  private fun deleteSavedWord(word: Word) = safeLaunch {
-    val result = withContext(dispatcher) {
-      deleteWord(word)
+    private fun deleteSavedWord(word: Word) = safeLaunch {
+        val result = withContext(dispatcher) {
+            deleteWord(word)
+        }
+        if (result is DataState.Success) {
+            updateWordDeletedWithSuccess(true)
+        } else {
+            updateWordDeletedWithSuccess(false)
+        }
     }
-    if (result is DataState.Success) {
-      updateWordDeletedWithSuccess(true)
-    } else {
-      updateWordDeletedWithSuccess(false)
-    }
-  }
 
-  private fun updateWordDeletedWithSuccess(isSuccess: Boolean) {
-    _uiState.update {
-      it.copy(isDeletionSuccessful = isSuccess)
+    private fun updateWordDeletedWithSuccess(isSuccess: Boolean) {
+        _uiState.update {
+            it.copy(isDeletionSuccessful = isSuccess)
+        }
     }
-  }
 }

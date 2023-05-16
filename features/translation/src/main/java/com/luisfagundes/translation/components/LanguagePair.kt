@@ -22,44 +22,44 @@ import com.luisfagundes.theme.spacing
 
 @Composable
 fun LanguagePair(
-  languagePair: Pair<Language, Language>?,
-  onInvertLanguage: () -> Unit,
-  onLanguageClicked: (isSource: Boolean) -> Unit = {},
+    languagePair: Pair<Language, Language>?,
+    onInvertLanguage: () -> Unit,
+    onLanguageClicked: (isSource: Boolean) -> Unit = {},
 ) {
-  if (languagePair == null) return
+    if (languagePair == null) return
 
-  val sourceLanguage = languagePair.first
-  val targetLanguage = languagePair.second
+    val sourceLanguage = languagePair.first
+    val targetLanguage = languagePair.second
 
-  Row(
-    horizontalArrangement = Arrangement.Center,
-    verticalAlignment = Alignment.CenterVertically,
-    modifier = Modifier
-      .fillMaxWidth()
-      .padding(vertical = MaterialTheme.spacing.default)
-      .padding(horizontal = MaterialTheme.spacing.small),
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = MaterialTheme.spacing.default)
+            .padding(horizontal = MaterialTheme.spacing.small),
 
-  ) {
-    Text(
-      text = sourceLanguage.name,
-      fontWeight = FontWeight.Bold,
-      modifier = Modifier.clickable { onLanguageClicked(true) },
-    )
-    Icon(
-      imageVector = Icons.Filled.ImportExport,
-      contentDescription = null,
-      tint = MaterialTheme.colorScheme.onSurface,
-      modifier = Modifier
-        .size(MaterialTheme.spacing.default)
-        .rotate(90f)
-        .weight(1f)
-        .clickable { onInvertLanguage() },
-    )
-    Spacer(modifier = Modifier.padding(MaterialTheme.spacing.extraSmall))
-    Text(
-      text = targetLanguage.name,
-      fontWeight = FontWeight.Bold,
-      modifier = Modifier.clickable { onLanguageClicked(false) },
-    )
-  }
+    ) {
+        Text(
+            text = sourceLanguage.name,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.clickable { onLanguageClicked(true) },
+        )
+        Icon(
+            imageVector = Icons.Filled.ImportExport,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSurface,
+            modifier = Modifier
+                .size(MaterialTheme.spacing.default)
+                .rotate(90f)
+                .weight(1f)
+                .clickable { onInvertLanguage() },
+        )
+        Spacer(modifier = Modifier.padding(MaterialTheme.spacing.extraSmall))
+        Text(
+            text = targetLanguage.name,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.clickable { onLanguageClicked(false) },
+        )
+    }
 }
