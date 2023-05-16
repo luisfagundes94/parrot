@@ -14,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.luisfagundes.translation.R
@@ -25,20 +26,25 @@ private const val EVERY_MONTH = 730
 const val EVERY_2_HOURS = 2
 private const val EVERY_4_HOURS = 4
 private const val DONT_REPEAT = -1
+private const val EVERY_HOUR = 1
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EveryXHoursChips(
     onSelectedOption: (Int) -> Unit,
 ) {
-    val options = listOf(EVERY_2_HOURS, EVERY_4_HOURS, EVERY_DAY, EVERY_WEEK, EVERY_MONTH)
+    val options = listOf(EVERY_HOUR, EVERY_2_HOURS, EVERY_4_HOURS, EVERY_DAY, EVERY_WEEK, EVERY_MONTH)
     val textOptions = options.map { hour ->
         when (hour) {
             EVERY_DAY -> stringResource(R.string.every_day)
             EVERY_WEEK -> stringResource(R.string.every_week)
             EVERY_MONTH -> stringResource(R.string.every_month)
             DONT_REPEAT -> stringResource(R.string.dont_repeat)
-            else -> stringResource(R.string.every_x_hours, hour)
+            else -> pluralStringResource(
+                id = R.plurals.every_x_hours,
+                count = hour,
+                formatArgs = arrayOf(hour),
+            )
         }
     }
 

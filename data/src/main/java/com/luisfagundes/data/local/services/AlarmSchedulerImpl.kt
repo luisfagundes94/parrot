@@ -5,7 +5,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.SystemClock
-import com.luisfagundes.data.local.services.NotificationManager.Companion.NOTIFICATION_DATA_KEY
+import com.luisfagundes.data.local.services.PushNotificationManager.NOTIFICATION_DATA_KEY
 import com.luisfagundes.domain.models.NotificationData
 import com.luisfagundes.domain.models.ScheduleData
 import com.luisfagundes.domain.services.AlarmScheduler
@@ -18,17 +18,18 @@ class AlarmSchedulerImpl(
         scheduleData: ScheduleData,
         notificationData: NotificationData,
     ) {
-        val intent = Intent(context, AlarmReceiver::class.java).apply {
+        val intent = Intent(context, AlarmBroadcastReceiver::class.java).apply {
             putExtra(NOTIFICATION_DATA_KEY, notificationData)
-            putExtra(SCHEDULE_DATA_KEY, scheduleData)
         }
         val pendingIntent = createPendingIntent(intent)
-        val nextAlarmTime = calculateNextAlarmTime(scheduleData)
+        val initialTime = SystemClock.elapsedRealtime()
+        val timeInterval = calculateTimeInterval(scheduleData)
 
         try {
-            alarmManager.setAndAllowWhileIdle(
+            alarmManager.setInexactRepeating(
                 AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                nextAlarmTime,
+                initialTime,
+                timeInterval,
                 pendingIntent,
             )
         } catch (exception: Exception) {
@@ -36,13 +37,12 @@ class AlarmSchedulerImpl(
         }
     }
 
-    private fun calculateNextAlarmTime(
+    private fun calculateTimeInterval(
         scheduleData: ScheduleData,
     ): Long {
-        val currentTime = SystemClock.elapsedRealtime()
         val intervalHourUnit = AlarmManager.INTERVAL_HOUR
         val intervalHour = scheduleData.intervalHours
-        return currentTime + (intervalHourUnit * intervalHour)
+        return (intervalHourUnit * intervalHour)
     }
 
     private fun createPendingIntent(intent: Intent) =
@@ -54,7 +54,6 @@ class AlarmSchedulerImpl(
         )
 
     companion object {
-        const val SCHEDULE_DATA_KEY = "schedule_info"
         const val PENDING_INTENT_REQUEST_CODE = 1
     }
 }

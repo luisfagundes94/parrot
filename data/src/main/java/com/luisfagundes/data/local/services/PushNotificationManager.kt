@@ -13,7 +13,11 @@ import androidx.core.content.ContextCompat
 import com.luisfagundes.domain.models.NotificationChannelInfo
 import com.luisfagundes.domain.models.NotificationData
 
-class NotificationManager {
+object PushNotificationManager {
+
+    private const val CHANNEL_ID = "1"
+    private const val WORD_REMINDER_GROUP = "word_reminder_group"
+    const val NOTIFICATION_DATA_KEY = "notification_info"
 
     fun notify(
         notification: Notification,
@@ -40,33 +44,27 @@ class NotificationManager {
         .setGroup(WORD_REMINDER_GROUP)
         .build()
 
-    companion object {
-        fun createNotificationChannel(
-            notificationChannelInfo: NotificationChannelInfo,
-            context: Context,
-        ) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                val name = notificationChannelInfo.name
-                val descriptionText = notificationChannelInfo.description
-                val importance = NotificationManager.IMPORTANCE_DEFAULT
-                val channel = NotificationChannel(
-                    notificationChannelInfo.id,
-                    name,
-                    importance,
-                ).apply {
-                    description = descriptionText
-                }
-                val notificationManager = ContextCompat.getSystemService(
-                    context,
-                    NotificationManager::class.java,
-                ) as NotificationManager
-
-                notificationManager.createNotificationChannel(channel)
+    fun createNotificationChannel(
+        notificationChannelInfo: NotificationChannelInfo,
+        context: Context,
+    ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = notificationChannelInfo.name
+            val descriptionText = notificationChannelInfo.description
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val channel = NotificationChannel(
+                notificationChannelInfo.id,
+                name,
+                importance,
+            ).apply {
+                description = descriptionText
             }
-        }
+            val notificationManager = ContextCompat.getSystemService(
+                context,
+                NotificationManager::class.java,
+            ) as NotificationManager
 
-        const val CHANNEL_ID = "1"
-        const val WORD_REMINDER_GROUP = "word_reminder_group"
-        const val NOTIFICATION_DATA_KEY = "notification_info"
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 }

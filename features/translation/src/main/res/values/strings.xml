@@ -19,7 +19,10 @@
     <string name="every_day">Every day</string>
     <string name="every_week">Every week</string>
     <string name="every_month">Every month</string>
-    <string name="every_x_hours">Every %d hours</string>
+    <plurals name="every_x_hours">
+        <item quantity="one">Every hour</item>
+        <item quantity="other">Every %d hours</item>
+    </plurals>
     <string name="dont_repeat">Don\'t remind me</string>
     <string name="title_reminder">How often would you like to receive the word?</string>
     <string name="select_time">"Select time"</string>

@@ -8,7 +8,7 @@
 
     <application>
         <receiver
-            android:name=".local.services.AlarmReceiver"
+            android:name=".local.services.AlarmBroadcastReceiver"
             android:enabled="true"
             android:exported="false"
             android:process=":remote" />
