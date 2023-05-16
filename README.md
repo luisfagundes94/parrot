@@ -24,6 +24,10 @@ Robert C. Martin introduced the concept of Clean Architecture in 2012 via the Cl
 
 <img src="https://miro.medium.com/v2/resize:fit:772/1*wOmAHDN_zKZJns9YDjtrMw.jpeg" width="500" />
 
+This app uses [_**MVI (Model View Intent)**_](https://proandroiddev.com/mvi-architecture-with-kotlin-flows-and-channels-d36820b2028d) architecture.
+ 
+<img src="https://github.com/MuhammadKhoshnaw/BasicMVIApp/blob/master/.github/res/ComponentDiagram.svg" width=500 />
+
 ## Layers
 
 ### Project Structure
