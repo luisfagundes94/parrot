@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 @ViewModelScoped
 class SaveWord @Inject constructor(
-    private val repository: WordRepository
+  private val repository: WordRepository,
 ) {
-    suspend operator fun invoke(word: Word) = repository.saveWord(word)
+  suspend operator fun invoke(word: Word) = repository.saveWord(word)
 }

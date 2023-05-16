@@ -24,9 +24,15 @@ versionCatalogUpdate {
 subprojects {
     apply(plugin = "com.diffplug.spotless")
 
-    spotless {
+    configure<com.diffplug.gradle.spotless.SpotlessExtension> {
         kotlin {
             target("**/*.kt")
+            targetExclude("**/build/**/*.kt")
+            ktfmt()
+            ktlint().userData(mapOf("android" to "true"))
+        }
+        kotlinGradle {
+            target("*.gradle.kts")
             ktlint()
         }
     }
@@ -41,7 +47,7 @@ tasks.named<DependencyUpdatesTask>("dependencyUpdates").configure {
 fun isNonStable(version: String): Boolean {
     val stableKeyword = listOf("RELEASE", "FINAL", "GA").any {
         version.lowercase(java.util.Locale.getDefault())
-        .contains(it)
+            .contains(it)
     }
     val regex = "^[0-9,.v-]+(-r)?$".toRegex()
     val isStable = stableKeyword || regex.matches(version)

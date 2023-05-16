@@ -19,44 +19,44 @@ import androidx.compose.ui.graphics.Color
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InputTextArea(
-    onValueChange: (String) -> Unit = {},
-    placeholder: String,
+  onValueChange: (String) -> Unit = {},
+  placeholder: String,
 ) {
-    var inputText by remember { mutableStateOf("") }
-    onValueChange(inputText)
+  var inputText by remember { mutableStateOf("") }
+  onValueChange(inputText)
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth(),
-    ) {
-        TextField(
-            placeholder = {
-                Text(
-                    text = placeholder,
-                    style = LocalTextStyle.current.copy(
-                        fontSize = MaterialTheme.typography.titleLarge.fontSize,
-                    ),
-                )
-            },
-            value = inputText,
-            onValueChange = { newText ->
-                inputText = newText
-            },
-            shape = MaterialTheme.shapes.medium,
-            colors = TextFieldDefaults.colors(
-                cursorColor = MaterialTheme.colorScheme.onSurface,
-                focusedTextColor = MaterialTheme.colorScheme.onSurface,
-                focusedContainerColor = MaterialTheme.colorScheme.surface,
-                unfocusedContainerColor = MaterialTheme.colorScheme.surface,
-                disabledContainerColor = MaterialTheme.colorScheme.surface,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent,
-            ),
-            textStyle = LocalTextStyle.current.copy(
-                fontSize = MaterialTheme.typography.titleLarge.fontSize,
-            ),
-            modifier = Modifier.fillMaxWidth(),
+  Column(
+    modifier = Modifier
+      .fillMaxWidth(),
+  ) {
+    TextField(
+      placeholder = {
+        Text(
+          text = placeholder,
+          style = LocalTextStyle.current.copy(
+            fontSize = MaterialTheme.typography.titleLarge.fontSize,
+          ),
         )
-    }
+      },
+      value = inputText,
+      onValueChange = { newText ->
+        inputText = newText
+      },
+      shape = MaterialTheme.shapes.medium,
+      colors = TextFieldDefaults.colors(
+        cursorColor = MaterialTheme.colorScheme.onSurface,
+        focusedTextColor = MaterialTheme.colorScheme.onSurface,
+        focusedContainerColor = MaterialTheme.colorScheme.surface,
+        unfocusedContainerColor = MaterialTheme.colorScheme.surface,
+        disabledContainerColor = MaterialTheme.colorScheme.surface,
+        focusedIndicatorColor = Color.Transparent,
+        unfocusedIndicatorColor = Color.Transparent,
+        disabledIndicatorColor = Color.Transparent,
+      ),
+      textStyle = LocalTextStyle.current.copy(
+        fontSize = MaterialTheme.typography.titleLarge.fontSize,
+      ),
+      modifier = Modifier.fillMaxWidth(),
+    )
+  }
 }

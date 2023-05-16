@@ -2,7 +2,6 @@ package com.luisfagundes.theme
 
 import androidx.compose.ui.graphics.Color
 
-
 val md_theme_light_card = Color(0xFFeef5ee)
 val md_theme_light_primary = Color(0xFF006D3B)
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)
@@ -66,6 +65,5 @@ val md_theme_dark_shadow = Color(0xFF000000)
 val md_theme_dark_surfaceTint = Color(0xFF7BDA99)
 val md_theme_dark_outlineVariant = Color(0xFF414942)
 val md_theme_dark_scrim = Color(0xFF000000)
-
 
 val seed = Color(0xFF43A267)

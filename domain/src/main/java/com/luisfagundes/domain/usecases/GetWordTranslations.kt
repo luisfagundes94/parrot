@@ -6,14 +6,14 @@ import javax.inject.Inject
 
 @ViewModelScoped
 class GetWordTranslations @Inject constructor(
-    private val repository: WordRepository
+  private val repository: WordRepository,
 ) {
-    data class Params(
-        val text: String,
-        val sourceLanguage: String,
-        val destLanguage: String
-    )
+  data class Params(
+    val text: String,
+    val sourceLanguage: String,
+    val destLanguage: String,
+  )
 
-    suspend operator fun invoke(params: Params) =
-        repository.translateWord(params)
+  suspend operator fun invoke(params: Params) =
+    repository.translateWord(params)
 }

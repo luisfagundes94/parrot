@@ -14,15 +14,15 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
-    @Singleton
-    @Provides
-    fun provideDatabase(
-        @ApplicationContext applicationContext: Context,
-    ) = Room.databaseBuilder(
-        applicationContext,
-        ParrotDatabase::class.java,
-        DATABASE_NAME,
-    ).build()
+  @Singleton
+  @Provides
+  fun provideDatabase(
+    @ApplicationContext applicationContext: Context,
+  ) = Room.databaseBuilder(
+    applicationContext,
+    ParrotDatabase::class.java,
+    DATABASE_NAME,
+  ).build()
 
-    private const val DATABASE_NAME = "parrot.db"
+  private const val DATABASE_NAME = "parrot.db"
 }

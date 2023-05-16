@@ -12,15 +12,15 @@ import androidx.compose.runtime.Composable
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TopBar(
-    name: String,
-    onBack: () -> Unit
+  name: String,
+  onBack: () -> Unit,
 ) {
-    TopAppBar(
-        title = { Text(name) },
-        navigationIcon = {
-            IconButton(onClick = onBack) {
-                Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
-            }
-        }
-    )
+  TopAppBar(
+    title = { Text(name) },
+    navigationIcon = {
+      IconButton(onClick = onBack) {
+        Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+      }
+    },
+  )
 }

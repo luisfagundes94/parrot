@@ -29,49 +29,49 @@ private const val DONT_REPEAT = -1
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EveryXHoursChips(
-    onSelectedOption: (Int) -> Unit,
+  onSelectedOption: (Int) -> Unit,
 ) {
-    val options = listOf(EVERY_2_HOURS, EVERY_4_HOURS, EVERY_DAY, EVERY_WEEK, EVERY_MONTH)
-    val textOptions = options.map { hour ->
-        when (hour) {
-            EVERY_DAY -> stringResource(R.string.every_day)
-            EVERY_WEEK -> stringResource(R.string.every_week)
-            EVERY_MONTH -> stringResource(R.string.every_month)
-            DONT_REPEAT -> stringResource(R.string.dont_repeat)
-            else -> stringResource(R.string.every_x_hours, hour)
-        }
+  val options = listOf(EVERY_2_HOURS, EVERY_4_HOURS, EVERY_DAY, EVERY_WEEK, EVERY_MONTH)
+  val textOptions = options.map { hour ->
+    when (hour) {
+      EVERY_DAY -> stringResource(R.string.every_day)
+      EVERY_WEEK -> stringResource(R.string.every_week)
+      EVERY_MONTH -> stringResource(R.string.every_month)
+      DONT_REPEAT -> stringResource(R.string.dont_repeat)
+      else -> stringResource(R.string.every_x_hours, hour)
     }
+  }
 
-    var selectedOption by rememberSaveable { mutableStateOf(options[FIRST_OPTION]) }
+  var selectedOption by rememberSaveable { mutableStateOf(options[FIRST_OPTION]) }
 
-    fun onChipClick(option: Int) {
-        selectedOption = option
+  fun onChipClick(option: Int) {
+    selectedOption = option
+  }
+
+  LazyColumn(
+    modifier = Modifier.fillMaxWidth(),
+    verticalArrangement = Arrangement.Center,
+  ) {
+    options.forEachIndexed { index, option ->
+      item {
+        FilterChip(
+          onClick = { onChipClick(option) },
+          label = { Text(textOptions[index]) },
+          selected = option == selectedOption,
+          shape = RoundedCornerShape(16.dp),
+        )
+      }
     }
-
-    LazyColumn(
-        modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.Center,
-    ) {
-        options.forEachIndexed { index, option ->
-            item {
-                FilterChip(
-                    onClick = { onChipClick(option) },
-                    label = { Text(textOptions[index]) },
-                    selected = option == selectedOption,
-                    shape = RoundedCornerShape(16.dp),
-                )
-            }
-        }
-        item {
-            Button(
-                onClick = {
-                    onSelectedOption(selectedOption)
-                },
-            ) {
-                Text(
-                    text = stringResource(id = R.string.btn_confirm),
-                )
-            }
-        }
+    item {
+      Button(
+        onClick = {
+          onSelectedOption(selectedOption)
+        },
+      ) {
+        Text(
+          text = stringResource(id = R.string.btn_confirm),
+        )
+      }
     }
+  }
 }

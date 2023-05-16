@@ -10,13 +10,13 @@ import com.luisfagundes.saved.SavedScreen
 import com.luisfagundes.saved.SavedViewModel
 
 fun NavGraphBuilder.savedRoute() {
-    composable(route = BottomBarScreen.Saved.route) {
-        val viewModel = hiltViewModel<SavedViewModel>()
-        val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+  composable(route = BottomBarScreen.Saved.route) {
+    val viewModel = hiltViewModel<SavedViewModel>()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-        SavedScreen(
-            uiState = uiState,
-            onEvent = viewModel::onEvent
-        )
-    }
+    SavedScreen(
+      uiState = uiState,
+      onEvent = viewModel::onEvent,
+    )
+  }
 }

@@ -21,38 +21,38 @@ private const val TIME_OUT = 15L
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-    @Provides
-    @Singleton
-    fun provideCountryDataStore(
-        @ApplicationContext context: Context,
-    ) = LanguageDataStore(context)
+  @Provides
+  @Singleton
+  fun provideCountryDataStore(
+    @ApplicationContext context: Context,
+  ) = LanguageDataStore(context)
 
-    @Provides
-    @Singleton
-    fun provideHttpRequestInterceptor() = HttpLoggingInterceptor { message ->
-        Timber.tag("OkHttp").d(message)
-    }.apply {
-        level = HttpLoggingInterceptor.Level.BODY
-    }
+  @Provides
+  @Singleton
+  fun provideHttpRequestInterceptor() = HttpLoggingInterceptor { message ->
+    Timber.tag("OkHttp").d(message)
+  }.apply {
+    level = HttpLoggingInterceptor.Level.BODY
+  }
 
-    @Provides
-    @Singleton
-    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor) = OkHttpClient.Builder()
-        .addInterceptor(httpLoggingInterceptor)
-        .readTimeout(TIME_OUT, TimeUnit.SECONDS)
-        .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
-        .build()
+  @Provides
+  @Singleton
+  fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor) = OkHttpClient.Builder()
+    .addInterceptor(httpLoggingInterceptor)
+    .readTimeout(TIME_OUT, TimeUnit.SECONDS)
+    .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
+    .build()
 
-    @Provides
-    @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(okHttpClient)
-        .baseUrl("https://linguee-api.fly.dev/api/v2/")
-        .build()
+  @Provides
+  @Singleton
+  fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+    .addConverterFactory(GsonConverterFactory.create())
+    .client(okHttpClient)
+    .baseUrl("https://linguee-api.fly.dev/api/v2/")
+    .build()
 
-    @Provides
-    @Singleton
-    fun provideApiService(retrofit: Retrofit): LingueeApiService =
-        retrofit.create(LingueeApiService::class.java)
+  @Provides
+  @Singleton
+  fun provideApiService(retrofit: Retrofit): LingueeApiService =
+    retrofit.create(LingueeApiService::class.java)
 }

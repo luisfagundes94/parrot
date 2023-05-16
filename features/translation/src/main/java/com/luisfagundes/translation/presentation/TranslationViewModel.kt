@@ -29,124 +29,124 @@ private const val ZERO = 0
 
 @HiltViewModel
 class TranslationViewModel @Inject constructor(
-    private val getWordTranslations: GetWordTranslations,
-    private val getLanguagePair: GetLanguagePair,
-    private val saveWord: SaveWord,
-    private val scheduleNotification: ScheduleNotification,
-    private val appProvider: ResourceProvider,
-    @IoDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
+  private val getWordTranslations: GetWordTranslations,
+  private val getLanguagePair: GetLanguagePair,
+  private val saveWord: SaveWord,
+  private val scheduleNotification: ScheduleNotification,
+  private val appProvider: ResourceProvider,
+  @IoDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : BaseViewModel() {
 
-    private val _uiState = MutableStateFlow(TranslationUiState())
-    val uiState = _uiState.asStateFlow()
+  private val _uiState = MutableStateFlow(TranslationUiState())
+  val uiState = _uiState.asStateFlow()
 
-    fun onEvent(event: TranslationEvent) = safeLaunch {
-        when (event) {
-            is TranslationEvent.Translate -> translateWord(event.text)
-            is TranslationEvent.InvertLanguagePair -> invertLanguages(event.languagePair)
-            is TranslationEvent.UpdateLanguagePair -> updateLanguagePair()
-            is TranslationEvent.OnLanguageClicked -> doNothing()
-            is TranslationEvent.SaveWord -> saveWordToLocalDb(
-                scheduleData = event.scheduleData,
-                word = event.word,
-            )
-        }
+  fun onEvent(event: TranslationEvent) = safeLaunch {
+    when (event) {
+      is TranslationEvent.Translate -> translateWord(event.text)
+      is TranslationEvent.InvertLanguagePair -> invertLanguages(event.languagePair)
+      is TranslationEvent.UpdateLanguagePair -> updateLanguagePair()
+      is TranslationEvent.OnLanguageClicked -> doNothing()
+      is TranslationEvent.SaveWord -> saveWordToLocalDb(
+        scheduleData = event.scheduleData,
+        word = event.word,
+      )
     }
+  }
 
-    private fun translateWord(text: String) = safeLaunch {
-        if (text.length < 2) return@safeLaunch
+  private fun translateWord(text: String) = safeLaunch {
+    if (text.length < 2) return@safeLaunch
 
-        val params = createTranslationParams(text, getLanguagePair())
+    val params = createTranslationParams(text, getLanguagePair())
 
-        startLoading()
+    startLoading()
 
-        val result = getWordTranslations(params)
-        handleResult(result) { words ->
-            _uiState.update { it.toSuccessState(words) }
-        }
+    val result = getWordTranslations(params)
+    handleResult(result) { words ->
+      _uiState.update { it.toSuccessState(words) }
     }
+  }
 
-    private fun createTranslationParams(text: String, languagePair: Pair<Language, Language>): GetWordTranslations.Params {
-        val firstCode = languagePair.first.code
-        val secondCode = languagePair.second.code
+  private fun createTranslationParams(text: String, languagePair: Pair<Language, Language>): GetWordTranslations.Params {
+    val firstCode = languagePair.first.code
+    val secondCode = languagePair.second.code
 
-        return GetWordTranslations.Params(
-            text = text,
-            sourceLanguage = firstCode,
-            destLanguage = secondCode,
-        )
-    }
-
-    private fun invertLanguages(languagePair: Pair<Language, Language>?) {
-        if (languagePair == null) return
-
-        _uiState.update {
-            it.copy(
-                languagePair = Pair(languagePair.second, languagePair.first),
-            )
-        }
-    }
-
-    private fun saveWordToLocalDb(
-        scheduleData: ScheduleData,
-        word: Word,
-    ) = safeLaunch {
-        handleSavingWord(word, scheduleData)
-        delay(SAVING_WORD_DELAY)
-        _uiState.update { it.copy(wordSavedWithSuccess = false) }
-    }
-
-    private suspend fun handleSavingWord(
-        word: Word,
-        scheduleData: ScheduleData,
-    ) {
-        when (withContext(dispatcher) { saveWord(word) }) {
-            is DataState.Success -> {
-                _uiState.update { it.copy(wordSavedWithSuccess = true) }
-                scheduleNotificationAlarm(scheduleData, word)
-            }
-
-            is DataState.Error -> {
-                _uiState.update { it.copy(wordSavedWithSuccess = false) }
-            }
-
-            else -> doNothing()
-        }
-    }
-
-    private fun updateLanguagePair() = safeLaunch {
-        _uiState.update {
-            it.copy(languagePair = getLanguagePair())
-        }
-    }
-
-    private fun scheduleNotificationAlarm(
-        scheduleData: ScheduleData,
-        word: Word,
-    ) {
-        if (scheduleData.intervalHours < ZERO) return
-        val notificationData = createNotificationData(word)
-        scheduleNotification(scheduleData, notificationData)
-    }
-
-    private fun createNotificationData(word: Word) = NotificationData(
-        id = NOTIFICATION_ID,
-        smallIconId = appProvider.getAppIconId(),
-        largeIcon = appProvider.getAppIconBitmap(),
-        title = word.text,
-        content = word.translations.first().text,
+    return GetWordTranslations.Params(
+      text = text,
+      sourceLanguage = firstCode,
+      destLanguage = secondCode,
     )
+  }
 
-    override fun startLoading() {
-        _uiState.update { it.toLoadingState() }
-    }
+  private fun invertLanguages(languagePair: Pair<Language, Language>?) {
+    if (languagePair == null) return
 
-    override fun handleEmpty() {
-        _uiState.update { it.toEmptyState() }
+    _uiState.update {
+      it.copy(
+        languagePair = Pair(languagePair.second, languagePair.first),
+      )
     }
+  }
 
-    override fun handleError(exception: Throwable) {
-        println(exception.stackTraceToString())
-        _uiState.update { it.toErrorState() }
+  private fun saveWordToLocalDb(
+    scheduleData: ScheduleData,
+    word: Word,
+  ) = safeLaunch {
+    handleSavingWord(word, scheduleData)
+    delay(SAVING_WORD_DELAY)
+    _uiState.update { it.copy(wordSavedWithSuccess = false) }
+  }
+
+  private suspend fun handleSavingWord(
+    word: Word,
+    scheduleData: ScheduleData,
+  ) {
+    when (withContext(dispatcher) { saveWord(word) }) {
+      is DataState.Success -> {
+        _uiState.update { it.copy(wordSavedWithSuccess = true) }
+        scheduleNotificationAlarm(scheduleData, word)
+      }
+
+      is DataState.Error -> {
+        _uiState.update { it.copy(wordSavedWithSuccess = false) }
+      }
+
+      else -> doNothing()
     }
+  }
+
+  private fun updateLanguagePair() = safeLaunch {
+    _uiState.update {
+      it.copy(languagePair = getLanguagePair())
+    }
+  }
+
+  private fun scheduleNotificationAlarm(
+    scheduleData: ScheduleData,
+    word: Word,
+  ) {
+    if (scheduleData.intervalHours < ZERO) return
+    val notificationData = createNotificationData(word)
+    scheduleNotification(scheduleData, notificationData)
+  }
+
+  private fun createNotificationData(word: Word) = NotificationData(
+    id = NOTIFICATION_ID,
+    smallIconId = appProvider.getAppIconId(),
+    largeIcon = appProvider.getAppIconBitmap(),
+    title = word.text,
+    content = word.translations.first().text,
+  )
+
+  override fun startLoading() {
+    _uiState.update { it.toLoadingState() }
+  }
+
+  override fun handleEmpty() {
+    _uiState.update { it.toEmptyState() }
+  }
+
+  override fun handleError(exception: Throwable) {
+    println(exception.stackTraceToString())
+    _uiState.update { it.toErrorState() }
+  }
 }

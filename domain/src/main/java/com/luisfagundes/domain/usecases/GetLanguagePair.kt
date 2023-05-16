@@ -5,7 +5,7 @@ import dagger.hilt.android.scopes.ViewModelScoped
 
 @ViewModelScoped
 class GetLanguagePair(
-    private val repository: LanguageRepository
+  private val repository: LanguageRepository,
 ) {
-    suspend operator fun invoke() = repository.fetchLanguagePair()
+  suspend operator fun invoke() = repository.fetchLanguagePair()
 }

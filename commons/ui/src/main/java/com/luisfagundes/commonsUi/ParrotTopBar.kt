@@ -1,4 +1,4 @@
-package com.luisfagundes.commons_ui
+package com.luisfagundes.commonsUi
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.icons.Icons
@@ -14,22 +14,22 @@ import androidx.compose.runtime.Composable
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ParrotTopBar(
-    name: String,
-    onBackPressed: () -> Unit,
-    content: @Composable (PaddingValues) -> Unit
+  name: String,
+  onBackPressed: () -> Unit,
+  content: @Composable (PaddingValues) -> Unit,
 ) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(name) },
-                navigationIcon = {
-                    IconButton(onClick = onBackPressed) {
-                        Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
-                    }
-                }
-            )
-        }
-    ) { innerPadding ->
-        content(innerPadding)
-    }
+  Scaffold(
+    topBar = {
+      TopAppBar(
+        title = { Text(name) },
+        navigationIcon = {
+          IconButton(onClick = onBackPressed) {
+            Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+          }
+        },
+      )
+    },
+  ) { innerPadding ->
+    content(innerPadding)
+  }
 }

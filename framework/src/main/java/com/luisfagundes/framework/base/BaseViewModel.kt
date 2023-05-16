@@ -11,64 +11,64 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-abstract class BaseViewModel: ViewModel() {
+abstract class BaseViewModel : ViewModel() {
 
-    private val handler = CoroutineExceptionHandler { _, exception ->
-        Timber.tag(SAFE_LAUNCH_EXCEPTION).e(exception)
-        handleError(exception)
+  private val handler = CoroutineExceptionHandler { _, exception ->
+    Timber.tag(SAFE_LAUNCH_EXCEPTION).e(exception)
+    handleError(exception)
+  }
+
+  open fun handleError(exception: Throwable) {}
+
+  open fun handleEmpty() {}
+
+  open fun startLoading() {}
+
+  protected fun safeLaunch(
+    block: suspend CoroutineScope.() -> Unit,
+  ) {
+    viewModelScope.launch(handler, block = block)
+  }
+
+  protected suspend fun <T> call(
+    callFlow: Flow<T>,
+    completionHandler: (collect: T) -> Unit = {},
+  ) {
+    callFlow
+      .catch { handleError(it) }
+      .collect {
+        completionHandler.invoke(it)
+      }
+  }
+
+  protected fun <T> handleResult(
+    data: DataState<T>,
+    completionHandler: (T) -> Unit = {},
+  ) {
+    when (data) {
+      is DataState.Error -> handleError(data.error)
+      is DataState.Success -> completionHandler(data.result)
+      is DataState.Empty -> handleEmpty()
     }
+  }
 
-    open fun handleError(exception: Throwable) {}
-
-    open fun handleEmpty() {}
-
-    open fun startLoading() {}
-
-    protected fun safeLaunch(
-        block: suspend CoroutineScope.() -> Unit
-    ) {
-        viewModelScope.launch(handler, block = block)
-    }
-
-    protected suspend fun <T> call(
-        callFlow: Flow<T>,
-        completionHandler: (collect: T) -> Unit = {}
-    ) {
-        callFlow
-            .catch { handleError(it) }
-            .collect {
-                completionHandler.invoke(it)
-            }
-    }
-
-    protected fun <T> handleResult(
-        data: DataState<T>,
-        completionHandler: (T) -> Unit = {}
-    ) {
-        when (data) {
-            is DataState.Error -> handleError(data.error)
-            is DataState.Success -> completionHandler(data.result)
-            is DataState.Empty -> handleEmpty()
+  protected suspend fun <T> executeFlow(
+    callFlow: Flow<DataState<T>>,
+    completionHandler: (collect: T) -> Unit = {},
+  ) {
+    callFlow
+      .onStart { startLoading() }
+      .catch { handleError(it) }
+      .collect { state ->
+        when (state) {
+          is DataState.Error -> handleError(state.error)
+          is DataState.Success -> completionHandler.invoke(state.result)
+          is DataState.Empty -> handleEmpty()
         }
-    }
+      }
+  }
 
-    protected suspend fun <T> executeFlow(
-        callFlow: Flow<DataState<T>>,
-        completionHandler: (collect: T) -> Unit = {}
-    ) {
-        callFlow
-            .onStart { startLoading() }
-            .catch { handleError(it) }
-            .collect { state ->
-                when (state) {
-                    is DataState.Error -> handleError(state.error)
-                    is DataState.Success -> completionHandler.invoke(state.result)
-                    is DataState.Empty -> handleEmpty()
-                }
-            }
-    }
-
-    companion object {
-        private const val SAFE_LAUNCH_EXCEPTION = "ViewModel-ExceptionHandler"
-    }
+  companion object {
+    private const val SAFE_LAUNCH_EXCEPTION = "ViewModel-ExceptionHandler"
+  }
 }

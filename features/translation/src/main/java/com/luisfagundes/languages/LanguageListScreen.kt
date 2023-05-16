@@ -21,115 +21,115 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextOverflow
-import com.luisfagundes.commons_ui.ParrotTopBar
+import com.luisfagundes.commonsUi.ParrotTopBar
 import com.luisfagundes.domain.models.Language
-import com.luisfagundes.framework.compose_components.LoadingView
-import com.luisfagundes.framework.compose_components.WarningView
+import com.luisfagundes.framework.composeComponents.LoadingView
+import com.luisfagundes.framework.composeComponents.WarningView
 import com.luisfagundes.languages.components.LanguageSearch
 import com.luisfagundes.theme.spacing
 import com.luisfagundes.translation.R
 
 @Composable
 fun LanguageListScreen(
-    uiState: LanguageListUiState,
-    onEvent: (LanguageListEvent) -> Unit,
+  uiState: LanguageListUiState,
+  onEvent: (LanguageListEvent) -> Unit,
 ) {
-    LaunchedEffect(key1 = Unit, block = {
-        onEvent(LanguageListEvent.GetLanguageList)
-    })
+  LaunchedEffect(key1 = Unit, block = {
+    onEvent(LanguageListEvent.GetLanguageList)
+  })
 
-    LanguageListContent(onEvent, uiState)
+  LanguageListContent(onEvent, uiState)
 }
 
 @Composable
 private fun LanguageListContent(
-    onEvent: (LanguageListEvent) -> Unit,
-    uiState: LanguageListUiState,
+  onEvent: (LanguageListEvent) -> Unit,
+  uiState: LanguageListUiState,
 ) {
-    ParrotTopBar(
-        name = stringResource(R.string.languages),
-        onBackPressed = { onEvent(LanguageListEvent.OnBackPressed) },
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .padding(innerPadding)
-                .padding(horizontal = MaterialTheme.spacing.default),
-        ) {
-            LanguageSearch(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                searchText = uiState.searchText,
-                onEvent = onEvent,
-            )
-            when {
-                uiState.isLoading -> LoadingView()
-                uiState.languages.isEmpty() -> WarningView(
-                    modifier = Modifier.fillMaxSize(),
-                    title = stringResource(R.string.empty_languages),
-                    animationId = com.luisfagundes.theme.R.raw.warning,
-                )
+  ParrotTopBar(
+    name = stringResource(R.string.languages),
+    onBackPressed = { onEvent(LanguageListEvent.OnBackPressed) },
+  ) { innerPadding ->
+    Column(
+      modifier = Modifier
+        .padding(innerPadding)
+        .padding(horizontal = MaterialTheme.spacing.default),
+    ) {
+      LanguageSearch(
+        modifier = Modifier
+          .fillMaxWidth(),
+        searchText = uiState.searchText,
+        onEvent = onEvent,
+      )
+      when {
+        uiState.isLoading -> LoadingView()
+        uiState.languages.isEmpty() -> WarningView(
+          modifier = Modifier.fillMaxSize(),
+          title = stringResource(R.string.empty_languages),
+          animationId = com.luisfagundes.theme.R.raw.warning,
+        )
 
-                uiState.languages.isNotEmpty() -> LanguageList(
-                    languages = uiState.languages,
-                    onEvent = onEvent,
-                )
-            }
-        }
+        uiState.languages.isNotEmpty() -> LanguageList(
+          languages = uiState.languages,
+          onEvent = onEvent,
+        )
+      }
     }
+  }
 }
 
 @Composable
 private fun LanguageList(
-    languages: List<Language>,
-    onEvent: (LanguageListEvent) -> Unit,
+  languages: List<Language>,
+  onEvent: (LanguageListEvent) -> Unit,
 ) {
-    LazyColumn(
-        modifier = Modifier.fillMaxWidth(),
-        contentPadding = PaddingValues(vertical = MaterialTheme.spacing.default),
-    ) {
-        items(languages) { language ->
-            Language(
-                language = language,
-                onLanguageClicked = {
-                    onEvent(LanguageListEvent.OnLanguageClicked(language.id, true))
-                },
-            )
-        }
+  LazyColumn(
+    modifier = Modifier.fillMaxWidth(),
+    contentPadding = PaddingValues(vertical = MaterialTheme.spacing.default),
+  ) {
+    items(languages) { language ->
+      Language(
+        language = language,
+        onLanguageClicked = {
+          onEvent(LanguageListEvent.OnLanguageClicked(language.id, true))
+        },
+      )
     }
+  }
 }
 
 @Composable
 private fun Language(
-    language: Language,
-    onLanguageClicked: (String) -> Unit,
+  language: Language,
+  onLanguageClicked: (String) -> Unit,
 ) {
-    Card(
-        shape = MaterialTheme.shapes.small,
-        elevation = CardDefaults.elevatedCardElevation(),
-        colors = CardDefaults.elevatedCardColors(),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = MaterialTheme.spacing.verySmall)
-            .clickable { onLanguageClicked(language.id) },
+  Card(
+    shape = MaterialTheme.shapes.small,
+    elevation = CardDefaults.elevatedCardElevation(),
+    colors = CardDefaults.elevatedCardColors(),
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(vertical = MaterialTheme.spacing.verySmall)
+      .clickable { onLanguageClicked(language.id) },
+  ) {
+    Row(
+      horizontalArrangement = Arrangement.Start,
+      verticalAlignment = Alignment.CenterVertically,
+      modifier = Modifier
+        .padding(MaterialTheme.spacing.small),
     ) {
-        Row(
-            horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .padding(MaterialTheme.spacing.small),
-        ) {
-            Text(
-                text = language.name,
-                style = MaterialTheme.typography.titleLarge,
-            )
-            Text(
-                modifier = Modifier.padding(start = MaterialTheme.spacing.verySmall),
-                text = "(${language.nativeName})",
-                style = MaterialTheme.typography.titleMedium,
-                fontStyle = FontStyle.Italic,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-        }
+      Text(
+        text = language.name,
+        style = MaterialTheme.typography.titleLarge,
+      )
+      Text(
+        modifier = Modifier.padding(start = MaterialTheme.spacing.verySmall),
+        text = "(${language.nativeName})",
+        style = MaterialTheme.typography.titleMedium,
+        fontStyle = FontStyle.Italic,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
+      )
     }
+  }
 }

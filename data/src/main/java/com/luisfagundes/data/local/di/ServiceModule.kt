@@ -15,19 +15,19 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object ServiceModule {
 
-    @Singleton
-    @Provides
-    fun provideAlarmManager(@ApplicationContext context: Context): AlarmManager {
-        return context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-    }
+  @Singleton
+  @Provides
+  fun provideAlarmManager(@ApplicationContext context: Context): AlarmManager {
+    return context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+  }
 
-    @Singleton
-    @Provides
-    fun provideNotificationScheduler(
-        @ApplicationContext context: Context,
-        alarmManager: AlarmManager,
-    ): NotificationScheduler = NotificationSchedulerImpl(
-        context = context,
-        alarmManager = alarmManager,
-    )
+  @Singleton
+  @Provides
+  fun provideNotificationScheduler(
+    @ApplicationContext context: Context,
+    alarmManager: AlarmManager,
+  ): NotificationScheduler = NotificationSchedulerImpl(
+    context = context,
+    alarmManager = alarmManager,
+  )
 }

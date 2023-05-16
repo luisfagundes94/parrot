@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 @ViewModelScoped
 class ListLanguages @Inject constructor(
-   private val repository: LanguageRepository
+  private val repository: LanguageRepository,
 ) {
-    suspend operator fun invoke() = repository.listLanguages()
+  suspend operator fun invoke() = repository.listLanguages()
 }

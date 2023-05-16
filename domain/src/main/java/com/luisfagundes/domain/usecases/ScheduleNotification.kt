@@ -8,12 +8,12 @@ import javax.inject.Inject
 
 @ViewModelScoped
 class ScheduleNotification @Inject constructor(
-    private val notificationScheduler: NotificationScheduler
+  private val notificationScheduler: NotificationScheduler,
 ) {
-    operator fun invoke(
-        scheduleData: ScheduleData,
-        notificationData: NotificationData
-    ) {
-        notificationScheduler.scheduleNotification(scheduleData, notificationData)
-    }
+  operator fun invoke(
+    scheduleData: ScheduleData,
+    notificationData: NotificationData,
+  ) {
+    notificationScheduler.scheduleNotification(scheduleData, notificationData)
+  }
 }

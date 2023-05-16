@@ -11,19 +11,19 @@ import com.luisfagundes.data.local.models.ExampleEntity
 import com.luisfagundes.data.local.models.WordEntity
 
 @Database(
-    entities = [
-        AudioLinkEntity::class,
-        ExampleEntity::class,
-        WordEntity::class,
-    ],
-    version = 1,
-    exportSchema = false,
+  entities = [
+    AudioLinkEntity::class,
+    ExampleEntity::class,
+    WordEntity::class,
+  ],
+  version = 1,
+  exportSchema = false,
 )
 @TypeConverters(
-    AudioLinkEntityTypeConverter::class,
-    ExampleEntityTypeConverter::class,
-    TranslationEntityTypeConverter::class,
+  AudioLinkEntityTypeConverter::class,
+  ExampleEntityTypeConverter::class,
+  TranslationEntityTypeConverter::class,
 )
 abstract class ParrotDatabase : RoomDatabase() {
-    abstract fun wordDao(): WordDao
+  abstract fun wordDao(): WordDao
 }

@@ -6,10 +6,10 @@ import javax.inject.Inject
 
 @ViewModelScoped
 class UpdateLanguage @Inject constructor(
-    private val repository: LanguageRepository
-){
-    suspend operator fun invoke(
-        id: String,
-        isSourceLanguage: Boolean
-    ) = repository.updateLanguage(id, isSourceLanguage)
+  private val repository: LanguageRepository,
+) {
+  suspend operator fun invoke(
+    id: String,
+    isSourceLanguage: Boolean,
+  ) = repository.updateLanguage(id, isSourceLanguage)
 }

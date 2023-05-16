@@ -6,7 +6,7 @@ import com.luisfagundes.parrotlingo.navigation.BottomBarScreen
 import com.luisfagundes.settings.SettingsScreen
 
 fun NavGraphBuilder.settingsRoute() {
-    composable(route = BottomBarScreen.Settings.route) {
-        SettingsScreen()
-    }
+  composable(route = BottomBarScreen.Settings.route) {
+    SettingsScreen()
+  }
 }

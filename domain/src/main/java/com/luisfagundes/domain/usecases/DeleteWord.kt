@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 @ViewModelScoped
 class DeleteWord @Inject constructor(
-    private val repository: WordRepository
+  private val repository: WordRepository,
 ) {
-    suspend operator fun invoke(word: Word) = repository.deleteWord(word)
+  suspend operator fun invoke(word: Word) = repository.deleteWord(word)
 }
