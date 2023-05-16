@@ -21,11 +21,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextOverflow
+import com.luisfagundes.commonsUi.ParrotSearch
 import com.luisfagundes.commonsUi.ParrotTopBar
 import com.luisfagundes.domain.models.Language
 import com.luisfagundes.framework.composeComponents.LoadingView
 import com.luisfagundes.framework.composeComponents.WarningView
-import com.luisfagundes.languages.components.LanguageSearch
 import com.luisfagundes.theme.spacing
 import com.luisfagundes.translation.R
 
@@ -55,11 +55,11 @@ private fun LanguageListContent(
                 .padding(innerPadding)
                 .padding(horizontal = MaterialTheme.spacing.default),
         ) {
-            LanguageSearch(
+            ParrotSearch(
                 modifier = Modifier
                     .fillMaxWidth(),
                 searchText = uiState.searchText,
-                onEvent = onEvent,
+                onValueChange = { onEvent(LanguageListEvent.OnSearchTextChanged(it)) },
             )
             when {
                 uiState.isLoading -> LoadingView()

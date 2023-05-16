@@ -1,4 +1,4 @@
-package com.luisfagundes.languages.components
+package com.luisfagundes.commonsUi
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
@@ -12,20 +12,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
-import com.luisfagundes.languages.LanguageListEvent
 
 @Composable
-fun LanguageSearch(
+fun ParrotSearch(
     modifier: Modifier = Modifier,
     searchText: String,
-    onEvent: (LanguageListEvent) -> Unit,
+    onValueChange: (String) -> Unit,
 ) {
     OutlinedTextField(
         modifier = modifier.fillMaxWidth(),
         value = searchText,
-        onValueChange = { newText ->
-            onEvent(LanguageListEvent.OnSearchTextChanged(newText))
-        },
+        onValueChange = { onValueChange(it) },
         placeholder = {
             Text(
                 text = "Search",

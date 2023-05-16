@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -22,6 +23,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import com.luisfagundes.commonsUi.ParrotSearch
 import com.luisfagundes.domain.models.Word
 import com.luisfagundes.framework.composeComponents.LoadingView
 import com.luisfagundes.framework.composeComponents.WarningView
@@ -31,10 +33,10 @@ import com.luisfagundes.theme.spacing
 @Composable
 fun SavedScreen(
     uiState: SavedUiState,
-    onEvent: (SavedUIEvent) -> Unit,
+    onEvent: (SavedEvent) -> Unit,
 ) {
     LaunchedEffect(key1 = uiState.isDeletionSuccessful) {
-        onEvent(SavedUIEvent.LoadSavedWords)
+        onEvent(SavedEvent.LoadSavedWords)
     }
 
     showToast(
@@ -42,24 +44,32 @@ fun SavedScreen(
         message = stringResource(R.string.word_deleted_with_success),
     )
 
-    when {
-        uiState.isLoading -> LoadingView(
-            modifier = Modifier.fillMaxSize(),
+    Column(
+        modifier = Modifier.padding(MaterialTheme.spacing.default),
+    ) {
+        ParrotSearch(
+            searchText = uiState.searchText,
+            onValueChange = { onEvent(SavedEvent.OnSearchTextChanged(it)) },
         )
+        when {
+            uiState.isLoading -> LoadingView(
+                modifier = Modifier.fillMaxSize(),
+            )
 
-        uiState.savedWords.isEmpty() -> WarningView(
-            modifier = Modifier.fillMaxSize(),
-            title = stringResource(R.string.empty_words_title),
-            bodyMessage = stringResource(R.string.empty_words_body_message),
-            animationId = com.luisfagundes.theme.R.raw.warning,
-        )
+            uiState.savedWords.isEmpty() -> WarningView(
+                modifier = Modifier.fillMaxSize(),
+                title = stringResource(R.string.empty_words_title),
+                bodyMessage = stringResource(R.string.empty_words_body_message),
+                animationId = com.luisfagundes.theme.R.raw.warning,
+            )
 
-        uiState.savedWords.isNotEmpty() -> SavedWords(
-            words = uiState.savedWords,
-            onDeleteSavedWord = { word ->
-                onEvent(SavedUIEvent.DeleteSavedWord(word))
-            },
-        )
+            uiState.savedWords.isNotEmpty() -> SavedWords(
+                words = uiState.savedWords,
+                onDeleteSavedWord = { word ->
+                    onEvent(SavedEvent.DeleteSavedWord(word))
+                },
+            )
+        }
     }
 }
 
@@ -70,7 +80,7 @@ fun SavedWords(
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxWidth(),
-        contentPadding = PaddingValues(MaterialTheme.spacing.default),
+        contentPadding = PaddingValues(vertical = MaterialTheme.spacing.default),
     ) {
         items(words) { word ->
             SavedWord(

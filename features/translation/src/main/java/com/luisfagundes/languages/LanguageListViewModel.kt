@@ -3,6 +3,7 @@ package com.luisfagundes.languages
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.luisfagundes.commonsUtil.RouteParams.IS_SOURCE_LANGUAGE
+import com.luisfagundes.commonsUtil.Time.FIVE_SECONDS
 import com.luisfagundes.domain.usecases.ListLanguages
 import com.luisfagundes.domain.usecases.UpdateLanguage
 import com.luisfagundes.framework.base.BaseViewModel
@@ -35,7 +36,7 @@ class LanguageListViewModel @Inject constructor(
         .map { filterLanguageList(it) }
         .stateIn(
             viewModelScope,
-            SharingStarted.WhileSubscribed(5000L),
+            SharingStarted.WhileSubscribed(FIVE_SECONDS),
             _uiState.value,
         )
 

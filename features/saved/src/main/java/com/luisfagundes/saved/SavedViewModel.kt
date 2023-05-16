@@ -1,5 +1,7 @@
 package com.luisfagundes.saved
 
+import androidx.lifecycle.viewModelScope
+import com.luisfagundes.commonsUtil.Time.FIVE_SECONDS
 import com.luisfagundes.domain.models.Word
 import com.luisfagundes.domain.usecases.DeleteWord
 import com.luisfagundes.domain.usecases.GetAllSavedWords
@@ -10,7 +12,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -23,12 +27,19 @@ class SavedViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val _uiState = MutableStateFlow(SavedUiState())
-    val uiState = _uiState.asStateFlow()
+    val uiState = _uiState
+        .map { filterSavedWords(it) }
+        .stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(FIVE_SECONDS),
+            _uiState.value,
+        )
 
-    fun onEvent(event: SavedUIEvent) {
+    fun onEvent(event: SavedEvent) {
         when (event) {
-            is SavedUIEvent.LoadSavedWords -> fetchAllSavedWords()
-            is SavedUIEvent.DeleteSavedWord -> deleteSavedWord(event.word)
+            is SavedEvent.LoadSavedWords -> fetchAllSavedWords()
+            is SavedEvent.DeleteSavedWord -> deleteSavedWord(event.word)
+            is SavedEvent.OnSearchTextChanged -> updateSearchText(event.text)
         }
     }
 
@@ -56,6 +67,29 @@ class SavedViewModel @Inject constructor(
             updateWordDeletedWithSuccess(false)
         }
     }
+
+    private fun updateSearchText(text: String) {
+        _uiState.update {
+            it.copy(
+                searchText = text,
+            )
+        }
+    }
+
+    private fun filterSavedWords(
+        uiState: SavedUiState,
+    ) =
+        if (uiState.searchText.isBlank()) {
+            uiState
+        } else {
+            uiState.copy(
+                savedWords = uiState.savedWords.filter { word ->
+                    word.doesMatchSearch(
+                        uiState.searchText,
+                    )
+                },
+            )
+        }
 
     private fun updateWordDeletedWithSuccess(isSuccess: Boolean) {
         _uiState.update {

@@ -47,6 +47,7 @@ dependencies {
     implementation(projects.framework)
     implementation(projects.commons.theme)
     implementation(projects.commons.ui)
+    implementation(projects.commons.util)
 
     implementation(libs.compose.ui.ui)
     implementation(libs.compose.material3)
