@@ -37,10 +37,10 @@ android {
 
     sourceSets {
         getByName("debug") {
-            java.srcDir("src/debugRelease/java")
+            java.srcDir("src/debug/java")
         }
         getByName("release") {
-            java.srcDir("src/debugRelease/java")
+            java.srcDir("src/release/java")
         }
     }
 
@@ -66,6 +66,10 @@ android {
             pickFirsts.add("META-INF/LICENSE.md")
             pickFirsts.add("META-INF/LICENSE-notice.md")
         }
+    }
+
+    hilt {
+        enableAggregatingTask = true
     }
 }
 
@@ -93,4 +97,7 @@ dependencies {
     implementation(libs.hilt.compose)
     implementation(libs.hilt.library)
     kapt(libs.hilt.compiler)
+
+    // Logging
+    implementation(libs.timber)
 }

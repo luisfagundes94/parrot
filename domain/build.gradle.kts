@@ -1,8 +1,6 @@
 plugins {
-    alias(libs.plugins.hilt)
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.kotlin.parcelize)
 }
 
@@ -26,6 +24,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -42,9 +41,7 @@ dependencies {
     implementation(projects.commons.testing)
 
     // DI
-    implementation(libs.hilt.compose)
     implementation(libs.hilt.library)
-    kapt(libs.hilt.compiler)
 
     // Testing
     testImplementation(libs.junit)

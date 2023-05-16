@@ -65,4 +65,7 @@ dependencies {
     testImplementation(libs.coroutines.test)
     testImplementation(libs.mockk)
     testImplementation(libs.roboletric)
+
+    // Logging
+    implementation(libs.timber)
 }
