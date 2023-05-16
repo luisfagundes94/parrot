@@ -17,11 +17,11 @@ object DatabaseModule {
     @Singleton
     @Provides
     fun provideDatabase(
-        @ApplicationContext applicationContext: Context
+        @ApplicationContext applicationContext: Context,
     ) = Room.databaseBuilder(
         applicationContext,
         ParrotDatabase::class.java,
-        DATABASE_NAME
+        DATABASE_NAME,
     ).build()
 
     private const val DATABASE_NAME = "parrot.db"

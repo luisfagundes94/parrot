@@ -32,7 +32,7 @@ import com.luisfagundes.translation.presentation.TranslationUiState
 @Composable
 fun TranslationScreen(
     uiState: TranslationUiState,
-    onEvent: (TranslationEvent) -> Unit = {}
+    onEvent: (TranslationEvent) -> Unit = {},
 ) {
     NotificationPermission()
 
@@ -42,7 +42,7 @@ fun TranslationScreen(
 
     TranslationContent(
         uiState = uiState,
-        onEvent = onEvent
+        onEvent = onEvent,
     )
 }
 
@@ -50,7 +50,7 @@ fun TranslationScreen(
 @OptIn(ExperimentalComposeUiApi::class)
 private fun TranslationContent(
     uiState: TranslationUiState,
-    onEvent: (TranslationEvent) -> Unit
+    onEvent: (TranslationEvent) -> Unit,
 ) {
     var inputText by rememberSaveable { mutableStateOf("") }
 
@@ -61,56 +61,54 @@ private fun TranslationContent(
         modifier = Modifier
             .padding(horizontal = spacing.default)
             .padding(top = spacing.default)
-            .verticalScroll(rememberScrollState())
+            .verticalScroll(rememberScrollState()),
     ) {
         LanguagePair(
             languagePair = uiState.languagePair,
             onInvertLanguage = {
                 onEvent(
-                    TranslationEvent.InvertLanguagePair(uiState.languagePair)
+                    TranslationEvent.InvertLanguagePair(uiState.languagePair),
                 )
             },
             onLanguageClicked = {
                 onEvent(TranslationEvent.OnLanguageClicked(it))
-            }
+            },
         )
         Spacer(
-            modifier = Modifier.padding(spacing.verySmall)
+            modifier = Modifier.padding(spacing.verySmall),
         )
         InputTextArea(
             onValueChange = { inputText = it },
-            placeholder = stringResource(R.string.enter_text_to_translate)
+            placeholder = stringResource(R.string.enter_text_to_translate),
         )
         Spacer(
-            modifier = Modifier.padding(spacing.verySmall)
+            modifier = Modifier.padding(spacing.verySmall),
         )
         Button(
             onClick = {
                 keyboardController?.hide()
                 onEvent(TranslationEvent.Translate(inputText))
             },
-            modifier = Modifier.height(spacing.buttonSize)
+            modifier = Modifier.height(spacing.buttonSize),
         ) {
             Text(
                 text = stringResource(R.string.translate),
                 style = MaterialTheme.typography.titleMedium,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             )
         }
         Spacer(
-            modifier = Modifier.padding(vertical = spacing.small)
+            modifier = Modifier.padding(vertical = spacing.small),
         )
         TranslationResults(
             uiState = uiState,
             onSaveWord = { scheduleData, word ->
                 onEvent(TranslationEvent.SaveWord(scheduleData, word))
-            }
+            },
         )
         Spacer(
-            modifier = Modifier.padding(vertical = spacing.small)
+            modifier = Modifier.padding(vertical = spacing.small),
         )
     }
 }
-
-

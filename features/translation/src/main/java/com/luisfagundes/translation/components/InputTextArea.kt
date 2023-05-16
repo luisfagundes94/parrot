@@ -20,14 +20,14 @@ import androidx.compose.ui.graphics.Color
 @Composable
 fun InputTextArea(
     onValueChange: (String) -> Unit = {},
-    placeholder: String
+    placeholder: String,
 ) {
     var inputText by remember { mutableStateOf("") }
     onValueChange(inputText)
 
     Column(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxWidth(),
     ) {
         TextField(
             placeholder = {
@@ -35,7 +35,7 @@ fun InputTextArea(
                     text = placeholder,
                     style = LocalTextStyle.current.copy(
                         fontSize = MaterialTheme.typography.titleLarge.fontSize,
-                    )
+                    ),
                 )
             },
             value = inputText,
@@ -51,12 +51,12 @@ fun InputTextArea(
                 disabledContainerColor = MaterialTheme.colorScheme.surface,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent
+                disabledIndicatorColor = Color.Transparent,
             ),
             textStyle = LocalTextStyle.current.copy(
                 fontSize = MaterialTheme.typography.titleLarge.fontSize,
             ),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
     }
 }

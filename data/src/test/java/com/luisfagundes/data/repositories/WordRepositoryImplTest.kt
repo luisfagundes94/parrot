@@ -26,27 +26,28 @@ class WordRepositoryImplTest {
     fun setup() {
         repository = WordRepositoryImpl(
             lingueeApiService,
-            database
+            database,
         )
     }
 
     @Test
     fun `translateWord calls lingueeApiService fetchWordTranslations with correct parameters`() =
         coroutineRule.runTest {
-        val params = GetWordTranslations.Params(
-            "hello", "en",
-            "es"
-        )
-        val expectedMap = mapOf(
-            "query" to "hello",
-            "src" to "en",
-            "dst" to "es"
-        )
+            val params = GetWordTranslations.Params(
+                "hello",
+                "en",
+                "es",
+            )
+            val expectedMap = mapOf(
+                "query" to "hello",
+                "src" to "en",
+                "dst" to "es",
+            )
 
-        coEvery { lingueeApiService.fetchWordTranslations(any()) } returns mockk()
+            coEvery { lingueeApiService.fetchWordTranslations(any()) } returns mockk()
 
-        repository.translateWord(params)
+            repository.translateWord(params)
 
-        coVerify(exactly = 1) { lingueeApiService.fetchWordTranslations(expectedMap) }
-    }
+            coVerify(exactly = 1) { lingueeApiService.fetchWordTranslations(expectedMap) }
+        }
 }

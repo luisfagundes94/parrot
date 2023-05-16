@@ -6,7 +6,7 @@ data class SavedUiState(
     val isLoading: Boolean = false,
     val hasError: Boolean = false,
     val isDeletionSuccessful: Boolean = false,
-    val savedWords: List<Word> = emptyList()
+    val savedWords: List<Word> = emptyList(),
 ) {
     val shouldShowToast: Boolean
         get() = isDeletionSuccessful && !isLoading && !hasError

@@ -31,7 +31,7 @@ import com.luisfagundes.theme.spacing
 @Composable
 fun SavedScreen(
     uiState: SavedUiState,
-    onEvent: (SavedUIEvent) -> Unit
+    onEvent: (SavedUIEvent) -> Unit,
 ) {
     LaunchedEffect(key1 = uiState.isDeletionSuccessful) {
         onEvent(SavedUIEvent.LoadSavedWords)
@@ -39,26 +39,26 @@ fun SavedScreen(
 
     showToast(
         shouldShow = uiState.shouldShowToast,
-        message = stringResource(R.string.word_deleted_with_success)
+        message = stringResource(R.string.word_deleted_with_success),
     )
 
     when {
         uiState.isLoading -> LoadingView(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
         )
 
         uiState.savedWords.isEmpty() -> WarningView(
             modifier = Modifier.fillMaxSize(),
             title = stringResource(R.string.empty_words_title),
             bodyMessage = stringResource(R.string.empty_words_body_message),
-            animationId = com.luisfagundes.theme.R.raw.warning
+            animationId = com.luisfagundes.theme.R.raw.warning,
         )
 
         uiState.savedWords.isNotEmpty() -> SavedWords(
             words = uiState.savedWords,
             onDeleteSavedWord = { word ->
                 onEvent(SavedUIEvent.DeleteSavedWord(word))
-            }
+            },
         )
     }
 }
@@ -66,7 +66,7 @@ fun SavedScreen(
 @Composable
 fun SavedWords(
     words: List<Word>,
-    onDeleteSavedWord: (Word) -> Unit
+    onDeleteSavedWord: (Word) -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxWidth(),
@@ -75,10 +75,10 @@ fun SavedWords(
         items(words) { word ->
             SavedWord(
                 word = word,
-                onDeleteButtonClicked = onDeleteSavedWord
+                onDeleteButtonClicked = onDeleteSavedWord,
             )
             Spacer(
-                Modifier.height(MaterialTheme.spacing.default)
+                Modifier.height(MaterialTheme.spacing.default),
             )
         }
     }
@@ -87,30 +87,30 @@ fun SavedWords(
 @Composable
 fun SavedWord(
     word: Word,
-    onDeleteButtonClicked: (Word) -> Unit
+    onDeleteButtonClicked: (Word) -> Unit,
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         Column {
             Text(
                 text = word.text,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
             )
             Spacer(
-                Modifier.height(MaterialTheme.spacing.extraSmall)
+                Modifier.height(MaterialTheme.spacing.extraSmall),
             )
             Text(
-                text = word.translations.first().text
+                text = word.translations.first().text,
             )
         }
         Spacer(Modifier.weight(1f))
         IconButton(
-            onClick = { onDeleteButtonClicked(word) }
+            onClick = { onDeleteButtonClicked(word) },
         ) {
             Icon(
                 imageVector = Icons.Default.Delete,
-                contentDescription = stringResource(R.string.delete_word)
+                contentDescription = stringResource(R.string.delete_word),
             )
         }
     }

@@ -24,7 +24,7 @@ fun NotificationPermission() {
 
     var shouldOpenDeniedDialog by remember { mutableStateOf(false) }
     val permissionState = rememberPermissionState(
-        android.Manifest.permission.POST_NOTIFICATIONS
+        android.Manifest.permission.POST_NOTIFICATIONS,
     )
 
     LaunchedEffect(key1 = permissionState.status) {
@@ -34,8 +34,11 @@ fun NotificationPermission() {
             }
 
             is PermissionStatus.Denied -> {
-                if (status.shouldShowRationale) shouldOpenDeniedDialog = true
-                else permissionState.launchPermissionRequest()
+                if (status.shouldShowRationale) {
+                    shouldOpenDeniedDialog = true
+                } else {
+                    permissionState.launchPermissionRequest()
+                }
             }
         }
     }
@@ -49,7 +52,7 @@ fun NotificationPermission() {
 
 @Composable
 private fun PermissionDeniedDialog(
-    shouldOpenDialog: (Boolean) -> Unit
+    shouldOpenDialog: (Boolean) -> Unit,
 ) {
     val textToShow = stringResource(R.string.notification_request_text)
 
@@ -57,14 +60,14 @@ private fun PermissionDeniedDialog(
         onDismissRequest = { shouldOpenDialog(false) },
         confirmButton = {
             TextButton(
-                onClick = { shouldOpenDialog(false) }
+                onClick = { shouldOpenDialog(false) },
             ) {
                 Text("Confirm")
             }
         },
         dismissButton = {
             TextButton(
-                onClick = { shouldOpenDialog(false) }
+                onClick = { shouldOpenDialog(false) },
             ) {
                 Text("Dismiss")
             }

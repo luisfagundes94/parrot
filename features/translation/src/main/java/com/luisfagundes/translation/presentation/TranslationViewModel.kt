@@ -34,7 +34,7 @@ class TranslationViewModel @Inject constructor(
     private val saveWord: SaveWord,
     private val scheduleNotification: ScheduleNotification,
     private val appProvider: ResourceProvider,
-    @IoDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+    @IoDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : BaseViewModel() {
 
     private val _uiState = MutableStateFlow(TranslationUiState())
@@ -48,7 +48,7 @@ class TranslationViewModel @Inject constructor(
             is TranslationEvent.OnLanguageClicked -> doNothing()
             is TranslationEvent.SaveWord -> saveWordToLocalDb(
                 scheduleData = event.scheduleData,
-                word = event.word
+                word = event.word,
             )
         }
     }
@@ -73,7 +73,7 @@ class TranslationViewModel @Inject constructor(
         return GetWordTranslations.Params(
             text = text,
             sourceLanguage = firstCode,
-            destLanguage = secondCode
+            destLanguage = secondCode,
         )
     }
 
@@ -82,14 +82,14 @@ class TranslationViewModel @Inject constructor(
 
         _uiState.update {
             it.copy(
-                languagePair = Pair(languagePair.second, languagePair.first)
+                languagePair = Pair(languagePair.second, languagePair.first),
             )
         }
     }
 
     private fun saveWordToLocalDb(
         scheduleData: ScheduleData,
-        word: Word
+        word: Word,
     ) = safeLaunch {
         handleSavingWord(word, scheduleData)
         delay(SAVING_WORD_DELAY)
@@ -98,7 +98,7 @@ class TranslationViewModel @Inject constructor(
 
     private suspend fun handleSavingWord(
         word: Word,
-        scheduleData: ScheduleData
+        scheduleData: ScheduleData,
     ) {
         when (withContext(dispatcher) { saveWord(word) }) {
             is DataState.Success -> {
@@ -122,7 +122,7 @@ class TranslationViewModel @Inject constructor(
 
     private fun scheduleNotificationAlarm(
         scheduleData: ScheduleData,
-        word: Word
+        word: Word,
     ) {
         if (scheduleData.intervalHours < ZERO) return
         val notificationData = createNotificationData(word)
@@ -134,7 +134,7 @@ class TranslationViewModel @Inject constructor(
         smallIconId = appProvider.getAppIconId(),
         largeIcon = appProvider.getAppIconBitmap(),
         title = word.text,
-        content = word.translations.first().text
+        content = word.translations.first().text,
     )
 
     override fun startLoading() {

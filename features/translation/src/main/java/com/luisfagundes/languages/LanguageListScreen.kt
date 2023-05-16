@@ -32,7 +32,7 @@ import com.luisfagundes.translation.R
 @Composable
 fun LanguageListScreen(
     uiState: LanguageListUiState,
-    onEvent: (LanguageListEvent) -> Unit
+    onEvent: (LanguageListEvent) -> Unit,
 ) {
     LaunchedEffect(key1 = Unit, block = {
         onEvent(LanguageListEvent.GetLanguageList)
@@ -44,7 +44,7 @@ fun LanguageListScreen(
 @Composable
 private fun LanguageListContent(
     onEvent: (LanguageListEvent) -> Unit,
-    uiState: LanguageListUiState
+    uiState: LanguageListUiState,
 ) {
     ParrotTopBar(
         name = stringResource(R.string.languages),
@@ -53,20 +53,20 @@ private fun LanguageListContent(
         Column(
             modifier = Modifier
                 .padding(innerPadding)
-                .padding(horizontal = MaterialTheme.spacing.default)
+                .padding(horizontal = MaterialTheme.spacing.default),
         ) {
             LanguageSearch(
                 modifier = Modifier
                     .fillMaxWidth(),
                 searchText = uiState.searchText,
-                onEvent = onEvent
+                onEvent = onEvent,
             )
             when {
                 uiState.isLoading -> LoadingView()
                 uiState.languages.isEmpty() -> WarningView(
                     modifier = Modifier.fillMaxSize(),
                     title = stringResource(R.string.empty_languages),
-                    animationId = com.luisfagundes.theme.R.raw.warning
+                    animationId = com.luisfagundes.theme.R.raw.warning,
                 )
 
                 uiState.languages.isNotEmpty() -> LanguageList(
@@ -81,7 +81,7 @@ private fun LanguageListContent(
 @Composable
 private fun LanguageList(
     languages: List<Language>,
-    onEvent: (LanguageListEvent) -> Unit
+    onEvent: (LanguageListEvent) -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxWidth(),
@@ -92,7 +92,7 @@ private fun LanguageList(
                 language = language,
                 onLanguageClicked = {
                     onEvent(LanguageListEvent.OnLanguageClicked(language.id, true))
-                }
+                },
             )
         }
     }
@@ -101,7 +101,7 @@ private fun LanguageList(
 @Composable
 private fun Language(
     language: Language,
-    onLanguageClicked: (String) -> Unit
+    onLanguageClicked: (String) -> Unit,
 ) {
     Card(
         shape = MaterialTheme.shapes.small,
@@ -110,13 +110,13 @@ private fun Language(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = MaterialTheme.spacing.verySmall)
-            .clickable { onLanguageClicked(language.id) }
+            .clickable { onLanguageClicked(language.id) },
     ) {
         Row(
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .padding(MaterialTheme.spacing.small)
+                .padding(MaterialTheme.spacing.small),
         ) {
             Text(
                 text = language.name,
@@ -128,7 +128,7 @@ private fun Language(
                 style = MaterialTheme.typography.titleMedium,
                 fontStyle = FontStyle.Italic,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Ellipsis,
             )
         }
     }

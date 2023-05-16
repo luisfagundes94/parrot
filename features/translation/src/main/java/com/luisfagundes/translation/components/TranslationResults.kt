@@ -33,8 +33,8 @@ import androidx.compose.ui.unit.dp
 import com.luisfagundes.domain.models.ScheduleData
 import com.luisfagundes.domain.models.Translation
 import com.luisfagundes.domain.models.Word
-import com.luisfagundes.framework.compose_components.WarningView
 import com.luisfagundes.framework.compose_components.LoadingView
+import com.luisfagundes.framework.compose_components.WarningView
 import com.luisfagundes.framework.extension.capitalize
 import com.luisfagundes.framework.extension.showToast
 import com.luisfagundes.theme.spacing
@@ -44,39 +44,39 @@ import com.luisfagundes.translation.presentation.TranslationUiState
 @Composable
 fun TranslationResults(
     uiState: TranslationUiState,
-    onSaveWord: (ScheduleData, Word) -> Unit
+    onSaveWord: (ScheduleData, Word) -> Unit,
 ) {
     val modifier = Modifier.padding(vertical = MaterialTheme.spacing.default)
 
     showToast(
         shouldShow = uiState.wordSavedWithSuccess,
-        message = stringResource(R.string.word_saved)
+        message = stringResource(R.string.word_saved),
     )
 
     when {
         uiState.hasError -> WarningView(
             modifier = modifier,
             title = stringResource(R.string.warning_error),
-            animationId = com.luisfagundes.theme.R.raw.warning
+            animationId = com.luisfagundes.theme.R.raw.warning,
         )
 
         uiState.isEmpty -> WarningView(
             modifier = modifier,
             title = stringResource(R.string.warning_empty),
-            animationId = com.luisfagundes.theme.R.raw.warning
+            animationId = com.luisfagundes.theme.R.raw.warning,
         )
 
         uiState.isLoading -> LoadingView(
             modifier = modifier
                 .fillMaxSize()
-                .padding(MaterialTheme.spacing.default)
+                .padding(MaterialTheme.spacing.default),
         )
 
         uiState.wordList.isNotEmpty() -> SuccessView(
             words = uiState.wordList,
             onSaveWord = { scheduleData, word ->
                 onSaveWord(scheduleData, word)
-            }
+            },
         )
     }
 }
@@ -84,14 +84,14 @@ fun TranslationResults(
 @Composable
 private fun SuccessView(
     words: List<Word>,
-    onSaveWord: (ScheduleData, Word) -> Unit
+    onSaveWord: (ScheduleData, Word) -> Unit,
 ) {
     val modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall)
 
     Spacer(modifier = modifier)
     OtherTranslations(
         words = words,
-        onSaveWord = onSaveWord
+        onSaveWord = onSaveWord,
     )
     Spacer(modifier = modifier)
     Examples(words = words)
@@ -99,21 +99,21 @@ private fun SuccessView(
 
 @Composable
 private fun ContainerBox(
-    container: @Composable () -> Unit
+    container: @Composable () -> Unit,
 ) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .background(
                 color = MaterialTheme.colorScheme.surface,
-                shape = MaterialTheme.shapes.small
+                shape = MaterialTheme.shapes.small,
             )
             .border(
                 width = 1.dp,
                 color = MaterialTheme.colorScheme.onSurface,
-                shape = MaterialTheme.shapes.small
+                shape = MaterialTheme.shapes.small,
             )
-            .padding(MaterialTheme.spacing.small)
+            .padding(MaterialTheme.spacing.small),
     ) {
         container.invoke()
     }
@@ -122,7 +122,7 @@ private fun ContainerBox(
 @Composable
 private fun OtherTranslations(
     words: List<Word>,
-    onSaveWord: (ScheduleData, Word) -> Unit
+    onSaveWord: (ScheduleData, Word) -> Unit,
 ) {
     if (words.all { it.translations.isEmpty() }) return
 
@@ -134,16 +134,16 @@ private fun OtherTranslations(
         onConfirmClick = { scheduleData ->
             onSaveWord(
                 scheduleData,
-                words.first()
+                words.first(),
             )
             openConfirmationBottomSheet = false
-        }
+        },
     )
 
     ContainerBox {
         Row(
             horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 text = words.first().translations.first().text,
@@ -154,7 +154,7 @@ private fun OtherTranslations(
             IconButton(
                 onClick = {
                     openConfirmationBottomSheet = !openConfirmationBottomSheet
-                }
+                },
             ) {
                 Icon(
                     modifier = Modifier.scale(1.1f),
@@ -164,7 +164,7 @@ private fun OtherTranslations(
             }
         }
         Spacer(
-            modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall)
+            modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall),
         )
         Text(
             text = "Other translations",
@@ -174,7 +174,7 @@ private fun OtherTranslations(
             word.translations.forEach { translation ->
                 TranslationItem(
                     translation = translation,
-                    isFeatured = true
+                    isFeatured = true,
                 )
             }
         }
@@ -183,7 +183,7 @@ private fun OtherTranslations(
 
 @Composable
 private fun Examples(
-    words: List<Word>
+    words: List<Word>,
 ) {
     if (
         words.all { word ->
@@ -191,7 +191,9 @@ private fun Examples(
                 translation.examples.isEmpty()
             }
         }
-    ) return
+    ) {
+        return
+    }
 
     ContainerBox {
         Text(
@@ -202,7 +204,7 @@ private fun Examples(
             word.translations.forEach { translation ->
                 TranslationItem(
                     translation = translation,
-                    isFeatured = false
+                    isFeatured = false,
                 )
             }
         }
@@ -223,22 +225,25 @@ private fun getExamplesOf(word: Word): AnnotatedString {
 @Composable
 private fun TranslationItem(
     translation: Translation,
-    isFeatured: Boolean
+    isFeatured: Boolean,
 ) {
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         if (isFeatured.not() and translation.examples.isEmpty()) return@Column
         Spacer(
-            modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall)
+            modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall),
         )
         Text(
             text = translation.wordType.capitalize(),
             style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.primary,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
         )
-        if (isFeatured.not()) Examples(translation.examples)
-        else Text(translation.text)
+        if (isFeatured.not()) {
+            Examples(translation.examples)
+        } else {
+            Text(translation.text)
+        }
     }
 }

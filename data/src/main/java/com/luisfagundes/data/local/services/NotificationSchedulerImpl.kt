@@ -13,11 +13,11 @@ import timber.log.Timber
 
 class NotificationSchedulerImpl(
     private val context: Context,
-    private val alarmManager: AlarmManager
+    private val alarmManager: AlarmManager,
 ) : NotificationScheduler {
     override fun scheduleNotification(
         scheduleData: ScheduleData,
-        notificationData: NotificationData
+        notificationData: NotificationData,
     ) {
         val intent = Intent(context, AlarmReceiver::class.java).apply {
             putExtra(NOTIFICATION_DATA_KEY, notificationData)
@@ -34,7 +34,7 @@ class NotificationSchedulerImpl(
             alarmManager.setAndAllowWhileIdle(
                 AlarmManager.ELAPSED_REALTIME_WAKEUP,
                 nextAlarmTime,
-                pendingIntent
+                pendingIntent,
             )
         } catch (exception: Exception) {
             exception.printStackTrace()
@@ -42,7 +42,7 @@ class NotificationSchedulerImpl(
     }
 
     private fun calculateNextAlarmTime(
-        scheduleData: ScheduleData
+        scheduleData: ScheduleData,
     ): Long {
         val currentTime = SystemClock.elapsedRealtime()
         val intervalHourUnit = AlarmManager.INTERVAL_HOUR
@@ -55,7 +55,7 @@ class NotificationSchedulerImpl(
             context,
             PENDING_INTENT_REQUEST_CODE,
             intent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
         )
 
     companion object {

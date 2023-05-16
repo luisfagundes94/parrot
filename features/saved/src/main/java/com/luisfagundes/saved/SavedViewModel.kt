@@ -19,7 +19,7 @@ import javax.inject.Inject
 class SavedViewModel @Inject constructor(
     private val getAllSavedWords: GetAllSavedWords,
     private val deleteWord: DeleteWord,
-    @DefaultDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+    @DefaultDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : BaseViewModel() {
 
     private val _uiState = MutableStateFlow(SavedUiState())
@@ -41,7 +41,7 @@ class SavedViewModel @Inject constructor(
             it.copy(
                 isLoading = false,
                 hasError = false,
-                savedWords = result
+                savedWords = result,
             )
         }
     }
@@ -50,7 +50,7 @@ class SavedViewModel @Inject constructor(
         val result = withContext(dispatcher) {
             deleteWord(word)
         }
-        if (result is DataState.Success)  {
+        if (result is DataState.Success) {
             updateWordDeletedWithSuccess(true)
         } else {
             updateWordDeletedWithSuccess(false)

@@ -1,6 +1,5 @@
 package com.luisfagundes.data.repositories
 
-
 import android.content.Context
 import android.content.res.AssetManager
 import com.luisfagundes.commons_testing.TestCoroutineRule
@@ -24,7 +23,6 @@ class LanguageRepositoryImplTest {
     @get:Rule
     val coroutineRule = TestCoroutineRule()
 
-
     private val appContext: Context = mockk()
     private val languageDataStore: LanguageDataStore = mockk()
     private lateinit var repository: LanguageRepositoryImpl
@@ -33,7 +31,7 @@ class LanguageRepositoryImplTest {
     fun setup() {
         val mockAssets: AssetManager = mockk()
         val mockInputStream: InputStream = ByteArrayInputStream(
-            LanguageFactory.languagesInJsonString.toByteArray()
+            LanguageFactory.languagesInJsonString.toByteArray(),
         )
 
         every { appContext.assets } returns mockAssets
@@ -62,8 +60,8 @@ class LanguageRepositoryImplTest {
             repository.languagesMap.putAll(
                 mapOf(
                     sourceLanguage.id to sourceLanguage,
-                    destLanguage.id to destLanguage
-                )
+                    destLanguage.id to destLanguage,
+                ),
             )
 
             coEvery { languageDataStore.sourceLanguageId } returns flowOf(sourceLanguage.id)
@@ -88,5 +86,3 @@ class LanguageRepositoryImplTest {
             coVerify { languageDataStore.updateSourceLanguageId(id) }
         }
 }
-
-

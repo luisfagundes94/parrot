@@ -6,5 +6,5 @@ data class TranslationResponse(
     val featured: Boolean,
     val pos: String,
     val text: String,
-    val usage_frequency: Any?
+    val usage_frequency: Any?,
 )

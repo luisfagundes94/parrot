@@ -12,5 +12,5 @@ data class TranslationEntity(
     @ColumnInfo("featured") val featured: Boolean,
     @ColumnInfo("word_type") val wordType: String,
     @ColumnInfo("text") val text: String,
-    @ColumnInfo("usage_frequency") val usageFrequency: Any?
+    @ColumnInfo("usage_frequency") val usageFrequency: Any?,
 )

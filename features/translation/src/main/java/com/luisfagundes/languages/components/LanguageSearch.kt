@@ -18,7 +18,7 @@ import com.luisfagundes.languages.LanguageListEvent
 fun LanguageSearch(
     modifier: Modifier = Modifier,
     searchText: String,
-    onEvent: (LanguageListEvent) -> Unit
+    onEvent: (LanguageListEvent) -> Unit,
 ) {
     OutlinedTextField(
         modifier = modifier.fillMaxWidth(),
@@ -29,7 +29,7 @@ fun LanguageSearch(
         placeholder = {
             Text(
                 text = "Search",
-                fontStyle = FontStyle.Italic
+                fontStyle = FontStyle.Italic,
             )
         },
         leadingIcon = {
@@ -40,6 +40,6 @@ fun LanguageSearch(
             focusedTextColor = MaterialTheme.colorScheme.onSurface,
             focusedContainerColor = MaterialTheme.colorScheme.surface,
             unfocusedContainerColor = Color.Transparent,
-        )
+        ),
     )
 }

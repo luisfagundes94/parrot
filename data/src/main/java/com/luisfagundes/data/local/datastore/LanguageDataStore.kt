@@ -8,10 +8,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class LanguageDataStore(
-    private val context: Context
+    private val context: Context,
 ) {
     private val Context.dataStore by preferencesDataStore(
-        name = "savedLanguagePair"
+        name = "savedLanguagePair",
     )
 
     private val sourceLanguageIdKey = stringPreferencesKey("sourceLanguageId")

@@ -8,7 +8,6 @@ import com.luisfagundes.domain.models.AudioLink
 import com.luisfagundes.domain.models.Example
 import com.luisfagundes.domain.models.Translation
 import com.luisfagundes.domain.models.Word
-import java.util.UUID
 
 object DomainToEntityMapper {
     fun Word.toEntity() = WordEntity(
@@ -17,13 +16,13 @@ object DomainToEntityMapper {
         featured = this.featured,
         type = this.type,
         text = this.text,
-        translations = this.translations.map { it.toEntity() }
+        translations = this.translations.map { it.toEntity() },
     )
 
     private fun AudioLink.toEntity() = AudioLinkEntity(
         uid = this.id,
         language = this.language,
-        url = this.url
+        url = this.url,
     )
 
     private fun Translation.toEntity() = TranslationEntity(
@@ -33,12 +32,12 @@ object DomainToEntityMapper {
         featured = this.featured,
         wordType = this.wordType,
         text = this.text,
-        usageFrequency = this.usageFrequency
+        usageFrequency = this.usageFrequency,
     )
 
     private fun Example.toEntity() = ExampleEntity(
         uid = this.id,
         destinationLanguage = this.destinationLanguage,
-        sourceLanguage = this.sourceLanguage
+        sourceLanguage = this.sourceLanguage,
     )
 }

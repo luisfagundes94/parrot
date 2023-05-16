@@ -7,6 +7,6 @@ sealed class LanguageListEvent {
     data class OnSearchTextChanged(val text: String) : LanguageListEvent()
     data class OnLanguageClicked(
         val id: String,
-        val isSourceLanguage: Boolean
+        val isSourceLanguage: Boolean,
     ) : LanguageListEvent()
 }

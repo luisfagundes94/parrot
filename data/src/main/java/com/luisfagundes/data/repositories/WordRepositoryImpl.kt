@@ -13,7 +13,7 @@ import com.luisfagundes.framework.network.safeApiCall
 
 class WordRepositoryImpl(
     private val lingueeApiService: LingueeApiService,
-    private val database: ParrotDatabase
+    private val database: ParrotDatabase,
 ) : WordRepository {
     override suspend fun translateWord(params: GetWordTranslations.Params): DataState<List<Word>> {
         val queryMap = mapToQueryMap(params)
@@ -53,10 +53,10 @@ class WordRepositoryImpl(
     }
 
     private fun mapToQueryMap(params: GetWordTranslations.Params) =
-         mapOf(
+        mapOf(
             QUERY to params.text,
             SOURCE_LANGUAGE to params.sourceLanguage.lowercase(),
-            DEST_LANGUAGE to params.destLanguage.lowercase()
+            DEST_LANGUAGE to params.destLanguage.lowercase(),
         )
 
     private companion object {

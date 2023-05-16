@@ -24,7 +24,7 @@ import com.luisfagundes.theme.spacing
 fun LanguagePair(
     languagePair: Pair<Language, Language>?,
     onInvertLanguage: () -> Unit,
-    onLanguageClicked: (isSource: Boolean) -> Unit = {}
+    onLanguageClicked: (isSource: Boolean) -> Unit = {},
 ) {
     if (languagePair == null) return
 
@@ -37,13 +37,13 @@ fun LanguagePair(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = MaterialTheme.spacing.default)
-            .padding(horizontal = MaterialTheme.spacing.small)
+            .padding(horizontal = MaterialTheme.spacing.small),
 
     ) {
         Text(
             text = sourceLanguage.name,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.clickable { onLanguageClicked(true) }
+            modifier = Modifier.clickable { onLanguageClicked(true) },
         )
         Icon(
             imageVector = Icons.Filled.ImportExport,
@@ -53,13 +53,13 @@ fun LanguagePair(
                 .size(MaterialTheme.spacing.default)
                 .rotate(90f)
                 .weight(1f)
-                .clickable { onInvertLanguage() }
+                .clickable { onInvertLanguage() },
         )
         Spacer(modifier = Modifier.padding(MaterialTheme.spacing.extraSmall))
         Text(
             text = targetLanguage.name,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.clickable { onLanguageClicked(false) }
+            modifier = Modifier.clickable { onLanguageClicked(false) },
         )
     }
 }

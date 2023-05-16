@@ -8,5 +8,5 @@ import androidx.room.PrimaryKey
 data class ExampleEntity(
     @PrimaryKey val uid: String,
     @ColumnInfo("destinationLanguage") val destinationLanguage: String,
-    @ColumnInfo("sourceLanguage") val sourceLanguage: String
+    @ColumnInfo("sourceLanguage") val sourceLanguage: String,
 )

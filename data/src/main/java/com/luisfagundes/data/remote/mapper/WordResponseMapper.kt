@@ -21,7 +21,7 @@ object WordResponseMapper {
         featured = this.featured,
         type = this.pos,
         text = this.text,
-        translations = this.translations.toDomain()
+        translations = this.translations.toDomain(),
     )
 
     @JvmName("toDomainAudioLinkResponse")
@@ -31,7 +31,7 @@ object WordResponseMapper {
     fun AudioLinkResponse.toDomain() = AudioLink(
         id = UUID.randomUUID().toString(),
         language = this.lang,
-        url = this.url
+        url = this.url,
     )
 
     @JvmName("toDomainTranslationResponse")
@@ -45,7 +45,7 @@ object WordResponseMapper {
         featured = this.featured,
         wordType = this.pos,
         text = this.text,
-        usageFrequency = this.usage_frequency
+        usageFrequency = this.usage_frequency,
     )
 
     @JvmName("toDomainExampleResponse")

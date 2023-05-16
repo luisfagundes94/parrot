@@ -1,9 +1,8 @@
 package com.luisfagundes.data.remote.di
 
 import android.content.Context
-import android.util.Log
-import com.luisfagundes.data.remote.services.LingueeApiService
 import com.luisfagundes.data.local.datastore.LanguageDataStore
+import com.luisfagundes.data.remote.services.LingueeApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,7 +24,7 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideCountryDataStore(
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
     ) = LanguageDataStore(context)
 
     @Provides
@@ -56,5 +55,4 @@ object NetworkModule {
     @Singleton
     fun provideApiService(retrofit: Retrofit): LingueeApiService =
         retrofit.create(LingueeApiService::class.java)
-
 }

@@ -12,7 +12,7 @@ import kotlinx.coroutines.runBlocking
 
 class LanguageRepositoryImpl(
     private val appContext: Context,
-    private val languageDataStore: LanguageDataStore
+    private val languageDataStore: LanguageDataStore,
 ) : LanguageRepository {
 
     val languagesMap: MutableMap<String, Language> = mutableMapOf()
@@ -34,34 +34,35 @@ class LanguageRepositoryImpl(
 
     override suspend fun listLanguages(): List<Language> = languagesMap.values.toList()
 
-    override suspend fun fetchLanguagePair(
-    ): Pair<Language, Language> {
+    override suspend fun fetchLanguagePair(): Pair<Language, Language> {
         val sourceLanguageId = languageDataStore.sourceLanguageId.first()
         val destLanguageId = languageDataStore.destLanguageId.first()
 
         return Pair(
             fetchLanguage(sourceLanguageId),
-            fetchLanguage(destLanguageId)
+            fetchLanguage(destLanguageId),
         )
     }
 
     override suspend fun updateLanguage(
         id: String,
-        isSourceLanguage: Boolean
+        isSourceLanguage: Boolean,
     ) {
         languageDataStore.run {
-            if (isSourceLanguage) updateSourceLanguageId(id)
-            else updateTargetLanguageId(id)
+            if (isSourceLanguage) {
+                updateSourceLanguageId(id)
+            } else {
+                updateTargetLanguageId(id)
+            }
         }
     }
-
 
     private fun fetchLanguage(id: String): Language {
         return languagesMap[id] ?: Language(
             id = "d4d5d87e-c0a1-4f35-bb81-5f2709e628aa",
             name = "English",
             nativeName = "English",
-            code = "en"
+            code = "en",
         )
     }
 }

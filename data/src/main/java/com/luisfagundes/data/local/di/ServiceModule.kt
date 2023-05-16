@@ -25,9 +25,9 @@ object ServiceModule {
     @Provides
     fun provideNotificationScheduler(
         @ApplicationContext context: Context,
-        alarmManager: AlarmManager
+        alarmManager: AlarmManager,
     ): NotificationScheduler = NotificationSchedulerImpl(
         context = context,
-        alarmManager = alarmManager
+        alarmManager = alarmManager,
     )
 }

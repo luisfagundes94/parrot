@@ -20,17 +20,17 @@ import com.luisfagundes.domain.services.NotificationScheduler
 import com.luisfagundes.framework.extension.parcelable
 import javax.inject.Inject
 
-class AlarmReceiver: BroadcastReceiver() {
+class AlarmReceiver : BroadcastReceiver() {
 
     @Inject
     lateinit var scheduler: NotificationScheduler
 
     override fun onReceive(context: Context, intent: Intent) {
         val scheduleData = intent.parcelable<ScheduleData>(
-            SCHEDULE_DATA_KEY
+            SCHEDULE_DATA_KEY,
         ) ?: return
         val notificationData = intent.parcelable<NotificationData>(
-            NOTIFICATION_DATA_KEY
+            NOTIFICATION_DATA_KEY,
         ) ?: return
 
         val notification = createNotification(context, notificationData)
@@ -47,7 +47,7 @@ class AlarmReceiver: BroadcastReceiver() {
 
     private fun createNotification(
         context: Context,
-        notificationData: NotificationData
+        notificationData: NotificationData,
     ) = NotificationCompat.Builder(context, CHANNEL_ID)
         .setSmallIcon(notificationData.smallIconId)
         .setLargeIcon(notificationData.largeIcon)
@@ -60,7 +60,7 @@ class AlarmReceiver: BroadcastReceiver() {
     companion object {
         fun createNotificationChannel(
             notificationChannelInfo: NotificationChannelInfo,
-            context: Context
+            context: Context,
         ) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val name = notificationChannelInfo.name
@@ -69,12 +69,13 @@ class AlarmReceiver: BroadcastReceiver() {
                 val channel = NotificationChannel(
                     notificationChannelInfo.id,
                     name,
-                    importance
+                    importance,
                 ).apply {
                     description = descriptionText
                 }
                 val notificationManager = getSystemService(
-                    context, NotificationManager::class.java
+                    context,
+                    NotificationManager::class.java,
                 ) as NotificationManager
 
                 notificationManager.createNotificationChannel(channel)

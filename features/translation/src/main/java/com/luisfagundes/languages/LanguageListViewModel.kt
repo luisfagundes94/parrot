@@ -19,24 +19,24 @@ import javax.inject.Inject
 class LanguageListViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val getLanguageList: ListLanguages,
-    private val updateLanguage: UpdateLanguage
+    private val updateLanguage: UpdateLanguage,
 ) : BaseViewModel() {
 
     private val isSourceLanguage = checkNotNull<Boolean>(
-        savedStateHandle[IS_SOURCE_LANGUAGE]
+        savedStateHandle[IS_SOURCE_LANGUAGE],
     )
 
     private val _uiState = MutableStateFlow(
         LanguageListUiState(
             isSourceLanguage = isSourceLanguage,
-        )
+        ),
     )
     val uiState = _uiState
         .map { filterLanguageList(it) }
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(5000L),
-            _uiState.value
+            _uiState.value,
         )
 
     fun onEvent(event: LanguageListEvent) = safeLaunch {
@@ -49,21 +49,24 @@ class LanguageListViewModel @Inject constructor(
     }
 
     private fun filterLanguageList(
-        uiState: LanguageListUiState
+        uiState: LanguageListUiState,
     ) =
-        if (uiState.searchText.isBlank()) uiState
-        else uiState.copy(
-            languages = uiState.languages.filter {
-                it.doesMatchSearch(
-                    uiState.searchText
-                )
-            }
-        )
+        if (uiState.searchText.isBlank()) {
+            uiState
+        } else {
+            uiState.copy(
+                languages = uiState.languages.filter {
+                    it.doesMatchSearch(
+                        uiState.searchText,
+                    )
+                },
+            )
+        }
 
     private fun updateSearchText(text: String) {
         _uiState.update {
             it.copy(
-                searchText = text
+                searchText = text,
             )
         }
     }
@@ -75,7 +78,7 @@ class LanguageListViewModel @Inject constructor(
             it.copy(
                 isLoading = false,
                 hasError = false,
-                languages = languageList
+                languages = languageList,
             )
         }
     }
@@ -83,7 +86,7 @@ class LanguageListViewModel @Inject constructor(
     private fun updateLanguage(id: String) = safeLaunch {
         updateLanguage(
             id = id,
-            isSourceLanguage = isSourceLanguage
+            isSourceLanguage = isSourceLanguage,
         )
     }
 }

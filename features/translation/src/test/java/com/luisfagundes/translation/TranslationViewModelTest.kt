@@ -36,7 +36,7 @@ class TranslationViewModelTest {
 
     private val languagePair = Pair(
         LanguageFactory.languages.first(),
-        LanguageFactory.languages.last()
+        LanguageFactory.languages.last(),
     )
 
     private lateinit var viewModel: TranslationViewModel
@@ -48,10 +48,9 @@ class TranslationViewModelTest {
             getLanguagePair = getLanguagePair,
             saveWord = saveWord,
             scheduleNotification = scheduleNotification,
-            appProvider = appProvider
+            appProvider = appProvider,
         )
     }
-
 
     @Test
     fun `onEvent Translate should call GetWordTranslations`() = coroutineRule.runTest {
@@ -65,7 +64,7 @@ class TranslationViewModelTest {
         coEvery { getWordTranslations(params) } returns data
 
         viewModel.onEvent(
-            TranslationEvent.Translate(text)
+            TranslationEvent.Translate(text),
         )
 
         coVerify(exactly = 1) { getWordTranslations(params) }
@@ -82,10 +81,10 @@ class TranslationViewModelTest {
         coEvery { getWordTranslations(params) } returns data
 
         viewModel.onEvent(
-            TranslationEvent.Translate(text)
+            TranslationEvent.Translate(text),
         )
 
-       coVerify { getWordTranslations(params) wasNot Called }
+        coVerify { getWordTranslations(params) wasNot Called }
     }
 
     @Test
@@ -100,7 +99,7 @@ class TranslationViewModelTest {
         coEvery { getWordTranslations(params) } returns data
 
         viewModel.onEvent(
-            TranslationEvent.Translate(text)
+            TranslationEvent.Translate(text),
         )
 
         assert(viewModel.uiState.first().hasError)
@@ -119,7 +118,7 @@ class TranslationViewModelTest {
         coEvery { getWordTranslations(params) } returns data
 
         viewModel.onEvent(
-            TranslationEvent.Translate(text)
+            TranslationEvent.Translate(text),
         )
 
         val uiState = viewModel.uiState.first()
@@ -132,15 +131,15 @@ class TranslationViewModelTest {
     fun `onEvent InvertLanguages should correctly update languagePair state`() = coroutineRule.runTest {
         val languagePairInput = Pair(
             LanguageFactory.languages.first(),
-            LanguageFactory.languages.last()
+            LanguageFactory.languages.last(),
         )
         val expectedLanguagePair = Pair(
             LanguageFactory.languages.last(),
-            LanguageFactory.languages.first()
+            LanguageFactory.languages.first(),
         )
 
         viewModel.onEvent(
-            TranslationEvent.InvertLanguagePair(languagePairInput)
+            TranslationEvent.InvertLanguagePair(languagePairInput),
         )
 
         val languagePair = viewModel.uiState.first().languagePair
@@ -161,7 +160,7 @@ class TranslationViewModelTest {
 
     private fun createTranslationParams(
         text: String,
-        languagePair: Pair<Language, Language>
+        languagePair: Pair<Language, Language>,
     ): GetWordTranslations.Params {
         val firstCode = languagePair.first.code
         val secondCode = languagePair.second.code
@@ -169,7 +168,7 @@ class TranslationViewModelTest {
         return GetWordTranslations.Params(
             text = text,
             sourceLanguage = firstCode,
-            destLanguage = secondCode
+            destLanguage = secondCode,
         )
     }
 }

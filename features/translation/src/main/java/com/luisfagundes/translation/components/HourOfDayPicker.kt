@@ -24,11 +24,10 @@ import com.luisfagundes.theme.spacing
 import com.luisfagundes.translation.R
 import java.util.Calendar
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HourOfDayPicker(
-    onHourSelected: (Int) -> Unit
+    onHourSelected: (Int) -> Unit,
 ) {
     var selectedHour by remember {
         mutableStateOf(Calendar.getInstance().get(Calendar.HOUR_OF_DAY))
@@ -37,44 +36,44 @@ fun HourOfDayPicker(
     var showTimePicker by remember { mutableStateOf(false) }
 
     Row(
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         TextButton(
             modifier = Modifier
                 .background(
                     shape = MaterialTheme.shapes.medium,
-                    color = MaterialTheme.colorScheme.surface
+                    color = MaterialTheme.colorScheme.surface,
                 ),
-            onClick = { showTimePicker = !showTimePicker }
+            onClick = { showTimePicker = !showTimePicker },
         ) {
             Text(
                 text = stringResource(R.string.select_time),
                 style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onSurface,
             )
         }
         Spacer(Modifier.width(MaterialTheme.spacing.small))
         Text(
             text = selectedHour.toString() + "h",
             style = MaterialTheme.typography.titleMedium,
-            color = MaterialTheme.colorScheme.onSurface
+            color = MaterialTheme.colorScheme.onSurface,
         )
     }
 
     if (showTimePicker) {
-       TimePickerDialog(
-           title = stringResource(R.string.select_time),
-           onCancel = { showTimePicker = false },
-           onConfirm = {
-               selectedHour = state.hour
-               showTimePicker = false
-               onHourSelected(state.hour)
-           }
-       ) {
-           TimeInput(
-               state = state
-           )
-       }
+        TimePickerDialog(
+            title = stringResource(R.string.select_time),
+            onCancel = { showTimePicker = false },
+            onConfirm = {
+                selectedHour = state.hour
+                showTimePicker = false
+                onHourSelected(state.hour)
+            },
+        ) {
+            TimeInput(
+                state = state,
+            )
+        }
     }
     Spacer(Modifier.height(MaterialTheme.spacing.small))
 }

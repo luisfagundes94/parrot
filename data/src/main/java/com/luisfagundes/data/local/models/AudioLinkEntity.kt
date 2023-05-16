@@ -8,5 +8,5 @@ import androidx.room.PrimaryKey
 data class AudioLinkEntity(
     @PrimaryKey val uid: String,
     @ColumnInfo("language") val language: String,
-    @ColumnInfo("url") val url: String
+    @ColumnInfo("url") val url: String,
 )

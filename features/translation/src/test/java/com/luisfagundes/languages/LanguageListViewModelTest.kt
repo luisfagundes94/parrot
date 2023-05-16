@@ -35,7 +35,7 @@ class LanguageListViewModelTest {
         viewModel = LanguageListViewModel(
             savedStateHandle = savedStateHandle,
             getLanguageList = getLanguageList,
-            updateLanguage = updateLanguage
+            updateLanguage = updateLanguage,
         )
     }
 
@@ -46,7 +46,7 @@ class LanguageListViewModelTest {
             val expectedUiState = LanguageListUiState(
                 languages = languages,
                 isLoading = false,
-                hasError = false
+                hasError = false,
             )
             coEvery { getLanguageList() } returns languages
 
@@ -67,7 +67,6 @@ class LanguageListViewModelTest {
         coVerify(exactly = 0) { updateLanguage(any(), any()) }
     }
 
-
     @Test
     fun `onEvent OnLanguageClicked updates language`() = coroutineRule.runTest {
         val languageId = LanguageFactory.languages.random().id
@@ -78,8 +77,8 @@ class LanguageListViewModelTest {
         viewModel.onEvent(
             LanguageListEvent.OnLanguageClicked(
                 id = languageId,
-                isSourceLanguage = isSourceLanguage
-            )
+                isSourceLanguage = isSourceLanguage,
+            ),
         )
 
         coVerify(exactly = 1) { updateLanguage(languageId, isSourceLanguage) }

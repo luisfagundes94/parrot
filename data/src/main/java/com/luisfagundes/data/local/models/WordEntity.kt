@@ -11,5 +11,5 @@ data class WordEntity(
     @ColumnInfo("featured") val featured: Boolean,
     @ColumnInfo("type") val type: String,
     @ColumnInfo("text") val text: String,
-    @ColumnInfo("translations") val translations: List<TranslationEntity>
+    @ColumnInfo("translations") val translations: List<TranslationEntity>,
 )

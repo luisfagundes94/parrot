@@ -7,5 +7,5 @@ data class LanguageListUiState(
     val hasError: Boolean = false,
     val isSourceLanguage: Boolean = true,
     val languages: List<Language> = emptyList(),
-    val searchText: String = ""
+    val searchText: String = "",
 )

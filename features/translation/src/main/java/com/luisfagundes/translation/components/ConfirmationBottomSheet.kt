@@ -32,7 +32,7 @@ fun ConfirmationBottomSheet(
 ) {
     val scope = rememberCoroutineScope()
     val bottomSheetState = rememberModalBottomSheetState(
-        skipPartiallyExpanded = false
+        skipPartiallyExpanded = false,
     )
     var scheduleData by remember { mutableStateOf(ScheduleData()) }
 
@@ -61,10 +61,10 @@ fun ConfirmationBottomSheet(
                         scope.launch {
                             bottomSheetState.hide()
                             onConfirmClick(
-                                scheduleData.copy(intervalHours = everyHour)
+                                scheduleData.copy(intervalHours = everyHour),
                             )
                         }
-                    }
+                    },
                 )
             }
         }

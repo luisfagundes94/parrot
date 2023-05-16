@@ -14,15 +14,15 @@ import com.luisfagundes.data.local.models.WordEntity
     entities = [
         AudioLinkEntity::class,
         ExampleEntity::class,
-        WordEntity::class
+        WordEntity::class,
     ],
     version = 1,
-    exportSchema = false
+    exportSchema = false,
 )
 @TypeConverters(
     AudioLinkEntityTypeConverter::class,
     ExampleEntityTypeConverter::class,
-    TranslationEntityTypeConverter::class
+    TranslationEntityTypeConverter::class,
 )
 abstract class ParrotDatabase : RoomDatabase() {
     abstract fun wordDao(): WordDao
