@@ -76,4 +76,5 @@ dependencies {
     testImplementation(libs.junit.ext)
     testImplementation(libs.mockk)
     testImplementation(libs.coroutines.test)
+    testImplementation(libs.turbine)
 }

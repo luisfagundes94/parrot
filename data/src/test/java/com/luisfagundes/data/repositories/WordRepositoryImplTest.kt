@@ -8,6 +8,8 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
+import org.bouncycastle.util.test.SimpleTest.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -32,7 +34,7 @@ class WordRepositoryImplTest {
 
     @Test
     fun `translateWord calls lingueeApiService fetchWordTranslations with correct parameters`() =
-        coroutineRule.runTest {
+        runTest {
             val params = GetWordTranslations.Params(
                 "hello",
                 "en",

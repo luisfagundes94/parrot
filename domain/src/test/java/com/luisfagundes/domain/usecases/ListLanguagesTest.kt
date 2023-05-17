@@ -7,10 +7,12 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class ListLanguagesTest {
 
     @get:Rule
@@ -24,9 +26,8 @@ class ListLanguagesTest {
         useCase = ListLanguages(repository)
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun `invoke calls repository listLanguages`() = coroutineRule.runTest {
+    fun `invoke calls repository listLanguages`() = runTest {
         val languages = LanguageFactory.languages
         coEvery { repository.listLanguages() } returns languages
 

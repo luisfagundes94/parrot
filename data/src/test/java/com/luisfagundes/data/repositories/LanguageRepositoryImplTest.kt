@@ -11,6 +11,8 @@ import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.runTest
+import org.bouncycastle.util.test.SimpleTest.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -41,7 +43,7 @@ class LanguageRepositoryImplTest {
     }
 
     @Test
-    fun `listLanguages returns the correct list of languages`() = coroutineRule.runTest {
+    fun `listLanguages returns the correct list of languages`() = runTest {
         val languages = LanguageFactory.languages
 
         repository.languagesMap.putAll(languages.map { it.id to it })
@@ -53,7 +55,7 @@ class LanguageRepositoryImplTest {
 
     @Test
     fun `fetchLanguagePair calls languageDataStore for source and destination ids`() =
-        coroutineRule.runTest {
+        runTest {
             val sourceLanguage = LanguageFactory.languages.first()
             val destLanguage = LanguageFactory.languages.last()
 
@@ -75,7 +77,7 @@ class LanguageRepositoryImplTest {
 
     @Test
     fun `updateLanguage calls languageDataStore to update the language ids`() =
-        coroutineRule.runTest {
+        runTest {
             val id = LanguageFactory.languages.first().id
             val isSourceLanguage = true
 

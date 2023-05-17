@@ -2,7 +2,6 @@ package com.luisfagundes.translation.presentation
 
 import com.luisfagundes.domain.models.Language
 import com.luisfagundes.domain.models.NotificationData
-import com.luisfagundes.domain.models.ScheduleData
 import com.luisfagundes.domain.models.Word
 import com.luisfagundes.domain.usecases.GetLanguagePair
 import com.luisfagundes.domain.usecases.GetWordTranslations
@@ -44,10 +43,7 @@ class TranslationViewModel @Inject constructor(
             is TranslationEvent.InvertLanguagePair -> invertLanguages(event.languagePair)
             is TranslationEvent.UpdateLanguagePair -> updateLanguagePair()
             is TranslationEvent.OnLanguageClicked -> doNothing()
-            is TranslationEvent.SaveWord -> saveWordToLocalDb(
-                scheduleData = event.scheduleData,
-                word = event.word,
-            )
+            is TranslationEvent.SaveWord -> handleSaveWord(event)
         }
     }
 
@@ -88,32 +84,25 @@ class TranslationViewModel @Inject constructor(
         }
     }
 
-    private fun saveWordToLocalDb(
-        scheduleData: ScheduleData,
-        word: Word,
-    ) = safeLaunch {
-        val result = withContext(dispatcher) {
-            saveWord(word)
-        }
-        if (result is DataState.Success) {
-            handleWordSavedResult(true)
-            scheduleNotificationAlarm(scheduleData, word)
-        }
-    }
-
     private fun updateLanguagePair() = safeLaunch {
         _uiState.update {
             it.copy(languagePair = getLanguagePair())
         }
     }
+    private fun handleSaveWord(event: TranslationEvent.SaveWord) = safeLaunch {
+        val isWordSavedSuccessfully = withContext(dispatcher) {
+            saveWord(event.word) is DataState.Success
+        }
+        updateWordSavedEvent(isWordSavedSuccessfully)
+        if (isWordSavedSuccessfully) scheduleNotificationAlarm(event)
+    }
 
     private fun scheduleNotificationAlarm(
-        scheduleData: ScheduleData,
-        word: Word,
+        event: TranslationEvent.SaveWord,
     ) {
-        if (scheduleData.intervalHours < ZERO) return
-        val notificationData = createNotificationData(word)
-        scheduleNotification(scheduleData, notificationData)
+        if (event.scheduleData.intervalHours < ZERO) return
+        val notificationData = createNotificationData(event.word)
+        scheduleNotification(event.scheduleData, notificationData)
     }
 
     private fun createNotificationData(word: Word) = NotificationData(
@@ -124,7 +113,7 @@ class TranslationViewModel @Inject constructor(
         content = word.translations.first().text,
     )
 
-    private fun handleWordSavedResult(
+    private fun updateWordSavedEvent(
         isSuccessful: Boolean,
     ) {
         _uiState.update {

@@ -1,22 +1,21 @@
 package com.luisfagundes.languages
 
 import androidx.lifecycle.SavedStateHandle
+import app.cash.turbine.test
 import com.luisfagundes.commonsTesting.TestCoroutineRule
 import com.luisfagundes.domain.modelFactory.LanguageFactory
 import com.luisfagundes.domain.usecases.ListLanguages
-import com.luisfagundes.domain.usecases.SaveWord
 import com.luisfagundes.domain.usecases.UpdateLanguage
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class LanguageListViewModelTest {
 
     @get:Rule
@@ -24,7 +23,6 @@ class LanguageListViewModelTest {
 
     private val getLanguageList: ListLanguages = mockk()
     private val updateLanguage: UpdateLanguage = mockk()
-    private val savedWord: SaveWord = mockk()
     private val savedStateHandle: SavedStateHandle = mockk()
     private lateinit var viewModel: LanguageListViewModel
 
@@ -40,27 +38,28 @@ class LanguageListViewModelTest {
     }
 
     @Test
-    fun `onEvent GetLanguageList updates uiState with language list`() =
-        coroutineRule.runTest {
-            val languages = LanguageFactory.languages
-            val expectedUiState = LanguageListUiState(
-                languages = languages,
-                isLoading = false,
-                hasError = false,
-            )
-            coEvery { getLanguageList() } returns languages
+    fun `onEvent GetLanguageList updates uiState with language list`() = runTest {
+        val languages = LanguageFactory.languages
+        val expectedUiState = LanguageListUiState(
+            languages = languages,
+            isLoading = false,
+            hasError = false,
+        )
+        coEvery { getLanguageList() } returns languages
 
-            viewModel.onEvent(LanguageListEvent.GetLanguageList)
+        viewModel.onEvent(LanguageListEvent.GetLanguageList)
 
-            coVerify(exactly = 1) { getLanguageList() }
+        coVerify(exactly = 1) { getLanguageList() }
 
-            val uiState = viewModel.uiState.first()
-
-            assertEquals(expectedUiState, uiState)
+        viewModel.uiState.test {
+            awaitItem().apply {
+                assertEquals(expectedUiState, this)
+            }
         }
+    }
 
     @Test
-    fun `onEvent OnBackPressed does nothing`() = coroutineRule.runTest {
+    fun `onEvent OnBackPressed does nothing`() = runTest {
         viewModel.onEvent(LanguageListEvent.OnBackPressed)
 
         coVerify(exactly = 0) { getLanguageList() }
@@ -68,7 +67,7 @@ class LanguageListViewModelTest {
     }
 
     @Test
-    fun `onEvent OnLanguageClicked updates language`() = coroutineRule.runTest {
+    fun `onEvent OnLanguageClicked updates language`() = runTest {
         val languageId = LanguageFactory.languages.random().id
         val isSourceLanguage = true
 
@@ -86,7 +85,7 @@ class LanguageListViewModelTest {
 
     @Test
     fun `uiState should filter languages when searchText is not blank`() =
-        coroutineRule.runTest {
+        runTest {
             val searchText = "en"
             val languages = LanguageFactory.languages
 
