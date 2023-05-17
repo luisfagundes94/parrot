@@ -7,10 +7,10 @@ import com.luisfagundes.domain.usecases.DeleteWord
 import com.luisfagundes.domain.usecases.GetAllSavedWords
 import com.luisfagundes.framework.base.BaseViewModel
 import com.luisfagundes.framework.base.DefaultDispatcher
+import com.luisfagundes.framework.base.SingleEvent
 import com.luisfagundes.framework.network.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
@@ -23,7 +23,7 @@ import javax.inject.Inject
 class SavedViewModel @Inject constructor(
     private val getAllSavedWords: GetAllSavedWords,
     private val deleteWord: DeleteWord,
-    @DefaultDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
+    @DefaultDispatcher private val dispatcher: CoroutineDispatcher,
 ) : BaseViewModel() {
 
     private val _uiState = MutableStateFlow(SavedUiState())
@@ -61,11 +61,7 @@ class SavedViewModel @Inject constructor(
         val result = withContext(dispatcher) {
             deleteWord(word)
         }
-        if (result is DataState.Success) {
-            updateWordDeletedWithSuccess(true)
-        } else {
-            updateWordDeletedWithSuccess(false)
-        }
+        handleWordDeletionResult(result is DataState.Success)
     }
 
     private fun updateSearchText(text: String) {
@@ -73,6 +69,12 @@ class SavedViewModel @Inject constructor(
             it.copy(
                 searchText = text,
             )
+        }
+    }
+
+    private fun handleWordDeletionResult(isSuccessful: Boolean) {
+        _uiState.update {
+            it.copy(wordDeletionEvent = SingleEvent(isSuccessful))
         }
     }
 
@@ -90,10 +92,4 @@ class SavedViewModel @Inject constructor(
                 },
             )
         }
-
-    private fun updateWordDeletedWithSuccess(isSuccess: Boolean) {
-        _uiState.update {
-            it.copy(isDeletionSuccessful = isSuccess)
-        }
-    }
 }

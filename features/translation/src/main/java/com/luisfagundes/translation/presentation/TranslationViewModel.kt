@@ -10,20 +10,18 @@ import com.luisfagundes.domain.usecases.SaveWord
 import com.luisfagundes.domain.usecases.ScheduleNotification
 import com.luisfagundes.framework.base.BaseViewModel
 import com.luisfagundes.framework.base.IoDispatcher
+import com.luisfagundes.framework.base.SingleEvent
 import com.luisfagundes.framework.network.DataState
 import com.luisfagundes.framework.utils.doNothing
 import com.luisfagundes.provider.ResourceProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-private const val SAVING_WORD_DELAY = 500L
 private const val NOTIFICATION_ID = 1
 private const val ZERO = 0
 
@@ -34,7 +32,7 @@ class TranslationViewModel @Inject constructor(
     private val saveWord: SaveWord,
     private val scheduleNotification: ScheduleNotification,
     private val appProvider: ResourceProvider,
-    @IoDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
+    @IoDispatcher private val dispatcher: CoroutineDispatcher,
 ) : BaseViewModel() {
 
     private val _uiState = MutableStateFlow(TranslationUiState())
@@ -66,7 +64,10 @@ class TranslationViewModel @Inject constructor(
         }
     }
 
-    private fun createTranslationParams(text: String, languagePair: Pair<Language, Language>): GetWordTranslations.Params {
+    private fun createTranslationParams(
+        text: String,
+        languagePair: Pair<Language, Language>,
+    ): GetWordTranslations.Params {
         val firstCode = languagePair.first.code
         val secondCode = languagePair.second.code
 
@@ -91,26 +92,12 @@ class TranslationViewModel @Inject constructor(
         scheduleData: ScheduleData,
         word: Word,
     ) = safeLaunch {
-        handleSavingWord(word, scheduleData)
-        delay(SAVING_WORD_DELAY)
-        _uiState.update { it.copy(wordSavedWithSuccess = false) }
-    }
-
-    private suspend fun handleSavingWord(
-        word: Word,
-        scheduleData: ScheduleData,
-    ) {
-        when (withContext(dispatcher) { saveWord(word) }) {
-            is DataState.Success -> {
-                _uiState.update { it.copy(wordSavedWithSuccess = true) }
-                scheduleNotificationAlarm(scheduleData, word)
-            }
-
-            is DataState.Error -> {
-                _uiState.update { it.copy(wordSavedWithSuccess = false) }
-            }
-
-            else -> doNothing()
+        val result = withContext(dispatcher) {
+            saveWord(word)
+        }
+        if (result is DataState.Success) {
+            handleWordSavedResult(true)
+            scheduleNotificationAlarm(scheduleData, word)
         }
     }
 
@@ -136,6 +123,14 @@ class TranslationViewModel @Inject constructor(
         title = word.text,
         content = word.translations.first().text,
     )
+
+    private fun handleWordSavedResult(
+        isSuccessful: Boolean,
+    ) {
+        _uiState.update {
+            it.copy(wordSavedEvent = SingleEvent(isSuccessful))
+        }
+    }
 
     override fun startLoading() {
         _uiState.update { it.toLoadingState() }

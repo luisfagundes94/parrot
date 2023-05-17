@@ -35,12 +35,12 @@ fun SavedScreen(
     uiState: SavedUiState,
     onEvent: (SavedEvent) -> Unit,
 ) {
-    LaunchedEffect(key1 = uiState.isDeletionSuccessful) {
+    LaunchedEffect(key1 = uiState.wordDeletionEvent) {
         onEvent(SavedEvent.LoadSavedWords)
     }
 
     showToast(
-        shouldShow = uiState.shouldShowToast,
+        shouldShow = uiState.shouldShowWordDeletionToast,
         message = stringResource(R.string.word_deleted_with_success),
     )
 

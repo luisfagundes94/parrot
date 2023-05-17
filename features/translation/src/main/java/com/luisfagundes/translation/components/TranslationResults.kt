@@ -49,7 +49,7 @@ fun TranslationResults(
     val modifier = Modifier.padding(vertical = MaterialTheme.spacing.default)
 
     showToast(
-        shouldShow = uiState.wordSavedWithSuccess,
+        shouldShow = uiState.shouldShowSavedWordToast,
         message = stringResource(R.string.word_saved),
     )
 

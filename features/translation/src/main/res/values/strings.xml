@@ -11,7 +11,7 @@
     <string name="languages_error">No languages found</string>
     <string name="empty_languages">No results were found!</string>
     <string name="btn_confirm">Confirm</string>
-    <string name="word_saved">word saved with success</string>
+    <string name="word_saved">Word saved with success</string>
     <string name="request_permission">Request permission</string>
     <string name="permission_denied">In order to use all features of the application, it is necessary to accept the notification permission.</string>
     <string name="notification_rationale">Notification is important to receive the translation. Please grant the permission :)</string>

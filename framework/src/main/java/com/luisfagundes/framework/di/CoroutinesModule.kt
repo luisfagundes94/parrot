@@ -3,7 +3,6 @@ package com.luisfagundes.framework.di
 import com.luisfagundes.framework.base.DefaultDispatcher
 import com.luisfagundes.framework.base.IoDispatcher
 import com.luisfagundes.framework.base.MainDispatcher
-import com.luisfagundes.framework.base.MainImmediateDispatcher
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,8 +25,4 @@ object CoroutinesModule {
     @Provides
     @MainDispatcher
     fun providesMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
-
-    @Provides
-    @MainImmediateDispatcher
-    fun providesMainImmediateDispatcher(): CoroutineDispatcher = Dispatchers.Main.immediate
 }

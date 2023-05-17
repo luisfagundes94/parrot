@@ -7,4 +7,5 @@ object RouteParams {
 
 object Time {
     const val FIVE_SECONDS = 5000L
+    const val HALF_SECOND = 500L
 }
