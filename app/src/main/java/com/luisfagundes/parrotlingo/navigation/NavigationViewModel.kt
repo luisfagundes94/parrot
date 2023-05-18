@@ -4,12 +4,14 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.luisfagundes.domain.managers.PushNotificationManager
 import com.luisfagundes.domain.models.NotificationChannelInfo
+import com.luisfagundes.provider.ThemeProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class NavigationViewModel @Inject constructor(
     private val pushNotificationManager: PushNotificationManager,
+    private val themeProvider: ThemeProvider,
 ) : ViewModel() {
 
     fun onEvent(event: NavigationEvent) {
@@ -30,4 +32,6 @@ class NavigationViewModel @Inject constructor(
             notificationChannelInfo = notificationChannelInfo,
         )
     }
+
+    fun getThemeProvider() = themeProvider
 }

@@ -31,5 +31,5 @@ include(
     ":commons:util",
     ":commons:testing",
     ":commons:theme",
+    ":commons:provider",
 )
-include(":commons:provider")

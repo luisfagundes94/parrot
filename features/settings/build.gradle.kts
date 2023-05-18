@@ -1,6 +1,8 @@
 plugins {
+    alias(libs.plugins.hilt)
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
 }
 
 android {
@@ -41,8 +43,19 @@ android {
 }
 
 dependencies {
+    implementation(projects.framework)
+    implementation(projects.commons.ui)
+    implementation(projects.commons.util)
+    implementation(projects.commons.theme)
+    implementation(projects.commons.provider)
+
     implementation(libs.compose.ui.ui)
     implementation(libs.compose.material3)
     implementation(libs.navigation.compose)
     debugImplementation(libs.compose.ui.tooling)
+
+    // DI
+    implementation(libs.hilt.compose)
+    implementation(libs.hilt.library)
+    kapt(libs.hilt.compiler)
 }

@@ -1,7 +1,6 @@
 package com.luisfagundes.data.local.services
 
 import android.content.Context
-import android.os.SystemClock
 import com.luisfagundes.data.local.utils.AlarmHelper.calculateNextTriggerTime
 import com.luisfagundes.data.local.utils.AlarmHelper.setAlarm
 import com.luisfagundes.domain.models.NotificationData

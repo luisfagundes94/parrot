@@ -88,6 +88,9 @@ dependencies {
 
     // UI
     implementation(libs.navigation.compose)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.compose.ui.ui)
+    implementation(libs.compose.foundation.foundation)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.compose.material3)
