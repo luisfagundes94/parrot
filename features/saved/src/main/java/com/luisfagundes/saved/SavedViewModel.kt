@@ -3,6 +3,7 @@ package com.luisfagundes.saved
 import androidx.lifecycle.viewModelScope
 import com.luisfagundes.commonsUtil.Time.FIVE_SECONDS
 import com.luisfagundes.domain.models.Word
+import com.luisfagundes.domain.usecases.CancelNotification
 import com.luisfagundes.domain.usecases.DeleteWord
 import com.luisfagundes.domain.usecases.GetAllSavedWords
 import com.luisfagundes.framework.base.BaseViewModel
@@ -23,6 +24,7 @@ import javax.inject.Inject
 class SavedViewModel @Inject constructor(
     private val getAllSavedWords: GetAllSavedWords,
     private val deleteWord: DeleteWord,
+    private val cancelNotification: CancelNotification,
     @DefaultDispatcher private val dispatcher: CoroutineDispatcher,
 ) : BaseViewModel() {
 
@@ -61,7 +63,10 @@ class SavedViewModel @Inject constructor(
         val result = withContext(dispatcher) {
             deleteWord(word)
         }
-        handleWordDeletionResult(result is DataState.Success)
+        handleWordDeletionResult(
+            result,
+            word.id,
+        )
     }
 
     private fun updateSearchText(text: String) {
@@ -72,9 +77,19 @@ class SavedViewModel @Inject constructor(
         }
     }
 
-    private fun handleWordDeletionResult(isSuccessful: Boolean) {
+    private fun handleWordDeletionResult(
+        result: DataState<Unit>,
+        wordId: Int,
+    ) {
+        if (result is DataState.Success) {
+            updateWordDeletionEvent()
+            cancelNotification(wordId)
+        }
+    }
+
+    private fun updateWordDeletionEvent() {
         _uiState.update {
-            it.copy(wordDeletionEvent = SingleEvent(isSuccessful))
+            it.copy(wordDeletionEvent = SingleEvent(true))
         }
     }
 

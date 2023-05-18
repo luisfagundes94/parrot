@@ -6,7 +6,7 @@ import com.luisfagundes.domain.models.Word
 object WordFactory {
     val words = listOf(
         Word(
-            id = 1.toString(),
+            id = System.currentTimeMillis().toInt(),
             audioLinks = emptyList(),
             featured = true,
             type = "noun",

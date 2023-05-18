@@ -2,6 +2,7 @@ package com.luisfagundes.data.local.services
 
 import android.content.Context
 import android.os.SystemClock
+import com.luisfagundes.data.local.utils.AlarmHelper.calculateNextTriggerTime
 import com.luisfagundes.data.local.utils.AlarmHelper.setAlarm
 import com.luisfagundes.domain.models.NotificationData
 import com.luisfagundes.domain.models.ScheduleData
@@ -18,7 +19,7 @@ class AlarmSchedulerImpl(
             context = context,
             notificationData = notificationData,
             scheduleData = scheduleData,
-            triggerTime = SystemClock.elapsedRealtime(),
+            triggerTime = calculateNextTriggerTime(scheduleData),
         )
     }
 }

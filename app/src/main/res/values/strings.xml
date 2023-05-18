@@ -7,4 +7,5 @@
     <string name="language_list">Languages</string>
     <string name="channel_name">Word Reminder</string>
     <string name="channel_description">Receive word reminder notifications</string>
+    <string name="channel_id">word_reminder</string>
 </resources>

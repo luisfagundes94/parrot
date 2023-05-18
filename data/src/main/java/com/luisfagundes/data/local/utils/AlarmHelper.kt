@@ -7,7 +7,7 @@ import android.content.Intent
 import android.os.SystemClock
 import androidx.core.content.ContextCompat
 import com.luisfagundes.data.local.services.AlarmBroadcastReceiver
-import com.luisfagundes.data.local.services.PushNotificationManager
+import com.luisfagundes.data.local.services.PushNotificationManagerImpl.Companion.NOTIFICATION_DATA_KEY
 import com.luisfagundes.domain.models.NotificationData
 import com.luisfagundes.domain.models.ScheduleData
 import timber.log.Timber
@@ -43,7 +43,7 @@ object AlarmHelper {
         scheduleData: ScheduleData,
     ): Intent {
         return Intent(context, AlarmBroadcastReceiver::class.java).apply {
-            putExtra(PushNotificationManager.NOTIFICATION_DATA_KEY, notificationData)
+            putExtra(NOTIFICATION_DATA_KEY, notificationData)
             putExtra(SCHEDULE_DATA_KEY, scheduleData)
         }
     }

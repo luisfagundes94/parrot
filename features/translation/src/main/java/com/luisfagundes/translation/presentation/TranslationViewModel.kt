@@ -106,7 +106,7 @@ class TranslationViewModel @Inject constructor(
     }
 
     private fun createNotificationData(word: Word) = NotificationData(
-        id = NOTIFICATION_ID,
+        id = word.id,
         smallIconId = appProvider.getAppIconId(),
         largeIcon = appProvider.getAppIconBitmap(),
         title = word.text,

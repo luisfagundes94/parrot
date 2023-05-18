@@ -16,7 +16,7 @@ object WordResponseMapper {
         this?.map { it.toDomain() } ?: emptyList()
 
     fun WordResponse.toDomain() = Word(
-        id = UUID.randomUUID().toString(),
+        id = System.currentTimeMillis().toInt(),
         audioLinks = this.audio_links.toDomain(),
         featured = this.featured,
         type = this.pos,

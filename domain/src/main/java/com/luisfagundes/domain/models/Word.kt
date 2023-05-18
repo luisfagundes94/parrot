@@ -1,7 +1,7 @@
 package com.luisfagundes.domain.models
 
 data class Word(
-    val id: String,
+    val id: Int,
     val audioLinks: List<AudioLink>,
     val featured: Boolean,
     val type: String,

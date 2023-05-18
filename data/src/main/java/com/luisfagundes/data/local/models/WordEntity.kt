@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "word")
 data class WordEntity(
-    @PrimaryKey val uid: String,
+    @PrimaryKey(autoGenerate = true) val uid: Int,
     @ColumnInfo("audio_links") val audioLinks: List<AudioLinkEntity>,
     @ColumnInfo("featured") val featured: Boolean,
     @ColumnInfo("type") val type: String,
