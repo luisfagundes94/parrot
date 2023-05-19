@@ -27,7 +27,11 @@ class WordRepositoryImpl(
 
     override suspend fun saveWord(word: Word): DataState<Unit> {
         val wordDao = database.wordDao()
-        val result = wordDao.insert(word.toEntity())
+        val result = try {
+            wordDao.insert(word.toEntity())
+        } catch (exception: Exception) {
+            NO_ROWS_INSERTED
+        }
 
         return if (result == NO_ROWS_INSERTED) {
             DataState.Error(Exception("Error saving word"))
