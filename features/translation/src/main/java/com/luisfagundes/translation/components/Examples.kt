@@ -14,12 +14,14 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import com.luisfagundes.domain.models.Example
+import com.luisfagundes.domain.models.Translation
 import com.luisfagundes.domain.models.Word
+import com.luisfagundes.framework.extension.capitalize
 import com.luisfagundes.theme.spacing
 import com.luisfagundes.translation.R
 
 @Composable
-fun ExampleListContent(
+fun ExamplesContent(
     words: List<Word>,
     areExamplesEmpty: Boolean,
 ) {
@@ -32,9 +34,8 @@ fun ExampleListContent(
         )
         words.forEach { word ->
             word.translations.forEach { translation ->
-                TranslationItem(
-                    translation = translation,
-                    isFeatured = false,
+                Examples(
+                    translation = translation
                 )
             }
         }
@@ -42,20 +43,33 @@ fun ExampleListContent(
 }
 
 @Composable
-fun ExampleList(examples: List<Example>) {
+private fun Examples(translation: Translation) {
+    if (translation.examples.isEmpty()) return
+
     Spacer(
         modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall),
     )
-    examples.forEach { example ->
-        Text(text = example.destinationLanguage)
-        Spacer(
-            modifier = Modifier.padding(vertical = MaterialTheme.spacing.extraSmall),
-        )
-        Text(
-            text = "\"${example.sourceLanguage}\"",
-            fontStyle = FontStyle.Italic,
-        )
+    Text(
+        text = translation.wordType.capitalize(),
+        style = MaterialTheme.typography.titleMedium,
+        color = MaterialTheme.colorScheme.primary,
+        fontWeight = FontWeight.Bold,
+    )
+    translation.examples.forEach { example ->
+        Example(example)
     }
+}
+
+@Composable
+private fun Example(example: Example) {
+    Text(text = example.destinationLanguage)
+    Spacer(
+        modifier = Modifier.padding(vertical = MaterialTheme.spacing.extraSmall),
+    )
+    Text(
+        text = "\"${example.sourceLanguage}\"",
+        fontStyle = FontStyle.Italic,
+    )
 }
 
 @Composable

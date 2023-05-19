@@ -47,7 +47,7 @@ fun TranslationResults(
                 .padding(MaterialTheme.spacing.default),
         )
 
-        uiState.wordList.isNotEmpty() -> WordTranslationListContent(
+        uiState.wordList.isNotEmpty() -> TranslationContent(
             words = uiState.wordList,
             onSaveWord = { scheduleData, word ->
                 onSaveWord(scheduleData, word)
@@ -58,7 +58,7 @@ fun TranslationResults(
 }
 
 @Composable
-private fun WordTranslationListContent(
+private fun TranslationContent(
     words: List<Word>,
     onSaveWord: (ScheduleData, Word) -> Unit,
     areExamplesEmpty: Boolean,
@@ -71,7 +71,7 @@ private fun WordTranslationListContent(
         onSaveWord = onSaveWord,
     )
     Spacer(modifier = modifier)
-    ExampleListContent(
+    ExamplesContent(
         words = words,
         areExamplesEmpty = areExamplesEmpty,
     )

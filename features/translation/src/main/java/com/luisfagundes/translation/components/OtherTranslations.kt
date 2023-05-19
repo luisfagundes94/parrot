@@ -1,8 +1,10 @@
 package com.luisfagundes.translation.components
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BookmarkAdd
@@ -21,7 +23,9 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import com.luisfagundes.domain.models.ScheduleData
+import com.luisfagundes.domain.models.Translation
 import com.luisfagundes.domain.models.Word
+import com.luisfagundes.framework.extension.capitalize
 import com.luisfagundes.theme.spacing
 import com.luisfagundes.translation.R
 
@@ -52,7 +56,7 @@ fun OtherTranslations(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                text = words.first().type,
+                text = words.first().translations.first().text,
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
             )
@@ -76,12 +80,25 @@ fun OtherTranslations(
             text = "Other translations",
             style = MaterialTheme.typography.titleMedium,
         )
+        Spacer(Modifier.height(MaterialTheme.spacing.small))
         words.forEach { word ->
-            word.translations.forEach { translation ->
-                TranslationItem(
-                    translation = translation,
-                    isFeatured = true,
-                )
+            Text(
+                text = word.translations.first().wordType.capitalize(),
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary,
+            )
+            Spacer(Modifier.height(MaterialTheme.spacing.verySmall))
+            Row(
+                horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(bottom = MaterialTheme.spacing.verySmall),
+            ) {
+                word.translations.joinToString(", ") { it.text }.let { text ->
+                    Text(
+                        text = text,
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
+                }
             }
         }
     }
