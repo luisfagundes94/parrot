@@ -14,6 +14,13 @@ data class TranslationUiState(
 ) {
     val shouldShowSavedWordToast: Boolean
         get() = wordSavedEvent?.getContentIfNotHandled() == true && !isLoading && !hasError
+
+    val areExamplesEmpty: Boolean
+        get() = wordList.all { word ->
+            word.translations.all { translation ->
+                translation.examples.isEmpty()
+            }
+        }
 }
 
 fun TranslationUiState.toSuccessState(words: List<Word>) = this.copy(
