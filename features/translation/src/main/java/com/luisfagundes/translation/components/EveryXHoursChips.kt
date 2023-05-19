@@ -19,12 +19,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.luisfagundes.translation.R
 
-private const val FIRST_OPTION = 0
+private const val FIRST_OPTION_INDEX = 0
 private const val EVERY_DAY = 24
 private const val EVERY_WEEK = 168
 private const val EVERY_MONTH = 730
-const val EVERY_2_HOURS = 2
 private const val EVERY_4_HOURS = 4
+private const val EVERY_8_HOURS = 8
 private const val DONT_REPEAT = -1
 private const val EVERY_HOUR = 1
 
@@ -33,7 +33,14 @@ private const val EVERY_HOUR = 1
 fun EveryXHoursChips(
     onSelectedOption: (Int) -> Unit,
 ) {
-    val options = listOf(EVERY_HOUR, EVERY_2_HOURS, EVERY_4_HOURS, EVERY_DAY, EVERY_WEEK, EVERY_MONTH)
+    val options = listOf(
+        EVERY_HOUR,
+        EVERY_4_HOURS,
+        EVERY_8_HOURS,
+        EVERY_DAY,
+        EVERY_WEEK,
+        EVERY_MONTH
+    )
     val textOptions = options.map { hour ->
         when (hour) {
             EVERY_DAY -> stringResource(R.string.every_day)
@@ -48,7 +55,7 @@ fun EveryXHoursChips(
         }
     }
 
-    var selectedOption by rememberSaveable { mutableStateOf(options[FIRST_OPTION]) }
+    var selectedOption by rememberSaveable { mutableStateOf(options[FIRST_OPTION_INDEX]) }
 
     fun onChipClick(option: Int) {
         selectedOption = option
