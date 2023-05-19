@@ -75,7 +75,7 @@ fun OtherTranslations(
             modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall),
         )
         Text(
-            text = "Other translations",
+            text = stringResource(R.string.other_translations),
             style = MaterialTheme.typography.titleMedium,
         )
         Spacer(Modifier.height(MaterialTheme.spacing.small))
