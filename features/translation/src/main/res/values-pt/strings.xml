@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="translate">Traduzir</string>
+    <string name="enter_text_to_translate">Digite uma palavra</string>
+    <string name="warning_error">Ops! Algo deu errado. Você digitou a palavra incorretamente?</string>
+    <string name="warning_empty">Não encontramos nenhuma tradução para essa palavra :(</string>
+    <string name="desc_bookmark_word">Salvar Palavra</string>
+    <string name="language">idioma</string>
+    <string name="languages">Idiomas</string>
+    <string name="title_examples_of">"Exemplos de "</string>
+    <string name="languages_error">Nenhum idioma encontrado</string>
+    <string name="empty_languages">Nenhum resultado foi encontrado!</string>
+    <string name="btn_confirm">Confirmar</string>
+    <string name="word_saved">Palavra salva com sucesso</string>
+    <string name="request_permission">Solicitar permissão</string>
+    <string name="permission_denied">Para usar todos os recursos do aplicativo, é necessário aceitar a permissão de notificação.</string>
+    <string name="notification_rationale">A notificação é importante para receber a tradução. Por favor, conceda a permissão :)</string>
+    <string name="notification_request_text">A permissão de notificação é necessária para que o recurso de lembrete de palavras esteja disponível. Por favor, conceda a permissão :(</string>
+    <string name="every_day">Todos os dias</string>
+    <string name="every_week">Toda semana</string>
+    <string name="every_month">Todo mês</string>
+    <plurals name="every_x_hours">
+        <item quantity="one" tools:ignore="ImpliedQuantity">A cada hora</item>
+        <item quantity="other">A cada %d horas</item>
+    </plurals>
+    <string name="dont_repeat">Não me lembre</string>
+    <string name="title_reminder">Com que frequência você gostaria de receber a palavra?</string>
+    <string name="select_time">"Selecionar hora"</string>
+    <string name="twenty_four_hour_format">" (formato 24h)"</string>
+    <string name="other_translations">Outras traduções</string>
+</resources>

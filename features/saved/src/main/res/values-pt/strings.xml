@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="delete_word">deletar palavra</string>
+    <string name="word_deleted_with_success">Palavra deletada com sucesso!</string>
+    <string name="empty_words_title">Nenhuma palavra salva ainda</string>
+    <string name="empty_words_body_message">Vá para a página de tradução e marque uma palavra como favorita!</string>
+</resources>

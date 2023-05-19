@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="translate">Traducir</string>
+    <string name="enter_text_to_translate">Introduzca una palabra</string>
+    <string name="warning_error">¡Ops! Algo ha salido mal. ¿Has escrito mal la palabra?</string>
+    <string name="warning_empty">No hemos encontrado ninguna traducción para esta palabra :(</string>
+    <string name="desc_bookmark_word">Guardar palabra</string>
+    <string name="language">idioma</string>
+    <string name="languages">Idiomas</string>
+    <string name="title_examples_of">"Ejemplos de "</string>
+    <string name="languages_error">No se han encontrado idiomas</string>
+    <string name="empty_languages">No se han encontrado resultados.</string>
+    <string name="btn_confirm">Confirme</string>
+    <string name="word_saved">Palabra guardada con éxito</string>
+    <string name="request_permission">Solicitar permiso</string>
+    <string name="permission_denied">Para poder utilizar todas las funciones de la aplicación, es necesario aceptar el permiso de notificación.</string>
+    <string name="notification_rationale">La notificación es importante para recibir la traducción. Por favor, conceda el permiso :)</string>
+    <string name="notification_request_text">El permiso de notificación es necesario para que la función de recordatorio de palabras esté disponible. Por favor, conceda el permiso :(</string>
+    <string name="every_day">Todos los días</string>
+    <string name="every_week">Cada semana</string>
+    <string name="every_month">Todos los meses</string>
+    <plurals name="every_x_hours">
+        <item quantity="one">Cada hora</item>
+        <item quantity="other">Cada %d horas</item>
+    </plurals>
+    <string name="dont_repeat">No me lo recuerdes</string>
+    <string name="title_reminder">¿Con qué frecuencia desea recibir la palabra?</string>
+    <string name="select_time">"Seleccionar hora"</string>
+    <string name="twenty_four_hour_format">" (formato 24h)"</string>
+    <string name="other_translations">Otras traducciones</string>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Parrot</string>
+    <string name="exit">Salida</string>
+    <string name="translation">Traducción</string>
+    <string name="saved">Guardado</string>
+    <string name="settings">Ajustes</string>
+    <string name="language_list">Idiomas</string>
+    <string name="channel_name">Recordatorio de palabras</string>
+    <string name="channel_description">Recibir notificaciones de recordatorio de palabras</string>
+    <string name="channel_id">word_reminder</string>
+</resources>
