@@ -35,7 +35,7 @@ fun ExamplesContent(
         words.forEach { word ->
             word.translations.forEach { translation ->
                 Examples(
-                    translation = translation
+                    translation = translation,
                 )
             }
         }

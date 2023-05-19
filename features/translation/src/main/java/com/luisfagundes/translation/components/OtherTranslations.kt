@@ -1,7 +1,6 @@
 package com.luisfagundes.translation.components
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -23,7 +22,6 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import com.luisfagundes.domain.models.ScheduleData
-import com.luisfagundes.domain.models.Translation
 import com.luisfagundes.domain.models.Word
 import com.luisfagundes.framework.extension.capitalize
 import com.luisfagundes.theme.spacing
@@ -87,7 +85,7 @@ fun OtherTranslations(
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.primary,
             )
-            Spacer(Modifier.height(MaterialTheme.spacing.verySmall))
+            Spacer(Modifier.height(MaterialTheme.spacing.extraSmall))
             Row(
                 horizontalArrangement = Arrangement.Start,
                 verticalAlignment = Alignment.CenterVertically,
