@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="night_mode">Modo nocturno</string>
-    <string name="languages">Languages</string>
+    <string name="languages">Idiomas</string>
+    <string name="language_change">El idioma se cambiará la próxima vez que se inicie la aplicación</string>
 </resources>

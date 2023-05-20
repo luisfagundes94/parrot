@@ -2,4 +2,5 @@
 <resources>
     <string name="night_mode">Night Mode</string>
     <string name="languages">Languages</string>
+    <string name="language_change">Language will be changed on next app start</string>
 </resources>

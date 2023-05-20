@@ -17,8 +17,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import com.luisfagundes.domain.models.AppLanguage
 import com.luisfagundes.framework.extension.showToast
+import com.luisfagundes.settings.R
 import com.luisfagundes.theme.spacing
 
 @Composable
@@ -31,7 +33,7 @@ fun AppLanguagesScreen(
 
     showToast(
         shouldShow = shouldShowToast.value,
-        message = "Language will be changed on next app start",
+        message = stringResource(R.string.language_change),
     )
 
     LazyColumn(
