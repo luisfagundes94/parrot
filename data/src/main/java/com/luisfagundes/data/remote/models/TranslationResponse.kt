@@ -1,10 +1,12 @@
 package com.luisfagundes.data.remote.models
 
+import com.google.gson.annotations.SerializedName
+
 data class TranslationResponse(
-    val audio_links: List<AudioLinkResponse>,
+    @SerializedName("audio_link") val audioLinks: List<AudioLinkResponse>,
     val examples: List<ExampleResponse>,
     val featured: Boolean,
     val pos: String,
     val text: String,
-    val usage_frequency: Any?,
+    @SerializedName("usage_frequency") val usageFrequency: Any?,
 )

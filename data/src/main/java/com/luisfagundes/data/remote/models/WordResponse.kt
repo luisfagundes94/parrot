@@ -1,9 +1,11 @@
 package com.luisfagundes.data.remote.models
 
+import com.google.gson.annotations.SerializedName
+
 data class WordResponse(
-    val audio_links: List<AudioLinkResponse>,
+    @SerializedName("audio_links") val audioLinks: List<AudioLinkResponse>,
     val featured: Boolean,
-    val grammar_info: Any? = null,
+    @SerializedName("grammar_info") val grammarInfo: Any? = null,
     val pos: String,
     val text: String,
     val translations: List<TranslationResponse>,

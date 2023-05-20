@@ -18,7 +18,7 @@ object LanguageFactory {
         ),
     )
 
-    val languagesInJsonString = """
+    const val languagesInJsonString = """
            [
                 {
                 "id": "d4d5d87e-c0a1-4f35-bb81-5f2709e628aa",

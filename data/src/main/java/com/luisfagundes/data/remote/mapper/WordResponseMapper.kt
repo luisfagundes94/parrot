@@ -17,7 +17,7 @@ object WordResponseMapper {
 
     fun WordResponse.toDomain() = Word(
         id = System.currentTimeMillis().toInt(),
-        audioLinks = this.audio_links.toDomain(),
+        audioLinks = this.audioLinks.toDomain(),
         featured = this.featured,
         type = this.pos,
         text = this.text,
@@ -40,12 +40,12 @@ object WordResponseMapper {
 
     fun TranslationResponse.toDomain() = Translation(
         id = UUID.randomUUID().toString(),
-        audioLinks = this.audio_links.toDomain(),
+        audioLinks = this.audioLinks.toDomain(),
         examples = this.examples.toDomain(),
         featured = this.featured,
         wordType = this.pos,
         text = this.text,
-        usageFrequency = this.usage_frequency,
+        usageFrequency = this.usageFrequency,
     )
 
     @JvmName("toDomainExampleResponse")

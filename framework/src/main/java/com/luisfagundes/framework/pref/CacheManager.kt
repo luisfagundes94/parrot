@@ -26,12 +26,12 @@ class CacheManager(
     suspend fun <T> read(key: String, defaultValue: T): T {
         val preferences = dataStore.data.first()
         return when (defaultValue) {
-            is String -> preferences[stringPreferencesKey(key)]?.let { it as T } ?: defaultValue
-            is Int -> preferences[intPreferencesKey(key)]?.let { it as T } ?: defaultValue
-            is Boolean -> preferences[booleanPreferencesKey(key)]?.let { it as T } ?: defaultValue
-            is Long -> preferences[longPreferencesKey(key)]?.let { it as T } ?: defaultValue
-            is Double -> preferences[doublePreferencesKey(key)]?.let { it as T } ?: defaultValue
-            is Float -> preferences[floatPreferencesKey(key)]?.let { it as T } ?: defaultValue
+            is String -> preferences[stringPreferencesKey(key)] as T ?: defaultValue
+            is Int -> preferences[intPreferencesKey(key)] as T ?: defaultValue
+            is Boolean -> preferences[booleanPreferencesKey(key)] as T ?: defaultValue
+            is Long -> preferences[longPreferencesKey(key)] as T ?: defaultValue
+            is Double -> preferences[doublePreferencesKey(key)] as T ?: defaultValue
+            is Float -> preferences[floatPreferencesKey(key)] as T ?: defaultValue
             else -> defaultValue
         }
     }

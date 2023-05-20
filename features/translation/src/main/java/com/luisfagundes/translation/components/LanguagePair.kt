@@ -20,6 +20,8 @@ import androidx.compose.ui.text.font.FontWeight
 import com.luisfagundes.domain.models.Language
 import com.luisfagundes.theme.spacing
 
+private const val NINETY_DEGREES = 90f
+
 @Composable
 fun LanguagePair(
     languagePair: Pair<Language, Language>?,
@@ -51,7 +53,7 @@ fun LanguagePair(
             tint = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .size(MaterialTheme.spacing.default)
-                .rotate(90f)
+                .rotate(NINETY_DEGREES)
                 .weight(1f)
                 .clickable { onInvertLanguage() },
         )

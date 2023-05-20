@@ -1,6 +1,5 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import io.gitlab.arturbosch.detekt.Detekt
-import io.gitlab.arturbosch.detekt.DetektPlugin
 
 plugins {
     alias(libs.plugins.android.application) apply false
@@ -21,18 +20,16 @@ tasks.withType<Detekt>().configureEach {
     }
 }
 
-tasks {
-    val detektAll by registering(Detekt::class) {
-        autoCorrect = true
-        parallel = true
-        setSource(files(projectDir))
-        include("**/*.kt")
-        include("**/*.kts")
-        exclude("**/resources/**")
-        exclude("**/build/**")
-        config.setFrom(files("${rootDir}/config/detekt/detekt.yml"))
-        buildUponDefaultConfig = true
-    }
+tasks.register<Detekt>("detektAll") {
+    autoCorrect = true
+    parallel = true
+    setSource(files(projectDir))
+    include("**/*.kt")
+    include("**/*.kts")
+    exclude("**/resources/**")
+    exclude("**/build/**")
+    config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
+    buildUponDefaultConfig = true
 }
 
 versionCatalogUpdate {

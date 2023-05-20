@@ -21,7 +21,6 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-private const val NOTIFICATION_ID = 1
 private const val ZERO = 0
 
 @HiltViewModel
@@ -41,11 +40,27 @@ class TranslationViewModel @Inject constructor(
         when (event) {
             is TranslationEvent.Translate -> translateWord(event.text)
             is TranslationEvent.InvertLanguagePair -> invertLanguages(event.languagePair)
-            is TranslationEvent.UpdateLanguagePair -> updateLanguagePair()
+            is TranslationEvent.UpdateLanguagePair -> {
+                _uiState.update {
+                    it.copy(languagePair = getLanguagePair())
+                }
+            }
             is TranslationEvent.OnLanguageClicked -> doNothing()
-            is TranslationEvent.SaveWord -> handleSaveWord(event)
+            is TranslationEvent.SaveWord -> {
+                if (isWordSavedSuccessfully(event)) {
+                    scheduleNotificationAlarm(event)
+                    _uiState.update {
+                        it.copy(wordSavedEvent = SingleEvent(true))
+                    }
+                }
+            }
         }
     }
+
+    private suspend fun isWordSavedSuccessfully(event: TranslationEvent.SaveWord) =
+        withContext(dispatcher) {
+            saveWord(event.word) is DataState.Success
+        }
 
     private fun translateWord(text: String) = safeLaunch {
         if (text.length < 2) return@safeLaunch
@@ -84,19 +99,6 @@ class TranslationViewModel @Inject constructor(
         }
     }
 
-    private fun updateLanguagePair() = safeLaunch {
-        _uiState.update {
-            it.copy(languagePair = getLanguagePair())
-        }
-    }
-    private fun handleSaveWord(event: TranslationEvent.SaveWord) = safeLaunch {
-        val isWordSavedSuccessfully = withContext(dispatcher) {
-            saveWord(event.word) is DataState.Success
-        }
-        updateWordSavedEvent(isWordSavedSuccessfully)
-        if (isWordSavedSuccessfully) scheduleNotificationAlarm(event)
-    }
-
     private fun scheduleNotificationAlarm(
         event: TranslationEvent.SaveWord,
     ) {
@@ -112,14 +114,6 @@ class TranslationViewModel @Inject constructor(
         title = word.text,
         content = word.translations.first().text,
     )
-
-    private fun updateWordSavedEvent(
-        isSuccessful: Boolean,
-    ) {
-        _uiState.update {
-            it.copy(wordSavedEvent = SingleEvent(isSuccessful))
-        }
-    }
 
     override fun startLoading() {
         _uiState.update { it.toLoadingState() }

@@ -27,6 +27,8 @@ import com.luisfagundes.framework.extension.capitalize
 import com.luisfagundes.theme.spacing
 import com.luisfagundes.translation.R
 
+const val ICON_SCALE = 1.1f
+
 @Composable
 fun OtherTranslations(
     words: List<Word>,
@@ -49,54 +51,63 @@ fun OtherTranslations(
     )
 
     ContainerBox {
+        OtherTranslationsContent(words, openConfirmationBottomSheet)
+    }
+}
+
+@Composable
+private fun OtherTranslationsContent(
+    words: List<Word>,
+    openConfirmationBottomSheet: Boolean,
+) {
+    var openConfirmationBottomSheet1 = openConfirmationBottomSheet
+    Row(
+        horizontalArrangement = Arrangement.Start,
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(
+            text = words.first().translations.first().text,
+            style = MaterialTheme.typography.headlineMedium,
+            fontWeight = FontWeight.Bold,
+        )
+        Spacer(modifier = Modifier.weight(1f))
+        IconButton(
+            onClick = {
+                openConfirmationBottomSheet1 = !openConfirmationBottomSheet1
+            },
+        ) {
+            Icon(
+                modifier = Modifier.scale(ICON_SCALE),
+                imageVector = Icons.Default.BookmarkAdd,
+                contentDescription = stringResource(R.string.desc_bookmark_word),
+            )
+        }
+    }
+    Spacer(
+        modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall),
+    )
+    Text(
+        text = stringResource(R.string.other_translations),
+        style = MaterialTheme.typography.titleMedium,
+    )
+    Spacer(Modifier.height(MaterialTheme.spacing.small))
+    words.forEach { word ->
+        Text(
+            text = word.translations.first().wordType.capitalize(),
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.primary,
+        )
+        Spacer(Modifier.height(MaterialTheme.spacing.extraSmall))
         Row(
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(bottom = MaterialTheme.spacing.verySmall),
         ) {
-            Text(
-                text = words.first().translations.first().text,
-                style = MaterialTheme.typography.headlineMedium,
-                fontWeight = FontWeight.Bold,
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            IconButton(
-                onClick = {
-                    openConfirmationBottomSheet = !openConfirmationBottomSheet
-                },
-            ) {
-                Icon(
-                    modifier = Modifier.scale(1.1f),
-                    imageVector = Icons.Default.BookmarkAdd,
-                    contentDescription = stringResource(R.string.desc_bookmark_word),
+            word.translations.joinToString(", ") { it.text }.let { text ->
+                Text(
+                    text = text,
+                    style = MaterialTheme.typography.bodyMedium,
                 )
-            }
-        }
-        Spacer(
-            modifier = Modifier.padding(vertical = MaterialTheme.spacing.verySmall),
-        )
-        Text(
-            text = stringResource(R.string.other_translations),
-            style = MaterialTheme.typography.titleMedium,
-        )
-        Spacer(Modifier.height(MaterialTheme.spacing.small))
-        words.forEach { word ->
-            Text(
-                text = word.translations.first().wordType.capitalize(),
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary,
-            )
-            Spacer(Modifier.height(MaterialTheme.spacing.extraSmall))
-            Row(
-                horizontalArrangement = Arrangement.Start,
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(bottom = MaterialTheme.spacing.verySmall),
-            ) {
-                word.translations.joinToString(", ") { it.text }.let { text ->
-                    Text(
-                        text = text,
-                        style = MaterialTheme.typography.bodyMedium,
-                    )
-                }
             }
         }
     }

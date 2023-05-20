@@ -10,6 +10,7 @@ import com.luisfagundes.domain.repositories.WordRepository
 import com.luisfagundes.domain.usecases.GetWordTranslations
 import com.luisfagundes.framework.network.DataState
 import com.luisfagundes.framework.network.safeApiCall
+import timber.log.Timber
 
 class WordRepositoryImpl(
     private val lingueeApiService: LingueeApiService,
@@ -30,6 +31,7 @@ class WordRepositoryImpl(
         val result = try {
             wordDao.insert(word.toEntity())
         } catch (exception: Exception) {
+            Timber.d("Error saving word", exception)
             NO_ROWS_INSERTED
         }
 
