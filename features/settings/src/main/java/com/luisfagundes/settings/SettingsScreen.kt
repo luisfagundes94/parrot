@@ -3,12 +3,15 @@ package com.luisfagundes.settings
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.luisfagundes.settings.components.SettingsRow
 import com.luisfagundes.settings.components.SwitchRow
 import com.luisfagundes.theme.spacing
 
@@ -16,6 +19,7 @@ import com.luisfagundes.theme.spacing
 fun SettingsScreen(
     uiState: SettingsUiState,
     onEvent: (SettingsEvent) -> Unit,
+    onNavigateToLanguages: () -> Unit,
 ) {
     val isNightModeEnabled = remember { mutableStateOf(uiState.isNightMode) }
 
@@ -26,6 +30,7 @@ fun SettingsScreen(
             isNightModeEnabled.value = isChecked
             onEvent(SettingsEvent.OnSaveTheme(isChecked))
         },
+        onNavigateToLanguages = onNavigateToLanguages,
     )
 }
 
@@ -34,6 +39,7 @@ private fun SettingsContent(
     modifier: Modifier,
     isNightModeEnabled: Boolean,
     onNightModeChanged: (Boolean) -> Unit,
+    onNavigateToLanguages: () -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -46,9 +52,15 @@ private fun SettingsContent(
             modifier = modifier.padding(bottom = MaterialTheme.spacing.small),
         )
         SwitchRow(
-            modifier = Modifier,
+            modifier = modifier,
             checked = isNightModeEnabled,
             onCheckedChange = onNightModeChanged,
+        )
+        Divider(modifier.padding(top = MaterialTheme.spacing.verySmall))
+        SettingsRow(
+            modifier = modifier.padding(vertical = MaterialTheme.spacing.default),
+            title = stringResource(R.string.languages),
+            onClick = onNavigateToLanguages,
         )
     }
 }

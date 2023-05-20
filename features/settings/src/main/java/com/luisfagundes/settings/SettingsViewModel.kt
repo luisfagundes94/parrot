@@ -1,6 +1,6 @@
 package com.luisfagundes.settings
 
-import androidx.lifecycle.ViewModel
+import com.luisfagundes.framework.base.BaseViewModel
 import com.luisfagundes.provider.ThemeProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -10,8 +10,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
-    private val themeProvider: ThemeProvider,
-) : ViewModel() {
+    private val themeProvider: ThemeProvider
+) : BaseViewModel() {
 
     private val _uiState = MutableStateFlow(SettingsUiState())
     val uiState = _uiState.asStateFlow()
@@ -23,7 +23,9 @@ class SettingsViewModel @Inject constructor(
     fun onEvent(event: SettingsEvent) {
         when (event) {
             is SettingsEvent.OnSaveTheme -> {
-                saveThemeMode(event.isNightMode)
+                saveThemeMode(
+                    isNightMode = event.isNightMode,
+                )
             }
         }
     }

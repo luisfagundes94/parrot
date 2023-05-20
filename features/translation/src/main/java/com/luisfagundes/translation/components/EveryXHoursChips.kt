@@ -39,7 +39,7 @@ fun EveryXHoursChips(
         EVERY_8_HOURS,
         EVERY_DAY,
         EVERY_WEEK,
-        EVERY_MONTH
+        EVERY_MONTH,
     )
     val textOptions = options.map { hour ->
         when (hour) {

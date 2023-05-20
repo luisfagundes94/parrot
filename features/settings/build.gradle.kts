@@ -44,6 +44,7 @@ android {
 
 dependencies {
     implementation(projects.framework)
+    implementation(projects.domain)
     implementation(projects.commons.ui)
     implementation(projects.commons.util)
     implementation(projects.commons.theme)
@@ -51,6 +52,8 @@ dependencies {
 
     implementation(libs.compose.ui.ui)
     implementation(libs.compose.material3)
+    implementation(libs.compose.animation.animation)
+    implementation(libs.compose.material.iconsext)
     implementation(libs.navigation.compose)
     debugImplementation(libs.compose.ui.tooling)
 

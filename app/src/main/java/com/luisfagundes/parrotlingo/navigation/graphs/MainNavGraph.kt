@@ -23,7 +23,7 @@ fun MainNavGraph(
     ) {
         translationRoute(navController)
         savedRoute()
-        settingsRoute()
+        settingsRoute(navController)
         languageListRoute(navController)
     }
 }
