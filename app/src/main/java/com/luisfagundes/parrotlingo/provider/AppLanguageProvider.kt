@@ -27,6 +27,7 @@ class AppLanguageProvider(
             defaultValue = DEFAULT_LANGUAGE,
         )
 
+    @Suppress("DEPRECATION")
     override fun setLocale(
         language: String,
         context: Context,
