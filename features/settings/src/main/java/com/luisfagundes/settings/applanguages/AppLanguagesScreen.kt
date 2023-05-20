@@ -27,11 +27,11 @@ fun AppLanguagesScreen(
     onEvent: (AppLanguageEvent) -> Unit,
     onLanguageClick: (AppLanguage) -> Unit,
 ) {
-    val shouldShowToast = remember { mutableStateOf(false)}
+    val shouldShowToast = remember { mutableStateOf(false) }
 
     showToast(
         shouldShow = shouldShowToast.value,
-        message = "Language will be changed on next app start"
+        message = "Language will be changed on next app start",
     )
 
     LazyColumn(

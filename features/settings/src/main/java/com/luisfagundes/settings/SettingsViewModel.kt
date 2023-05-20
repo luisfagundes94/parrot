@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
-    private val themeProvider: ThemeProvider
+    private val themeProvider: ThemeProvider,
 ) : BaseViewModel() {
 
     private val _uiState = MutableStateFlow(SettingsUiState())

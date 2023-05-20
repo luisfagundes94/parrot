@@ -7,6 +7,6 @@ interface LanguageProvider {
     suspend fun getLanguageCode(): String
     fun setLocale(
         language: String,
-        context: Context
+        context: Context,
     )
 }
