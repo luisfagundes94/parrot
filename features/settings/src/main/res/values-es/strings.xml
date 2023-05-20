@@ -3,4 +3,5 @@
     <string name="night_mode">Modo nocturno</string>
     <string name="languages">Idiomas</string>
     <string name="language_change">El idioma se cambiará la próxima vez que se inicie la aplicación</string>
+    <string name="general">General</string>
 </resources>

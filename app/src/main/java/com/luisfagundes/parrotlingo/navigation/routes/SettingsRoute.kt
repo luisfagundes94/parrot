@@ -39,6 +39,7 @@ fun NavGraphBuilder.settingsRoute(navHostController: NavHostController) {
             uiState = uiState,
             onEvent = viewModel::onEvent,
             onLanguageClick = { navHostController.popBackStack() },
+            onBackPressed = { navHostController.popBackStack() },
         )
     }
 }

@@ -47,7 +47,7 @@ private fun SettingsContent(
         verticalArrangement = Arrangement.Center,
     ) {
         Text(
-            text = "General",
+            text = stringResource(R.string.general),
             style = MaterialTheme.typography.titleMedium,
             modifier = modifier.padding(bottom = MaterialTheme.spacing.small),
         )
