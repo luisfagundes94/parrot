@@ -8,8 +8,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.luisfagundes.framework.utils.commonNavigationOptions
 import com.luisfagundes.parrotlingo.navigation.BottomBarScreen
+import com.luisfagundes.settings.SettingsNavigationEvent
 import com.luisfagundes.settings.SettingsScreen
 import com.luisfagundes.settings.SettingsViewModel
+import com.luisfagundes.settings.about.AboutScreen
 import com.luisfagundes.settings.applanguages.AppLanguageViewModel
 import com.luisfagundes.settings.applanguages.AppLanguagesScreen
 
@@ -21,16 +23,11 @@ fun NavGraphBuilder.settingsRoute(navHostController: NavHostController) {
         SettingsScreen(
             uiState = uiState,
             onEvent = viewModel::onEvent,
-            onNavigateToLanguages = {
-                navHostController.navigate(
-                    route = SettingsRoutes.Languages.route,
-                ) {
-                    commonNavigationOptions(navHostController)
-                }
+            onNavigateEvent = { event ->
+                handleSettingsNavigationEvent(event, navHostController)
             },
         )
     }
-
     composable(route = SettingsRoutes.Languages.route) {
         val viewModel = hiltViewModel<AppLanguageViewModel>()
         val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -38,12 +35,34 @@ fun NavGraphBuilder.settingsRoute(navHostController: NavHostController) {
         AppLanguagesScreen(
             uiState = uiState,
             onEvent = viewModel::onEvent,
-            onLanguageClick = { navHostController.popBackStack() },
             onBackPressed = { navHostController.popBackStack() },
         )
+    }
+    composable(route = SettingsRoutes.About.route) {
+        AboutScreen()
+    }
+}
+
+private fun handleSettingsNavigationEvent(
+    event: SettingsNavigationEvent,
+    navHostController: NavHostController,
+) {
+    when (event) {
+        is SettingsNavigationEvent.NavigateToLanguages -> {
+            navHostController.navigate(
+                route = SettingsRoutes.Languages.route,
+            ) { commonNavigationOptions() }
+        }
+
+        is SettingsNavigationEvent.NavigateToAbout -> {
+            navHostController.navigate(
+                route = SettingsRoutes.About.route,
+            ) { commonNavigationOptions() }
+        }
     }
 }
 
 enum class SettingsRoutes(val route: String) {
     Languages("settings/languages"),
+    About("settings/about"),
 }

@@ -4,4 +4,7 @@
     <string name="languages">Idiomas</string>
     <string name="language_change">O idioma será alterado na próxima inicialização do aplicativo</string>
     <string name="general">Geral</string>
+    <string name="app_version">Versão do App</string>
+    <string name="share_app">Compartilhar App</string>
+    <string name="about">Sobre</string>
 </resources>

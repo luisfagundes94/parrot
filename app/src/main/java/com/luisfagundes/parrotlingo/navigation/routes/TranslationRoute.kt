@@ -38,7 +38,7 @@ private fun handleNavigation(
         is TranslationEvent.OnLanguageClicked -> navController.navigate(
             "languageListScreen/${event.isSourceLanguage}",
         ) {
-            commonNavigationOptions(navController)
+            commonNavigationOptions()
         }
         else -> doNothing()
     }

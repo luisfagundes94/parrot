@@ -9,3 +9,8 @@ sealed class SettingsEvent {
         val isNightMode: Boolean,
     ) : SettingsEvent()
 }
+
+sealed class SettingsNavigationEvent {
+    object NavigateToLanguages : SettingsNavigationEvent()
+    object NavigateToAbout : SettingsNavigationEvent()
+}

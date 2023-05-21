@@ -21,7 +21,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.luisfagundes.commonsUi.ParrotTopBar
-import com.luisfagundes.domain.models.AppLanguage
 import com.luisfagundes.framework.extension.showToast
 import com.luisfagundes.settings.R
 import com.luisfagundes.theme.spacing
@@ -30,7 +29,6 @@ import com.luisfagundes.theme.spacing
 fun AppLanguagesScreen(
     uiState: AppLanguageUiState,
     onEvent: (AppLanguageEvent) -> Unit,
-    onLanguageClick: (AppLanguage) -> Unit,
     onBackPressed: () -> Unit,
 ) {
     val shouldShowToast = remember { mutableStateOf(false) }
@@ -42,7 +40,7 @@ fun AppLanguagesScreen(
 
     ParrotTopBar(
         name = stringResource(R.string.languages),
-        onBackPressed = { onBackPressed() },
+        onBackPressed = onBackPressed,
     ) { innerPadding ->
         LazyColumn(
             modifier = Modifier
@@ -57,8 +55,8 @@ fun AppLanguagesScreen(
                         modifier = Modifier
                             .clickable {
                                 onEvent(AppLanguageEvent.OnSaveAppLanguage(it))
-                                onLanguageClick(it)
                                 shouldShowToast.value = true
+                                onBackPressed()
                             },
                         headlineContent = { Text(text = it.name) },
                         trailingContent = {

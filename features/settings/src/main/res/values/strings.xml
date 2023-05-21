@@ -4,4 +4,8 @@
     <string name="languages">Languages</string>
     <string name="language_change">Language will be changed on next app start</string>
     <string name="general">General</string>
+    <string name="app_version">App Version</string>
+    <string name="share_app">Share app</string>
+    <string name="about">About</string>
+    <string name="luis_felipe_carvalho_fagundes" translatable="false">Luís Felipe Carvalho Fagundes</string>
 </resources>

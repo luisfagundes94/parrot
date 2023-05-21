@@ -87,7 +87,7 @@ private fun RowScope.NavBarItem(
         } == true,
         onClick = {
             navHostController.navigate(screen.route) {
-                commonNavigationOptions(navHostController)
+                commonNavigationOptions()
             }
         },
     )
