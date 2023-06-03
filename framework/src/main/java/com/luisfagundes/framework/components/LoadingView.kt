@@ -1,4 +1,4 @@
-package com.luisfagundes.framework.composeComponents
+package com.luisfagundes.framework.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

@@ -2,14 +2,11 @@ package com.luisfagundes.domain.models
 
 data class Word(
     val id: Int,
-    val audioLinks: List<AudioLink>,
-    val featured: Boolean,
-    val type: String,
     val text: String,
-    val translations: List<Translation>,
+    val translatedText: String,
+    val dictionaryLookup: List<DictionaryLookup>,
 ) {
     fun doesMatchSearch(query: String): Boolean {
-        val translatedText = translations.first().text
         val matchingCombinations = listOf(
             "$text $translatedText",
             "$text$translatedText",

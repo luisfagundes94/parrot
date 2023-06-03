@@ -18,7 +18,7 @@ fun NavGraphBuilder.translationRoute(navController: NavHostController) {
         route = BottomBarScreen.Translation.route,
     ) {
         val viewModel = hiltViewModel<TranslationViewModel>()
-        val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+        val uiState by viewModel.wordState.collectAsStateWithLifecycle()
 
         TranslationScreen(
             uiState = uiState,

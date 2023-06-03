@@ -50,7 +50,7 @@ class LanguageListViewModelTest {
 
         coVerify(exactly = 1) { getLanguageList() }
 
-        viewModel.uiState.test {
+        viewModel.state.test {
             awaitItem().apply {
                 assertEquals(expectedUiState, this)
             }

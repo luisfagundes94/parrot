@@ -1,8 +1,10 @@
 package com.luisfagundes.data.remote.di
 
 import android.content.Context
+import com.luisfagundes.data.BuildConfig
 import com.luisfagundes.data.local.datastore.LanguageDataStore
-import com.luisfagundes.data.remote.services.LingueeApiService
+import com.luisfagundes.data.remote.interceptor.CustomInterceptor
+import com.luisfagundes.data.remote.services.MicrosoftTranslateService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,12 +34,24 @@ object NetworkModule {
     fun provideHttpRequestInterceptor() = HttpLoggingInterceptor { message ->
         Timber.tag("OkHttp").d(message)
     }.apply {
-        level = HttpLoggingInterceptor.Level.BODY
+        level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
+        else HttpLoggingInterceptor.Level.NONE
     }
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor) = OkHttpClient.Builder()
+    fun provideCustomInterceptor() = CustomInterceptor(
+        apiKey = BuildConfig.API_KEY,
+        apiRegion = BuildConfig.API_REGION,
+    )
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(
+        customInterceptor: CustomInterceptor,
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+    ) = OkHttpClient.Builder()
+        .addInterceptor(customInterceptor)
         .addInterceptor(httpLoggingInterceptor)
         .readTimeout(TIME_OUT, TimeUnit.SECONDS)
         .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
@@ -45,14 +59,16 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+    fun provideRetrofit(
+        okHttpClient: OkHttpClient,
+    ): Retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient)
-        .baseUrl("https://linguee-api.fly.dev/api/v2/")
+        .baseUrl(BuildConfig.BASE_URL)
         .build()
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): LingueeApiService =
-        retrofit.create(LingueeApiService::class.java)
+    fun provideApiService(retrofit: Retrofit): MicrosoftTranslateService =
+        retrofit.create(MicrosoftTranslateService::class.java)
 }

@@ -8,7 +8,7 @@ import com.luisfagundes.domain.usecases.CancelNotification
 import com.luisfagundes.domain.usecases.DeleteWord
 import com.luisfagundes.domain.usecases.GetAllSavedWords
 import com.luisfagundes.domain.usecases.GetLanguagePair
-import com.luisfagundes.domain.usecases.GetWordTranslations
+import com.luisfagundes.domain.usecases.TranslateText
 import com.luisfagundes.domain.usecases.ListLanguages
 import com.luisfagundes.domain.usecases.SaveWord
 import com.luisfagundes.domain.usecases.UpdateLanguage
@@ -50,7 +50,7 @@ class UseCaseModule {
 
     @Provides
     fun provideGetWordTranslations(repository: WordRepository) =
-        GetWordTranslations(repository)
+        TranslateText(repository)
 
     @Provides
     fun provideLanguageList(repository: LanguageRepository) =

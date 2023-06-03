@@ -3,7 +3,7 @@ package com.luisfagundes.parrotlingo.di
 import android.content.Context
 import com.luisfagundes.data.local.database.ParrotDatabase
 import com.luisfagundes.data.local.datastore.LanguageDataStore
-import com.luisfagundes.data.remote.services.LingueeApiService
+import com.luisfagundes.data.remote.services.MicrosoftTranslateService
 import com.luisfagundes.data.repositories.LanguageRepositoryImpl
 import com.luisfagundes.data.repositories.WordRepositoryImpl
 import com.luisfagundes.domain.repositories.LanguageRepository
@@ -29,10 +29,10 @@ object RepositoryModule {
 
     @Provides
     fun provideWordRepository(
-        apiService: LingueeApiService,
+        apiService: MicrosoftTranslateService,
         parrotDatabase: ParrotDatabase,
     ): WordRepository = WordRepositoryImpl(
-        lingueeApiService = apiService,
+        apiService = apiService,
         database = parrotDatabase,
     )
 }

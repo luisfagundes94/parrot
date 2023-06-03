@@ -9,7 +9,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.luisfagundes.commonsUtil.RouteParams.IS_SOURCE_LANGUAGE
 import com.luisfagundes.framework.utils.doNothing
-import com.luisfagundes.languages.LanguageListEvent
 import com.luisfagundes.languages.LanguageListScreen
 import com.luisfagundes.languages.LanguageListViewModel
 
@@ -23,7 +22,7 @@ fun NavGraphBuilder.languageListRoute(navController: NavHostController) {
         ),
     ) {
         val viewModel = hiltViewModel<LanguageListViewModel>()
-        val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+        val uiState by viewModel.state.collectAsStateWithLifecycle()
 
         LanguageListScreen(
             uiState = uiState,

@@ -36,6 +36,15 @@ sealed class DataState<out T> {
             is Empty -> Empty
         }
     }
+
+    // Get Result or error
+    fun getResultOrThrow(): T {
+        return when (this) {
+            is Success -> this.result
+            is Error -> throw this.error
+            is Empty -> error("Empty state has no result")
+        }
+    }
 }
 
 fun <T : Any> Flow<T>.asStatefulData(): Flow<DataState<T>> = wrapWithStatefulData()

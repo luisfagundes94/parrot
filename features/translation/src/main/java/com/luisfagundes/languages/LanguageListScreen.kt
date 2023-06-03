@@ -24,8 +24,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import com.luisfagundes.commonsUi.ParrotSearch
 import com.luisfagundes.commonsUi.ParrotTopBar
 import com.luisfagundes.domain.models.Language
-import com.luisfagundes.framework.composeComponents.LoadingView
-import com.luisfagundes.framework.composeComponents.WarningView
+import com.luisfagundes.framework.components.LoadingView
+import com.luisfagundes.framework.components.WarningView
 import com.luisfagundes.theme.spacing
 import com.luisfagundes.translation.R
 

@@ -2,14 +2,12 @@ package com.luisfagundes.data.repositories
 
 import com.luisfagundes.commonsTesting.TestCoroutineRule
 import com.luisfagundes.data.local.database.ParrotDatabase
-import com.luisfagundes.data.remote.services.LingueeApiService
-import com.luisfagundes.domain.usecases.GetWordTranslations
+import com.luisfagundes.domain.usecases.TranslateText
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import org.bouncycastle.util.test.SimpleTest.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -35,7 +33,7 @@ class WordRepositoryImplTest {
     @Test
     fun `translateWord calls lingueeApiService fetchWordTranslations with correct parameters`() =
         runTest {
-            val params = GetWordTranslations.Params(
+            val params = TranslateText.Params(
                 "hello",
                 "en",
                 "es",
@@ -48,7 +46,7 @@ class WordRepositoryImplTest {
 
             coEvery { lingueeApiService.fetchWordTranslations(any()) } returns mockk()
 
-            repository.translateWord(params)
+            repository.translateText(params)
 
             coVerify(exactly = 1) { lingueeApiService.fetchWordTranslations(expectedMap) }
         }

@@ -8,7 +8,7 @@ import com.luisfagundes.domain.modelFactory.WordFactory
 import com.luisfagundes.domain.models.Language
 import com.luisfagundes.domain.models.ScheduleData
 import com.luisfagundes.domain.usecases.GetLanguagePair
-import com.luisfagundes.domain.usecases.GetWordTranslations
+import com.luisfagundes.domain.usecases.TranslateText
 import com.luisfagundes.domain.usecases.SaveWord
 import com.luisfagundes.domain.usecases.ScheduleNotification
 import com.luisfagundes.framework.network.DataState
@@ -33,7 +33,7 @@ class TranslationViewModelTest {
     @get:Rule
     val coroutineRule = TestCoroutineRule()
 
-    private val getWordTranslations: GetWordTranslations = mockk()
+    private val translateText: TranslateText = mockk()
     private val getLanguagePair: GetLanguagePair = mockk()
     private val saveWord: SaveWord = mockk()
     private val scheduleNotification: ScheduleNotification = mockk()
@@ -51,7 +51,7 @@ class TranslationViewModelTest {
     @Before
     fun setUp() {
         viewModel = TranslationViewModel(
-            getWordTranslations = getWordTranslations,
+            translateText = translateText,
             getLanguagePair = getLanguagePair,
             saveWord = saveWord,
             scheduleNotification = scheduleNotification,
@@ -69,13 +69,13 @@ class TranslationViewModelTest {
         val data = DataState.Success(translatedWords)
 
         coEvery { getLanguagePair() } returns languagePair
-        coEvery { getWordTranslations(params) } returns data
+        coEvery { translateText(params) } returns data
 
         viewModel.onEvent(
             TranslationEvent.Translate(text),
         )
 
-        coVerify(exactly = 1) { getWordTranslations(params) }
+        coVerify(exactly = 1) { translateText(params) }
     }
 
     @Test
@@ -87,13 +87,13 @@ class TranslationViewModelTest {
             val data = DataState.Empty
 
             coEvery { getLanguagePair() } returns languagePair
-            coEvery { getWordTranslations(params) } returns data
+            coEvery { translateText(params) } returns data
 
             viewModel.onEvent(
                 TranslationEvent.Translate(text),
             )
 
-            coVerify { getWordTranslations(params) wasNot Called }
+            coVerify { translateText(params) wasNot Called }
         }
 
     @Test
@@ -106,13 +106,13 @@ class TranslationViewModelTest {
             val data = DataState.Error(Throwable("error"))
 
             coEvery { getLanguagePair() } returns languagePair
-            coEvery { getWordTranslations(params) } returns data
+            coEvery { translateText(params) } returns data
 
             viewModel.onEvent(
                 TranslationEvent.Translate(text),
             )
 
-            viewModel.uiState.test {
+            viewModel.wordState.test {
                 awaitItem().apply {
                     assert(this.hasError)
                 }
@@ -129,13 +129,13 @@ class TranslationViewModelTest {
         val data = DataState.Success(translatedWords)
 
         coEvery { getLanguagePair() } returns languagePair
-        coEvery { getWordTranslations(params) } returns data
+        coEvery { translateText(params) } returns data
 
         viewModel.onEvent(
             TranslationEvent.Translate(text),
         )
 
-        viewModel.uiState.test {
+        viewModel.wordState.test {
             awaitItem().apply {
                 val translatedText = this.wordList.first().translations.first().text
                 assertEquals(translatedText, expectedText)
@@ -159,7 +159,7 @@ class TranslationViewModelTest {
                 TranslationEvent.InvertLanguagePair(languagePairInput),
             )
 
-            viewModel.uiState.test {
+            viewModel.wordState.test {
                 awaitItem().apply {
                     val languagePair = this.languagePair
                     assertEquals(languagePair, expectedLanguagePair)
@@ -170,11 +170,11 @@ class TranslationViewModelTest {
     @Test
     fun `onEvent InvertLanguages should not change uiState if input is null`() =
         runTest {
-            val initialUiState = viewModel.uiState.value
+            val initialUiState = viewModel.wordState.value
 
             viewModel.onEvent(TranslationEvent.InvertLanguagePair(null))
 
-            viewModel.uiState.test {
+            viewModel.wordState.test {
                 awaitItem().apply {
                     assertEquals(this, initialUiState)
                 }
@@ -195,7 +195,7 @@ class TranslationViewModelTest {
                 TranslationEvent.UpdateLanguagePair,
             )
 
-            viewModel.uiState.test {
+            viewModel.wordState.test {
                 awaitItem().apply {
                     assertEquals(this.languagePair, expectedLanguagePair)
                 }
@@ -236,11 +236,11 @@ class TranslationViewModelTest {
     private fun createTranslationParams(
         text: String,
         languagePair: Pair<Language, Language>,
-    ): GetWordTranslations.Params {
+    ): TranslateText.Params {
         val firstCode = languagePair.first.code
         val secondCode = languagePair.second.code
 
-        return GetWordTranslations.Params(
+        return TranslateText.Params(
             text = text,
             sourceLanguage = firstCode,
             destLanguage = secondCode,

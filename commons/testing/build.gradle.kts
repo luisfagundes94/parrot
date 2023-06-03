@@ -39,7 +39,7 @@ dependencies {
     api("junit:junit:4.13.2")
     api("androidx.test.ext:junit:1.1.5")
     api("androidx.test.espresso:espresso-core:3.5.1")
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.0")
     api("io.mockk:mockk:1.13.3")
     api("app.cash.turbine:turbine:0.7.0")
     api("com.google.truth:truth:1.1.3")

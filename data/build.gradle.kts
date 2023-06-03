@@ -1,8 +1,18 @@
+import org.jetbrains.kotlin.konan.properties.Properties
+import java.io.FileInputStream
+
 plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
+}
+
+fun getApiKey(): Any? {
+    val apiKeyPropertiesFile: File = rootProject.file("apikey.properties")
+    val apiKeyProperties = Properties()
+    apiKeyProperties.load(FileInputStream(apiKeyPropertiesFile))
+    return apiKeyProperties["API_KEY"]
 }
 
 android {
@@ -14,6 +24,10 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        buildConfigField("String", "API_KEY", "\"${getApiKey()}\"")
+        buildConfigField("String", "API_REGION", "\"brazilsouth\"")
+        buildConfigField("String", "BASE_URL", "\"https://api.cognitive.microsofttranslator.com/\"")
     }
 
     buildTypes {

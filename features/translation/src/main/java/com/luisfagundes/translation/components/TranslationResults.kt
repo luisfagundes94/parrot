@@ -9,8 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.luisfagundes.domain.models.ScheduleData
 import com.luisfagundes.domain.models.Word
-import com.luisfagundes.framework.composeComponents.LoadingView
-import com.luisfagundes.framework.composeComponents.WarningView
+import com.luisfagundes.framework.components.LoadingView
+import com.luisfagundes.framework.components.WarningView
 import com.luisfagundes.framework.extension.showToast
 import com.luisfagundes.theme.spacing
 import com.luisfagundes.translation.R

@@ -25,8 +25,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import com.luisfagundes.commonsUi.ParrotSearch
 import com.luisfagundes.domain.models.Word
-import com.luisfagundes.framework.composeComponents.LoadingView
-import com.luisfagundes.framework.composeComponents.WarningView
+import com.luisfagundes.framework.components.LoadingView
+import com.luisfagundes.framework.components.WarningView
 import com.luisfagundes.framework.extension.showToast
 import com.luisfagundes.theme.spacing
 
@@ -36,7 +36,7 @@ fun SavedScreen(
     onEvent: (SavedEvent) -> Unit,
 ) {
     LaunchedEffect(key1 = uiState.wordDeletionEvent) {
-        onEvent(SavedEvent.LoadSavedWords)
+        onEvent(SavedEvent.OnLoadSavedWords)
     }
 
     showToast(
@@ -66,7 +66,7 @@ fun SavedScreen(
             uiState.savedWords.isNotEmpty() -> SavedWords(
                 words = uiState.savedWords,
                 onDeleteSavedWord = { word ->
-                    onEvent(SavedEvent.DeleteSavedWord(word))
+                    onEvent(SavedEvent.OnDeleteSavedWord(word))
                 },
             )
         }
@@ -111,7 +111,7 @@ fun SavedWord(
                 Modifier.height(MaterialTheme.spacing.extraSmall),
             )
             Text(
-                text = word.translations.first().text,
+                text = word.translatedText,
             )
         }
         Spacer(Modifier.weight(1f))

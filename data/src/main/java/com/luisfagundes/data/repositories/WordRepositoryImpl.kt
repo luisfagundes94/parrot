@@ -4,26 +4,37 @@ import com.luisfagundes.data.local.database.ParrotDatabase
 import com.luisfagundes.data.local.mapper.DomainToEntityMapper.toEntity
 import com.luisfagundes.data.local.mapper.EntityToDomainMapper.toDomain
 import com.luisfagundes.data.remote.mapper.WordResponseMapper.toDomain
-import com.luisfagundes.data.remote.services.LingueeApiService
+import com.luisfagundes.data.remote.models.TranslateRequestBody
+import com.luisfagundes.data.remote.services.MicrosoftTranslateService
+import com.luisfagundes.domain.models.Translation
 import com.luisfagundes.domain.models.Word
 import com.luisfagundes.domain.repositories.WordRepository
-import com.luisfagundes.domain.usecases.GetWordTranslations
+import com.luisfagundes.domain.usecases.TranslateText
 import com.luisfagundes.framework.network.DataState
 import com.luisfagundes.framework.network.safeApiCall
 import timber.log.Timber
 
 class WordRepositoryImpl(
-    private val lingueeApiService: LingueeApiService,
+    private val apiService: MicrosoftTranslateService,
     private val database: ParrotDatabase,
 ) : WordRepository {
-    override suspend fun translateWord(params: GetWordTranslations.Params): DataState<List<Word>> {
+    override suspend fun translateText(
+        params: TranslateText.Params,
+    ): DataState<Translation> {
         val queryMap = mapToQueryMap(params)
+        val requestBody = TranslateRequestBody(params.text)
 
         return safeApiCall {
-            lingueeApiService.fetchWordTranslations(queryMap)
-        }.map { wordResponseList ->
-            wordResponseList.toDomain()
+            apiService.translateText(queryMap, requestBody).translations
+        }.map { translations ->
+            translations.first().toDomain()
         }
+    }
+
+    override suspend fun fetchDictionaryLookup(params: TranslateText.Params) = safeApiCall {
+        apiService.fetchDictionaryLookup(
+            mapToQueryMap(params)
+        ).toDomain()
     }
 
     override suspend fun saveWord(word: Word): DataState<Unit> {
@@ -58,17 +69,19 @@ class WordRepositoryImpl(
         }
     }
 
-    private fun mapToQueryMap(params: GetWordTranslations.Params) =
+    private fun mapToQueryMap(params: TranslateText.Params) =
         mapOf(
-            QUERY to params.text,
+            API_VERSION to API_VERSION_VALUE,
             SOURCE_LANGUAGE to params.sourceLanguage.lowercase(),
             DEST_LANGUAGE to params.destLanguage.lowercase(),
         )
 
     private companion object {
-        const val QUERY = "query"
-        const val SOURCE_LANGUAGE = "src"
-        const val DEST_LANGUAGE = "dst"
+        const val TEXT = "text"
+        const val API_VERSION = "api-version="
+        const val API_VERSION_VALUE = "3.0"
+        const val SOURCE_LANGUAGE = "from"
+        const val DEST_LANGUAGE = "to"
         const val NO_ROWS_DELETED = 0
         const val NO_ROWS_INSERTED = -1L
     }

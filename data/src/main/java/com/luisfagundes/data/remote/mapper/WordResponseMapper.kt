@@ -1,60 +1,42 @@
 package com.luisfagundes.data.remote.mapper
 
-import com.luisfagundes.data.remote.models.AudioLinkResponse
-import com.luisfagundes.data.remote.models.ExampleResponse
+import com.luisfagundes.data.remote.models.AlternateTranslationResponse
+import com.luisfagundes.data.remote.models.BackTranslationResponse
+import com.luisfagundes.data.remote.models.DictionaryLookupBodyResponse
+import com.luisfagundes.data.remote.models.DictionaryLookupResponse
 import com.luisfagundes.data.remote.models.TranslationResponse
-import com.luisfagundes.data.remote.models.WordResponse
-import com.luisfagundes.domain.models.AudioLink
-import com.luisfagundes.domain.models.Example
+import com.luisfagundes.domain.models.AlternateTranslation
+import com.luisfagundes.domain.models.BackTranslation
+import com.luisfagundes.domain.models.DictionaryLookup
 import com.luisfagundes.domain.models.Translation
-import com.luisfagundes.domain.models.Word
-import java.util.UUID
 
 object WordResponseMapper {
-    @JvmName("toDomainWordResponse")
-    fun List<WordResponse>?.toDomain() =
-        this?.map { it.toDomain() } ?: emptyList()
-
-    fun WordResponse.toDomain() = Word(
-        id = System.currentTimeMillis().toInt(),
-        audioLinks = this.audioLinks.toDomain(),
-        featured = this.featured,
-        type = this.pos,
-        text = this.text,
-        translations = this.translations.toDomain(),
-    )
-
-    @JvmName("toDomainAudioLinkResponse")
-    fun List<AudioLinkResponse>?.toDomain() =
-        this?.map { it.toDomain() } ?: emptyList()
-
-    fun AudioLinkResponse.toDomain() = AudioLink(
-        id = UUID.randomUUID().toString(),
-        language = this.lang,
-        url = this.url,
-    )
-
-    @JvmName("toDomainTranslationResponse")
-    fun List<TranslationResponse>?.toDomain() =
-        this?.map { it.toDomain() } ?: emptyList()
 
     fun TranslationResponse.toDomain() = Translation(
-        id = UUID.randomUUID().toString(),
-        audioLinks = this.audioLinks.toDomain(),
-        examples = this.examples.toDomain(),
-        featured = this.featured,
-        wordType = this.pos,
-        text = this.text,
-        usageFrequency = this.usageFrequency,
+        text = text,
+        targetLanguage = to,
     )
 
-    @JvmName("toDomainExampleResponse")
-    fun List<ExampleResponse>?.toDomain() =
-        this?.map { it.toDomain() } ?: emptyList()
+    fun DictionaryLookupBodyResponse.toDomain() = map { it.toDomain() }
 
-    fun ExampleResponse.toDomain() = Example(
-        id = UUID.randomUUID().toString(),
-        destinationLanguage = this.dst,
-        sourceLanguage = this.src,
+    fun DictionaryLookupResponse.toDomain() = DictionaryLookup(
+        text = displaySource,
+        alternateTranslations = translations.map { it.toDomain() },
+    )
+
+    fun AlternateTranslationResponse.toDomain() = AlternateTranslation(
+        backTranslations = backTranslations.map { it.toDomain() },
+        confidence = confidence,
+        displayTarget = displayTarget,
+        normalizedTarget = normalizedTarget,
+        posTag = posTag,
+        prefixWord = prefixWord,
+    )
+
+    fun BackTranslationResponse.toDomain() = BackTranslation(
+        displayText = displayText,
+        normalizedText = normalizedText,
+        frequencyCount = frequencyCount,
+        numExamples = numExamples,
     )
 }

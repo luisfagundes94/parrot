@@ -2,12 +2,8 @@ package com.luisfagundes.framework.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.luisfagundes.framework.network.DataState
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -20,52 +16,10 @@ abstract class BaseViewModel : ViewModel() {
 
     open fun handleError(exception: Throwable) {}
 
-    open fun handleEmpty() {}
-
-    open fun startLoading() {}
-
     protected fun safeLaunch(
         block: suspend CoroutineScope.() -> Unit,
     ) {
         viewModelScope.launch(handler, block = block)
-    }
-
-    protected suspend fun <T> call(
-        callFlow: Flow<T>,
-        completionHandler: (collect: T) -> Unit = {},
-    ) {
-        callFlow
-            .catch { handleError(it) }
-            .collect {
-                completionHandler.invoke(it)
-            }
-    }
-
-    protected fun <T> handleResult(
-        data: DataState<T>,
-        completionHandler: (T) -> Unit = {},
-    ) {
-        when (data) {
-            is DataState.Error -> handleError(data.error)
-            is DataState.Success -> completionHandler(data.result)
-            is DataState.Empty -> handleEmpty()
-        }
-    }
-
-    protected suspend fun <T> executeFlow(
-        callFlow: Flow<DataState<T>>,
-        completionHandler: (collect: T) -> Unit = {},
-    ) {
-        callFlow
-            .onStart { startLoading() }
-            .catch { handleError(it) }
-            .collect { state ->
-                when (state) {
-                    is DataState.Error -> handleError(state.error)
-                    is DataState.Success -> completionHandler.invoke(state.result)
-                    is DataState.Empty -> handleEmpty()
-                }
-            }
     }
 
     companion object {
