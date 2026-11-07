@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -17,10 +18,19 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
+    buildFeatures {
+        compose = true
+    }
 }
 
 dependencies {
+    // Api
+    implementation(project(":feature:search:api"))
+
+    // Core
+    implementation(project(":core:designsystem"))
+    implementation(project(":core:navigation"))
+
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
     implementation(libs.material)
