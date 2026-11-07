@@ -71,14 +71,14 @@ Use conventional commits. The commit message should be structured as follows:
 
 | Skill Folder       | Documentation                                                    |
 |--------------------|------------------------------------------------------------------|
-| Clean Architecture | [`android-architecture/`](.claude/skills/android-architecture)   |
-| Domain Layer       | [`android-domain-layer/`](.claude/skills/android-domain-layer)   |
-| Data Layer         | [`android-data-layer/`](.claude/skills/android-data-layer)       |
-| ViewModel          | [`android-viewmodel/`](.claude/skills/android-viewmodel)         |
-| UI                 | [`android-ui/`](.claude/skills/android-ui)                       |
-| Testing            | [`android-testing/`](.claude/skills/android-testing)             |
-| Navigation         | [`android-navigation/`](.claude/skills/android-navigation)       |
-| Accessibility      | [`android-accessibility/`](.claude/skills/android-accessibility) |
+| Clean Architecture | [`android-architecture/`](.agents/skills/android-architecture)   |
+| Domain Layer       | [`android-domain-layer/`](.agents/skills/android-domain-layer)   |
+| Data Layer         | [`android-data-layer/`](.agents/skills/android-data-layer)       |
+| ViewModel          | [`android-viewmodel/`](.agents/skills/android-viewmodel)         |
+| UI                 | [`android-ui/`](.agents/skills/android-ui)                       |
+| Testing            | [`android-testing/`](.agents/skills/android-testing)             |
+| Navigation         | [`android-navigation/`](.agents/skills/android-navigation)       |
+| Accessibility      | [`android-accessibility/`](.agents/skills/android-accessibility) |
 
 ## Definition of Done
 
