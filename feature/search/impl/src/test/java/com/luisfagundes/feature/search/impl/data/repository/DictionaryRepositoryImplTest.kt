@@ -6,6 +6,7 @@ import com.luisfagundes.feature.search.impl.data.remote.DictionaryApi
 import com.luisfagundes.feature.search.impl.domain.model.WordNotFoundException
 import com.luisfagundes.feature.search.impl.domain.model.Definition
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import mockwebserver3.MockResponse
@@ -176,6 +177,8 @@ internal class DictionaryRepositoryImplTest {
         var failOnUpsert = false
 
         override suspend fun getByQuery(query: String) = store[query]
+
+        override fun getRecentlyLookedUpWords() = flowOf(store.values.toList())
 
         override suspend fun upsert(entity: CachedWordEntity) {
             if (failOnUpsert) error("disk full")

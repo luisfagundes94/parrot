@@ -2,11 +2,13 @@ package com.luisfagundes.feature.search.impl.di
 
 import android.content.Context
 import androidx.room.Room
+import com.luisfagundes.feature.search.impl.data.autocomplete.WordSuggestionRepositoryImpl
 import com.luisfagundes.feature.search.impl.data.local.DictionaryDao
 import com.luisfagundes.feature.search.impl.data.local.SearchDatabase
 import com.luisfagundes.feature.search.impl.data.remote.DictionaryApi
 import com.luisfagundes.feature.search.impl.data.repository.DictionaryRepositoryImpl
 import com.luisfagundes.feature.search.impl.domain.repository.DictionaryRepository
+import com.luisfagundes.feature.search.impl.domain.repository.WordSuggestionRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -26,6 +28,11 @@ internal abstract class SearchDataBindsModule {
 
     @Binds
     abstract fun bindDictionaryRepository(impl: DictionaryRepositoryImpl): DictionaryRepository
+
+    @Binds
+    abstract fun bindWordSuggestionRepository(
+        impl: WordSuggestionRepositoryImpl,
+    ): WordSuggestionRepository
 }
 
 @Module

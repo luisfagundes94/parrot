@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="search_title">Search</string>
+    <string name="search_a_word">Search a word</string>
+    <string name="back">go back</string>
+    <string name="something_went_wrong">Something went wrong, you can try again later</string>
+    <string name="recently_looked_up">RECENTLY LOOKED UP</string>
+    <string name="navigate_to_word_details">navigate to word details</string>
+    <string name="try_again">Try Again</string>
 </resources>

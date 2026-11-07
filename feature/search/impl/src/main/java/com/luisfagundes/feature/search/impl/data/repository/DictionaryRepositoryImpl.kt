@@ -4,6 +4,7 @@ import com.luisfagundes.core.common.di.IoDispatcher
 import com.luisfagundes.core.common.tools.safeRunCatching
 import com.luisfagundes.feature.search.impl.data.local.CachedWordEntity
 import com.luisfagundes.feature.search.impl.data.local.DictionaryDao
+import com.luisfagundes.feature.search.impl.data.local.toDomain
 import com.luisfagundes.feature.search.impl.data.model.WordEntryResponse
 import com.luisfagundes.feature.search.impl.data.model.toDomain
 import com.luisfagundes.feature.search.impl.data.remote.DictionaryApi
@@ -14,6 +15,9 @@ import java.net.HttpURLConnection
 import java.util.Locale
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
@@ -67,6 +71,15 @@ internal class DictionaryRepositoryImpl(
             }
             throw error
         }
+
+    override suspend fun getRecentlyLookedUpWords(): Flow<List<WordEntry>?> =
+        dao.getRecentlyLookedUpWords()
+            .map { cached ->
+                cached.mapNotNull { entity ->
+                    safeRunCatching { entity.toDomain(json).firstOrNull() }.getOrNull()
+                }
+            }
+            .flowOn(ioDispatcher)
 
     private fun List<WordEntryResponse>.toEntity(key: String) = CachedWordEntity(
         query = key,
