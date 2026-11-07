@@ -23,7 +23,18 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "parrot"
+
+// App
 include(":app")
+
+// Core
 include(":core:common")
 include(":core:navigation")
-include(":feature:search")
+
+// Feature
+include(":feature:search:api")
+include(":feature:search:impl")
+include(":feature:saved:api")
+include(":feature:saved:impl")
+include(":feature:review:api")
+include(":feature:review:impl")

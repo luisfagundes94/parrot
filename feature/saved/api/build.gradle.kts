@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.luisfagundes.search"
+    namespace = "com.luisfagundes.feature.saved.api"
     compileSdk {
         version = release(37)
     }
