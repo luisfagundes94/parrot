@@ -40,6 +40,7 @@ dependencies {
     // Core
     implementation(project(":core:common"))
     implementation(project(":core:navigation"))
+    implementation(project(":core:designsystem"))
 
     // Feature
     implementation(project(":feature:search:api"))

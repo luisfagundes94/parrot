@@ -30,6 +30,7 @@ include(":app")
 // Core
 include(":core:common")
 include(":core:navigation")
+include(":core:designsystem")
 
 // Feature
 include(":feature:search:api")
