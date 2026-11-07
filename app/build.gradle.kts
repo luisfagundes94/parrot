@@ -37,7 +37,18 @@ android {
 }
 
 dependencies {
+    // Core
     implementation(project(":core:common"))
+    implementation(project(":core:navigation"))
+
+    // Feature
+    implementation(project(":feature:search:api"))
+    implementation(project(":feature:search:impl"))
+    implementation(project(":feature:review:api"))
+    implementation(project(":feature:review:impl"))
+    implementation(project(":feature:saved:api"))
+    implementation(project(":feature:saved:impl"))
+
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
