@@ -26,3 +26,4 @@ rootProject.name = "parrot"
 include(":app")
 include(":core:common")
 include(":core:navigation")
+include(":feature:search")
