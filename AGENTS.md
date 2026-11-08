@@ -26,6 +26,7 @@ Keep work scoped: repository-wide searches, tests and builds are expensive.
 - Represent the relevant loading, content, empty and error UI states. Keep state immutable and use
   established event/effect pattern for one-off actions.
 - Add or update tests for changed behavior, including relevant failure paths and state transitions.
+- Don't create comments unless necessary (to document something relevant)
 
 ## Working in this repo
 
