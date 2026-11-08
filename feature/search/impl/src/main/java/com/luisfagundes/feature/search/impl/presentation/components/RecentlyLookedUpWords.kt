@@ -30,9 +30,9 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.luisfagundes.core.designsystem.ui.theme.ParrotTheme
 import com.luisfagundes.core.designsystem.ui.theme.spacing
 import com.luisfagundes.feature.search.impl.R
-import com.luisfagundes.feature.search.impl.domain.model.Definition
-import com.luisfagundes.feature.search.impl.domain.model.Meaning
-import com.luisfagundes.feature.search.impl.domain.model.WordEntry
+import com.luisfagundes.core.dictionary.domain.model.Definition
+import com.luisfagundes.core.dictionary.domain.model.Meaning
+import com.luisfagundes.core.dictionary.domain.model.WordEntry
 
 @Composable
 internal fun RecentlyLookedUpWords(

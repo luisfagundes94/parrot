@@ -1,8 +1,8 @@
-package com.luisfagundes.feature.search.impl.data.model
+package com.luisfagundes.core.dictionary.data.model
 
-import com.luisfagundes.feature.search.impl.domain.model.Definition
-import com.luisfagundes.feature.search.impl.domain.model.Meaning
-import com.luisfagundes.feature.search.impl.domain.model.WordEntry
+import com.luisfagundes.core.dictionary.domain.model.Definition
+import com.luisfagundes.core.dictionary.domain.model.Meaning
+import com.luisfagundes.core.dictionary.domain.model.WordEntry
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

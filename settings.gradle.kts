@@ -31,6 +31,7 @@ include(":app")
 include(":core:common")
 include(":core:navigation")
 include(":core:designsystem")
+include(":core:dictionary")
 
 // Feature
 include(":feature:search:api")

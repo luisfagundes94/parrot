@@ -1,16 +1,16 @@
-package com.luisfagundes.feature.search.impl.data.repository
+package com.luisfagundes.core.dictionary.data.repository
 
 import com.luisfagundes.core.common.di.IoDispatcher
 import com.luisfagundes.core.common.tools.safeRunCatching
-import com.luisfagundes.feature.search.impl.data.local.CachedWordEntity
-import com.luisfagundes.feature.search.impl.data.local.DictionaryDao
-import com.luisfagundes.feature.search.impl.data.local.toDomain
-import com.luisfagundes.feature.search.impl.data.model.WordEntryResponse
-import com.luisfagundes.feature.search.impl.data.model.toDomain
-import com.luisfagundes.feature.search.impl.data.remote.DictionaryApi
-import com.luisfagundes.feature.search.impl.domain.model.WordEntry
-import com.luisfagundes.feature.search.impl.domain.model.WordNotFoundException
-import com.luisfagundes.feature.search.impl.domain.repository.DictionaryRepository
+import com.luisfagundes.core.dictionary.data.local.CachedWordEntity
+import com.luisfagundes.core.dictionary.data.local.DictionaryDao
+import com.luisfagundes.core.dictionary.data.local.toDomain
+import com.luisfagundes.core.dictionary.data.model.WordEntryResponse
+import com.luisfagundes.core.dictionary.data.model.toDomain
+import com.luisfagundes.core.dictionary.data.remote.DictionaryApi
+import com.luisfagundes.core.dictionary.domain.model.WordEntry
+import com.luisfagundes.core.dictionary.domain.model.WordNotFoundException
+import com.luisfagundes.core.dictionary.domain.repository.DictionaryRepository
 import java.net.HttpURLConnection
 import java.util.Locale
 import javax.inject.Inject

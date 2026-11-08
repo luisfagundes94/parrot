@@ -1,4 +1,4 @@
-package com.luisfagundes.feature.search.impl.data.local
+package com.luisfagundes.core.dictionary.data.local
 
 import androidx.room.Dao
 import androidx.room.Query

@@ -1,10 +1,10 @@
-package com.luisfagundes.feature.search.impl.data.local
+package com.luisfagundes.core.dictionary.data.local
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.luisfagundes.feature.search.impl.data.model.WordEntryResponse
-import com.luisfagundes.feature.search.impl.data.model.toDomain
-import com.luisfagundes.feature.search.impl.domain.model.WordEntry
+import com.luisfagundes.core.dictionary.data.model.WordEntryResponse
+import com.luisfagundes.core.dictionary.data.model.toDomain
+import com.luisfagundes.core.dictionary.domain.model.WordEntry
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 

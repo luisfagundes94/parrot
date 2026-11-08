@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.luisfagundes.core.common.presentation.arch.viewmodel.ViewModel
 import com.luisfagundes.core.common.tools.ResourceProvider
 import com.luisfagundes.feature.search.impl.R
-import com.luisfagundes.feature.search.impl.domain.repository.DictionaryRepository
+import com.luisfagundes.core.dictionary.domain.repository.DictionaryRepository
 import com.luisfagundes.feature.search.impl.domain.repository.WordSuggestionRepository
 import com.luisfagundes.feature.search.impl.presentation.effect.SearchEffect
 import com.luisfagundes.feature.search.impl.presentation.event.SearchEvent

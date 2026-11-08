@@ -1,10 +1,10 @@
-package com.luisfagundes.feature.search.impl.data.repository
+package com.luisfagundes.core.dictionary.data.repository
 
-import com.luisfagundes.feature.search.impl.data.local.CachedWordEntity
-import com.luisfagundes.feature.search.impl.data.local.DictionaryDao
-import com.luisfagundes.feature.search.impl.data.remote.DictionaryApi
-import com.luisfagundes.feature.search.impl.domain.model.WordNotFoundException
-import com.luisfagundes.feature.search.impl.domain.model.Definition
+import com.luisfagundes.core.dictionary.data.local.CachedWordEntity
+import com.luisfagundes.core.dictionary.data.local.DictionaryDao
+import com.luisfagundes.core.dictionary.data.remote.DictionaryApi
+import com.luisfagundes.core.dictionary.domain.model.WordNotFoundException
+import com.luisfagundes.core.dictionary.domain.model.Definition
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest

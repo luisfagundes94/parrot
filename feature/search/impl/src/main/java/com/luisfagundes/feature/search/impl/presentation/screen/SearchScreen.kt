@@ -20,7 +20,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.luisfagundes.core.designsystem.ui.theme.ParrotTheme
 import com.luisfagundes.core.designsystem.ui.theme.spacing
 import com.luisfagundes.feature.search.impl.R
-import com.luisfagundes.feature.search.impl.domain.model.WordEntry
+import com.luisfagundes.core.dictionary.domain.model.WordEntry
 import com.luisfagundes.feature.search.impl.presentation.components.RecentlyLookedUpWords
 import com.luisfagundes.feature.search.impl.presentation.components.WordSearchBar
 import com.luisfagundes.feature.search.impl.presentation.event.SearchEvent

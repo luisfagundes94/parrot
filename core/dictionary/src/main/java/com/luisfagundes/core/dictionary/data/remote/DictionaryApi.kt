@@ -1,6 +1,6 @@
-package com.luisfagundes.feature.search.impl.data.remote
+package com.luisfagundes.core.dictionary.data.remote
 
-import com.luisfagundes.feature.search.impl.data.model.WordEntryResponse
+import com.luisfagundes.core.dictionary.data.model.WordEntryResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 

@@ -39,6 +39,7 @@ dependencies {
 
     // Core
     implementation(project(":core:common"))
+    implementation(project(":core:dictionary"))
     implementation(project(":core:designsystem"))
     implementation(project(":core:navigation"))
 
@@ -46,17 +47,7 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
-    // Network
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.converter.kotlinx.serialization)
-    implementation(libs.okhttp)
-    implementation(libs.kotlinx.serialization.json)
     implementation(libs.kotlinx.coroutines.android)
-
-    // Room
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)
 
     // Navigation
     implementation(libs.androidx.navigation3.runtime)
@@ -79,7 +70,6 @@ dependencies {
     testRuntimeOnly(libs.junit5.jupiter.engine)
     testRuntimeOnly(libs.junit5.platform.launcher)
     testImplementation(libs.kotlinx.coroutines.test)
-    testImplementation(libs.okhttp.mockwebserver3)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
 }
