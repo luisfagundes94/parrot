@@ -31,7 +31,8 @@ internal class SearchViewModel @Inject constructor(
         when (event) {
             is SearchEvent.OnGetRecentlyLookedUpWords -> observeRecentlyLookedUpWords()
             is SearchEvent.OnQueryChange -> updateSuggestions(event.query)
-            is SearchEvent.OnSearchClick -> searchWord(event.query)
+            is SearchEvent.OnSearchClick -> navigateToWordDetail(event.query)
+            is SearchEvent.OnWordClick -> navigateToWordDetail(event.word)
         }
     }
 
@@ -66,19 +67,11 @@ internal class SearchViewModel @Inject constructor(
         }
     }
 
-    private fun searchWord(query: String) = viewModelScope.launch {
-        repository.search(query)
-            .onFailure {
-                val errorMessage = resourceProvider.getString(R.string.something_went_wrong)
-                setState { SearchState.Error(errorMessage) }
-            }
-            .onSuccess { words ->
-                if (words.isEmpty()) {
-                    setStateOf<SearchState.Content> { it.copy(searchResults = emptyList()) }
-                } else {
-                    setStateOf<SearchState.Content> { it.copy(searchResults = words) }
-                }
-            }
+    // The word detail screen performs the lookup (cache first), so search only hands the word over.
+    private fun navigateToWordDetail(word: String) {
+        val trimmed = word.trim()
+        if (trimmed.isEmpty()) return
+        sendEffect { SearchEffect.NavigateToWordDetail(trimmed) }
     }
 
     private companion object {

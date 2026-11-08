@@ -17,24 +17,33 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.luisfagundes.core.common.presentation.arch.compose.CollectUiEffects
 import com.luisfagundes.core.designsystem.ui.theme.ParrotTheme
 import com.luisfagundes.core.designsystem.ui.theme.spacing
 import com.luisfagundes.feature.search.impl.R
 import com.luisfagundes.core.dictionary.domain.model.WordEntry
 import com.luisfagundes.feature.search.impl.presentation.components.RecentlyLookedUpWords
 import com.luisfagundes.feature.search.impl.presentation.components.WordSearchBar
+import com.luisfagundes.feature.search.impl.presentation.effect.SearchEffect
 import com.luisfagundes.feature.search.impl.presentation.event.SearchEvent
 import com.luisfagundes.feature.search.impl.presentation.state.SearchState
 import com.luisfagundes.feature.search.impl.presentation.viewmodel.SearchViewModel
 
 @Composable
 internal fun SearchScreen(
+    onNavigateToWordDetail: (String) -> Unit,
     viewModel: SearchViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
         viewModel.dispatchEvent(SearchEvent.OnGetRecentlyLookedUpWords)
+    }
+
+    CollectUiEffects(viewModel.uiEffect) { effect ->
+        when (effect) {
+            is SearchEffect.NavigateToWordDetail -> onNavigateToWordDetail(effect.word)
+        }
     }
 
     SearchScreen(
@@ -106,6 +115,7 @@ private fun SearchContent(
         if (recentlyLookedUpWords.isNotEmpty()) {
             RecentlyLookedUpWords(
                 words = recentlyLookedUpWords,
+                onWordClick = { sendEvent(SearchEvent.OnWordClick(it)) },
                 modifier = Modifier.fillMaxWidth().padding(vertical = MaterialTheme.spacing.default)
             )
         }

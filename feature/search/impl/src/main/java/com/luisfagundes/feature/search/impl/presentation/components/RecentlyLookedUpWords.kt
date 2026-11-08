@@ -37,6 +37,7 @@ import com.luisfagundes.core.dictionary.domain.model.WordEntry
 @Composable
 internal fun RecentlyLookedUpWords(
     words: List<WordEntry>,
+    onWordClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -55,6 +56,7 @@ internal fun RecentlyLookedUpWords(
                     wordEntry = word,
                     shape = cardShape(index = index, lastIndex = words.lastIndex),
                     showDivider = index != words.lastIndex,
+                    onClick = { onWordClick(word.word) },
                     modifier = Modifier.fillMaxWidth()
                 )
             }
@@ -80,6 +82,7 @@ private fun WordCard(
     wordEntry: WordEntry,
     shape: Shape,
     showDivider: Boolean,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val word = wordEntry.word
@@ -89,6 +92,7 @@ private fun WordCard(
     val definitionText = definition?.text.orEmpty()
 
     Card(
+        onClick = onClick,
         modifier = modifier,
         shape = shape,
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant)
@@ -172,6 +176,7 @@ private fun RecentlyLookedUpWordsPreview() {
         Surface {
             RecentlyLookedUpWords(
                 words = words,
+                onWordClick = {},
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(MaterialTheme.spacing.default)

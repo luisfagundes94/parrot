@@ -6,4 +6,5 @@ internal sealed interface SearchEvent : UiEvent {
     data object OnGetRecentlyLookedUpWords : SearchEvent
     data class OnQueryChange(val query: String) : SearchEvent
     data class OnSearchClick(val query: String) : SearchEvent
+    data class OnWordClick(val word: String) : SearchEvent
 }

@@ -36,6 +36,7 @@ android {
 dependencies {
     // Api
     implementation(project(":feature:search:api"))
+    implementation(project(":feature:word:api"))
 
     // Core
     implementation(project(":core:common"))
@@ -70,6 +71,7 @@ dependencies {
     testRuntimeOnly(libs.junit5.jupiter.engine)
     testRuntimeOnly(libs.junit5.platform.launcher)
     testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.turbine)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
 }

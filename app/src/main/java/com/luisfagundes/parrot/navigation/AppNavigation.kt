@@ -40,16 +40,19 @@ internal fun AppNavigation(
 
     Scaffold(
         bottomBar = {
-            NavigationBar {
-                destinations.forEach { dest ->
-                    val label = stringResource(dest.labelResId)
+            // Detail screens (non top-level keys) are full screen.
+            if (state.currentStack.lastOrNull() in state.topLevelKeys) {
+                NavigationBar {
+                    destinations.forEach { dest ->
+                        val label = stringResource(dest.labelResId)
 
-                    NavigationBarItem(
-                        selected = dest.key == state.currentKey,
-                        onClick = { navigator.navigate(dest.key) },
-                        icon = { Icon(dest.icon, contentDescription = label) },
-                        label = { Text(label) },
-                    )
+                        NavigationBarItem(
+                            selected = dest.key == state.currentKey,
+                            onClick = { navigator.navigate(dest.key) },
+                            icon = { Icon(dest.icon, contentDescription = label) },
+                            label = { Text(label) },
+                        )
+                    }
                 }
             }
         }

@@ -3,6 +3,7 @@ package com.luisfagundes.feature.search.impl.di
 import com.luisfagundes.core.navigation.EntryProviderInstaller
 import com.luisfagundes.feature.search.api.navigation.SearchNavKey
 import com.luisfagundes.feature.search.impl.presentation.screen.SearchScreen
+import com.luisfagundes.feature.word.api.navigation.WordDetailNavKey
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,7 +15,11 @@ import dagger.multibindings.IntoSet
 internal object SearchNavModule {
     @Provides
     @IntoSet
-    fun installer(): EntryProviderInstaller = {
-        entry<SearchNavKey> { SearchScreen() }
+    fun installer(): EntryProviderInstaller = { navigator ->
+        entry<SearchNavKey> {
+            SearchScreen(
+                onNavigateToWordDetail = { word -> navigator.navigate(WordDetailNavKey(word)) }
+            )
+        }
     }
 }
