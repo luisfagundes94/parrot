@@ -1,25 +1,21 @@
 package com.luisfagundes.feature.word.impl.presentation.viewmodel
 
-import android.graphics.drawable.Drawable
 import app.cash.turbine.test
-import com.luisfagundes.core.common.tools.ResourceProvider
 import com.luisfagundes.core.dictionary.domain.model.Definition
 import com.luisfagundes.core.dictionary.domain.model.Meaning
 import com.luisfagundes.core.dictionary.domain.model.WordEntry
 import com.luisfagundes.core.dictionary.domain.model.WordNotFoundException
-import com.luisfagundes.core.dictionary.domain.repository.DictionaryRepository
-import com.luisfagundes.feature.word.impl.domain.speech.WordSpeaker
 import com.luisfagundes.feature.word.impl.presentation.effect.WordDetailEffect
 import com.luisfagundes.feature.word.impl.presentation.event.WordDetailEvent
 import com.luisfagundes.feature.word.impl.presentation.state.MeaningUi
 import com.luisfagundes.feature.word.impl.presentation.state.WordDetailState
+import com.luisfagundes.feature.word.impl.tools.FakeDictionaryRepository
+import com.luisfagundes.feature.word.impl.tools.FakeResourceProvider
+import com.luisfagundes.feature.word.impl.tools.FakeWordSpeaker
 import com.luisfagundes.feature.word.impl.tools.MainDispatcherExtension
-import kotlinx.coroutines.CompletableDeferred
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emptyFlow
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertInstanceOf
 import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertInstanceOf
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.RegisterExtension
@@ -243,40 +239,4 @@ internal class WordDetailViewModelTest {
         synonyms = emptyList(),
         antonyms = emptyList(),
     )
-
-    private class FakeDictionaryRepository : DictionaryRepository {
-        var result: Result<List<WordEntry>> = Result.success(emptyList())
-        var searchCalls = 0
-
-        override suspend fun search(word: String): Result<List<WordEntry>> {
-            searchCalls++
-            return result
-        }
-
-        override suspend fun getRecentlyLookedUpWords(): Flow<List<WordEntry>?> = emptyFlow()
-    }
-
-    private class FakeWordSpeaker : WordSpeaker {
-        val spoken = mutableListOf<String>()
-        private var pending: CompletableDeferred<Result<Unit>>? = null
-
-        override suspend fun speak(word: String): Result<Unit> {
-            spoken += word
-            return CompletableDeferred<Result<Unit>>().also { pending = it }.await()
-        }
-
-        override fun release() = Unit
-
-        fun finish(result: Result<Unit>) {
-            pending?.complete(result)
-        }
-    }
-
-    private class FakeResourceProvider : ResourceProvider {
-        override fun getString(resId: Int, vararg params: String) =
-            "string:$resId:${params.joinToString()}"
-
-        override fun getColor(colorId: Int) = 0
-        override fun getDrawable(drawableResId: Int): Drawable? = null
-    }
 }
