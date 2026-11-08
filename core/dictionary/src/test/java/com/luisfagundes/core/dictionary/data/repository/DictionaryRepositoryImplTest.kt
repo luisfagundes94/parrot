@@ -27,6 +27,7 @@ internal class DictionaryRepositoryImplTest {
     private val server = MockWebServer()
     private val json = Json { ignoreUnknownKeys = true }
     private val dao = FakeDictionaryDao()
+    private var now = 42L
 
     private lateinit var repository: DictionaryRepositoryImpl
 
@@ -40,7 +41,7 @@ internal class DictionaryRepositoryImplTest {
             )
             .build()
             .create(DictionaryApi::class.java)
-        repository = DictionaryRepositoryImpl(api, dao, json, Dispatchers.Unconfined, clock = { 42L })
+        repository = DictionaryRepositoryImpl(api, dao, json, Dispatchers.Unconfined, clock = { now })
     }
 
     @AfterEach
@@ -196,6 +197,15 @@ internal class DictionaryRepositoryImplTest {
         override suspend fun upsert(entity: CachedWordEntity) {
             if (failOnUpsert) error("disk full")
             store[entity.query] = entity
+        }
+
+        override suspend fun touch(query: String, timestampMillis: Long) {
+            store[query]?.let { store[query] = it.copy(cachedAtMillis = timestampMillis) }
+        }
+
+        override suspend fun deleteAllButNewest(limit: Int) {
+            val keep = store.values.sortedByDescending { it.cachedAtMillis }.take(limit).map { it.query }
+            store.keys.retainAll(keep.toSet())
         }
     }
 

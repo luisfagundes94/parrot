@@ -4,6 +4,7 @@ import com.luisfagundes.core.common.di.IoDispatcher
 import com.luisfagundes.core.common.tools.safeRunCatching
 import com.luisfagundes.core.dictionary.data.local.CachedWordEntity
 import com.luisfagundes.core.dictionary.data.local.DictionaryDao
+import com.luisfagundes.core.dictionary.data.local.MAX_STORED_WORDS
 import com.luisfagundes.core.dictionary.data.local.toDomain
 import com.luisfagundes.core.dictionary.data.model.WordEntryResponse
 import com.luisfagundes.core.dictionary.data.model.toDomain
@@ -26,6 +27,7 @@ import retrofit2.HttpException
 /**
  * Offline-first: a word that was looked up before is served from Room without touching the network.
  * Only unseen words hit the API, and successful responses are cached for next time.
+ * Only the [MAX_STORED_WORDS] most recently looked-up words are kept; older ones are evicted.
  */
 internal class DictionaryRepositoryImpl(
     private val api: DictionaryApi,
@@ -52,6 +54,7 @@ internal class DictionaryRepositoryImpl(
             // A broken cache must not block a lookup; fall through to the network.
             val cached = safeRunCatching { dao.getByQuery(key)?.decode() }.getOrNull()
             if (cached != null) {
+                safeRunCatching { dao.touch(key, clock()) }
                 Result.success(cached.map { it.toDomain() })
             } else {
                 fetchAndCache(query, key)
@@ -63,7 +66,7 @@ internal class DictionaryRepositoryImpl(
         safeRunCatching {
             val entries = api.getEntries(query)
             // A failing cache write must not fail a lookup that already succeeded.
-            safeRunCatching { dao.upsert(entries.toEntity(key)) }
+            safeRunCatching { dao.upsertKeepingNewest(entries.toEntity(key)) }
             entries.map { it.toDomain() }
         }.recoverCatching { error ->
             if (error is HttpException && error.code() == HttpURLConnection.HTTP_NOT_FOUND) {
