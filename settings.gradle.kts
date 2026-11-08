@@ -36,6 +36,8 @@ include(":core:dictionary")
 // Feature
 include(":feature:search:api")
 include(":feature:search:impl")
+include(":feature:word:api")
+include(":feature:word:impl")
 include(":feature:saved:api")
 include(":feature:saved:impl")
 include(":feature:review:api")

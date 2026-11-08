@@ -49,6 +49,8 @@ dependencies {
     implementation(project(":feature:search:impl"))
     implementation(project(":feature:review:api"))
     implementation(project(":feature:review:impl"))
+    implementation(project(":feature:word:api"))
+    implementation(project(":feature:word:impl"))
     implementation(project(":feature:saved:api"))
     implementation(project(":feature:saved:impl"))
 

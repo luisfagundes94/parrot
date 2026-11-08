@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="go_back">Go back</string>
+    <string name="something_went_wrong">Something went wrong, you can try again later</string>
+    <string name="try_again">Try Again</string>
+    <string name="no_definition_found">No definition found for \"%1$s\"</string>
+    <string name="no_meanings">No meanings available for this word</string>
+    <string name="meaning">MEANING</string>
+    <string name="in_sentences">IN SENTENCES</string>
+    <string name="set_a_reminder">Set a reminder</string>
+    <string name="play_pronunciation">Play pronunciation</string>
+    <string name="stop_pronunciation">Stop pronunciation</string>
+    <string name="bookmark_word">Bookmark word</string>
+    <string name="remove_bookmark">Remove bookmark</string>
+</resources>
