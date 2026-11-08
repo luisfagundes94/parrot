@@ -38,7 +38,7 @@ internal fun WordEntryResponse.toDomain() = WordEntry(
     word = word,
     phonetic = phonetic?.takeIf { it.isNotBlank() }
         ?: phonetics.firstNotNullOfOrNull { it.text?.takeIf(String::isNotBlank) },
-    audioUrl = phonetics.firstNotNullOfOrNull { it.audio?.takeIf(String::isNotBlank) },
+    audioUrl = phonetics.firstNotNullOfOrNull { it.audio?.takeIf(String::isNotBlank) }?.toHttpsUrl(),
     meanings = meanings.map { it.toDomain() },
 )
 
@@ -48,3 +48,6 @@ private fun MeaningResponse.toDomain() = Meaning(
     synonyms = synonyms,
     antonyms = antonyms,
 )
+
+/** The API sometimes returns protocol-relative audio URLs (`//host/a.mp3`), which MediaPlayer can't open. */
+private fun String.toHttpsUrl() = if (startsWith("//")) "https:$this" else this

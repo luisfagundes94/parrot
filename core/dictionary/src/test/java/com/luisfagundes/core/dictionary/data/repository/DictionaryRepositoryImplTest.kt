@@ -68,6 +68,19 @@ internal class DictionaryRepositoryImplTest {
     }
 
     @Test
+    fun `search turns a protocol-relative audio url into https`() = runTest {
+        server.enqueue(
+            MockResponse.Builder().code(200)
+                .body("""[{"word":"x","phonetics":[{"audio":"//ssl.gstatic.com/x.mp3"}],"meanings":[]}]""")
+                .build(),
+        )
+
+        val entry = repository.search("x").getOrThrow().single()
+
+        assertEquals("https://ssl.gstatic.com/x.mp3", entry.audioUrl)
+    }
+
+    @Test
     fun `search fails with WordNotFoundException on 404`() = runTest {
         server.enqueue(
             MockResponse.Builder().code(404)
