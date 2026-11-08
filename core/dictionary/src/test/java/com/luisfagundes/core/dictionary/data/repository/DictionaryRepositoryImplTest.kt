@@ -186,6 +186,37 @@ internal class DictionaryRepositoryImplTest {
         assertEquals("hello", result.getOrThrow().single().word)
     }
 
+    @Test
+    fun `search keeps only the 5 most recent words and evicts the oldest`() = runTest {
+        val words = listOf("one", "two", "three", "four", "five", "six")
+        words.forEach { word ->
+            server.enqueue(MockResponse.Builder().code(200).body(wordJson(word)).build())
+            now += 1
+            repository.search(word)
+        }
+
+        assertEquals(words.drop(1).toSet(), dao.store.keys)
+    }
+
+    @Test
+    fun `search refreshes a cached word so it is evicted last`() = runTest {
+        val words = listOf("one", "two", "three", "four", "five")
+        words.forEach { word ->
+            server.enqueue(MockResponse.Builder().code(200).body(wordJson(word)).build())
+            now += 1
+            repository.search(word)
+        }
+        now += 1
+        repository.search("one")
+        server.enqueue(MockResponse.Builder().code(200).body(wordJson("six")).build())
+        now += 1
+        repository.search("six")
+
+        assertEquals(setOf("one", "three", "four", "five", "six"), dao.store.keys)
+    }
+
+    private fun wordJson(word: String) = """[{"word":"$word","phonetics":[],"meanings":[]}]"""
+
     private class FakeDictionaryDao : DictionaryDao {
         val store = mutableMapOf<String, CachedWordEntity>()
         var failOnUpsert = false
